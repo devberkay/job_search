@@ -26,7 +26,6 @@ migrate_working_dir/
 **/ios/Flutter/.last_build_id
 .dart_tool/
 lib/firebase_options.dart
-**/lib/firebase_options.dart
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
@@ -44,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# web
+web/firebase-config.js
