@@ -29,6 +29,7 @@ class SpotlightCard extends HookConsumerWidget {
       },
       child: InkWell(
         onTap: () {},
+        borderRadius: BorderRadius.circular(10),
         child: AnimatedBuilder(
             animation: controller,
             child: SizedBox(
@@ -51,43 +52,45 @@ class SpotlightCard extends HookConsumerWidget {
                           ),
                         );
                       })),
-                  const Spacer(flex: 3,),
+                  const Spacer(
+                    flex: 2,
+                  ),
                   Expanded(
-                      flex: 6,
+                      flex: 4,
                       child: LayoutBuilder(builder: (context, constraints) {
-                        return Padding(
+                        return Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.075),
+                          alignment: Alignment.topLeft,
                           child: Text(
                             title,
                             maxLines: 1,
-                            textAlign: TextAlign.start,
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
-                                fontSize: constraints.maxHeight * 0.4,
+                                fontSize: constraints.maxHeight * 0.5,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.black),
                           ),
                         );
                       })),
-                  const Spacer(flex: 3,),
                   Expanded(
-                      flex: 7,
+                      flex: 16,
                       child: LayoutBuilder(builder: (context, constraints) {
-                        return Padding(
+                        return Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.075),
+                          alignment: Alignment.topCenter,
                           child: Text(
                             shortDescription,
                             softWrap: true,
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: constraints.maxHeight * 0.24,
+                                fontSize: constraints.maxHeight * 0.1,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey.shade600),
                           ),
                         );
                       })),
-                  const Spacer(flex: 3,),
                 ],
               ),
             ),

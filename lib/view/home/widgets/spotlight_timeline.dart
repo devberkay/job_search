@@ -26,8 +26,8 @@ class SpotlightTimeline extends HookConsumerWidget {
               scrollDirection: Axis.horizontal,
               children:const [
                 SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
-                SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
-                SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
+                SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are based on creative skills",title:"White-collar roles"),
+                SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are based on physical skills",title:"Blue-collar roles"),
                 SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
                 SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
                 SpotlightCard(assetUrl: "remote.jpg",shortDescription: "Find jobs that are eligible for remote work",title:"Remote roles"),
