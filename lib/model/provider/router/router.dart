@@ -32,7 +32,19 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                   key: state.pageKey,
                   child: HomePage(
                     key: state.pageKey,
-                  ))),
+                  )),
+                  routes: [
+                    GoRoute(
+                      path: "jobs",
+                      pageBuilder: (context, state) => MaterialPage(
+                          key: state.pageKey,
+                          child: HomePage(
+                            key: state.pageKey,
+                          )),
+                    ),
+                  
+                  ]),
+          
         ])
   ]);
 });
