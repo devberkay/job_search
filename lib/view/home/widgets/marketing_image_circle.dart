@@ -36,7 +36,7 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
       clipBehavior: Clip.none,
       children: [
         AnimatedSwitcher(
-          duration: Duration(),
+          duration: Duration(milliseconds: 250),
           child: CircleAvatar(
             radius: 175,
             foregroundImage: AssetImage("marketing$currentIndex.jpg"),
