@@ -35,7 +35,7 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
       children: [
         ClipOval(
             child: Image.asset(
-              url,
+              "assets/url",
               fit: BoxFit.cover,
               width: 350,
               height: 350,

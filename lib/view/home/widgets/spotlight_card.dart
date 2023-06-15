@@ -45,7 +45,7 @@ class SpotlightCard extends HookConsumerWidget {
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10)),
                           child: Image.asset(
-                            assetUrl,
+                            "assets/$assetUrl",
                             fit: BoxFit.cover,
                             width: 225,
                             height: constraints.maxHeight,
