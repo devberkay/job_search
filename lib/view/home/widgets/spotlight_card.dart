@@ -11,7 +11,7 @@ class SpotlightCard extends HookConsumerWidget {
     final elevationAnimation =
         Tween<double>(begin: 0, end: 5).animate(CurvedAnimation(
       parent: controller,
-      curve: Curves.easeOut,
+      curve: Curves.linear,
     ));
     return MouseRegion(
       onEnter: (event) {
@@ -23,9 +23,9 @@ class SpotlightCard extends HookConsumerWidget {
       child: AnimatedBuilder(
           animation: controller,
           child: Container(
-                  width: 300,
-                  height: 275,
-                ),
+            width: 300,
+            height: 275,
+          ),
           builder: (context, child) {
             return Card(
               elevation: elevationAnimation.value,

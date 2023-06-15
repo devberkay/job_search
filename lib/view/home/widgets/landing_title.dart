@@ -18,24 +18,19 @@ class LandingTitle extends HookConsumerWidget {
                   fontSize: constraints.maxHeight * 0.3,
                   fontWeight: FontWeight.w900),
               child: AnimatedTextKit(
-                pause: Duration(milliseconds:250),
+                pause: Duration(milliseconds: 250),
                 repeatForever: true,
                 onNext: (p0, p1) {
                   debugPrint("index: $p0, hasEnded: $p1");
-                  
                 },
-                
                 animatedTexts: [
                   RotateAnimatedText('Dream',
-                      
                       alignment: Alignment.bottomLeft,
                       textStyle: const TextStyle(color: Colors.red)),
                   RotateAnimatedText('Publish',
-                      
                       alignment: Alignment.bottomLeft,
                       textStyle: const TextStyle(color: Colors.blue)),
                   RotateAnimatedText('Find',
-                      
                       alignment: Alignment.bottomLeft,
                       textStyle: const TextStyle(color: Colors.green)),
                 ],

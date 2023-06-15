@@ -31,7 +31,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
                   SizedBox(
-                    height: 350,
+                    height: 300,
                     width: 600,
                     child: LandingTitle(),
                   ),
@@ -49,8 +49,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                   padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
-              SpotlightTimeline(),
-              const SizedBox(height: 30),
+              SpotlightTimeline()
+              
             ]
           : [
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
@@ -77,8 +77,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
-              SpotlightTimeline(),
-              const SizedBox(height: 30),
+              SpotlightTimeline()
             ],
     );
   }
