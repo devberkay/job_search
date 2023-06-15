@@ -11,16 +11,6 @@ import 'package:JobSearch/theming.dart';
 void main() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   
-  binding.addPostFrameCallback((_) async {
-    BuildContext context = binding.;
-    if(context != null)
-      {
-        for(var asset in _allAsset)
-        {
-          precacheImage(AssetImage(asset), context);
-        }
-      }
-  });
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
