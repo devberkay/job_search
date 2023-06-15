@@ -20,7 +20,7 @@ class SearchBox extends HookConsumerWidget {
             Text("Role",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
             SizedBox(
-              width: 141,
+              width: 160,
             ),
             Text("Where",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
@@ -28,10 +28,10 @@ class SearchBox extends HookConsumerWidget {
           ],
         ),
         const SizedBox(
-          height: 5,
+          height: 10,
         ),
         Container(
-          width: 450,
+          width: 500,
           height: 60,
           padding: const EdgeInsets.only(left: 15),
           decoration: BoxDecoration(
@@ -60,10 +60,14 @@ class SearchBox extends HookConsumerWidget {
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade400))),
               Container(
-                color: Colors.grey.shade200,
                 height: 60,
                 width: 45,
                 alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    border: Border.symmetric(
+                        vertical:
+                            BorderSide(color: Colors.grey.shade400, width: 2))),
                 child: Text(
                   "in",
                   style: TextStyle(
