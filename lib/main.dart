@@ -10,6 +10,11 @@ import 'package:JobSearch/theming.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.wait([
+      precacheImage(const AssetImage("marketing0.jpg"), context);
+      precacheImage(const AssetImage("marketing1.jpg"), context);
+      precacheImage(const AssetImage("marketing2.jpg"), context);
+  ]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
   );

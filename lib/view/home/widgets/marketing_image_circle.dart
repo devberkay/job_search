@@ -20,7 +20,7 @@ class MarketingImageCircle extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex =
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
-
+    
     debugPrint("no fucking way:$currentIndex");
 
     return Stack(
