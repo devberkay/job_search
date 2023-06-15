@@ -21,14 +21,13 @@ class _HomePageState extends ConsumerState<HomePage> {
     final isDismissedValueNotifier = useState(false);
     return ListView(
       children: [
-        GridView.count(
-            crossAxisCount: 2,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(50),
-            children: [
-              
-            ]),
-        GridView.extent(maxCrossAxisExtent: 300,)
+        DismissibleReminder(isDismissed: isDismissedValueNotifier),
+        Padding(
+          padding: const EdgeInsets.all(50),
+          child: Row(children: [
+            SizedBox(height: 300, width: 600, child: const LandingTitle()),
+          ]),
+        ),
       ],
     );
   }

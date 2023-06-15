@@ -23,12 +23,15 @@ class LandingTitle extends HookConsumerWidget {
                 animatedTexts: [
                   RotateAnimatedText('Dream',
                       alignment: Alignment.bottomLeft,
+                      transitionHeight: 15,
                       textStyle: const TextStyle(color: Colors.red)),
                   RotateAnimatedText('Publish',
                       alignment: Alignment.bottomLeft,
+                      transitionHeight: 15,
                       textStyle: const TextStyle(color: Colors.blue)),
                   RotateAnimatedText('Find',
                       alignment: Alignment.bottomLeft,
+                      transitionHeight: 15,
                       textStyle: const TextStyle(color: Colors.green)),
                 ],
               ),
@@ -40,7 +43,7 @@ class LandingTitle extends HookConsumerWidget {
                   fontWeight: FontWeight.w900,
                   color: Colors.black)),
           SizedBox(
-            height: constraints.maxHeight * 0.1,
+            height: constraints.maxHeight * 0.075,
           ),
           Text(
             "Discover your next step at Careers.",
