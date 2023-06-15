@@ -10,6 +10,6 @@ class MarketingImageCircle extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
-    return FadeTransition(opacity: ,child: Image.asset());
+    return ;
   }
 }
