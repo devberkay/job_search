@@ -41,16 +41,14 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        AnimatedSwitcher(
-            duration: const Duration(milliseconds: 250),
-            child: ClipOval(
-                child: Image.asset(
-              url,
-              gaplessPlayback: true,
-              height: 300,
-              width: 300,
-              fit: BoxFit.cover,
-            ))),
+        ClipOval(
+            child: Image.asset(
+          url,
+          gaplessPlayback: true,
+          height: 350,
+          width: 350,
+          fit: BoxFit.cover,
+        )),
         Positioned(
           bottom: -5,
           right: -5,

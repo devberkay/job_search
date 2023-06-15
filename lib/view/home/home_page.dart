@@ -30,7 +30,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
                   SizedBox(
-                    height: 300,
+                    height: 350,
                     width: 600,
                     child: LandingTitle(),
                   ),
@@ -39,7 +39,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   Spacer(flex:1),
                 ]),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 10),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
