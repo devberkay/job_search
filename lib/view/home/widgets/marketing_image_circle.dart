@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
-final marketingIndexProvider = StreamProvider.autoDispose<int>((ref) async* {
+final marketingImageIndexProvider = StreamProvider<int>((ref) async* {
   yield* Stream.periodic(const Duration(milliseconds: 3000), (index) {
-    return ((index+1) % 3);
+    debugPrint("motfucka:${(index) % 3}");
+    return index % 3;
   });
 });
 
@@ -15,18 +18,17 @@ class MarketingImageCircle extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(marketingIndexProvider).asData?.value ?? 0;
+    final currentIndex =
+        ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
+
     debugPrint("no fucking way:$currentIndex");
-    final prevChild =
-        useMemoized(() => AssetImage("assets/marketing$currentIndex.jpg"));
 
     return Stack(
       clipBehavior: Clip.none,
       children: [
         CircleAvatar(
           radius: 175,
-          backgroundImage: prevChild,
-          foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+          foregroundImage: AssetImage("marketing$currentIndex.jpg"),
         ),
         Positioned(
           bottom: -5,
