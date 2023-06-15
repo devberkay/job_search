@@ -1,11 +1,7 @@
 import 'dart:async';
 
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:simple_ripple_animation/simple_ripple_animation.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 final marketingImageIndexProvider =
     StreamProvider.autoDispose<int>((ref) async* {

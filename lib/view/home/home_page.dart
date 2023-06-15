@@ -1,12 +1,10 @@
-import 'package:JobSearch/breakpoints.dart';
-import 'package:JobSearch/model/provider/auth/user_provider.dart';
-import 'package:JobSearch/view/home/widgets/article_timeline.dart';
-import 'package:JobSearch/view/home/widgets/articles_subtitle.dart';
+import 'package:JobSearch/view/home/widgets/spotlight_timeline.dart';
+import 'package:JobSearch/view/home/widgets/spotligt_subtitle.dart';
 import 'package:JobSearch/view/home/widgets/dismissible_reminder.dart';
 
 import 'package:JobSearch/view/home/widgets/landing_title.dart';
 import 'package:JobSearch/view/home/widgets/marketing_image_circle.dart';
-import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
+
 import 'package:JobSearch/view/home/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -49,9 +47,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               const SizedBox(height: 30),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
-                  child: const ArticlesSubtitle()),
+                  child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
-              ArticleTimeline()
+              SpotlightTimeline()
             ]
           : [
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
@@ -76,9 +74,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               const SizedBox(height: 30),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
-                  child: const ArticlesSubtitle()),
+                  child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
-              ArticleTimeline()
+              SpotlightTimeline()
             ],
     );
   }

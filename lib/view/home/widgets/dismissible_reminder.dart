@@ -1,7 +1,5 @@
-import 'package:JobSearch/model/provider/auth/auth_notifier.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/view/shared/auth_dialog.dart';
-import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

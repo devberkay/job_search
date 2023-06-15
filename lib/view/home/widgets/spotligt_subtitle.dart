@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ArticlesSubtitle extends HookConsumerWidget {
-  const ArticlesSubtitle({super.key});
+class SpotlightSubtitle extends HookConsumerWidget {
+  const SpotlightSubtitle({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
-      "ARTICLES",
+      "SPOTLIGHT",
       style: TextStyle(
           letterSpacing: 2,
           fontSize: 14,
