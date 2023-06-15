@@ -14,7 +14,7 @@ class SpotlightTimeline extends HookConsumerWidget {
             padding: const EdgeInsets.only(top: 25),
             child: Container(
               width: double.maxFinite,
-              height: 200,
+              height: 225,
               color: Colors.grey.shade400.withOpacity(0.25),
             ),
           ),
