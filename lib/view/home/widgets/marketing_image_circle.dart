@@ -10,33 +10,35 @@ class MarketingImageCircle extends HookConsumerWidget {
   const MarketingImageCircle({super.key});
 
   Widget _imageBuilder(int index) {
-    if(index==0) {
-      
+    if (index == 0) {
+      return const CircleAvatar(
+        radius: 75,
+        foregroundImage: AssetImage("assets/marketing0.jpg"),
+      );
+    } else if (index == 1) {
+      return const CircleAvatar(
+        radius: 75,
+        foregroundImage: AssetImage("assets/marketing1.jpg"),
+      );
+    } else {
+      return const CircleAvatar(
+        radius: 75,
+        foregroundImage: AssetImage("assets/marketing2.jpg"),
+      );
     }
-
-    else if (index==1)
-
-      {
-
-      }  
-
-    else {
-
-    }
- 
- 
- }
-
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
-    final controller0 = useAnimationController();
-    final controller1 = useAnimationController();
-    final controller2 = useAnimationController();
+    final controller = useAnimationController();
+    final opacityAnimation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
     return AnimatedBuilder(
-        child : 
-        animation: Listenable.merge([controller0, controller1, controller2]),
-        builder: (context, child) {});
+        child: _imageBuilder(currentIndex),
+        animation: controller,
+        builder: (context, child) {
+          return FadeTransition(opacity: opacityAnimation, child: child);
+        });
   }
 }
