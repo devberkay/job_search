@@ -14,25 +14,24 @@ class MarketingImageCircle extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
-    debugPrint("What the fuck? :$currentIndex");
+
     final prevChild = useMemoized(
       () => CircleAvatar(
         radius: 175,
         foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
       ),
     );
-    const List<Color> colors = [Colors.red, Colors.blue, Colors.green];
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
         RippleAnimation(
-          key: ValueKey(currentIndex),
           ripplesCount: 5,
           delay: Duration.zero,
-          color: colors[currentIndex],
-          repeat: false,
-          minRadius: 115,
-          duration: Duration(milliseconds: 2500),
+          color: Colors.grey.shade600,
+          repeat: true,
+          duration: Duration(milliseconds: 4000),
+          minRadius: 125,
           child: CircleAvatar(
             radius: 175,
             child: prevChild,
