@@ -25,16 +25,21 @@ class _HomePageState extends ConsumerState<HomePage> {
       children: isDismissedValueNotifier.value
           ? [
               SizedBox(height: 50),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
-                child: const Row(children: [
-                  SizedBox(height: 300, width: 600, child: LandingTitle()),
-                ]),
-              ),
-              SizedBox(height: 50),
-              Container(
-                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
-                  child: const SearchBox())
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                    child: const Row(children: [
+                      SizedBox(height: 300, width: 600, child: LandingTitle()),
+                    ]),
+                  ),
+                  SizedBox(height: 50),
+                  Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                      child: const SearchBox()),
+                ],
+              )
             ]
           : [
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
