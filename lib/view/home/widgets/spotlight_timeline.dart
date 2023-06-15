@@ -7,14 +7,14 @@ class SpotlightTimeline extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final usableWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 250,
+      height: 300,
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 25),
             child: Container(
               width: double.maxFinite,
-              height: 225,
+              height: 275,
               color: Colors.grey.shade400.withOpacity(0.25),
             ),
           ),
@@ -28,66 +28,64 @@ class SpotlightTimeline extends HookConsumerWidget {
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 400,
-                    child: Column(
-                      
-                    ),
+                    height: 275,
+                    child: Column(),
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
-                  ),
-                ),
-                Card(
-                  color: Colors.white,
-                  child: Container(
-                    width: 200,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
                   ),
                 ),
                 Card(
                   color: Colors.white,
                   child: Container(
                     width: 300,
-                    height: 225,
+                    height: 275,
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  child: Container(
+                    width: 300,
+                    height: 275,
                   ),
                 ),
               ],
