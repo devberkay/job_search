@@ -6,7 +6,7 @@ class MarketingImageCircle extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CircleAvatar(
-      
+      foregroundImage: NetworkImage(""),
     );
   }
 }
