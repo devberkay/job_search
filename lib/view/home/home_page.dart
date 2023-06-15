@@ -19,8 +19,17 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final isDismissedValueNotifier = useState(false);
-    return Container(
-        padding: EdgeInsets.zero,
-        child: GridView.count(crossAxisCount: 2));
+    return ListView(
+      children: [
+        GridView.count(
+            crossAxisCount: 2,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.all(50),
+            children: [
+              
+            ]),
+        GridView.extent(maxCrossAxisExtent: 300,)
+      ],
+    );
   }
 }
