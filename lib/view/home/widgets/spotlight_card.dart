@@ -3,7 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SpotlightCard extends HookConsumerWidget {
-  const SpotlightCard({super.key});
+  const SpotlightCard({super.key,required this.assetUrl});
+  final String assetUrl;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller =
