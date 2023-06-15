@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 final marketingIndexProvider = StreamProvider.autoDispose<int>((ref) async* {
-  yield* Stream.periodic(const Duration(milliseconds: 2500), (index) {
-    return index % 3;
+  yield* Stream.periodic(const Duration(milliseconds: 3000), (index) {
+    return ((index+1) % 3);
   });
 });
 
@@ -18,23 +18,15 @@ class MarketingImageCircle extends HookConsumerWidget {
     final currentIndex = ref.watch(marketingIndexProvider).asData?.value ?? 0;
     debugPrint("no fucking way:$currentIndex");
     final prevChild =
-        usePrevious(AssetImage("assets/marketing$currentIndex.jpg"));
+        useMemoized(() => AssetImage("assets/marketing$currentIndex.jpg"));
 
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        RippleAnimation(
-          key: ValueKey(currentIndex),
-          ripplesCount: 5,
-          delay: Duration.zero,
-          color: Colors.grey.shade600,
-          repeat: false,
-          minRadius: 125,
-          child: CircleAvatar(
-            radius: 175,
-            backgroundImage: prevChild,
-            foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
-          ),
+        CircleAvatar(
+          radius: 175,
+          backgroundImage: prevChild,
+          foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
         ),
         Positioned(
           bottom: -5,
