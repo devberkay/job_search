@@ -10,7 +10,7 @@ import 'package:JobSearch/theming.dart';
 
 void main() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
-  loadImage()
+  
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
