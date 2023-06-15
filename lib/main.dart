@@ -10,8 +10,8 @@ import 'package:JobSearch/model/provider/router/router.dart';
 import 'package:JobSearch/theming.dart';
 
 void main() async {
-  final binding = WidgetsFlutterBinding.ensureInitialized();
-
+   WidgetsFlutterBinding.ensureInitialized();
+  
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
   );
