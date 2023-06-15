@@ -12,17 +12,17 @@ class MarketingImageCircle extends HookConsumerWidget {
   Widget _imageBuilder(int index) {
     if (index == 0) {
       return const CircleAvatar(
-        radius: 75,
+        radius: 225,
         foregroundImage: AssetImage("assets/marketing0.jpg"),
       );
     } else if (index == 1) {
       return const CircleAvatar(
-        radius: 75,
+        radius: 225,
         foregroundImage: AssetImage("assets/marketing1.jpg"),
       );
     } else {
       return const CircleAvatar(
-        radius: 75,
+        radius: 225,
         foregroundImage: AssetImage("assets/marketing2.jpg"),
       );
     }
@@ -31,12 +31,20 @@ class MarketingImageCircle extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
+    final prevChild = useMemoized(() => CircleAvatar(
+          radius: 225,
+          foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+        ));
     debugPrint("ne oluyo amk : $currentIndex");
     final controller =
         useAnimationController(duration: const Duration(milliseconds: 300));
     final opacityAnimation = Tween<double>(begin: 0, end: 1)
         .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
-    
-    return _imageBuilder(currentIndex);
+
+    return CircleAvatar(
+      radius: 225,
+      child: prevChild,
+      foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+    );
   }
 }
