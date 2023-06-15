@@ -9,12 +9,18 @@ import 'package:JobSearch/model/provider/router/router.dart';
 import 'package:JobSearch/theming.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Future.wait([
-      precacheImage(const AssetImage("marketing0.jpg"), context);
-      precacheImage(const AssetImage("marketing1.jpg"), context);
-      precacheImage(const AssetImage("marketing2.jpg"), context);
-  ]);
+  final binding = WidgetsFlutterBinding.ensureInitialized();
+  binding.addPostFrameCallback((_) async {
+    BuildContext context = binding;
+    if(context != null)
+      {
+        for(var asset in _allAsset)
+        {
+          precacheImage(AssetImage(asset), context);
+        }
+      }
+  });
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
   );

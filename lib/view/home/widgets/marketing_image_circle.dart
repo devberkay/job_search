@@ -6,21 +6,37 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
-final marketingImageIndexProvider = StreamProvider<int>((ref) async* {
+final marketingImageIndexProvider =
+    StreamProvider.autoDispose<int>((ref) async* {
   yield* Stream.periodic(const Duration(milliseconds: 3250), (index) {
     debugPrint("motfucka:${(index) % 3}");
     return index % 3;
   });
 });
 
-class MarketingImageCircle extends HookConsumerWidget {
+class MarketingImageCircle extends StatefulHookConsumerWidget {
   const MarketingImageCircle({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MarketingImageCircleState();
+}
+
+class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
+  @override
+  void didChangeDependencies() {
+    precacheImage(const AssetImage("marketing0.jpg"), context);
+    precacheImage(const AssetImage("marketing1.jpg"), context);
+    precacheImage(const AssetImage("marketing2.jpg"), context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  @mustCallSuper
+  Widget build(BuildContext context) {
     final currentIndex =
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
-    
+
     debugPrint("no fucking way:$currentIndex");
 
     return Stack(
