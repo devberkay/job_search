@@ -23,16 +23,20 @@ class MarketingImageCircle extends StatefulHookConsumerWidget {
 }
 
 class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
+  final ImageProvider imageProvider0 = const AssetImage("marketing0.jpg");
+  final ImageProvider imageProvider1 = const AssetImage("marketing1.jpg");
+  final ImageProvider imageProvider2 = const AssetImage("marketing2.jpg");
   @override
   void didChangeDependencies() {
-    precacheImage(const AssetImage("marketing0.jpg"), context);
-    precacheImage(const AssetImage("marketing1.jpg"), context);
-    precacheImage(const AssetImage("marketing2.jpg"), context);
+    precacheImage(imageProvider0, context);
+    precacheImage(imageProvider1, context);
+    precacheImage(imageProvider2, context);
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final imageProviders = [imageProvider0, imageProvider1, imageProvider2];
     final currentIndex =
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
 
@@ -42,7 +46,7 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
       clipBehavior: Clip.none,
       children: [
         AnimatedSwitcher(
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           child: CircleAvatar(
             radius: 175,
             foregroundImage: AssetImage("marketing$currentIndex.jpg"),
