@@ -23,16 +23,9 @@ class MarketingImageCircle extends StatefulHookConsumerWidget {
 }
 
 class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
-  @override
-  void didChangeDependencies() {
-    precacheImage(const AssetImage("marketing0.jpg"), context);
-    precacheImage(const AssetImage("marketing1.jpg"), context);
-    precacheImage(const AssetImage("marketing2.jpg"), context);
-    super.didChangeDependencies();
-  }
+  
 
   @override
-  @mustCallSuper
   Widget build(BuildContext context) {
     final currentIndex =
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
