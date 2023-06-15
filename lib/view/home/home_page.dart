@@ -20,15 +20,24 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final isDismissedValueNotifier = useState(false);
     return ListView(
-      children: [
-        DismissibleReminder(isDismissed: isDismissedValueNotifier),
-        Padding(
-          padding: const EdgeInsets.all(50),
-          child: Row(children: [
-            SizedBox(height: 300, width: 600, child: const LandingTitle()),
-          ]),
-        ),
-      ],
+      children: isDismissedValueNotifier.value
+          ? [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 125, vertical: 50),
+                child: Row(children: [
+                  SizedBox(height: 275, width: 500, child: LandingTitle()),
+                ]),
+              ),
+            ]
+          : [
+              DismissibleReminder(isDismissed: isDismissedValueNotifier),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 125, vertical: 50),
+                child: Row(children: [
+                  SizedBox(height: 300, width: 600, child: LandingTitle()),
+                ]),
+              ),
+            ],
     );
   }
 }

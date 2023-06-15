@@ -23,15 +23,15 @@ class LandingTitle extends HookConsumerWidget {
                 animatedTexts: [
                   RotateAnimatedText('Dream',
                       alignment: Alignment.bottomLeft,
-                      transitionHeight: 15,
+                   
                       textStyle: const TextStyle(color: Colors.red)),
                   RotateAnimatedText('Publish',
                       alignment: Alignment.bottomLeft,
-                      transitionHeight: 15,
+                  
                       textStyle: const TextStyle(color: Colors.blue)),
                   RotateAnimatedText('Find',
                       alignment: Alignment.bottomLeft,
-                      transitionHeight: 15,
+                     
                       textStyle: const TextStyle(color: Colors.green)),
                 ],
               ),
