@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 final marketingImageIndexProvider =
     StreamProvider.autoDispose<int>((ref) async* {
-  yield* Stream.periodic(const Duration(milliseconds: 3150), (index) {
+  yield* Stream.periodic(const Duration(milliseconds: 2400), (index) {
     debugPrint("motfucka:${(index) % 3}");
     return index % 3;
   });
@@ -43,12 +44,12 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
       children: [
         ClipOval(
             child: Image.asset(
-          url,
-          gaplessPlayback: true,
-          height: 350,
-          width: 350,
-          fit: BoxFit.cover,
-        )),
+              url,
+              fit: BoxFit.cover,
+              width: 350,
+              height: 350,
+              gaplessPlayback: true,
+            )),
         Positioned(
           bottom: -5,
           right: -5,

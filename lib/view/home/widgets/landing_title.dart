@@ -19,6 +19,7 @@ class LandingTitle extends HookConsumerWidget {
                   fontSize: constraints.maxHeight * 0.3,
                   fontWeight: FontWeight.w900),
               child: AnimatedTextKit(
+                pause: Duration(milliseconds:250),
                 repeatForever: true,
                 onNext: (p0, p1) {
                   debugPrint("index: $p0, hasEnded: $p1");

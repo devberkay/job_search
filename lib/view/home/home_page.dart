@@ -4,6 +4,7 @@ import 'package:JobSearch/view/home/widgets/dismissible_reminder.dart';
 
 import 'package:JobSearch/view/home/widgets/landing_title.dart';
 import 'package:JobSearch/view/home/widgets/marketing_image_circle.dart';
+import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
 import 'package:JobSearch/view/home/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -43,6 +44,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
+              
             ]
           : [
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
@@ -65,6 +67,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
+              
             ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -119,7 +120,22 @@ class SearchBox extends HookConsumerWidget {
               )
             ],
           ),
-        )
+        ),
+        const Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 45,
+            ),
+            
+            SizedBox(
+              width: 180,
+            ),
+            RemoteCheckbox(),
+            Spacer(),
+          ],
+        ),
       ],
     );
   }
