@@ -1,6 +1,8 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 final marketingIndexProvider = StateProvider.autoDispose<int>((ref) {
   return 0;
@@ -18,11 +20,15 @@ class MarketingImageCircle extends HookConsumerWidget {
         foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
       ),
     );
-
+    const List<Color> colors = [Colors.blue, Colors.green, Colors.red];
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        AvatarGlow(
+        RippleAnimation(
+          color: colors[currentIndex],
+          repeat: true,
+          minRadius: 125,
+          duration: Duration(milliseconds: 5500),
           child: CircleAvatar(
             radius: 175,
             child: prevChild,
@@ -30,11 +36,11 @@ class MarketingImageCircle extends HookConsumerWidget {
           ),
         ),
         Positioned(
-          bottom: -9,
-          right: -9,
+          bottom: -5,
+          right: -5,
           child: Container(
-            height: 18,
-            width: 18,
+            height: 20,
+            width: 20,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.transparent,
@@ -45,8 +51,8 @@ class MarketingImageCircle extends HookConsumerWidget {
           top: -7,
           left: -7,
           child: Container(
-            height: 18,
-            width: 18,
+            height: 24,
+            width: 24,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.transparent,
@@ -57,8 +63,8 @@ class MarketingImageCircle extends HookConsumerWidget {
           top: -10,
           right: -10,
           child: Container(
-            height: 18,
-            width: 18,
+            height: 30,
+            width: 30,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.transparent,
