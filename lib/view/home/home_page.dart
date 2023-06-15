@@ -21,11 +21,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     final isDismissedValueNotifier = useState(false);
     final usableWidth = MediaQuery.of(context).size.width;
 
-    return GridView.count(
-      crossAxisCount: 2,
+    return ListView(
       children: isDismissedValueNotifier.value
           ? [
-              const SizedBox(height: 50),
               const SizedBox(height: 50),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
@@ -33,7 +31,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                   SizedBox(height: 300, width: 600, child: LandingTitle()),
                 ]),
               ),
-              const SizedBox(height: 50),
               const SizedBox(height: 50),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
