@@ -26,12 +26,14 @@ class _HomePageState extends ConsumerState<HomePage> {
       children: isDismissedValueNotifier.value
           ? [
               const SizedBox(height: 50),
+              const SizedBox(height: 50),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
                   SizedBox(height: 300, width: 600, child: LandingTitle()),
                 ]),
               ),
+              const SizedBox(height: 50),
               const SizedBox(height: 50),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
