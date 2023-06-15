@@ -85,7 +85,7 @@ class SpotlightCard extends HookConsumerWidget {
                             softWrap: true,
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: constraints.maxHeight * 0.1,
+                                fontSize: constraints.maxHeight * 0.085,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey.shade600),
                           ),
