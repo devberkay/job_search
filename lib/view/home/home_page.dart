@@ -1,5 +1,7 @@
 import 'package:JobSearch/breakpoints.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
+import 'package:JobSearch/view/home/widgets/article_timeline.dart';
+import 'package:JobSearch/view/home/widgets/articles_subtitle.dart';
 import 'package:JobSearch/view/home/widgets/dismissible_reminder.dart';
 
 import 'package:JobSearch/view/home/widgets/landing_title.dart';
@@ -35,16 +37,21 @@ class _HomePageState extends ConsumerState<HomePage> {
                     width: 600,
                     child: LandingTitle(),
                   ),
-                  Spacer(flex:2),
+                  Spacer(flex: 2),
                   MarketingImageCircle(),
-                  Spacer(flex:1),
+                  Spacer(flex: 1),
                 ]),
               ),
               const SizedBox(height: 10),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
-              
+              const SizedBox(height: 30),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  child: const ArticlesSubtitle()),
+              const SizedBox(height: 10),
+              ArticleTimeline()
             ]
           : [
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
@@ -57,17 +64,21 @@ class _HomePageState extends ConsumerState<HomePage> {
                     width: 600,
                     child: LandingTitle(),
                   ),
-                  Spacer(flex:2),
+                  Spacer(flex: 2),
                   MarketingImageCircle(),
                   Spacer(),
-                  
                 ]),
               ),
               const SizedBox(height: 50),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
-              
+              const SizedBox(height: 30),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  child: const ArticlesSubtitle()),
+              const SizedBox(height: 10),
+              ArticleTimeline()
             ],
     );
   }

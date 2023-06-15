@@ -18,19 +18,19 @@ class DismissibleReminder extends HookConsumerWidget {
       }
     });
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
       color: Colors.blueAccent.shade100.withOpacity(0.5),
       height: 40,
       width: double.maxFinite,
       child: Row(
         children: [
           Icon(CupertinoIcons.info_circle, color: Colors.blueAccent.shade700),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           const Text(
             "Creating a Careers profile saves your info so you can apply to jobs quickly.",
             style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           HeadlessCupertinoButton(
               child: Text("Create a profile",
                   style: TextStyle(
@@ -63,7 +63,7 @@ class DismissibleReminder extends HookConsumerWidget {
                   },
                 ).then((value) {});
               }),
-          Spacer(),
+          const Spacer(),
           HeadlessCupertinoButton(
               child: Text("Dismiss",
                   style: TextStyle(
