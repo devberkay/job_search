@@ -34,7 +34,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                     width: 600,
                     child: LandingTitle(),
                   ),
-                  MarketingImageCircle()
+                  Spacer(flex:2),
+                  MarketingImageCircle(),
+                  Spacer(flex:1),
                 ]),
               ),
               const SizedBox(height: 50),
@@ -48,18 +50,21 @@ class _HomePageState extends ConsumerState<HomePage> {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
-                  SizedBox(height: 300, width: 600, child: LandingTitle()),
-                  Spacer(
-                    flex: 3,
+                  SizedBox(
+                    height: 300,
+                    width: 600,
+                    child: LandingTitle(),
                   ),
+                  Spacer(flex:2),
                   MarketingImageCircle(),
                   Spacer(),
+                  
                 ]),
               ),
               const SizedBox(height: 50),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
-                  child: const SearchBox())
+                  child: const SearchBox()),
             ],
     );
   }
