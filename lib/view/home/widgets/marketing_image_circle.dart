@@ -31,15 +31,12 @@ class MarketingImageCircle extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
+    debugPrint("ne oluyo amk : $currentIndex");
     final controller =
-        useAnimationController(duration: Duration(milliseconds: 300));
+        useAnimationController(duration: const Duration(milliseconds: 300));
     final opacityAnimation = Tween<double>(begin: 0, end: 1)
         .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
-    return AnimatedBuilder(
-        child: _imageBuilder(currentIndex),
-        animation: controller,
-        builder: (context, child) {
-          return FadeTransition(opacity: opacityAnimation, child: child);
-        });
+    
+    return _imageBuilder(currentIndex);
   }
 }
