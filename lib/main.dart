@@ -1,6 +1,7 @@
 import 'package:JobSearch/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +11,6 @@ import 'package:JobSearch/theming.dart';
 
 void main() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
-  
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
@@ -24,7 +24,7 @@ class JobSearchApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
-
+    
     return GlobalLoaderOverlay(
       useDefaultLoading: false,
       overlayWidget: Center(
@@ -36,7 +36,7 @@ class JobSearchApp extends HookConsumerWidget {
             ),
             width: 80,
             height: 80,
-            child: SpinKitRing(
+            child: const SpinKitRing(
               color: Colors.white,
             )),
       ),

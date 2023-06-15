@@ -23,7 +23,13 @@ class MarketingImageCircle extends StatefulHookConsumerWidget {
 }
 
 class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
-  
+  @override
+  void didChangeDependencies() {
+    precacheImage(const AssetImage("marketing0.jpg"), context);
+    precacheImage(const AssetImage("marketing1.jpg"), context);
+    precacheImage(const AssetImage("marketing2.jpg"), context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
 
     debugPrint("no fucking way:$currentIndex");
-    
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
