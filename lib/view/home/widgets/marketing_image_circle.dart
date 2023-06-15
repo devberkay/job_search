@@ -9,42 +9,63 @@ final marketingIndexProvider = StateProvider.autoDispose<int>((ref) {
 class MarketingImageCircle extends HookConsumerWidget {
   const MarketingImageCircle({super.key});
 
-  Widget _imageBuilder(int index) {
-    if (index == 0) {
-      return const CircleAvatar(
-        radius: 225,
-        foregroundImage: AssetImage("assets/marketing0.jpg"),
-      );
-    } else if (index == 1) {
-      return const CircleAvatar(
-        radius: 225,
-        foregroundImage: AssetImage("assets/marketing1.jpg"),
-      );
-    } else {
-      return const CircleAvatar(
-        radius: 225,
-        foregroundImage: AssetImage("assets/marketing2.jpg"),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(marketingIndexProvider);
-    final prevChild = useMemoized(() => CircleAvatar(
-          radius: 225,
-          foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
-        ));
-    debugPrint("ne oluyo amk : $currentIndex");
-    final controller =
-        useAnimationController(duration: const Duration(milliseconds: 300));
-    final opacityAnimation = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+    final prevChild = useMemoized(
+      () => CircleAvatar(
+        radius: 175,
+        foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+      ),
+    );
 
-    return CircleAvatar(
-      radius: 225,
-      child: prevChild,
-      foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        AvatarGlow(
+          child: CircleAvatar(
+            radius: 175,
+            child: prevChild,
+            foregroundImage: AssetImage("assets/marketing$currentIndex.jpg"),
+          ),
+        ),
+        Positioned(
+          bottom: -9,
+          right: -9,
+          child: Container(
+            height: 18,
+            width: 18,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+                border: Border.all(color: Colors.green, width: 2)),
+          ),
+        ),
+        Positioned(
+          top: -7,
+          left: -7,
+          child: Container(
+            height: 18,
+            width: 18,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+                border: Border.all(color: Colors.blue, width: 2)),
+          ),
+        ),
+        Positioned(
+          top: -10,
+          right: -10,
+          child: Container(
+            height: 18,
+            width: 18,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+                border: Border.all(color: Colors.red, width: 2)),
+          ),
+        ),
+      ],
     );
   }
 }

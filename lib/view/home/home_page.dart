@@ -34,11 +34,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     width: 600,
                     child: LandingTitle(),
                   ),
-                  Spacer(
-                    flex: 3,
-                  ),
-                  MarketingImageCircle(),
-                  Spacer(),
+                  MarketingImageCircle()
                 ]),
               ),
               const SizedBox(height: 50),

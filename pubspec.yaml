@@ -42,6 +42,7 @@ dependencies:
   shimmer: ^3.0.0
   http: ^0.13.6
   transparent_image: ^2.0.1
+  avatar_glow: ^2.0.2
   
 dev_dependencies:
   flutter_test:
