@@ -31,13 +31,16 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
 
     debugPrint("no fucking way:$currentIndex");
-
+    
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        CircleAvatar(
-          radius: 175,
-          foregroundImage: AssetImage("marketing$currentIndex.jpg"),
+        AnimatedSwitcher(
+          duration: Duration(),
+          child: CircleAvatar(
+            radius: 175,
+            foregroundImage: AssetImage("marketing$currentIndex.jpg"),
+          ),
         ),
         Positioned(
           bottom: -5,
