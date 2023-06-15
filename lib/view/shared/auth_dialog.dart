@@ -22,8 +22,10 @@ class AuthDialog extends HookConsumerWidget {
     ref.listen(authNotifierProvider, (prev, next) {
       next.when(data: (_data) {
         context.loaderOverlay.hide();
+        Navigator.of(context).pop();
       }, error: (e, st) {
         context.loaderOverlay.hide();
+        Navigator.of(context).pop();
       }, loading: () {
         context.loaderOverlay.show();
       });
@@ -86,11 +88,19 @@ class AuthDialog extends HookConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TabBarView(
                   controller: _tabController,
-                  children:  [
+                  children: [
                     // Sign In Tab Content
-                    SignInTab(mailNotifier: mailNotifier,passwordNotifier: passwordNotifier,),
+                    SignInTab(
+                      mailNotifier: mailNotifier,
+                      passwordNotifier: passwordNotifier,
+                    ),
                     // Sign Up Tab Content
-                    SignUpTab(nameNotifier: nameNotifier,surnameNotifier: surnameNotifier,mailNotifier: mailNotifier,passwordNotifier: passwordNotifier,)
+                    SignUpTab(
+                      nameNotifier: nameNotifier,
+                      surnameNotifier: surnameNotifier,
+                      mailNotifier: mailNotifier,
+                      passwordNotifier: passwordNotifier,
+                    )
                   ],
                 ),
               ),
@@ -103,11 +113,17 @@ class AuthDialog extends HookConsumerWidget {
                     if (_tabController.index == 0) {
                       ref
                           .read(authNotifierProvider.notifier)
-                          .signInWithMailAndPassword(email: mailNotifier.value,password: passwordNotifier.value);
+                          .signInWithMailAndPassword(
+                              email: mailNotifier.value,
+                              password: passwordNotifier.value);
                     } else {
                       ref
                           .read(authNotifierProvider.notifier)
-                          .signUpWithMailAndPassword(email: mailNotifier.value,password: passwordNotifier.value,name: nameNotifier.value,surname: surnameNotifier.value);
+                          .signUpWithMailAndPassword(
+                              email: mailNotifier.value,
+                              password: passwordNotifier.value,
+                              name: nameNotifier.value,
+                              surname: surnameNotifier.value);
                     }
                   },
                   height: 30,
