@@ -1,3 +1,5 @@
+import 'package:JobSearch/model/provider/auth/auth_notifier.dart';
+import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/view/shared/auth_dialog.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
@@ -10,6 +12,11 @@ class DismissibleReminder extends HookConsumerWidget {
   final ValueNotifier<bool> isDismissed;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(userProvider, (previous, next) {
+      if(next != null) {
+        isDismissed.value = true;
+      }
+    });
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
       color: Colors.blueAccent.shade100.withOpacity(0.5),
@@ -54,9 +61,7 @@ class DismissibleReminder extends HookConsumerWidget {
                       ),
                     );
                   },
-                ).then((value) {
-                  
-                });
+                ).then((value) {});
               }),
           Spacer(),
           HeadlessCupertinoButton(
