@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 final marketingImageIndexProvider = StreamProvider<int>((ref) async* {
-  yield* Stream.periodic(const Duration(milliseconds: 3000), (index) {
+  yield* Stream.periodic(const Duration(milliseconds: 3250), (index) {
     debugPrint("motfucka:${(index) % 3}");
     return index % 3;
   });
