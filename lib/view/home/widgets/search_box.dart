@@ -20,20 +20,20 @@ class SearchBox extends HookConsumerWidget {
             Text("Role",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
             SizedBox(
-              width: 175,
+              width: 141,
             ),
             Text("Where",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
             Spacer(),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Container(
           width: 450,
           height: 60,
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+          padding: const EdgeInsets.only(left: 15),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(60 / 2),
@@ -52,7 +52,7 @@ class SearchBox extends HookConsumerWidget {
                       decoration: BoxDecoration(
                           border:
                               Border.all(color: Colors.transparent, width: 0),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(60 / 2),
                               bottomLeft: Radius.circular(60 / 2))),
                       placeholderStyle: TextStyle(
@@ -62,7 +62,7 @@ class SearchBox extends HookConsumerWidget {
               Container(
                 color: Colors.grey.shade200,
                 height: 60,
-                width: 60,
+                width: 45,
                 alignment: Alignment.center,
                 child: Text(
                   "in",
@@ -79,13 +79,40 @@ class SearchBox extends HookConsumerWidget {
                       decoration: BoxDecoration(
                           border:
                               Border.all(color: Colors.transparent, width: 0),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(60 / 2),
                               bottomRight: Radius.circular(60 / 2))),
                       placeholderStyle: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade400))),
+              TextButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                        const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.horizontal(
+                                right: Radius.circular(60 / 2)))),
+                    fixedSize: const MaterialStatePropertyAll(Size(75, 60)),
+                    foregroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed) ||
+                          states.contains(MaterialState.hovered)) {
+                        return Colors.white;
+                      }
+                      return Colors.black;
+                    }),
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed) ||
+                          states.contains(MaterialState.hovered)) {
+                        return Colors.blueAccent.shade700;
+                      } else {
+                        return Colors.white;
+                      }
+                    })),
+                child: const Text("Search"),
+              )
             ],
           ),
         )

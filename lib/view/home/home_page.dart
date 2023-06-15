@@ -19,24 +19,36 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final isDismissedValueNotifier = useState(false);
+    final usableWidth = MediaQuery.of(context).size.width;
+
     return ListView(
       children: isDismissedValueNotifier.value
           ? [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 125, vertical: 50),
-                child: Row(children: [
-                  SizedBox(height: 275, width: 500, child: LandingTitle()),
-                ]),
-              ),
-            ]
-          : [
-              DismissibleReminder(isDismissed: isDismissedValueNotifier),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 125, vertical: 50),
-                child: Row(children: [
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                child: const Row(children: [
                   SizedBox(height: 300, width: 600, child: LandingTitle()),
                 ]),
               ),
+              SizedBox(height: 50),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  child: const SearchBox())
+            ]
+          : [
+              DismissibleReminder(isDismissed: isDismissedValueNotifier),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                child: const Row(children: [
+                  SizedBox(height: 300, width: 600, child: LandingTitle()),
+                ]),
+              ),
+              SizedBox(height: 50),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  child: const SearchBox())
             ],
     );
   }
