@@ -9,7 +9,7 @@ class MarketingImageCircle extends HookConsumerWidget {
   const MarketingImageCircle({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-    return FadeInImage.assetNetwork(placeholder: , image: image);
+    final currentIndex = ref.watch(marketingIndexProvider);
+    return FadeTransition(opacity: ,child: Image.asset());
   }
 }
