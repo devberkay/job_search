@@ -50,6 +50,9 @@ class SpotlightTimeline extends HookConsumerWidget {
                   child: Container(
                     width: 300,
                     height: 400,
+                    child: Column(
+                      
+                    ),
                   ),
                 ),
                 Card(
