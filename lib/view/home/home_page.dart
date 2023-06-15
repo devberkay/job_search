@@ -28,7 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           ? [
               const SizedBox(height: 50),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
                   SizedBox(
                     height: 350,
@@ -42,11 +42,11 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               const SizedBox(height: 10),
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
               const SizedBox(height: 30),
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
               SpotlightTimeline()
@@ -55,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               DismissibleReminder(isDismissed: isDismissedValueNotifier),
               const SizedBox(height: 50),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                 child: const Row(children: [
                   SizedBox(
                     height: 300,
@@ -69,11 +69,11 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               const SizedBox(height: 50),
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SearchBox()),
               const SizedBox(height: 30),
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: usableWidth * 0.1),
                   child: const SpotlightSubtitle()),
               const SizedBox(height: 10),
               SpotlightTimeline()
