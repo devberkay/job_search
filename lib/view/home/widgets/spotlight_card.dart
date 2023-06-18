@@ -20,6 +20,8 @@ class SpotlightCard extends HookConsumerWidget {
       parent: controller,
       curve: Curves.linear,
     ));
+    final scaleAnimation = Tween<double>(begin: 1, end: 1.03).animate(
+        CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic));
     return MouseRegion(
       onEnter: (event) {
         controller.forward();
@@ -95,13 +97,16 @@ class SpotlightCard extends HookConsumerWidget {
               ),
             ),
             builder: (context, child) {
-              return Card(
-                elevation: elevationAnimation.value,
-                shadowColor: Colors.black,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: child,
+              return ScaleTransition(
+                scale: scaleAnimation,
+                child: Card(
+                  elevation: elevationAnimation.value,
+                  shadowColor: Colors.black,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: child,
+                ),
               );
             }),
       ),

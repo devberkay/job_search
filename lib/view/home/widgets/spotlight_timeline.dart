@@ -28,6 +28,8 @@ class SpotlightTimeline extends HookConsumerWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               controller: scrollController,
+              itemExtent: 225,
+              cacheExtent: 2000,
               children: const [
                 SpotlightCard(
                     assetUrl: "remote.jpg",
@@ -77,23 +79,22 @@ class SpotlightTimeline extends HookConsumerWidget {
             padding: const EdgeInsets.only(right: 20, bottom: 125),
             child: ElevatedButton(
               onPressed: () {
-                if(scrollState.value==0) {
+                if (scrollState.value == 0) {
                   scrollController
-                    .animateTo(600,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.decelerate)
-                    .whenComplete(() {
-                  scrollState.value = 1;
-                });
-                }
-                else {
+                      .animateTo(600,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.decelerate)
+                      .whenComplete(() {
+                    scrollState.value = 1;
+                  });
+                } else {
                   scrollController
-                    .animateTo(0,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.decelerate)
-                    .whenComplete(() {
-                  scrollState.value = 0;
-                });
+                      .animateTo(0,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.decelerate)
+                      .whenComplete(() {
+                    scrollState.value = 0;
+                  });
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -103,15 +104,16 @@ class SpotlightTimeline extends HookConsumerWidget {
                   backgroundColor: Colors.white,
                   shape: const CircleBorder()),
               child: ListenableBuilder(
-                listenable: scrollState,
-                builder: (context,child) {
-                  return  Icon(
-                    scrollState.value==0 ? Icons.arrow_right : Icons.arrow_left,
-                    color: Colors.black,
-                    size: 30,
-                  );
-                }
-              ),
+                  listenable: scrollState,
+                  builder: (context, child) {
+                    return Icon(
+                      scrollState.value == 0
+                          ? Icons.arrow_right
+                          : Icons.arrow_left,
+                      color: Colors.black,
+                      size: 30,
+                    );
+                  }),
             ),
           )
         ],
