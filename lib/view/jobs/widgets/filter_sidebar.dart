@@ -51,21 +51,45 @@ class FilterSidebar extends HookConsumerWidget {
           ),
           const SizedBox(height: 50),
           HookConsumer(builder: (context, ref, child) {
-            final selectedIndex = useState<int?>(null);
+            final expansionPanel0 = useState<bool>(false);
+            final expansionPanel1 = useState<bool>(false);
+            final expansionPanel2 = useState<bool>(false);
+            final expansionPanel3 = useState<bool>(false);
+            final expansionPanel4 = useState<bool>(false);
             return ExpansionPanelList(
               expansionCallback: (panelIndex, isExpanded) {
                 debugPrint("panelIndex: $panelIndex");
 
                 if (isExpanded) {
-                  selectedIndex.value = null;
+                  if (panelIndex == 0) {
+                    expansionPanel0.value = false;
+                  } else if (panelIndex == 1) {
+                    expansionPanel1.value = false;
+                  } else if (panelIndex == 2) {
+                    expansionPanel2.value = false;
+                  } else if (panelIndex == 3) {
+                    expansionPanel3.value = false;
+                  } else if (panelIndex == 4) {
+                    expansionPanel4.value = false;
+                  }
                 } else {
-                  selectedIndex.value = panelIndex;
+                  if (panelIndex == 0) {
+                    expansionPanel0.value = true;
+                  } else if (panelIndex == 1) {
+                    expansionPanel1.value = true;
+                  } else if (panelIndex == 2) {
+                    expansionPanel2.value = true;
+                  } else if (panelIndex == 3) {
+                    expansionPanel3.value = true;
+                  } else if (panelIndex == 4) {
+                    expansionPanel4.value = true;
+                  }
                 }
               },
               dividerColor: Colors.grey.shade300,
               children: [
                 ExpansionPanel(
-                    isExpanded: selectedIndex.value == 0,
+                    isExpanded: expansionPanel0.value ,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
                       return const Padding(
@@ -126,7 +150,7 @@ class FilterSidebar extends HookConsumerWidget {
                       ),
                     )),
                 ExpansionPanel(
-                    isExpanded: selectedIndex.value == 1,
+                    isExpanded: expansionPanel1.value,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
                       return const Padding(
@@ -168,7 +192,7 @@ class FilterSidebar extends HookConsumerWidget {
                       ),
                     )),
                 ExpansionPanel(
-                    isExpanded: selectedIndex.value == 2,
+                    isExpanded: expansionPanel2.value,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
                       return const Padding(
