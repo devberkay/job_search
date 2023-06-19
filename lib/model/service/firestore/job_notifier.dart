@@ -42,7 +42,9 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
           responsibilitiesCollectionRef.get()
         ]);
       }
+      debugPrint("jobNotifier-2");
       final compoundData = await Future.wait(qualificationsFutures);
+      debugPrint("jobNotifier-3");
       for (var i = 0; i < query.docs.length; i++) {
         final doc = query.docs[i];
         final docId = doc.id;
@@ -64,12 +66,13 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
             preferredQualifications: preferredQualifications,
             responsibilities: responsibilities));
       }
+      debugPrint("jobNotifier-4");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       debugPrint("jobModels-above : $jobModels");
       return jobModels;
     } else {
-      debugPrint("jobNotifier-2");
       final query = await collectionRef.limit(15).get();
+      debugPrint("jobNotifier-5");
       List<JobModel> jobModels = [];
       List<Future<QuerySnapshot<Map<String, dynamic>>>> qualificationsFutures =
           [];
@@ -88,12 +91,14 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         ]);
       }
       final compoundData = await Future.wait(qualificationsFutures);
+      debugPrint("jobNotifier-6");
       for (var i = 0; i < query.docs.length; i++) {
         final doc = query.docs[i];
         final docId = doc.id;
         final minimumQualificationsQuery = compoundData[i * 3];
         final preferredQualificationsQuery = compoundData[i * 3 + 1];
         final responsibilitiesQuery = compoundData[i * 3 + 2];
+        debugPrint("jobNotifier-7");
         final minimumQualifications = minimumQualificationsQuery.docs
             .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
             .toList();
@@ -103,12 +108,14 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         final responsibilities = responsibilitiesQuery.docs
             .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
             .toList();
+        debugPrint("jobNotifier-8");
         jobModels.add(JobModel.fromJson(doc.data()).copyWith(
             jobId: docId,
             minimumQualifications: minimumQualifications,
             preferredQualifications: preferredQualifications,
             responsibilities: responsibilities));
       }
+      debugPrint("jobNotifier-9");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       debugPrint("jobModels-below : $jobModels");
       return jobModels;
