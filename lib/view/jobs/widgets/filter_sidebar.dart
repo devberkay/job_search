@@ -370,6 +370,8 @@ class FilterSidebar extends HookConsumerWidget {
                           child: Wrap(
                             spacing: 50,
                             runSpacing: 5,
+                            alignment: WrapAlignment.spaceBetween,
+                            runAlignment: WrapAlignment.center,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
                                 final isWhiteCollarRoles = useState(false);
