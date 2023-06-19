@@ -18,6 +18,7 @@ class DashboardView extends HookConsumerWidget {
         padding: const EdgeInsets.all(50),
         child: jobsNotifier.when(data: (jobs) {
           if (jobs != null) {
+            debugPrint("Everything is ok");
             return ListView.builder(itemBuilder: (context, index) {
               return JobCard(jobModel: jobs[index]);
             });
@@ -38,7 +39,9 @@ class DashboardView extends HookConsumerWidget {
                   "We are facing an issue right now. Please try again later"),
               SizedBox(height: 20),
               FilledCupertinoButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.refresh(jobNotifierProvider);
+                  },
                   height: 35,
                   width: 70,
                   fillColor: Colors.black,
