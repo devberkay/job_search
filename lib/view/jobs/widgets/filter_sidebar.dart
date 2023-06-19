@@ -10,8 +10,8 @@ class FilterSidebar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final whatDoYouWantToDoListNotifier = useValueNotifier(<String>{});
-    final skillsNotifier = useValueNotifier(<String>{});
+    final whatDoYouWantToDoListNotifier = useValueNotifier(<String>[]);
+    final skillsNotifier = useValueNotifier(<String>[]);
     final degreesNotifier = useValueNotifier(<String>{});
     final jobTypesNotifier = useValueNotifier(<String>{});
     return Container(
@@ -444,11 +444,11 @@ class FilterSidebar extends HookConsumerWidget {
                                   onTap: () {
                                     if (!isWhiteCollarRoles.value) {
                                       var temp = jobTypesNotifier.value;
-                                      temp.add("Pursuing degree");
+                                      temp.add("White-collar roles");
                                       degreesNotifier.value = temp;
                                     } else {
                                       var temp = jobTypesNotifier.value;
-                                      temp.remove("Pursuing degree");
+                                      temp.remove("White-collar roles");
                                       degreesNotifier.value = temp;
                                     }
                                     isWhiteCollarRoles.value = !isWhiteCollarRoles.value;
@@ -480,8 +480,16 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isBlueCollarRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isBlueCollarRoles.value =
-                                        !isBlueCollarRoles.value;
+                                    if (!isBlueCollarRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Blue-collar roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Blue-collar roles");
+                                      degreesNotifier.value = temp;
+                                    }
+                                    isBlueCollarRoles.value = !isBlueCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -508,6 +516,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isItRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isItRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("IT roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("IT roles");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isItRoles.value = !isItRoles.value;
                                   },
                                   child: Row(
@@ -534,6 +551,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isSalesRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isSalesRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Sales roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Sales roles");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isSalesRoles.value = !isSalesRoles.value;
                                   },
                                   child: Row(
@@ -560,8 +586,16 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isManagementRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isManagementRoles.value =
-                                        !isManagementRoles.value;
+                                    if (!isManagementRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Management roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Management roles");
+                                      degreesNotifier.value = temp;
+                                    }
+                                    isManagementRoles.value = !isManagementRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -588,8 +622,16 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isCreativeRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isCreativeRoles.value =
-                                        !isCreativeRoles.value;
+                                    if (!isCreativeRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Creative roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Creative roles");
+                                      degreesNotifier.value = temp;
+                                    }
+                                    isCreativeRoles.value = !isCreativeRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -616,8 +658,16 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isVehicleDrivingRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isVehicleDrivingRoles.value =
-                                        !isVehicleDrivingRoles.value;
+                                    if (!isVehicleDrivingRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Vehicle-driving roles");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Vehicle-driving roles");
+                                      degreesNotifier.value = temp;
+                                    }
+                                    isVehicleDrivingRoles.value = !isVehicleDrivingRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
