@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/job_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,7 +14,7 @@ class JobCard extends HookConsumerWidget {
     const computerEmoji = '\u{1F4BB}'; // display if remote
     const moneyEmoji = '\u{1F4B5}';
     const applicantsEmoji = '\u{1F464}';
-    final usDollarGreen = Color(0xFF008543);
+    final usDollarGreen = const Color(0xFF008543);
 
     final isHovering = useState(false);
     return MouseRegion(
@@ -105,19 +106,19 @@ class JobCard extends HookConsumerWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Container(
                   color: Colors.grey.shade300,
                   height: 1.5,
                   width: double.maxFinite,
                 ),
-                SizedBox(height: 25),
-                Text("Qualifications:",
+                const SizedBox(height: 25),
+                const Text("Qualifications:",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                         fontSize: 15)),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
               ],
             ),
           )),
