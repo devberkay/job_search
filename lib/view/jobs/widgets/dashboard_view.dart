@@ -14,66 +14,7 @@ class DashboardView extends HookConsumerWidget {
     final jobsNotifier = ref.watch(jobNotifierProvider);
     return Padding(
       padding: const EdgeInsets.all(50),
-      child: ListView(
-        children: [
-          Row(
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.blueAccent.shade700,
-                    size: 15,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text("Turn on job alerts for your search",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.blueAccent.shade700)),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  HookConsumer(builder: (context, ref, child) {
-                    final isNotificationsActive = useState(
-                        false); // later to be replaced with a isar call
-                    return SizedBox(
-                      height: 40,
-                      width: 40,
-                      child: FittedBox(
-                        child: CupertinoSwitch(
-                            trackColor: Colors.grey.shade400,
-                            activeColor: Colors.blueAccent.shade700,
-                            value: isNotificationsActive.value,
-                            onChanged: (value) {
-                              isNotificationsActive.value = value;
-                            }),
-                      ),
-                    );
-                  })
-                ],
-              ),
-              const Spacer(),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.unfold_more,
-                    color: Colors.grey.shade600,
-                  ),
-                  const SizedBox(width: 5),
-                  const SortDropdownButton(),
-                ],
-              )
-            ],
-          ),
-          SizedBox(height: 20),
-          
-        ],
-      ),
+      child: jobsNotifier.when(data: (jobs) {}, error: (e,st) {}, loading: () {})
     );
   }
 }
