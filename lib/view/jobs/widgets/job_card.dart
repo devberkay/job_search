@@ -92,7 +92,7 @@ class JobCard extends HookConsumerWidget {
                                     color: Colors.black
                         )),
                         SizedBox(width: 10),
-                        
+                        Text("")
 
                       ],
                     )
