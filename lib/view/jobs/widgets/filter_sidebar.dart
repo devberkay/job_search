@@ -34,7 +34,7 @@ class FilterSidebar extends HookConsumerWidget {
           ),
           const SizedBox(height: 15),
           CupertinoTextField(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             placeholder: "Software Engineering, Design, Sales",
             placeholderStyle: TextStyle(
                 color: Colors.grey.shade400, fontWeight: FontWeight.w500),
@@ -50,50 +50,69 @@ class FilterSidebar extends HookConsumerWidget {
                 borderRadius: BorderRadius.circular(5)),
           ),
           const SizedBox(height: 50),
-          ExpansionPanelList(
-            expansionCallback: (panelIndex, isExpanded) {},
-            dividerColor: Colors.grey.shade400,
-            children: [
-              ExpansionPanel(
-                  headerBuilder: (context, isExpanded) {
-                    return Text("Locations",
-                        style: TextStyle(fontWeight: FontWeight.w500));
-                  },
-                  body: Column(
-                    children: [
-                      CupertinoTextField(
-                        prefix: Icon(Icons.location_on,size: 5,color: Colors.grey.shade500),
-            padding: EdgeInsets.all(15),
-            placeholder: "Famagusta, Amsterdam, California",
-            placeholderStyle: TextStyle(
-                color: Colors.grey.shade400, fontWeight: FontWeight.w500),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey.shade300),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade400.withOpacity(0.5),
-                      offset: const Offset(0, 1),
-                      blurRadius: 1)
-                ],
-                borderRadius: BorderRadius.circular(5)),
-          ),
-                HookConsumer(
-                  builder: (context,ref,child) {
-                    final isRemoteNotifier = useState(false);
-                    return CupertinoCheckbox(
-                      value:isRemoteNotifier.value ,
-                      onChanged: (value) {
-                        
-                      },
-                    );
-                  }
-                )
-                    ],
-                    
-                  ))
-            ],
-          )
+          HookConsumer(builder: (context, ref, child) {
+            final expansionState = useState(false);
+            final selectedIndex = useState<int?>(null);
+            return ExpansionPanelList(
+              expansionCallback: (panelIndex, isExpanded) {
+                selectedIndex.value = panelIndex;
+                expansionState.value = isExpanded;
+              },
+              dividerColor: Colors.grey.shade400,
+              children: [
+                ExpansionPanel(
+                    isExpanded:
+                        expansionState.value && selectedIndex.value == 0,
+                    canTapOnHeader: true,
+                    headerBuilder: (context, isExpanded) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Locations",
+                              style: TextStyle(fontWeight: FontWeight.w600)),
+                        ),
+                      );
+                    },
+                    body: Column(
+                      children: [
+                        CupertinoTextField(
+                          prefix: Icon(Icons.location_on,
+                              size: 5, color: Colors.grey.shade500),
+                          padding: const EdgeInsets.all(15),
+                          placeholder: "Famagusta, Amsterdam, California",
+                          placeholderStyle: TextStyle(
+                              color: Colors.grey.shade400,
+                              fontWeight: FontWeight.w500),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: Colors.grey.shade300),
+                              boxShadow: [
+                                BoxShadow(
+                                    color:
+                                        Colors.grey.shade400.withOpacity(0.5),
+                                    offset: const Offset(0, 1),
+                                    blurRadius: 1)
+                              ],
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        HookConsumer(builder: (context, ref, child) {
+                          final isRemoteNotifier = useState(false);
+                          return CupertinoCheckbox(
+                            value: isRemoteNotifier.value,
+                            side: BorderSide(
+                                color: Colors.grey.shade400, width: 2),
+                            onChanged: (value) {
+                              isRemoteNotifier.value = value ?? false;
+                            },
+                          );
+                        })
+                      ],
+                    )),
+              ],
+            );
+          })
         ],
       ),
     );
