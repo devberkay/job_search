@@ -51,11 +51,12 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
             .docs
             .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
             .toList();
+        jobModels = query.docs.map((e) {
+        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
+        }).toList();
       }
 
-      jobModels = query.docs.map((e) {
-        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
-      }).toList();
+      
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       // debugPrint("jobModels : $jobModels");
       return jobModels;
