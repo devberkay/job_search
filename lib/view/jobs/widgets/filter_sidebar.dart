@@ -343,6 +343,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isPhd = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isPhd.value) {
+                                      var temp = degreesNotifier.value;
+                                      temp.add("Ph.D.");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = degreesNotifier.value;
+                                      temp.remove("Ph.D.");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isPhd.value = !isPhd.value;
                                   },
                                   child: Padding(
@@ -372,6 +381,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isPursuing = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isPursuing.value) {
+                                      var temp = degreesNotifier.value;
+                                      temp.add("Pursuing degree");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = degreesNotifier.value;
+                                      temp.remove("Pursuing degree");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isPursuing.value = !isPursuing.value;
                                   },
                                   child: Row(
