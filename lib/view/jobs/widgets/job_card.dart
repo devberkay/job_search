@@ -8,6 +8,9 @@ class JobCard extends HookConsumerWidget {
   final JobModel jobModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final companyEmoji = '\u{1F3E2}'; // display if on-site
+    final locationEmoji = '\u{1F4CD}';
+    final String computerEmoji = '\u{1F4BB}'; // display if remote
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -34,27 +37,48 @@ class JobCard extends HookConsumerWidget {
                 border: Border.all(color: Colors.grey.shade300),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.black54,
+                      color: Colors.grey.shade500,
                       offset: Offset(
                           isHovering.value ? -1 : 0, isHovering.value ? -1 : 0),
                       blurRadius: isHovering.value ? 1.25 : 0,
                       spreadRadius: isHovering.value ? 1.25 : 0),
                   BoxShadow(
-                      color: Colors.black54,
+                      color: Colors.grey.shade500,
                       offset: Offset(
                           isHovering.value ? 1 : 0, isHovering.value ? 1 : 0),
                       blurRadius: isHovering.value ? 1.25 : 0,
                       spreadRadius: isHovering.value ? 1.25 : 0)
                 ]),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(jobModel.title,style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25)),
-                        SizedBox(height: 10),
-                        
+                        Text(jobModel.title,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 25)),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text("$companyEmoji ${jobModel.organization}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: Colors.black)),
+                            const SizedBox(width: 10),
+                            Text(
+                                "${jobModel.isRemote ? computerEmoji : locationEmoji} ${jobModel.organization}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: Colors.black)),
+                          ],
+                        )
                       ],
                     )
                   ],
