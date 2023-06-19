@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:JobSearch/view/jobs/widgets/job_list_view.dart';
 import 'package:JobSearch/view/jobs/widgets/sort_dropdown_button.dart';
@@ -10,9 +11,10 @@ class DashboardView extends HookConsumerWidget {
   const DashboardView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final jobsNotifier = ref.watch(jobNotifierProvider);
     return Padding(
       padding: const EdgeInsets.all(50),
-      child: Column(
+      child: ListView(
         children: [
           Row(
             children: [
