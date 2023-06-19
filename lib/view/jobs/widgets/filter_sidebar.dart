@@ -370,7 +370,6 @@ class FilterSidebar extends HookConsumerWidget {
                           child: Wrap(
                             spacing: 50,
                             runSpacing: 5,
-                            alignment: WrapAlignment.spaceBetween,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
                                 final isWhiteCollarRoles = useState(false);
@@ -460,23 +459,26 @@ class FilterSidebar extends HookConsumerWidget {
                                   onTap: () {
                                     isSalesRoles.value = !isSalesRoles.value;
                                   },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      CupertinoCheckbox(
-                                        value: isSalesRoles.value,
-                                        side: BorderSide(
-                                            color: Colors.grey.shade400,
-                                            width: 2),
-                                        onChanged: (value) {
-                                          isSalesRoles.value = value ?? false;
-                                        },
-                                      ),
-                                      Text("Sales roles",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.grey.shade700))
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 70.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CupertinoCheckbox(
+                                          value: isSalesRoles.value,
+                                          side: BorderSide(
+                                              color: Colors.grey.shade400,
+                                              width: 2),
+                                          onChanged: (value) {
+                                            isSalesRoles.value = value ?? false;
+                                          },
+                                        ),
+                                        Text("Sales roles",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.grey.shade700))
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
