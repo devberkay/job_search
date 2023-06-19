@@ -32,6 +32,10 @@ mixin _$JobModel {
   double get salaryPerHour => throw _privateConstructorUsedError;
   int get applicantCounter => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
+  List<String>? get responsibilities => throw _privateConstructorUsedError;
+  List<String>? get minimumQualifications => throw _privateConstructorUsedError;
+  List<String>? get preferredQualifications =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +60,10 @@ abstract class $JobModelCopyWith<$Res> {
       double latitude,
       double salaryPerHour,
       int applicantCounter,
-      String? jobId});
+      String? jobId,
+      List<String>? responsibilities,
+      List<String>? minimumQualifications,
+      List<String>? preferredQualifications});
 }
 
 /// @nodoc
@@ -84,6 +91,9 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? jobId = freezed,
+    Object? responsibilities = freezed,
+    Object? minimumQualifications = freezed,
+    Object? preferredQualifications = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -134,6 +144,18 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
               as String?,
+      responsibilities: freezed == responsibilities
+          ? _value.responsibilities
+          : responsibilities // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      minimumQualifications: freezed == minimumQualifications
+          ? _value.minimumQualifications
+          : minimumQualifications // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      preferredQualifications: freezed == preferredQualifications
+          ? _value.preferredQualifications
+          : preferredQualifications // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -157,7 +179,10 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       double latitude,
       double salaryPerHour,
       int applicantCounter,
-      String? jobId});
+      String? jobId,
+      List<String>? responsibilities,
+      List<String>? minimumQualifications,
+      List<String>? preferredQualifications});
 }
 
 /// @nodoc
@@ -183,6 +208,9 @@ class __$$_JobModelCopyWithImpl<$Res>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? jobId = freezed,
+    Object? responsibilities = freezed,
+    Object? minimumQualifications = freezed,
+    Object? preferredQualifications = freezed,
   }) {
     return _then(_$_JobModel(
       title: null == title
@@ -233,6 +261,18 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
               as String?,
+      responsibilities: freezed == responsibilities
+          ? _value._responsibilities
+          : responsibilities // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      minimumQualifications: freezed == minimumQualifications
+          ? _value._minimumQualifications
+          : minimumQualifications // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      preferredQualifications: freezed == preferredQualifications
+          ? _value._preferredQualifications
+          : preferredQualifications // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -252,8 +292,14 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required this.latitude,
       required this.salaryPerHour,
       required this.applicantCounter,
-      this.jobId})
-      : _searchTokens = searchTokens;
+      this.jobId,
+      final List<String>? responsibilities,
+      final List<String>? minimumQualifications,
+      final List<String>? preferredQualifications})
+      : _searchTokens = searchTokens,
+        _responsibilities = responsibilities,
+        _minimumQualifications = minimumQualifications,
+        _preferredQualifications = preferredQualifications;
 
   factory _$_JobModel.fromJson(Map<String, dynamic> json) =>
       _$$_JobModelFromJson(json);
@@ -289,10 +335,42 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   final int applicantCounter;
   @override
   final String? jobId;
+  final List<String>? _responsibilities;
+  @override
+  List<String>? get responsibilities {
+    final value = _responsibilities;
+    if (value == null) return null;
+    if (_responsibilities is EqualUnmodifiableListView)
+      return _responsibilities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _minimumQualifications;
+  @override
+  List<String>? get minimumQualifications {
+    final value = _minimumQualifications;
+    if (value == null) return null;
+    if (_minimumQualifications is EqualUnmodifiableListView)
+      return _minimumQualifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _preferredQualifications;
+  @override
+  List<String>? get preferredQualifications {
+    final value = _preferredQualifications;
+    if (value == null) return null;
+    if (_preferredQualifications is EqualUnmodifiableListView)
+      return _preferredQualifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobModel(title: $title, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, jobId: $jobId)';
+    return 'JobModel(title: $title, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, jobId: $jobId, responsibilities: $responsibilities, minimumQualifications: $minimumQualifications, preferredQualifications: $preferredQualifications)';
   }
 
   @override
@@ -311,7 +389,11 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       ..add(DiagnosticsProperty('latitude', latitude))
       ..add(DiagnosticsProperty('salaryPerHour', salaryPerHour))
       ..add(DiagnosticsProperty('applicantCounter', applicantCounter))
-      ..add(DiagnosticsProperty('jobId', jobId));
+      ..add(DiagnosticsProperty('jobId', jobId))
+      ..add(DiagnosticsProperty('responsibilities', responsibilities))
+      ..add(DiagnosticsProperty('minimumQualifications', minimumQualifications))
+      ..add(DiagnosticsProperty(
+          'preferredQualifications', preferredQualifications));
   }
 
   @override
@@ -338,7 +420,13 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
                 other.salaryPerHour == salaryPerHour) &&
             (identical(other.applicantCounter, applicantCounter) ||
                 other.applicantCounter == applicantCounter) &&
-            (identical(other.jobId, jobId) || other.jobId == jobId));
+            (identical(other.jobId, jobId) || other.jobId == jobId) &&
+            const DeepCollectionEquality()
+                .equals(other._responsibilities, _responsibilities) &&
+            const DeepCollectionEquality()
+                .equals(other._minimumQualifications, _minimumQualifications) &&
+            const DeepCollectionEquality().equals(
+                other._preferredQualifications, _preferredQualifications));
   }
 
   @JsonKey(ignore: true)
@@ -356,7 +444,10 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       latitude,
       salaryPerHour,
       applicantCounter,
-      jobId);
+      jobId,
+      const DeepCollectionEquality().hash(_responsibilities),
+      const DeepCollectionEquality().hash(_minimumQualifications),
+      const DeepCollectionEquality().hash(_preferredQualifications));
 
   @JsonKey(ignore: true)
   @override
@@ -385,7 +476,10 @@ abstract class _JobModel implements JobModel {
       required final double latitude,
       required final double salaryPerHour,
       required final int applicantCounter,
-      final String? jobId}) = _$_JobModel;
+      final String? jobId,
+      final List<String>? responsibilities,
+      final List<String>? minimumQualifications,
+      final List<String>? preferredQualifications}) = _$_JobModel;
 
   factory _JobModel.fromJson(Map<String, dynamic> json) = _$_JobModel.fromJson;
 
@@ -413,6 +507,12 @@ abstract class _JobModel implements JobModel {
   int get applicantCounter;
   @override
   String? get jobId;
+  @override
+  List<String>? get responsibilities;
+  @override
+  List<String>? get minimumQualifications;
+  @override
+  List<String>? get preferredQualifications;
   @override
   @JsonKey(ignore: true)
   _$$_JobModelCopyWith<_$_JobModel> get copyWith =>

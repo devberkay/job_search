@@ -21,6 +21,16 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
       salaryPerHour: (json['salaryPerHour'] as num).toDouble(),
       applicantCounter: json['applicantCounter'] as int,
       jobId: json['jobId'] as String?,
+      responsibilities: (json['responsibilities'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      minimumQualifications: (json['minimumQualifications'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      preferredQualifications:
+          (json['preferredQualifications'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
     );
 
 Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
@@ -37,4 +47,7 @@ Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
       'salaryPerHour': instance.salaryPerHour,
       'applicantCounter': instance.applicantCounter,
       'jobId': instance.jobId,
+      'responsibilities': instance.responsibilities,
+      'minimumQualifications': instance.minimumQualifications,
+      'preferredQualifications': instance.preferredQualifications,
     };
