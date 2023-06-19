@@ -454,27 +454,24 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isVehicleDrivingRoles = useState(false);
+                                final isSalesRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isVehicleDrivingRoles.value =
-                                        !isVehicleDrivingRoles.value;
+                                    isSalesRoles.value = !isSalesRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isVehicleDrivingRoles.value,
+                                        value: isSalesRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isVehicleDrivingRoles.value =
-                                              value ?? false;
+                                          isSalesRoles.value = value ?? false;
                                         },
                                       ),
-                                      Text("Vehicle-driving roles",
-                                          softWrap: true,
+                                      Text("Sales roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
@@ -539,31 +536,33 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isSalesRoles = useState(false);
+                                final isVehicleDrivingRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isSalesRoles.value = !isSalesRoles.value;
+                                    isVehicleDrivingRoles.value =
+                                        !isVehicleDrivingRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isSalesRoles.value,
+                                        value: isVehicleDrivingRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isSalesRoles.value = value ?? false;
+                                          isVehicleDrivingRoles.value =
+                                              value ?? false;
                                         },
                                       ),
-                                      Text("Sales roles",
+                                      Text("Vehicle-driving roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
                                     ],
                                   ),
                                 );
-                              })
+                              }),
                             ],
                           ),
                         ),
