@@ -51,18 +51,21 @@ class FilterSidebar extends HookConsumerWidget {
           ),
           const SizedBox(height: 50),
           HookConsumer(builder: (context, ref, child) {
-            final expansionState = useState(false);
             final selectedIndex = useState<int?>(null);
             return ExpansionPanelList(
               expansionCallback: (panelIndex, isExpanded) {
-                selectedIndex.value = panelIndex;
-                expansionState.value = isExpanded;
+                debugPrint("panelIndex: $panelIndex");
+
+                if (isExpanded) {
+                  selectedIndex.value = null;
+                } else {
+                  selectedIndex.value = panelIndex;
+                }
               },
-              dividerColor: Colors.grey.shade400,
+              dividerColor: Colors.grey.shade300,
               children: [
                 ExpansionPanel(
-                    isExpanded:
-                        expansionState.value && selectedIndex.value == 0,
+                    isExpanded: selectedIndex.value == 0,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
                       return const Padding(
@@ -75,40 +78,94 @@ class FilterSidebar extends HookConsumerWidget {
                         ),
                       );
                     },
-                    body: Column(
-                      children: [
-                        CupertinoTextField(
-                          prefix: Icon(Icons.location_on,
-                              size: 5, color: Colors.grey.shade500),
-                          padding: const EdgeInsets.all(15),
-                          placeholder: "Famagusta, Amsterdam, California",
-                          placeholderStyle: TextStyle(
-                              color: Colors.grey.shade400,
-                              fontWeight: FontWeight.w500),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.grey.shade300),
-                              boxShadow: [
-                                BoxShadow(
-                                    color:
-                                        Colors.grey.shade400.withOpacity(0.5),
-                                    offset: const Offset(0, 1),
-                                    blurRadius: 1)
+                    body: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Column(
+                        children: [
+                          CupertinoTextField(
+                            prefix: Icon(Icons.location_on,
+                                size: 5, color: Colors.grey.shade500),
+                            padding: const EdgeInsets.all(15),
+                            placeholder: "Famagusta, Amsterdam, California",
+                            placeholderStyle: TextStyle(
+                                color: Colors.grey.shade400,
+                                fontWeight: FontWeight.w500),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.grey.shade300),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color:
+                                          Colors.grey.shade400.withOpacity(0.5),
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 1)
+                                ],
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                          HookConsumer(builder: (context, ref, child) {
+                            final isRemoteNotifier = useState(false);
+                            return Row(
+                              children: [
+                                CupertinoCheckbox(
+                                  value: isRemoteNotifier.value,
+                                  side: BorderSide(
+                                      color: Colors.grey.shade400, width: 2),
+                                  onChanged: (value) {
+                                    isRemoteNotifier.value = value ?? false;
+                                  },
+                                ),
+                                Text("Remote eligible",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade700))
                               ],
-                              borderRadius: BorderRadius.circular(5)),
+                            );
+                          })
+                        ],
+                      ),
+                    )),
+                ExpansionPanel(
+                    isExpanded: selectedIndex.value == 1,
+                    canTapOnHeader: true,
+                    headerBuilder: (context, isExpanded) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Skills & qualifications",
+                              style: TextStyle(fontWeight: FontWeight.w600)),
                         ),
-                        HookConsumer(builder: (context, ref, child) {
-                          final isRemoteNotifier = useState(false);
-                          return CupertinoCheckbox(
-                            value: isRemoteNotifier.value,
-                            side: BorderSide(
-                                color: Colors.grey.shade400, width: 2),
-                            onChanged: (value) {
-                              isRemoteNotifier.value = value ?? false;
-                            },
-                          );
-                        })
-                      ],
+                      );
+                    },
+                    body: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Column(
+                        children: [
+                          CupertinoTextField(
+                            prefix: Icon(Icons.location_on,
+                                size: 5, color: Colors.grey.shade500),
+                            padding: const EdgeInsets.all(15),
+                            placeholder: "Programming, Finance, UX design",
+                            placeholderStyle: TextStyle(
+                                color: Colors.grey.shade400,
+                                fontWeight: FontWeight.w500),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.grey.shade300),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color:
+                                          Colors.grey.shade400.withOpacity(0.5),
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 1)
+                                ],
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                        ],
+                      ),
                     )),
               ],
             );
