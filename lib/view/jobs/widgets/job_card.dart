@@ -8,11 +8,12 @@ class JobCard extends HookConsumerWidget {
   final JobModel jobModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final companyEmoji = '\u{1F3E2}'; // display if on-site
-    final locationEmoji = '\u{1F4CD}';
-    final computerEmoji = '\u{1F4BB}'; // display if remote
-    final moneyEmoji = '\u{1F4B5}';
-    final applicantsEmoji = '\u{1F464}';
+    const companyEmoji = '\u{1F3E2}'; // display if on-site
+    const locationEmoji = '\u{1F4CD}';
+    const computerEmoji = '\u{1F4BB}'; // display if remote
+    const moneyEmoji = '\u{1F4B5}';
+    const applicantsEmoji = '\u{1F464}';
+    final usDollarGreen = Color(0xFF008543);
 
     final isHovering = useState(false);
     return MouseRegion(
@@ -88,17 +89,17 @@ class JobCard extends HookConsumerWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("$moneyEmoji ${jobModel.salaryPerHour}",
-                            style: const TextStyle(
+                        Text("$moneyEmoji ${jobModel.salaryPerHour}/hr",
+                            style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
-                                color: Colors.black)),
+                                color: usDollarGreen)),
                         const SizedBox(width: 10),
                         Text("$applicantsEmoji ${26} applied",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
-                                color: Colors.black))
+                                color: Colors.blueAccent.shade700))
                       ],
                     )
                   ],
