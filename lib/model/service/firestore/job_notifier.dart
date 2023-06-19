@@ -42,13 +42,13 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
           responsibilitiesCollectionRef.get()
         ]);
       }
-      await Future.wait(qualificationsFutures);
+      final compoundData = await Future.wait(qualificationsFutures);
       for (var i = 0; i < query.docs.length; i++) {
         final doc = query.docs[i];
         final docId = doc.id;
-        final minimumQualificationsQuery = qualificationsFutures[i * 3];
-        final preferredQualificationsQuery = qualificationsFutures[i * 3 + 1];
-        final responsibilitiesQuery = qualificationsFutures[i * 3 + 2];
+        final minimumQualificationsQuery = compoundData[i * 3];
+        final preferredQualificationsQuery = compoundData[i * 3 + 1];
+        final responsibilitiesQuery = compoundData[i * 3 + 2];
         final minimumQualifications = minimumQualificationsQuery.docs
             .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
             .toList();
@@ -63,7 +63,6 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
             minimumQualifications: minimumQualifications,
             preferredQualifications: preferredQualifications,
             responsibilities: responsibilities));
-        
       }
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       // debugPrint("jobModels : $jobModels");
