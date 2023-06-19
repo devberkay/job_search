@@ -12,6 +12,7 @@ class SortDropdownButton extends HookConsumerWidget {
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
+        debugPrint("sortBy : $value");
         selectedSortBy.value = value!;
       },
       buttonStyleData: ButtonStyleData(padding: EdgeInsets.all(2)),
@@ -23,7 +24,7 @@ class SortDropdownButton extends HookConsumerWidget {
           child: Text(
             '$value',
             style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Colors.grey.shade600),
           ),
