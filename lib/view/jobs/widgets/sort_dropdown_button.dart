@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,12 +8,9 @@ class SortDropdownButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSortBy = useState("Relevance");
-    return DropdownButton<String>(
-      value: selectedSortBy.value,
-      iconSize: 24,
-      elevation: 16,
-      style: TextStyle(color: Colors.black),
-      onChanged: (String? newValue) {},
+    return DropdownButtonHideUnderline(
+        child: DropdownButton2(
+      value: "Relevance",
       items: <String>['Relevance', 'Date', 'Salary', 'No of applicants']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
@@ -20,6 +18,6 @@ class SortDropdownButton extends HookConsumerWidget {
           child: Text('$value'),
         );
       }).toList(),
-    );
+    ));
   }
 }

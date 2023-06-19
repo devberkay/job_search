@@ -44,6 +44,7 @@ dependencies:
   transparent_image: ^2.0.1
   avatar_glow: ^2.0.2
   simple_ripple_animation: ^0.0.7
+  dropdown_button2: ^2.1.4
   
 dev_dependencies:
   flutter_test:
