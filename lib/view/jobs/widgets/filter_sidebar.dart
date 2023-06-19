@@ -41,7 +41,24 @@ class FilterSidebar extends HookConsumerWidget {
                   spacing: 5,
                   runSpacing: 5,
                   children: items.map<Widget>((e) {
-                    return Chip(label: Text(e));
+                    return Chip(
+                      label: Text(e),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade400),
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.w600),
+                      onDeleted: () {
+                        whatDoYouWantToDoListNotifier.value =
+                            whatDoYouWantToDoListNotifier.value
+                                .where((element) => element != e)
+                                .toList();
+                      },
+                      deleteButtonTooltipMessage: "Remove filter",
+                      deleteIcon: Icon(
+                        Icons.delete_forever,
+                        color: Colors.black,
+                      ),
+                    );
                   }).toList(),
                 );
               }),
