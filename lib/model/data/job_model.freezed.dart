@@ -27,9 +27,9 @@ mixin _$JobModel {
   String get organization => throw _privateConstructorUsedError;
   List<String> get searchTokens => throw _privateConstructorUsedError;
   String get aboutJob => throw _privateConstructorUsedError;
-  int get longitude => throw _privateConstructorUsedError;
-  int get latitude => throw _privateConstructorUsedError;
-  int get salaryPerHour => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+  double get latitude => throw _privateConstructorUsedError;
+  double get salaryPerHour => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,9 +51,9 @@ abstract class $JobModelCopyWith<$Res> {
       String organization,
       List<String> searchTokens,
       String aboutJob,
-      int longitude,
-      int latitude,
-      int salaryPerHour,
+      double longitude,
+      double latitude,
+      double salaryPerHour,
       String? jobId});
 }
 
@@ -114,15 +114,15 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       salaryPerHour: null == salaryPerHour
           ? _value.salaryPerHour
           : salaryPerHour // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -146,9 +146,9 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       String organization,
       List<String> searchTokens,
       String aboutJob,
-      int longitude,
-      int latitude,
-      int salaryPerHour,
+      double longitude,
+      double latitude,
+      double salaryPerHour,
       String? jobId});
 }
 
@@ -207,15 +207,15 @@ class __$$_JobModelCopyWithImpl<$Res>
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       salaryPerHour: null == salaryPerHour
           ? _value.salaryPerHour
           : salaryPerHour // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -266,11 +266,11 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   @override
   final String aboutJob;
   @override
-  final int longitude;
+  final double longitude;
   @override
-  final int latitude;
+  final double latitude;
   @override
-  final int salaryPerHour;
+  final double salaryPerHour;
   @override
   final String? jobId;
 
@@ -361,9 +361,9 @@ abstract class _JobModel implements JobModel {
       required final String organization,
       required final List<String> searchTokens,
       required final String aboutJob,
-      required final int longitude,
-      required final int latitude,
-      required final int salaryPerHour,
+      required final double longitude,
+      required final double latitude,
+      required final double salaryPerHour,
       final String? jobId}) = _$_JobModel;
 
   factory _JobModel.fromJson(Map<String, dynamic> json) = _$_JobModel.fromJson;
@@ -383,11 +383,11 @@ abstract class _JobModel implements JobModel {
   @override
   String get aboutJob;
   @override
-  int get longitude;
+  double get longitude;
   @override
-  int get latitude;
+  double get latitude;
   @override
-  int get salaryPerHour;
+  double get salaryPerHour;
   @override
   String? get jobId;
   @override

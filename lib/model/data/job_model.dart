@@ -19,9 +19,9 @@ class JobModel with _$JobModel {
     required String organization,
     required List<String> searchTokens,
     required String aboutJob,
-    required int longitude,
-    required int latitude,
-    required int salaryPerHour,
+    required double longitude,
+    required double latitude,
+    required double salaryPerHour,
     String? jobId,
 
   }) = _JobModel;

@@ -16,9 +16,9 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
           .map((e) => e as String)
           .toList(),
       aboutJob: json['aboutJob'] as String,
-      longitude: json['longitude'] as int,
-      latitude: json['latitude'] as int,
-      salaryPerHour: json['salaryPerHour'] as int,
+      longitude: (json['longitude'] as num).toDouble(),
+      latitude: (json['latitude'] as num).toDouble(),
+      salaryPerHour: (json['salaryPerHour'] as num).toDouble(),
       jobId: json['jobId'] as String?,
     );
 
