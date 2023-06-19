@@ -19,6 +19,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
   FutureOr<List<JobModel>?> build() async {
     final firestore = ref.watch(firestoreProvider);
     final collectionRef = firestore.collection("jobPosts");
+    
     final lastJobDoc = ref.watch(lastJobDocProvider);
     if (lastJobDoc != null) {
       debugPrint("jobNotifier-0");
