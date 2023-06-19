@@ -144,33 +144,15 @@ class FilterSidebar extends HookConsumerWidget {
                       );
                     },
                     body: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      child: Column(
-                        children: [
-                          CupertinoTextField(
-                            prefix: Icon(Icons.location_on,
-                                size: 5, color: Colors.grey.shade500),
-                            padding: const EdgeInsets.all(15),
-                            placeholder: "Famagusta, Amsterdam, California",
-                            placeholderStyle: TextStyle(
-                                color: Colors.grey.shade400,
-                                fontWeight: FontWeight.w500),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey.shade300),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color:
-                                          Colors.grey.shade400.withOpacity(0.5),
-                                      offset: const Offset(0, 1),
-                                      blurRadius: 1)
-                                ],
-                                borderRadius: BorderRadius.circular(5)),
-                          ),
-                          HookConsumer(builder: (context, ref, child) {
-                            final isRemoteNotifier = useState(false);
-                            return Row(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        child: HookConsumer(builder: (context, ref, child) {
+                          final isRemoteNotifier = useState(false);
+                          return GestureDetector(
+                            onTap: () {
+                                    isRemoteNotifier.value = !isRemoteNotifier.value;
+                                  },
+                            child: Row(
                               children: [
                                 CupertinoCheckbox(
                                   value: isRemoteNotifier.value,
@@ -185,11 +167,9 @@ class FilterSidebar extends HookConsumerWidget {
                                         fontWeight: FontWeight.w500,
                                         color: Colors.grey.shade700))
                               ],
-                            );
-                          })
-                        ],
-                      ),
-                    )),
+                            ),
+                          );
+                        }))),
                 ExpansionPanel(
                     isExpanded: expansionPanel1.value,
                     canTapOnHeader: true,
