@@ -5,6 +5,8 @@ class JobCard extends HookConsumerWidget {
   const JobCard({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return InkWell(child: Container(
+      
+    ));
   }
 }
