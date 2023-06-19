@@ -11,6 +11,6 @@ class JobNotifier extends AsyncNotifier<List<JobModel>?> {
   FutureOr<List<JobModel>?> build() {
     final firestore = ref.read(firestoreProvider);
     final collectionRef = firestore.collection("jobPosts");
-    collectionRef.
+    
   }
 }
