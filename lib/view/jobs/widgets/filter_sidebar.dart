@@ -2,6 +2,7 @@ import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FilterSidebar extends HookConsumerWidget {
@@ -61,6 +62,7 @@ class FilterSidebar extends HookConsumerWidget {
                   body: Column(
                     children: [
                       CupertinoTextField(
+                        prefix: Icon(Icons.location_on,size: 5,color: Colors.grey.shade500),
             padding: EdgeInsets.all(15),
             placeholder: "Famagusta, Amsterdam, California",
             placeholderStyle: TextStyle(
@@ -76,7 +78,19 @@ class FilterSidebar extends HookConsumerWidget {
                 ],
                 borderRadius: BorderRadius.circular(5)),
           ),
+                HookConsumer(
+                  builder: (context,ref,child) {
+                    final isRemoteNotifier = useState(false);
+                    return CupertinoCheckbox(
+                      value:isRemoteNotifier.value ,
+                      onChanged: (value) {
+                        
+                      },
+                    );
+                  }
+                )
                     ],
+                    
                   ))
             ],
           )
