@@ -11,7 +11,7 @@ final lastJobDocProvider = StateProvider<DocumentSnapshot?>((ref) {
 
 final jobNotifierProvider = AsyncNotifierProvider.autoDispose<JobNotifier,List<JobModel>? >(JobNotifier.new);
 
-class JobNotifier extends AsyncNotifier<List<JobModel>?> {
+class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
   @override
   FutureOr<List<JobModel>?> build() async {
     final firestore = ref.watch(firestoreProvider);
