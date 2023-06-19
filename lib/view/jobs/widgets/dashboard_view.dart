@@ -16,31 +16,43 @@ class DashboardView extends HookConsumerWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.notifications, color: Colors.blueAccent.shade700),
+                  Icon(
+                    Icons.notifications,
+                    color: Colors.blueAccent.shade700,
+                    size: 15,
+                  ),
                   const SizedBox(
                     width: 5,
                   ),
                   Text("Turn on job alerts for your search",
                       style: TextStyle(
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
                           color: Colors.blueAccent.shade700)),
                   const SizedBox(
-                    width: 5,
+                    width: 15,
                   ),
                   HookConsumer(builder: (context, ref, child) {
                     final isNotificationsActive = useState(
                         false); // later to be replaced with a isar call
-                    return CupertinoSwitch(
-                        trackColor: Colors.grey.shade400,
-                        activeColor: Colors.blueAccent.shade700,
-                        value: isNotificationsActive.value,
-                        onChanged: (value) {
-                          isNotificationsActive.value = value;
-                        });
+                    return SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: FittedBox(
+                        child: CupertinoSwitch(
+                            trackColor: Colors.grey.shade400,
+                            activeColor: Colors.blueAccent.shade700,
+                            value: isNotificationsActive.value,
+                            onChanged: (value) {
+                              isNotificationsActive.value = value;
+                            }),
+                      ),
+                    );
                   })
                 ],
               ),
               const Spacer(),
+              DropdownButton(items: items, onChanged: onChanged)
             ],
           )
         ],
