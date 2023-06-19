@@ -128,7 +128,7 @@ class JobCard extends HookConsumerWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.grey.shade900,
-                            fontSize: 14));
+                            fontSize: 15));
                   }).toList(),
                 )
               ],
