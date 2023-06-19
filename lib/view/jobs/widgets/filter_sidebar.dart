@@ -262,31 +262,6 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isBachelor = useState(false);
-                                return GestureDetector(
-                                  onTap: () {
-                                    isBachelor.value = !isBachelor.value;
-                                  },
-                                  child: Row(
-                                    children: [
-                                      CupertinoCheckbox(
-                                        value: isBachelor.value,
-                                        side: BorderSide(
-                                            color: Colors.grey.shade400,
-                                            width: 2),
-                                        onChanged: (value) {
-                                          isBachelor.value = value ?? false;
-                                        },
-                                      ),
-                                      Text("Bachelor's",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.grey.shade700))
-                                    ],
-                                  ),
-                                );
-                              }),
-                              HookConsumer(builder: (context, ref, child) {
                                 final isMaster = useState(false);
                                 return GestureDetector(
                                   onTap: () {
