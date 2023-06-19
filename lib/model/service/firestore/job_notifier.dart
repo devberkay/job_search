@@ -26,6 +26,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       final query =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
+      
       final jobModels = query.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
