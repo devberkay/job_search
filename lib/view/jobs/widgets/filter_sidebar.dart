@@ -206,10 +206,11 @@ class FilterSidebar extends HookConsumerWidget {
                       );
                     },
                     body: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Expanded(
                           child: Wrap(
+                            spacing: 50,
+                            runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
                                 final isAssociate = useState(false);
@@ -218,6 +219,7 @@ class FilterSidebar extends HookConsumerWidget {
                                     isAssociate.value = !isAssociate.value;
                                   },
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
                                         value: isAssociate.value,
@@ -243,6 +245,7 @@ class FilterSidebar extends HookConsumerWidget {
                                     isBachelor.value = !isBachelor.value;
                                   },
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
                                         value: isBachelor.value,
@@ -268,6 +271,7 @@ class FilterSidebar extends HookConsumerWidget {
                                     isMaster.value = !isMaster.value;
                                   },
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
                                         value: isMaster.value,
@@ -292,22 +296,26 @@ class FilterSidebar extends HookConsumerWidget {
                                   onTap: () {
                                     isPhd.value = !isPhd.value;
                                   },
-                                  child: Row(
-                                    children: [
-                                      CupertinoCheckbox(
-                                        value: isPhd.value,
-                                        side: BorderSide(
-                                            color: Colors.grey.shade400,
-                                            width: 2),
-                                        onChanged: (value) {
-                                          isPhd.value = value ?? false;
-                                        },
-                                      ),
-                                      Text("Ph.D.",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.grey.shade700))
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 9.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CupertinoCheckbox(
+                                          value: isPhd.value,
+                                          side: BorderSide(
+                                              color: Colors.grey.shade400,
+                                              width: 2),
+                                          onChanged: (value) {
+                                            isPhd.value = value ?? false;
+                                          },
+                                        ),
+                                        Text("Ph.D.",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.grey.shade700))
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
@@ -318,6 +326,166 @@ class FilterSidebar extends HookConsumerWidget {
                                     isPursuing.value = !isPursuing.value;
                                   },
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isPursuing.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isPursuing.value = value ?? false;
+                                        },
+                                      ),
+                                      Text("Pursuing degree",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              })
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
+                    ExpansionPanel(
+                    isExpanded: expansionPanel3.value,
+                    canTapOnHeader: true,
+                    headerBuilder: (context, isExpanded) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Job types",
+                              style: TextStyle(fontWeight: FontWeight.w600)),
+                        ),
+                      );
+                    },
+                    body: Row(
+                      children: [
+                        Expanded(
+                          child: Wrap(
+                            spacing: 50,
+                            runSpacing: 5,
+                            children: [
+                              HookConsumer(builder: (context, ref, child) {
+                                final isAssociate = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isAssociate.value = !isAssociate.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isAssociate.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isAssociate.value = value ?? false;
+                                        },
+                                      ),
+                                      Text("Associate",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isBachelor = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isBachelor.value = !isBachelor.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isBachelor.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isBachelor.value = value ?? false;
+                                        },
+                                      ),
+                                      Text("Bachelor's",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isMaster = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isMaster.value = !isMaster.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isMaster.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isMaster.value = value ?? false;
+                                        },
+                                      ),
+                                      Text("Master's",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isPhd = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isPhd.value = !isPhd.value;
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 9.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CupertinoCheckbox(
+                                          value: isPhd.value,
+                                          side: BorderSide(
+                                              color: Colors.grey.shade400,
+                                              width: 2),
+                                          onChanged: (value) {
+                                            isPhd.value = value ?? false;
+                                          },
+                                        ),
+                                        Text("Ph.D.",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.grey.shade700))
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isPursuing = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isPursuing.value = !isPursuing.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
                                         value: isPursuing.value,
