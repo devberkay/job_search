@@ -53,7 +53,7 @@ class FilterSidebar extends HookConsumerWidget {
                       onDeleted: () {
                         var temp = whatDoYouWantToDoListNotifier.value;
                         temp.remove(e);
-                        whatDoYouWantToDoListNotifier.value = temp;
+                        whatDoYouWantToDoListNotifier.value = [...temp];
                       },
                       deleteButtonTooltipMessage: "Remove filter",
                       deleteIcon: Icon(
@@ -74,7 +74,7 @@ class FilterSidebar extends HookConsumerWidget {
               onSubmitted: (value) {
                 var temp = whatDoYouWantToDoListNotifier.value;
                 temp.add(value);
-                whatDoYouWantToDoListNotifier.value = temp;
+                whatDoYouWantToDoListNotifier.value = [...temp];
                 controller.clear();
               },
               placeholderStyle: TextStyle(
