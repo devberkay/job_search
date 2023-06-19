@@ -238,6 +238,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isAssociate = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isAssociate.value) {
+                                      var temp = degreesNotifier.value;
+                                      temp.add("Associate");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = degreesNotifier.value;
+                                      temp.remove("Associate");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isAssociate.value = !isAssociate.value;
                                   },
                                   child: Row(
@@ -264,11 +273,14 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isBachelor = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    if(!isBachelor.value) {
-                                      degreesNotifier.value = 
-                                    }
-                                    else {
-
+                                    if (!isBachelor.value) {
+                                      var temp = degreesNotifier.value;
+                                      temp.add("Bachelor's");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = degreesNotifier.value;
+                                      temp.remove("Bachelor's");
+                                      degreesNotifier.value = temp;
                                     }
                                     isBachelor.value = !isBachelor.value;
                                   },
@@ -296,6 +308,15 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isMaster = useState(false);
                                 return GestureDetector(
                                   onTap: () {
+                                    if (!isMaster.value) {
+                                      var temp = degreesNotifier.value;
+                                      temp.add("Master's");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = degreesNotifier.value;
+                                      temp.remove("Master's");
+                                      degreesNotifier.value = temp;
+                                    }
                                     isMaster.value = !isMaster.value;
                                   },
                                   child: Row(
