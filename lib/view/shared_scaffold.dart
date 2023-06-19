@@ -17,11 +17,14 @@ class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: widget.routerState.location == "/"
-            ? const HomePageAppBar(
+        appBar: const HomePageAppBar(
                 customPreferredSize: Size(double.infinity, 60),
-              )
-            : null,
+              ),
+        // widget.routerState.location == "/"
+        //     ? const HomePageAppBar(
+        //         customPreferredSize: Size(double.infinity, 60),
+        //       )
+        //     : null,
         drawerEnableOpenDragGesture: false,
         resizeToAvoidBottomInset: false,
         body: widget.child,
