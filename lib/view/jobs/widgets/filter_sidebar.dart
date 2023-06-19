@@ -442,8 +442,16 @@ class FilterSidebar extends HookConsumerWidget {
                                 final isWhiteCollarRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isWhiteCollarRoles.value =
-                                        !isWhiteCollarRoles.value;
+                                    if (!isWhiteCollarRoles.value) {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.add("Pursuing degree");
+                                      degreesNotifier.value = temp;
+                                    } else {
+                                      var temp = jobTypesNotifier.value;
+                                      temp.remove("Pursuing degree");
+                                      degreesNotifier.value = temp;
+                                    }
+                                    isWhiteCollarRoles.value = !isWhiteCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
