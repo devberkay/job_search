@@ -104,7 +104,7 @@ class FilterSidebar extends HookConsumerWidget {
                     },
                     body: Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Column(
                         children: [
                           CupertinoTextField(
@@ -165,7 +165,7 @@ class FilterSidebar extends HookConsumerWidget {
                     },
                     body: Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Column(
                         children: [
                           CupertinoTextField(
@@ -572,7 +572,18 @@ class FilterSidebar extends HookConsumerWidget {
                     )),
               ],
             );
-          })
+          }),
+          const SizedBox(height: 50),
+          FilledCupertinoButton(
+              onPressed: () {},
+              height: 50,
+              width: double.maxFinite,
+              fillColor: Colors.black,
+              borderRadius: BorderRadius.circular(5),
+              child:  const Text("Apply filters",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w900)))
         ],
       ),
     );

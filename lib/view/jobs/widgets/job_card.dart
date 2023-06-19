@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class JobCard extends HookConsumerWidget {
-  const JobCard({super.key, required this.jobModel});
-  final JobModel jobModel;
+  const JobCard({super.key});
+  // final JobModel jobModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isHovering = useState(false);
@@ -17,23 +17,38 @@ class JobCard extends HookConsumerWidget {
         isHovering.value = false;
       },
       child: InkWell(
+          onTap: () {},
           child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeOut,
-        height: 350,
-        width: 950,
-        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: isHovering.value ? 10 : 2,
-              offset: Offset(0, 5),
-            )
-          ],
-        ),
-      )),
+            duration: const Duration(milliseconds: 250),
+            transformAlignment: Alignment.center,
+            // transform: isHovering.value
+            //     ? Matrix4.identity().scaled(1.01)
+            //     : Matrix4.identity(),
+            curve: Curves.easeOut,
+            height: 350,
+            width: 950,
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    offset: Offset(isHovering.value ? 1 : 0, 0),
+                    blurRadius: isHovering.value ? 1.25 : 0,
+                  ),
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    offset: Offset(isHovering.value ? -1 : 0, 0),
+                    blurRadius: isHovering.value ? 1.25 : 0,
+                  ),
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    offset: Offset(0, isHovering.value ? 1 : 0),
+                    blurRadius: isHovering.value ? 1.25 : 0,
+                  )
+                ]),
+          )),
     );
   }
 }

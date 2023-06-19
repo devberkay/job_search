@@ -1,3 +1,4 @@
+import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:JobSearch/view/jobs/widgets/sort_dropdown_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,9 @@ class DashboardView extends HookConsumerWidget {
                 ],
               )
             ],
-          )
+          ),
+          SizedBox(height: 20),
+          JobCard()
         ],
       ),
     );

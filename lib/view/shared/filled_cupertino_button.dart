@@ -6,16 +6,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 typedef VoidFunction = void Function();
 
 class FilledCupertinoButton extends HookConsumerWidget {
-  const FilledCupertinoButton({
-    super.key,
-    required this.child,
-    required this.onPressed,
-    required this.height,
-    required this.width,
-    required this.fillColor,
-    required this.borderRadius,
-    this.boxShadow
-  });
+  const FilledCupertinoButton(
+      {super.key,
+      required this.child,
+      required this.onPressed,
+      required this.height,
+      required this.width,
+      required this.fillColor,
+      required this.borderRadius,
+      this.boxShadow});
   final Widget child;
   final VoidFunction onPressed;
   final double height;
@@ -43,10 +42,9 @@ class FilledCupertinoButton extends HookConsumerWidget {
               alignment: Alignment.center,
               curve: Curves.easeOut,
               decoration: BoxDecoration(
-                color: color,
-                borderRadius: borderRadius,
-                boxShadow: boxShadow
-              ),
+                  color: color,
+                  borderRadius: borderRadius,
+                  boxShadow: boxShadow),
               duration: const Duration(milliseconds: 200),
               height: height,
               width: width,
