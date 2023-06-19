@@ -11,6 +11,9 @@ class FilterSidebar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final whatDoYouWantToDoListNotifier = useValueNotifier(<String>[]);
+    final skillsNotifier = useValueNotifier(<String>[]);
+    final degreesNotifier = useValueNotifier(<String>[]);
+    final jobTypesNotifier = useValueNotifier(<String>[]);
     return Container(
       height: double.infinity,
       width: 400,
@@ -264,6 +267,7 @@ class FilterSidebar extends HookConsumerWidget {
                                 return GestureDetector(
                                   onTap: () {
                                     isBachelor.value = !isBachelor.value;
+                                    degreesNotifier.value = degreesNotifier.value.
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
