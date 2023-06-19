@@ -17,14 +17,13 @@ class JobModel with _$JobModel {
     required String jobType,
     required bool isRemote, // man or woman
     required String organization,
-    required String minimumQualifications,
-    required String preferredQualifications,
-    required String responsibilities,
+    required List<String> searchTokens,
     required String aboutJob,
     required int longitude,
     required int latitude,
     required int salaryPerHour,
-    
+    String? jobId,
+
   }) = _JobModel;
 
   factory JobModel.fromJson(Map<String, Object?> json) =>

@@ -27,7 +27,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
       final jobModels = query.docs.map((e) {
-        return JobModel.fromJson(e.data());
+        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       debugPrint("jobModels : $jobModels");
@@ -37,7 +37,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       final query = await collectionRef.limit(15).get();
       debugPrint("jobNotifier-3");
       final jobModels = query.docs.map((e) {
-        return JobModel.fromJson(e.data());
+        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
       debugPrint("jobNotifier-4");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;

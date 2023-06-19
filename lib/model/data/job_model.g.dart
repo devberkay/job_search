@@ -12,13 +12,14 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
       jobType: json['jobType'] as String,
       isRemote: json['isRemote'] as bool,
       organization: json['organization'] as String,
-      minimumQualifications: json['minimumQualifications'] as String,
-      preferredQualifications: json['preferredQualifications'] as String,
-      responsibilities: json['responsibilities'] as String,
+      searchTokens: (json['searchTokens'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       aboutJob: json['aboutJob'] as String,
       longitude: json['longitude'] as int,
       latitude: json['latitude'] as int,
       salaryPerHour: json['salaryPerHour'] as int,
+      jobId: json['jobId'] as String?,
     );
 
 Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
@@ -28,11 +29,10 @@ Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
       'jobType': instance.jobType,
       'isRemote': instance.isRemote,
       'organization': instance.organization,
-      'minimumQualifications': instance.minimumQualifications,
-      'preferredQualifications': instance.preferredQualifications,
-      'responsibilities': instance.responsibilities,
+      'searchTokens': instance.searchTokens,
       'aboutJob': instance.aboutJob,
       'longitude': instance.longitude,
       'latitude': instance.latitude,
       'salaryPerHour': instance.salaryPerHour,
+      'jobId': instance.jobId,
     };
