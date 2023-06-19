@@ -95,7 +95,8 @@ class JobCard extends HookConsumerWidget {
                                 fontSize: 14,
                                 color: usDollarGreen)),
                         const SizedBox(width: 10),
-                        Text("$applicantsEmoji ${26} applied",
+                        Text(
+                            "$applicantsEmoji ${jobModel.applicantCounter} applied",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,

@@ -22,6 +22,7 @@ class JobModel with _$JobModel {
     required double longitude,
     required double latitude,
     required double salaryPerHour,
+    required int applicantCounter,
     String? jobId,
 
   }) = _JobModel;

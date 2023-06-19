@@ -30,6 +30,7 @@ mixin _$JobModel {
   double get longitude => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get salaryPerHour => throw _privateConstructorUsedError;
+  int get applicantCounter => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $JobModelCopyWith<$Res> {
       double longitude,
       double latitude,
       double salaryPerHour,
+      int applicantCounter,
       String? jobId});
 }
 
@@ -80,6 +82,7 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? longitude = null,
     Object? latitude = null,
     Object? salaryPerHour = null,
+    Object? applicantCounter = null,
     Object? jobId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -123,6 +126,10 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.salaryPerHour
           : salaryPerHour // ignore: cast_nullable_to_non_nullable
               as double,
+      applicantCounter: null == applicantCounter
+          ? _value.applicantCounter
+          : applicantCounter // ignore: cast_nullable_to_non_nullable
+              as int,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -149,6 +156,7 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       double longitude,
       double latitude,
       double salaryPerHour,
+      int applicantCounter,
       String? jobId});
 }
 
@@ -173,6 +181,7 @@ class __$$_JobModelCopyWithImpl<$Res>
     Object? longitude = null,
     Object? latitude = null,
     Object? salaryPerHour = null,
+    Object? applicantCounter = null,
     Object? jobId = freezed,
   }) {
     return _then(_$_JobModel(
@@ -216,6 +225,10 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.salaryPerHour
           : salaryPerHour // ignore: cast_nullable_to_non_nullable
               as double,
+      applicantCounter: null == applicantCounter
+          ? _value.applicantCounter
+          : applicantCounter // ignore: cast_nullable_to_non_nullable
+              as int,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -238,6 +251,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required this.longitude,
       required this.latitude,
       required this.salaryPerHour,
+      required this.applicantCounter,
       this.jobId})
       : _searchTokens = searchTokens;
 
@@ -272,11 +286,13 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   @override
   final double salaryPerHour;
   @override
+  final int applicantCounter;
+  @override
   final String? jobId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobModel(title: $title, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, jobId: $jobId)';
+    return 'JobModel(title: $title, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, jobId: $jobId)';
   }
 
   @override
@@ -294,6 +310,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       ..add(DiagnosticsProperty('longitude', longitude))
       ..add(DiagnosticsProperty('latitude', latitude))
       ..add(DiagnosticsProperty('salaryPerHour', salaryPerHour))
+      ..add(DiagnosticsProperty('applicantCounter', applicantCounter))
       ..add(DiagnosticsProperty('jobId', jobId));
   }
 
@@ -319,6 +336,8 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
                 other.latitude == latitude) &&
             (identical(other.salaryPerHour, salaryPerHour) ||
                 other.salaryPerHour == salaryPerHour) &&
+            (identical(other.applicantCounter, applicantCounter) ||
+                other.applicantCounter == applicantCounter) &&
             (identical(other.jobId, jobId) || other.jobId == jobId));
   }
 
@@ -336,6 +355,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       longitude,
       latitude,
       salaryPerHour,
+      applicantCounter,
       jobId);
 
   @JsonKey(ignore: true)
@@ -364,6 +384,7 @@ abstract class _JobModel implements JobModel {
       required final double longitude,
       required final double latitude,
       required final double salaryPerHour,
+      required final int applicantCounter,
       final String? jobId}) = _$_JobModel;
 
   factory _JobModel.fromJson(Map<String, dynamic> json) = _$_JobModel.fromJson;
@@ -388,6 +409,8 @@ abstract class _JobModel implements JobModel {
   double get latitude;
   @override
   double get salaryPerHour;
+  @override
+  int get applicantCounter;
   @override
   String? get jobId;
   @override
