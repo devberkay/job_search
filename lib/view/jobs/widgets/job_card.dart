@@ -12,6 +12,8 @@ class JobCard extends HookConsumerWidget {
     final locationEmoji = '\u{1F4CD}';
     final  computerEmoji = '\u{1F4BB}'; // display if remote
     final  moneyEmoji = '\u{1F4B5}';
+    final  applicantsEmoji = '\u{1F464}';
+
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -92,7 +94,7 @@ class JobCard extends HookConsumerWidget {
                                     color: Colors.black
                         )),
                         SizedBox(width: 10),
-                        Text("")
+                        Text("${applicantsEmoji} ${}")
 
                       ],
                     )
