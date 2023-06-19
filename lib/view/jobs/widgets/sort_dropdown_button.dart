@@ -1,3 +1,4 @@
+import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -10,12 +11,19 @@ class SortDropdownButton extends HookConsumerWidget {
     final selectedSortBy = useState("Relevance");
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
+      onChanged: (value) {
+        selectedSortBy.value = value!;
+      },
+      buttonStyleData: ButtonStyleData(padding: EdgeInsets.all(2)),
       value: "Relevance",
       items: <String>['Relevance', 'Date', 'Salary', 'No of applicants']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text('$value'),
+          child: Text(
+            '$value',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+          ),
         );
       }).toList(),
     ));
