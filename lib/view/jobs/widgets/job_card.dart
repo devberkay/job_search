@@ -112,9 +112,12 @@ class JobCard extends HookConsumerWidget {
                   width: double.maxFinite,
                 ),
                 SizedBox(height: 25),
-                Text("Qualifications:",style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black)),
+                Text("Qualifications:",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                        fontSize: 15)),
                 SizedBox(height: 25),
-                
               ],
             ),
           )),
