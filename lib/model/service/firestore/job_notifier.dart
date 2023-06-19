@@ -21,8 +21,10 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     final collectionRef = firestore.collection("jobPosts");
     final lastJobDoc = ref.watch(lastJobDocProvider);
     if (lastJobDoc != null) {
+      debugPrint("jobNotifier-0");
       final query =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
+      debugPrint("jobNotifier-1");
       final jobModels = query.docs.map((e) {
         return JobModel.fromJson(e.data());
       }).toList();
@@ -30,10 +32,13 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
+      debugPrint("jobNotifier-2");
       final query = await collectionRef.limit(15).get();
+      debugPrint("jobNotifier-3");
       final jobModels = query.docs.map((e) {
         return JobModel.fromJson(e.data());
       }).toList();
+      debugPrint("jobNotifier-4");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
       debugPrint("jobModels : $jobModels");
       return jobModels;
