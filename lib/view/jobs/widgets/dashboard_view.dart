@@ -52,7 +52,7 @@ class DashboardView extends HookConsumerWidget {
                 ],
               ),
               const Spacer(),
-              DropdownButton(items: items, onChanged: onChanged)
+              
             ],
           )
         ],
