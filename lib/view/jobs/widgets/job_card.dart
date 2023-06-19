@@ -22,7 +22,7 @@ class JobCard extends HookConsumerWidget {
         curve: Curves.easeOut,
         height: 350,
         width: 950,
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
