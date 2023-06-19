@@ -65,7 +65,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
             responsibilities: responsibilities));
       }
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
-      // debugPrint("jobModels : $jobModels");
+      debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
       debugPrint("jobNotifier-2");
@@ -76,7 +76,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       }).toList();
       debugPrint("jobNotifier-4");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
-      debugPrint("jobModels : $jobModels");
+      // debugPrint("jobModels : $jobModels");
       return jobModels;
     }
   }
