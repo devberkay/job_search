@@ -241,11 +241,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isAssociate.value) {
                                       var temp = degreesNotifier.value;
                                       temp.add("Associate");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = degreesNotifier.value;
                                       temp.remove("Associate");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     }
                                     isAssociate.value = !isAssociate.value;
                                   },
@@ -276,11 +276,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isBachelor.value) {
                                       var temp = degreesNotifier.value;
                                       temp.add("Bachelor's");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = degreesNotifier.value;
                                       temp.remove("Bachelor's");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     }
                                     isBachelor.value = !isBachelor.value;
                                   },
@@ -311,11 +311,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isMaster.value) {
                                       var temp = degreesNotifier.value;
                                       temp.add("Master's");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = degreesNotifier.value;
                                       temp.remove("Master's");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     }
                                     isMaster.value = !isMaster.value;
                                   },
@@ -346,11 +346,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isPhd.value) {
                                       var temp = degreesNotifier.value;
                                       temp.add("Ph.D.");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = degreesNotifier.value;
                                       temp.remove("Ph.D.");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     }
                                     isPhd.value = !isPhd.value;
                                   },
@@ -384,11 +384,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isPursuing.value) {
                                       var temp = degreesNotifier.value;
                                       temp.add("Pursuing degree");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = degreesNotifier.value;
                                       temp.remove("Pursuing degree");
-                                      degreesNotifier.value = temp;
+                                      degreesNotifier.value = Set.from(temp);
                                     }
                                     isPursuing.value = !isPursuing.value;
                                   },
@@ -445,11 +445,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isWhiteCollarRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("White-collar roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("White-collar roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isWhiteCollarRoles.value = !isWhiteCollarRoles.value;
                                   },
@@ -483,11 +483,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isBlueCollarRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("Blue-collar roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("Blue-collar roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isBlueCollarRoles.value = !isBlueCollarRoles.value;
                                   },
@@ -519,11 +519,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isItRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("IT roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("IT roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isItRoles.value = !isItRoles.value;
                                   },
@@ -554,11 +554,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isSalesRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("Sales roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("Sales roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isSalesRoles.value = !isSalesRoles.value;
                                   },
@@ -589,11 +589,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isManagementRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("Management roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("Management roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isManagementRoles.value = !isManagementRoles.value;
                                   },
@@ -625,11 +625,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isCreativeRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("Creative roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("Creative roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = Set.from(temp);
                                     }
                                     isCreativeRoles.value = !isCreativeRoles.value;
                                   },
@@ -661,11 +661,11 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isVehicleDrivingRoles.value) {
                                       var temp = jobTypesNotifier.value;
                                       temp.add("Vehicle-driving roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = temp;
                                     } else {
                                       var temp = jobTypesNotifier.value;
                                       temp.remove("Vehicle-driving roles");
-                                      degreesNotifier.value = temp;
+                                      jobTypesNotifier.value = temp;
                                     }
                                     isVehicleDrivingRoles.value = !isVehicleDrivingRoles.value;
                                   },
