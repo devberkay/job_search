@@ -15,8 +15,7 @@ class SortDropdownButton extends HookConsumerWidget {
         debugPrint("sortBy : $value");
         selectedSortBy.value = value!;
       },
-      buttonStyleData: ButtonStyleData(padding: EdgeInsets.all(2)),
-      value: "Relevance",
+      value: selectedSortBy.value,
       items: <String>['Relevance', 'Date', 'Salary', 'No of applicants']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
