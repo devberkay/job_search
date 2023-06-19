@@ -36,6 +36,9 @@ class FilterSidebar extends HookConsumerWidget {
           CupertinoTextField(
             padding: const EdgeInsets.all(15),
             placeholder: "Software Engineering, Design, Sales",
+            onSubmitted: (value) {
+              debugPrint("What do you want to do? SUBMITTED : $value");
+            },
             placeholderStyle: TextStyle(
                 color: Colors.grey.shade400, fontWeight: FontWeight.w500),
             decoration: BoxDecoration(
