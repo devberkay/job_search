@@ -89,7 +89,7 @@ class FilterSidebar extends HookConsumerWidget {
               dividerColor: Colors.grey.shade300,
               children: [
                 ExpansionPanel(
-                    isExpanded: expansionPanel0.value ,
+                    isExpanded: expansionPanel0.value,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
                       return const Padding(
@@ -209,6 +209,8 @@ class FilterSidebar extends HookConsumerWidget {
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         child: Wrap(
+                          spacing: 5,
+                          runSpacing: 10,
                           children: [
                             HookConsumer(builder: (context, ref, child) {
                               final isAssociate = useState(false);
