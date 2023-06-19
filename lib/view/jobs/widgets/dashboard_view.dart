@@ -18,8 +18,10 @@ class DashboardView extends HookConsumerWidget {
         padding: const EdgeInsets.all(50),
         child: jobsNotifier.when(data: (jobs) {
           if (jobs != null) {
-            debugPrint("Everything is ok");
-            return ListView.builder(itemBuilder: (context, index) {
+            debugPrint("dashboard_view.dart: OK");
+            return ListView.separated(itemCount: jobs.length,separatorBuilder: (context, index) {
+              return SizedBox(height: 50);
+            }, itemBuilder: (context, index) {
               return JobCard(jobModel: jobs[index]);
             });
           } else {
