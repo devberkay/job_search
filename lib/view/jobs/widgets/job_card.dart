@@ -34,18 +34,33 @@ class JobCard extends HookConsumerWidget {
                 border: Border.all(color: Colors.grey.shade300),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.shade400,
+                      color: Colors.black54,
                       offset: Offset(
                           isHovering.value ? -1 : 0, isHovering.value ? -1 : 0),
                       blurRadius: isHovering.value ? 1.25 : 0,
                       spreadRadius: isHovering.value ? 1.25 : 0),
                   BoxShadow(
-                      color: Colors.grey.shade400,
+                      color: Colors.black54,
                       offset: Offset(
                           isHovering.value ? 1 : 0, isHovering.value ? 1 : 0),
                       blurRadius: isHovering.value ? 1.25 : 0,
                       spreadRadius: isHovering.value ? 1.25 : 0)
                 ]),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Text(jobModel.title,style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25)),
+                        SizedBox(height: 10),
+                        
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
           )),
     );
   }
