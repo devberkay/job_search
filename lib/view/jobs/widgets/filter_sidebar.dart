@@ -190,31 +190,37 @@ class FilterSidebar extends HookConsumerWidget {
                           horizontal: 10, vertical: 5),
                       child: Column(
                         children: [
-                          HookConsumer(
-                            builder: (context,ref,child) {
-                              final controller = useTextEditingController();
-                              return CupertinoTextField(
-                                prefix: Icon(Icons.location_on,
-                                    size: 5, color: Colors.grey.shade500),
-                                padding: const EdgeInsets.all(15),
-                                placeholder: "Programming, Finance, UX design",
-                                placeholderStyle: TextStyle(
-                                    color: Colors.grey.shade400,
-                                    fontWeight: FontWeight.w500),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(color: Colors.grey.shade300),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color:
-                                              Colors.grey.shade400.withOpacity(0.5),
-                                          offset: const Offset(0, 1),
-                                          blurRadius: 1)
-                                    ],
-                                    borderRadius: BorderRadius.circular(5)),
-                              );
-                            }
-                          ),
+                          HookConsumer(builder: (context, ref, child) {
+                            final controller = useTextEditingController();
+                            return CupertinoTextField(
+                              controller: controller,
+                              prefix: Icon(Icons.location_on,
+                                  size: 5, color: Colors.grey.shade500),
+                              padding: const EdgeInsets.all(15),
+                              placeholder: "Programming, Finance, UX design",
+                              onSubmitted: (value) {
+                                var temp = skillsNotifier.value;
+                                temp.add(value);
+                                skillsNotifier.value = [...temp];
+                                controller.clear();
+                              },
+                              placeholderStyle: TextStyle(
+                                  color: Colors.grey.shade400,
+                                  fontWeight: FontWeight.w500),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey.shade400
+                                            .withOpacity(0.5),
+                                        offset: const Offset(0, 1),
+                                        blurRadius: 1)
+                                  ],
+                                  borderRadius: BorderRadius.circular(5)),
+                            );
+                          }),
                         ],
                       ),
                     )),
@@ -456,7 +462,8 @@ class FilterSidebar extends HookConsumerWidget {
                                       temp.remove("White-collar roles");
                                       jobTypesNotifier.value = Set.from(temp);
                                     }
-                                    isWhiteCollarRoles.value = !isWhiteCollarRoles.value;
+                                    isWhiteCollarRoles.value =
+                                        !isWhiteCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -494,7 +501,8 @@ class FilterSidebar extends HookConsumerWidget {
                                       temp.remove("Blue-collar roles");
                                       jobTypesNotifier.value = Set.from(temp);
                                     }
-                                    isBlueCollarRoles.value = !isBlueCollarRoles.value;
+                                    isBlueCollarRoles.value =
+                                        !isBlueCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -600,7 +608,8 @@ class FilterSidebar extends HookConsumerWidget {
                                       temp.remove("Management roles");
                                       jobTypesNotifier.value = Set.from(temp);
                                     }
-                                    isManagementRoles.value = !isManagementRoles.value;
+                                    isManagementRoles.value =
+                                        !isManagementRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -636,7 +645,8 @@ class FilterSidebar extends HookConsumerWidget {
                                       temp.remove("Creative roles");
                                       jobTypesNotifier.value = Set.from(temp);
                                     }
-                                    isCreativeRoles.value = !isCreativeRoles.value;
+                                    isCreativeRoles.value =
+                                        !isCreativeRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -672,7 +682,8 @@ class FilterSidebar extends HookConsumerWidget {
                                       temp.remove("Vehicle-driving roles");
                                       jobTypesNotifier.value = temp;
                                     }
-                                    isVehicleDrivingRoles.value = !isVehicleDrivingRoles.value;
+                                    isVehicleDrivingRoles.value =
+                                        !isVehicleDrivingRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
