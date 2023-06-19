@@ -86,7 +86,7 @@ class DashboardView extends HookConsumerWidget {
             );
           }
         }, error: (e, st) {
-          debugPrint("dashboard_view.dart error: $e");
+          debugPrint("dashboard_view.dart error: $e , \n stackTrace: $st");
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
