@@ -394,6 +394,7 @@ class FilterSidebar extends HookConsumerWidget {
                                       Text("White-collar roles",
                                           style: TextStyle(
                                               letterSpacing: 0,
+                                              fontSize: 13.75,
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
                                     ],
