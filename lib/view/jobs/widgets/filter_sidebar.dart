@@ -10,6 +10,7 @@ class FilterSidebar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final whatDoYouWantToDoListNotifier = useValueNotifier(<String>[]);
     return Container(
       height: double.infinity,
       width: 400,
@@ -33,25 +34,45 @@ class FilterSidebar extends HookConsumerWidget {
             ],
           ),
           const SizedBox(height: 15),
-          CupertinoTextField(
-            padding: const EdgeInsets.all(15),
-            placeholder: "Software Engineering, Design, Sales",
-            onSubmitted: (value) {
-              debugPrint("What do you want to do? SUBMITTED : $value");
-            },
-            placeholderStyle: TextStyle(
-                color: Colors.grey.shade400, fontWeight: FontWeight.w500),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey.shade300),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade400.withOpacity(0.5),
-                      offset: const Offset(0, 1),
-                      blurRadius: 1)
-                ],
-                borderRadius: BorderRadius.circular(5)),
-          ),
+          ValueListenableBuilder(
+              valueListenable: whatDoYouWantToDoListNotifier,
+              builder: (context, items, child) {
+                return Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: items.map<Widget>((e) {
+                    return Chip(label: Text(e));
+                  }).toList(),
+                );
+              }),
+          const SizedBox(height: 15),
+          HookConsumer(builder: (context, ref, child) {
+            final controller = useTextEditingController();
+            return CupertinoTextField(
+              padding: const EdgeInsets.all(15),
+              controller: controller,
+              placeholder: "Software Engineering, Design, Sales",
+              onSubmitted: (value) {
+                whatDoYouWantToDoListNotifier.value = [
+                  ...whatDoYouWantToDoListNotifier.value,
+                  value
+                ];
+                controller.clear();
+              },
+              placeholderStyle: TextStyle(
+                  color: Colors.grey.shade400, fontWeight: FontWeight.w500),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade400.withOpacity(0.5),
+                        offset: const Offset(0, 1),
+                        blurRadius: 1)
+                  ],
+                  borderRadius: BorderRadius.circular(5)),
+            );
+          }),
           const SizedBox(height: 50),
           HookConsumer(builder: (context, ref, child) {
             final expansionPanel0 = useState<bool>(false);
