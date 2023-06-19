@@ -72,7 +72,7 @@ class JobCard extends HookConsumerWidget {
                                     color: Colors.black)),
                             const SizedBox(width: 10),
                             Text(
-                                "${jobModel.isRemote ? computerEmoji : locationEmoji} ${jobModel.isRemote ? "Remote available" : jobModel.organization}",
+                                "${jobModel.isRemote ? computerEmoji : locationEmoji} ${jobModel.isRemote ? "Remote available" : 'In-office: ${jobModel.organization}'}",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
