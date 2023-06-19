@@ -350,7 +350,7 @@ class FilterSidebar extends HookConsumerWidget {
                         ),
                       ],
                     )),
-                    ExpansionPanel(
+                ExpansionPanel(
                     isExpanded: expansionPanel3.value,
                     canTapOnHeader: true,
                     headerBuilder: (context, isExpanded) {
@@ -372,24 +372,26 @@ class FilterSidebar extends HookConsumerWidget {
                             runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
-                                final isAssociate = useState(false);
+                                final isWhiteCollarRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isAssociate.value = !isAssociate.value;
+                                    isWhiteCollarRoles.value =
+                                        !isWhiteCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isAssociate.value,
+                                        value: isWhiteCollarRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isAssociate.value = value ?? false;
+                                          isWhiteCollarRoles.value =
+                                              value ?? false;
                                         },
                                       ),
-                                      Text("Associate",
+                                      Text("White-collar roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
@@ -398,24 +400,26 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isBachelor = useState(false);
+                                final isBlueCollarRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isBachelor.value = !isBachelor.value;
+                                    isBlueCollarRoles.value =
+                                        !isBlueCollarRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isBachelor.value,
+                                        value: isBlueCollarRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isBachelor.value = value ?? false;
+                                          isBlueCollarRoles.value =
+                                              value ?? false;
                                         },
                                       ),
-                                      Text("Bachelor's",
+                                      Text("Blue-collar roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
@@ -424,24 +428,24 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isMaster = useState(false);
+                                final isItRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isMaster.value = !isMaster.value;
+                                    isItRoles.value = !isItRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isMaster.value,
+                                        value: isItRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isMaster.value = value ?? false;
+                                          isItRoles.value = value ?? false;
                                         },
                                       ),
-                                      Text("Master's",
+                                      Text("IT roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
@@ -450,10 +454,11 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isPhd = useState(false);
+                                final isVehicleDrivingRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isPhd.value = !isPhd.value;
+                                    isVehicleDrivingRoles.value =
+                                        !isVehicleDrivingRoles.value;
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 9.0),
@@ -461,15 +466,16 @@ class FilterSidebar extends HookConsumerWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         CupertinoCheckbox(
-                                          value: isPhd.value,
+                                          value: isVehicleDrivingRoles.value,
                                           side: BorderSide(
                                               color: Colors.grey.shade400,
                                               width: 2),
                                           onChanged: (value) {
-                                            isPhd.value = value ?? false;
+                                            isVehicleDrivingRoles.value =
+                                                value ?? false;
                                           },
                                         ),
-                                        Text("Ph.D.",
+                                        Text("Vehicle-driving roles",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.grey.shade700))
@@ -479,24 +485,80 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isPursuing = useState(false);
+                                final isManagementRoles = useState(false);
                                 return GestureDetector(
                                   onTap: () {
-                                    isPursuing.value = !isPursuing.value;
+                                    isManagementRoles.value =
+                                        !isManagementRoles.value;
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isPursuing.value,
+                                        value: isManagementRoles.value,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isPursuing.value = value ?? false;
+                                          isManagementRoles.value =
+                                              value ?? false;
                                         },
                                       ),
-                                      Text("Pursuing degree",
+                                      Text("Management roles",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isCreativeRoles = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isCreativeRoles.value =
+                                        !isCreativeRoles.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isCreativeRoles.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isCreativeRoles.value =
+                                              value ?? false;
+                                        },
+                                      ),
+                                      Text("Creative roles",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
+                                  ),
+                                );
+                              }),
+                              HookConsumer(builder: (context, ref, child) {
+                                final isSalesRoles = useState(false);
+                                return GestureDetector(
+                                  onTap: () {
+                                    isSalesRoles.value = !isSalesRoles.value;
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isSalesRoles.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isSalesRoles.value = value ?? false;
+                                        },
+                                      ),
+                                      Text("Sales roles",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
