@@ -167,6 +167,44 @@ class FilterSidebar extends HookConsumerWidget {
                         ],
                       ),
                     )),
+                    ExpansionPanel(
+                    isExpanded: selectedIndex.value == 2,
+                    canTapOnHeader: true,
+                    headerBuilder: (context, isExpanded) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Degree",
+                              style: TextStyle(fontWeight: FontWeight.w600)),
+                        ),
+                      );
+                    },
+                    body: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Wrap(
+                        children: [
+                          Row(
+                              children: [
+                                CupertinoCheckbox(
+                                  value: isRemoteNotifier.value,
+                                  side: BorderSide(
+                                      color: Colors.grey.shade400, width: 2),
+                                  onChanged: (value) {
+                                    isRemoteNotifier.value = value ?? false;
+                                  },
+                                ),
+                                Text("Remote eligible",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade700))
+                              ],
+                            )
+                        ],
+                      )
+                    )),
               ],
             );
           })
