@@ -460,27 +460,25 @@ class FilterSidebar extends HookConsumerWidget {
                                     isVehicleDrivingRoles.value =
                                         !isVehicleDrivingRoles.value;
                                   },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 9.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        CupertinoCheckbox(
-                                          value: isVehicleDrivingRoles.value,
-                                          side: BorderSide(
-                                              color: Colors.grey.shade400,
-                                              width: 2),
-                                          onChanged: (value) {
-                                            isVehicleDrivingRoles.value =
-                                                value ?? false;
-                                          },
-                                        ),
-                                        Text("Vehicle-driving roles",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.grey.shade700))
-                                      ],
-                                    ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CupertinoCheckbox(
+                                        value: isVehicleDrivingRoles.value,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400,
+                                            width: 2),
+                                        onChanged: (value) {
+                                          isVehicleDrivingRoles.value =
+                                              value ?? false;
+                                        },
+                                      ),
+                                      Text("Vehicle-driving roles",
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey.shade700))
+                                    ],
                                   ),
                                 );
                               }),
