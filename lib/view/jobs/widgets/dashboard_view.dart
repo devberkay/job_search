@@ -13,8 +13,29 @@ class DashboardView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsNotifier = ref.watch(jobNotifierProvider);
     return Padding(
-      padding: const EdgeInsets.all(50),
-      child: jobsNotifier.when(data: (jobs) {}, error: (e,st) {}, loading: () {})
-    );
+        padding: const EdgeInsets.all(50),
+        child: jobsNotifier.when(
+            data: (jobs) {
+              if(jobs!=null) {
+                ListView.builder(itemBuilder: (context, index) {
+                return JobCard(jobModel: jobs[index]);
+              });
+              }
+              else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.question_mark),
+                    Text("No jobs found")
+                  ],
+                );
+              }
+            },
+            error: (e, st) {
+
+            },
+            loading: () {
+
+            }));
   }
 }
