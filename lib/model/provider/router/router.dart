@@ -1,5 +1,7 @@
 import 'dart:io';
 
+
+import 'package:JobSearch/view/jobs/jobs_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -38,7 +40,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                       path: "jobs",
                       pageBuilder: (context, state) => MaterialPage(
                           key: state.pageKey,
-                          child: HomePage(
+                          child: JobsPage(
                             key: state.pageKey,
                           )),
                     ),

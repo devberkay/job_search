@@ -1,6 +1,7 @@
 import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SearchBox extends HookConsumerWidget {
@@ -92,7 +93,9 @@ class SearchBox extends HookConsumerWidget {
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade400))),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go("/jobs");
+                },
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                         const RoundedRectangleBorder(
@@ -128,7 +131,6 @@ class SearchBox extends HookConsumerWidget {
             SizedBox(
               width: 45,
             ),
-            
             SizedBox(
               width: 180,
             ),

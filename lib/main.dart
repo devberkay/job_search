@@ -3,19 +3,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:JobSearch/model/provider/router/router.dart';
 import 'package:JobSearch/theming.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-  
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
   );
-
+  usePathUrlStrategy();
   runApp(const ProviderScope(child: JobSearchApp()));
 }
 
@@ -24,7 +24,7 @@ class JobSearchApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
-    
+
     return GlobalLoaderOverlay(
       useDefaultLoading: false,
       overlayWidget: Center(
