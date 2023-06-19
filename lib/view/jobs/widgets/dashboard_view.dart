@@ -15,15 +15,19 @@ class DashboardView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsNotifier = ref.watch(jobNotifierProvider);
     return Padding(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
         child: jobsNotifier.when(data: (jobs) {
           if (jobs != null) {
             debugPrint("dashboard_view.dart: OK");
-            return ListView.separated(itemCount: jobs.length,separatorBuilder: (context, index) {
-              return SizedBox(height: 50);
-            }, itemBuilder: (context, index) {
-              return JobCard(jobModel: jobs[index]);
-            });
+            return ListView.separated(
+                clipBehavior: Clip.none,
+                itemCount: jobs.length+2,
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 50);
+                },
+                itemBuilder: (context, index) {
+                  return JobCard(jobModel: jobs[index]);
+                });
           } else {
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,

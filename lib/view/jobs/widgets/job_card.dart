@@ -19,6 +19,7 @@ class JobCard extends HookConsumerWidget {
       child: InkWell(
           onTap: () {},
           child: AnimatedContainer(
+            clipBehavior: Clip.none,
             duration: const Duration(milliseconds: 250),
             transformAlignment: Alignment.center,
             // transform: isHovering.value
@@ -33,20 +34,17 @@ class JobCard extends HookConsumerWidget {
                 border: Border.all(color: Colors.grey.shade300),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
-                    offset: Offset(isHovering.value ? 1 : 0, 0),
-                    blurRadius: isHovering.value ? 1.25 : 0,
-                  ),
+                      color: Colors.grey.shade400,
+                      offset: Offset(
+                          isHovering.value ? -1 : 0, isHovering.value ? -1 : 0),
+                      blurRadius: isHovering.value ? 1.25 : 0,
+                      spreadRadius: isHovering.value ? 1.25 : 0),
                   BoxShadow(
-                    color: Colors.grey.shade300,
-                    offset: Offset(isHovering.value ? -1 : 0, 0),
-                    blurRadius: isHovering.value ? 1.25 : 0,
-                  ),
-                  BoxShadow(
-                    color: Colors.grey.shade300,
-                    offset: Offset(0, isHovering.value ? 1 : 0),
-                    blurRadius: isHovering.value ? 1.25 : 0,
-                  )
+                      color: Colors.grey.shade400,
+                      offset: Offset(
+                          isHovering.value ? 1 : 0, isHovering.value ? 1 : 0),
+                      blurRadius: isHovering.value ? 1.25 : 0,
+                      spreadRadius: isHovering.value ? 1.25 : 0)
                 ]),
           )),
     );
