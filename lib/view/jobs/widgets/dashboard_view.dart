@@ -5,6 +5,8 @@ class DashboardView extends HookConsumerWidget {
   const DashboardView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return Container(
+      padding: const EdgeInsets.all(50),
+    );
   }
 }

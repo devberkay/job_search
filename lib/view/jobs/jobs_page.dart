@@ -1,3 +1,4 @@
+import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
 import 'package:JobSearch/view/jobs/widgets/filter_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,7 +14,7 @@ class _JobsPageState extends ConsumerState<JobsPage> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [FilterSidebar()],
+      children: [FilterSidebar(),Expanded(child: DashboardView())],
     );
   }
 }
