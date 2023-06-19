@@ -188,18 +188,39 @@ class FilterSidebar extends HookConsumerWidget {
                         children: [
                           HookConsumer(
                             builder: (context,ref,child) {
-                              
+                              final isAssociate = useState(false);
                               return Row(
                                   children: [
                                     CupertinoCheckbox(
-                                      value: isRemoteNotifier.value,
+                                      value: isAssociate.value,
                                       side: BorderSide(
                                           color: Colors.grey.shade400, width: 2),
                                       onChanged: (value) {
-                                        isRemoteNotifier.value = value ?? false;
+                                        isAssociate.value = value ?? false;
                                       },
                                     ),
                                     Text("Associate",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.grey.shade700))
+                                  ],
+                                );
+                            }
+                          ),
+                          HookConsumer(
+                            builder: (context,ref,child) {
+                              final isAssociate = useState(false);
+                              return Row(
+                                  children: [
+                                    CupertinoCheckbox(
+                                      value: isAssociate.value,
+                                      side: BorderSide(
+                                          color: Colors.grey.shade400, width: 2),
+                                      onChanged: (value) {
+                                        isAssociate.value = value ?? false;
+                                      },
+                                    ),
+                                    Text("Bachelor's",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: Colors.grey.shade700))
