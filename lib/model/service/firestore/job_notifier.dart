@@ -3,13 +3,16 @@ import 'dart:async';
 import 'package:JobSearch/model/data/job_model.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final lastJobDocProvider = StateProvider<DocumentSnapshot?>((ref) {
   return null;
 });
 
-final jobNotifierProvider = AsyncNotifierProvider.autoDispose<JobNotifier,List<JobModel>? >(JobNotifier.new);
+final jobNotifierProvider =
+    AsyncNotifierProvider.autoDispose<JobNotifier, List<JobModel>?>(
+        JobNotifier.new);
 
 class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
   @override
@@ -24,6 +27,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         return JobModel.fromJson(e.data());
       }).toList();
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
+      debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
       final query = await collectionRef.limit(15).get();
@@ -31,6 +35,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         return JobModel.fromJson(e.data());
       }).toList();
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
+      debugPrint("jobModels : $jobModels");
       return jobModels;
     }
   }
