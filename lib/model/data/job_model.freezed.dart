@@ -32,9 +32,9 @@ mixin _$JobModel {
   double get salaryPerHour => throw _privateConstructorUsedError;
   int get applicantCounter => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
-  List<String>? get responsibilities => throw _privateConstructorUsedError;
-  List<String>? get minimumQualifications => throw _privateConstructorUsedError;
-  List<String>? get preferredQualifications =>
+  List<String> get responsibilities => throw _privateConstructorUsedError;
+  List<String> get minimumQualifications => throw _privateConstructorUsedError;
+  List<String> get preferredQualifications =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,9 +61,9 @@ abstract class $JobModelCopyWith<$Res> {
       double salaryPerHour,
       int applicantCounter,
       String? jobId,
-      List<String>? responsibilities,
-      List<String>? minimumQualifications,
-      List<String>? preferredQualifications});
+      List<String> responsibilities,
+      List<String> minimumQualifications,
+      List<String> preferredQualifications});
 }
 
 /// @nodoc
@@ -91,9 +91,9 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? jobId = freezed,
-    Object? responsibilities = freezed,
-    Object? minimumQualifications = freezed,
-    Object? preferredQualifications = freezed,
+    Object? responsibilities = null,
+    Object? minimumQualifications = null,
+    Object? preferredQualifications = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -144,18 +144,18 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
               as String?,
-      responsibilities: freezed == responsibilities
+      responsibilities: null == responsibilities
           ? _value.responsibilities
           : responsibilities // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      minimumQualifications: freezed == minimumQualifications
+              as List<String>,
+      minimumQualifications: null == minimumQualifications
           ? _value.minimumQualifications
           : minimumQualifications // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      preferredQualifications: freezed == preferredQualifications
+              as List<String>,
+      preferredQualifications: null == preferredQualifications
           ? _value.preferredQualifications
           : preferredQualifications // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -180,9 +180,9 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       double salaryPerHour,
       int applicantCounter,
       String? jobId,
-      List<String>? responsibilities,
-      List<String>? minimumQualifications,
-      List<String>? preferredQualifications});
+      List<String> responsibilities,
+      List<String> minimumQualifications,
+      List<String> preferredQualifications});
 }
 
 /// @nodoc
@@ -208,9 +208,9 @@ class __$$_JobModelCopyWithImpl<$Res>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? jobId = freezed,
-    Object? responsibilities = freezed,
-    Object? minimumQualifications = freezed,
-    Object? preferredQualifications = freezed,
+    Object? responsibilities = null,
+    Object? minimumQualifications = null,
+    Object? preferredQualifications = null,
   }) {
     return _then(_$_JobModel(
       title: null == title
@@ -261,18 +261,18 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
               as String?,
-      responsibilities: freezed == responsibilities
+      responsibilities: null == responsibilities
           ? _value._responsibilities
           : responsibilities // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      minimumQualifications: freezed == minimumQualifications
+              as List<String>,
+      minimumQualifications: null == minimumQualifications
           ? _value._minimumQualifications
           : minimumQualifications // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      preferredQualifications: freezed == preferredQualifications
+              as List<String>,
+      preferredQualifications: null == preferredQualifications
           ? _value._preferredQualifications
           : preferredQualifications // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ));
   }
 }
@@ -293,9 +293,9 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required this.salaryPerHour,
       required this.applicantCounter,
       this.jobId,
-      final List<String>? responsibilities,
-      final List<String>? minimumQualifications,
-      final List<String>? preferredQualifications})
+      required final List<String> responsibilities,
+      required final List<String> minimumQualifications,
+      required final List<String> preferredQualifications})
       : _searchTokens = searchTokens,
         _responsibilities = responsibilities,
         _minimumQualifications = minimumQualifications,
@@ -335,37 +335,31 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   final int applicantCounter;
   @override
   final String? jobId;
-  final List<String>? _responsibilities;
+  final List<String> _responsibilities;
   @override
-  List<String>? get responsibilities {
-    final value = _responsibilities;
-    if (value == null) return null;
+  List<String> get responsibilities {
     if (_responsibilities is EqualUnmodifiableListView)
       return _responsibilities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_responsibilities);
   }
 
-  final List<String>? _minimumQualifications;
+  final List<String> _minimumQualifications;
   @override
-  List<String>? get minimumQualifications {
-    final value = _minimumQualifications;
-    if (value == null) return null;
+  List<String> get minimumQualifications {
     if (_minimumQualifications is EqualUnmodifiableListView)
       return _minimumQualifications;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_minimumQualifications);
   }
 
-  final List<String>? _preferredQualifications;
+  final List<String> _preferredQualifications;
   @override
-  List<String>? get preferredQualifications {
-    final value = _preferredQualifications;
-    if (value == null) return null;
+  List<String> get preferredQualifications {
     if (_preferredQualifications is EqualUnmodifiableListView)
       return _preferredQualifications;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_preferredQualifications);
   }
 
   @override
@@ -477,9 +471,9 @@ abstract class _JobModel implements JobModel {
       required final double salaryPerHour,
       required final int applicantCounter,
       final String? jobId,
-      final List<String>? responsibilities,
-      final List<String>? minimumQualifications,
-      final List<String>? preferredQualifications}) = _$_JobModel;
+      required final List<String> responsibilities,
+      required final List<String> minimumQualifications,
+      required final List<String> preferredQualifications}) = _$_JobModel;
 
   factory _JobModel.fromJson(Map<String, dynamic> json) = _$_JobModel.fromJson;
 
@@ -508,11 +502,11 @@ abstract class _JobModel implements JobModel {
   @override
   String? get jobId;
   @override
-  List<String>? get responsibilities;
+  List<String> get responsibilities;
   @override
-  List<String>? get minimumQualifications;
+  List<String> get minimumQualifications;
   @override
-  List<String>? get preferredQualifications;
+  List<String> get preferredQualifications;
   @override
   @JsonKey(ignore: true)
   _$$_JobModelCopyWith<_$_JobModel> get copyWith =>

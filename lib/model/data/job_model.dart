@@ -24,9 +24,9 @@ class JobModel with _$JobModel {
     required double salaryPerHour,
     required int applicantCounter,
     String? jobId,
-    List<String>? responsibilities,
-    List<String>? minimumQualifications,
-    List<String>? preferredQualifications,
+    required List<String> responsibilities,
+    required List<String> minimumQualifications,
+    required List<String> preferredQualifications,
   }) = _JobModel;
 
   factory JobModel.fromJson(Map<String, Object?> json) =>

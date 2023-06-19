@@ -25,99 +25,22 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       final query =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
-      List<JobModel> jobModels = [];
-      List<Future<QuerySnapshot<Map<String, dynamic>>>> qualificationsFutures =
-          [];
-      for (var doc in query.docs) {
-        final docId = doc.id;
-        final minimumQualificationsCollectionRef =
-            firestore.collection("jobPosts/$docId/minimumQualifications");
-        final preferredQualificationsCollectionRef =
-            firestore.collection("jobPosts/$docId/preferredQualifications");
-        final responsibilitiesCollectionRef =
-            firestore.collection("jobPosts/$docId/responsibilities");
-        qualificationsFutures.addAll([
-          minimumQualificationsCollectionRef.get(),
-          preferredQualificationsCollectionRef.get(),
-          responsibilitiesCollectionRef.get()
-        ]);
-      }
-      debugPrint("jobNotifier-2");
-      final compoundData = await Future.wait(qualificationsFutures);
-      debugPrint("jobNotifier-3");
-      for (var i = 0; i < query.docs.length; i++) {
-        final doc = query.docs[i];
-        final docId = doc.id;
-        final minimumQualificationsQuery = compoundData[i * 3];
-        final preferredQualificationsQuery = compoundData[i * 3 + 1];
-        final responsibilitiesQuery = compoundData[i * 3 + 2];
-        final minimumQualifications = minimumQualificationsQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        final preferredQualifications = preferredQualificationsQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        final responsibilities = responsibilitiesQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        jobModels.add(JobModel.fromJson(doc.data()).copyWith(
-            jobId: docId,
-            minimumQualifications: minimumQualifications,
-            preferredQualifications: preferredQualifications,
-            responsibilities: responsibilities));
-      }
-      debugPrint("jobNotifier-4");
+      final jobModels = query.docs.map((e) {
+        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
+      }).toList();
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
-      debugPrint("jobModels-above : $jobModels");
+      // debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
+      debugPrint("jobNotifier-2");
       final query = await collectionRef.limit(15).get();
-      debugPrint("jobNotifier-5");
-      List<JobModel> jobModels = [];
-      List<Future<QuerySnapshot<Map<String, dynamic>>>> qualificationsFutures =
-          [];
-      for (var doc in query.docs) {
-        final docId = doc.id;
-        final minimumQualificationsCollectionRef =
-            firestore.collection("jobPosts/$docId/minimumQualifications");
-        final preferredQualificationsCollectionRef =
-            firestore.collection("jobPosts/$docId/preferredQualifications");
-        final responsibilitiesCollectionRef =
-            firestore.collection("jobPosts/$docId/responsibilities");
-        qualificationsFutures.addAll([
-          minimumQualificationsCollectionRef.get(),
-          preferredQualificationsCollectionRef.get(),
-          responsibilitiesCollectionRef.get()
-        ]);
-      }
-      final compoundData = await Future.wait(qualificationsFutures);
-      debugPrint("jobNotifier-6");
-      for (var i = 0; i < query.docs.length; i++) {
-        final doc = query.docs[i];
-        final docId = doc.id;
-        final minimumQualificationsQuery = compoundData[i * 3];
-        final preferredQualificationsQuery = compoundData[i * 3 + 1];
-        final responsibilitiesQuery = compoundData[i * 3 + 2];
-        debugPrint("jobNotifier-7");
-        final minimumQualifications = minimumQualificationsQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        final preferredQualifications = preferredQualificationsQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        final responsibilities = responsibilitiesQuery.docs
-            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
-            .toList();
-        debugPrint("jobNotifier-8");
-        jobModels.add(JobModel.fromJson(doc.data()).copyWith(
-            jobId: docId,
-            minimumQualifications: minimumQualifications,
-            preferredQualifications: preferredQualifications,
-            responsibilities: responsibilities));
-      }
-      debugPrint("jobNotifier-9");
+      debugPrint("jobNotifier-3");
+      final jobModels = query.docs.map((e) {
+        return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
+      }).toList();
+      debugPrint("jobNotifier-4");
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
-      debugPrint("jobModels-below : $jobModels");
+      debugPrint("jobModels : $jobModels");
       return jobModels;
     }
   }
