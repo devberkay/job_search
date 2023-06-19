@@ -53,7 +53,17 @@ class DashboardView extends HookConsumerWidget {
                 ],
               ),
               const Spacer(),
-              const SortDropdownButton()
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.unfold_more,
+                    color: Colors.grey.shade600,
+                  ),
+                  const SizedBox(width: 5),
+                  const SortDropdownButton(),
+                ],
+              )
             ],
           )
         ],

@@ -22,7 +22,10 @@ class SortDropdownButton extends HookConsumerWidget {
           value: value,
           child: Text(
             '$value',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade600),
           ),
         );
       }).toList(),
