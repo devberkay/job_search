@@ -186,22 +186,27 @@ class FilterSidebar extends HookConsumerWidget {
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Wrap(
                         children: [
-                          Row(
-                              children: [
-                                CupertinoCheckbox(
-                                  value: isRemoteNotifier.value,
-                                  side: BorderSide(
-                                      color: Colors.grey.shade400, width: 2),
-                                  onChanged: (value) {
-                                    isRemoteNotifier.value = value ?? false;
-                                  },
-                                ),
-                                Text("Remote eligible",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey.shade700))
-                              ],
-                            )
+                          HookConsumer(
+                            builder: (context,ref,child) {
+                              
+                              return Row(
+                                  children: [
+                                    CupertinoCheckbox(
+                                      value: isRemoteNotifier.value,
+                                      side: BorderSide(
+                                          color: Colors.grey.shade400, width: 2),
+                                      onChanged: (value) {
+                                        isRemoteNotifier.value = value ?? false;
+                                      },
+                                    ),
+                                    Text("Associate",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.grey.shade700))
+                                  ],
+                                );
+                            }
+                          )
                         ],
                       )
                     )),
