@@ -8,11 +8,6 @@ class FilterSidebar extends HookConsumerWidget {
   const FilterSidebar({super.key});
 
 
-  Widget _headerBuilder(BuildContext context, bool isExpanded) {
-    
-  }
-
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
@@ -55,7 +50,7 @@ class FilterSidebar extends HookConsumerWidget {
             },
             dividerColor: Colors.grey.shade400,
             children: [
-              ExpansionPanel(headerBuilder: _headerBuilder, body: body)
+              ExpansionPanel(headerBuilder: (context,isExpanded) {}, body: body)
             ],
           )
         ],
