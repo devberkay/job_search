@@ -25,8 +25,35 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       final query =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
-      
-      final jobModels = query.docs.map((e) {
+      List<JobModel> jobModels;
+      for (var doc in query.docs) {
+        final docId = doc.id;
+        final minimumQualificationsCollectionRef =
+            firestore.collection("jobPosts/$docId/minimumQualifications");
+        final preferredQualificationsCollectionRef =
+            firestore.collection("jobPosts/$docId/preferredQualifications");
+        final responsibilitiesCollectionRef =
+            firestore.collection("jobPosts/$docId/responsibilities");
+        final qualificationsAndResponsibilities = await Future.wait([
+          minimumQualificationsCollectionRef.get(),
+          preferredQualificationsCollectionRef.get(),
+          responsibilitiesCollectionRef.get()
+        ], eagerError: true);
+        final minimumQualifications = qualificationsAndResponsibilities[0]
+            .docs
+            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
+            .toList();
+        final preferredQualifications = qualificationsAndResponsibilities[1]
+            .docs
+            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
+            .toList();
+        final responsibilities = qualificationsAndResponsibilities[2]
+            .docs
+            .map((e) => (e.data()["qualifications"] as List<String>).join(" "))
+            .toList();
+      }
+
+      jobModels = query.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
       ref.read(lastJobDocProvider.notifier).state = query.docs.last;
