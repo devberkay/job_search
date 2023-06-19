@@ -1,5 +1,5 @@
 // This file is "main.dart"
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -13,14 +13,17 @@ part 'job_model.g.dart';
 class JobModel with _$JobModel {
   const factory JobModel({
     required String title,
-    String? name, 
-    String? surname,
-    String? sex, // man or woman
-    String? bio,
-    String? mail,
-    String? phone,
-    dynamic
-        birthDay, // shown in profile with "joined at $createdAt" title
+    required String degree, 
+    required String jobType,
+    required bool isRemote, // man or woman
+    required String organization,
+    required String minimumQualifications,
+    required String preferredQualifications,
+    required String responsibilities,
+    required String aboutJob,
+    required int longitude,
+    required int latitude,
+    required int salaryPerHour,
     
   }) = _JobModel;
 
