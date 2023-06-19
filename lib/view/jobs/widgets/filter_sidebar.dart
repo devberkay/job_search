@@ -393,6 +393,7 @@ class FilterSidebar extends HookConsumerWidget {
                                       ),
                                       Text("White-collar roles",
                                           style: TextStyle(
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
                                     ],
@@ -499,7 +500,7 @@ class FilterSidebar extends HookConsumerWidget {
                                               value ?? false;
                                         },
                                       ),
-                                      Text("Management roles",
+                                      Text("Manager roles      ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.grey.shade700))
