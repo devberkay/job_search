@@ -55,7 +55,7 @@ class FilterSidebar extends HookConsumerWidget {
                       },
                       deleteButtonTooltipMessage: "Remove filter",
                       deleteIcon: Icon(
-                        Icons.delete_forever,
+                        Icons.close,
                         color: Colors.black,
                       ),
                     );
