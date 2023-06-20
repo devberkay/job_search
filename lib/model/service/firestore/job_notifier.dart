@@ -18,8 +18,8 @@ class WhatDoYouWantToDoListNotifier extends Notifier<List<String>> {
    build() {
     return [];
   }
-  void add(String value) {
-    state = [...state];
+  void add(List<String> value) {
+    state = [...state,...value];
   }
   void remove(String value) {
     state = [...state]..remove(value);
@@ -34,8 +34,8 @@ class SkillsListNotifier extends Notifier<List<String>> {
    build() {
     return [];
   }
-  void add(String value) {
-    state = [...state, value];
+  void add(List<String> value) {
+    state = [...state, ...value];
   }
   void remove(String value) {
     state = [...state]..remove(value);

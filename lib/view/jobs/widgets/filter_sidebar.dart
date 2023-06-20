@@ -217,11 +217,9 @@ class FilterSidebar extends HookConsumerWidget {
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600),
                                   onDeleted: () {
-                                    var temp = items;
-                                    temp.remove(e);
                                     ref
                                         .read(skillsListProvider.notifier)
-                                        .state = [...temp];
+                                        .remove(e);
                                   },
                                   deleteButtonTooltipMessage: "Remove filter",
                                   deleteIcon: Icon(
@@ -235,7 +233,7 @@ class FilterSidebar extends HookConsumerWidget {
                           SizedBox(height: 15),
                           HookConsumer(builder: (context, ref, child) {
                             final controller = useTextEditingController();
-                            final items = ref.watch(skillsListProvider);
+
                             return CupertinoTextField(
                               controller: controller,
                               prefix: Icon(Icons.location_on,
@@ -243,11 +241,9 @@ class FilterSidebar extends HookConsumerWidget {
                               padding: const EdgeInsets.all(15),
                               placeholder: "Programming, Finance, UX design",
                               onSubmitted: (value) {
-                                var temp = items;
-                                temp.addAll(value.split(" "));
-                                ref.read(skillsListProvider.notifier).state = [
-                                  ...temp
-                                ];
+                                ref
+                                    .read(skillsListProvider.notifier)
+                                    .add(value.split(" "));
                                 controller.clear();
                               },
                               placeholderStyle: TextStyle(
@@ -292,22 +288,20 @@ class FilterSidebar extends HookConsumerWidget {
                             runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
-                                final items = ref.watch(degreesSetProvider);
-                                final isContain = items.contains("Associate");
+                                final isContain = ref.watch(
+                                    degreesSetProvider.select((value) =>
+                                        value.contains("Associate")));
+
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
-                                      var temp = items;
-                                      temp.add("Associate");
                                       ref
                                           .read(degreesSetProvider.notifier)
-                                          .state = Set.from(temp);
+                                          .add("Associate");
                                     } else {
-                                      var temp = items;
-                                      temp.remove("Associate");
                                       ref
                                           .read(degreesSetProvider.notifier)
-                                          .state = Set.from(temp);
+                                          .remove("Associate");
                                     }
                                   },
                                   child: Row(
@@ -320,19 +314,15 @@ class FilterSidebar extends HookConsumerWidget {
                                             width: 2),
                                         onChanged: (value) {
                                           if (value == true) {
-                                            var temp = items;
-                                            temp.add("Associate");
                                             ref
                                                 .read(
                                                     degreesSetProvider.notifier)
-                                                .state = Set.from(temp);
+                                                .add("Associate");
                                           } else {
-                                            var temp = items;
-                                            temp.remove("Associate");
                                             ref
                                                 .read(
                                                     degreesSetProvider.notifier)
-                                                .state = Set.from(temp);
+                                                .remove("Associate");
                                           }
                                         },
                                       ),
@@ -345,22 +335,19 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final items = ref.watch(degreesSetProvider);
-                                final isContain = items.contains("Bachelor's");
+                                final isContain = ref.watch(
+                                    degreesSetProvider.select((value) =>
+                                        value.contains("Bachelor's")));
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
-                                      var temp = items;
-                                      temp.add("Bachelor's");
                                       ref
                                           .read(degreesSetProvider.notifier)
-                                          .state = Set.from(temp);
+                                          .add("Bachelor's");
                                     } else {
-                                      var temp = items;
-                                      temp.remove("Bachelor's");
                                       ref
                                           .read(degreesSetProvider.notifier)
-                                          .state = Set.from(temp);
+                                          .remove("Bachelor's");
                                     }
                                   },
                                   child: Row(
@@ -373,19 +360,13 @@ class FilterSidebar extends HookConsumerWidget {
                                             width: 2),
                                         onChanged: (value) {
                                           if (value == true) {
-                                            var temp = items;
-                                            temp.add("Bachelor's");
                                             ref
-                                                .read(
-                                                    degreesSetProvider.notifier)
-                                                .state = Set.from(temp);
+                                          .read(degreesSetProvider.notifier)
+                                          .add("Bachelor's");
                                           } else {
-                                            var temp = items;
-                                            temp.remove("Bachelor's");
                                             ref
-                                                .read(
-                                                    degreesSetProvider.notifier)
-                                                .state = Set.from(temp);
+                                          .read(degreesSetProvider.notifier)
+                                          .remove("Bachelor's");
                                           }
                                         },
                                       ),
