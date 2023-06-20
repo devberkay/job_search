@@ -36,14 +36,14 @@ class ProfileSidebar extends HookConsumerWidget {
                     children: [
                       Icon(Icons.edit,
                           color: isSelected ? Colors.white : Colors.black),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text("Edit profile",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             }),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
               final isSelected =
                   ref.watch(sidebarIndexProvider.select((value) => value == 1));
@@ -61,14 +61,14 @@ class ProfileSidebar extends HookConsumerWidget {
                     children: [
                       Icon(Icons.notifications,
                           color: isSelected ? Colors.white : Colors.black),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text("Notifications",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             }),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
               final isSelected =
                   ref.watch(sidebarIndexProvider.select((value) => value == 2));
@@ -86,14 +86,14 @@ class ProfileSidebar extends HookConsumerWidget {
                     children: [
                       Icon(Icons.present_to_all_sharp,
                           color: isSelected ? Colors.white : Colors.black),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text("My applications",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             }),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
               final isSelected =
                   ref.watch(sidebarIndexProvider.select((value) => value == 3));
@@ -111,10 +111,33 @@ class ProfileSidebar extends HookConsumerWidget {
                     children: [
                       Icon(Icons.add_box_sharp,
                           color: isSelected ? Colors.white : Colors.black),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text("Create job post",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black))
+                    ],
+                  ));
+            }),
+            const Spacer(),
+            HookConsumer(builder: (context, ref, child) {
+              
+              return FilledCupertinoButton(
+                  onPressed: () {
+                    ref.read(sidebarIndexProvider.notifier).state = 3;
+                  },
+                  height: 75,
+                  width: double.maxFinite,
+                  fillColor: Colors.red.shade800,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.logout_sharp,
+                          color: Colors.white),
+                      SizedBox(width: 5),
+                      Text("Sign out",
+                          style: TextStyle(
+                              color: Colors.white))
                     ],
                   ));
             })
