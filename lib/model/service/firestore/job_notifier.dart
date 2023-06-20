@@ -64,7 +64,8 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     // Filter filters;
     final writtenFilterList = [
       ...whatDoYouWantToDoFilterList,
-      ...skillsFilterList];
+      ...skillsFilterList
+    ];
     //  filters = Filter.and(
     //       degreesFilterSet.toList().isNotEmpty
     //           ? Filter("degree", whereIn: degreesFilterSet.toList())
@@ -88,20 +89,32 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     //               "Sales roles"
     //             ]),
     //    writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList) : Filter("searchTokens",isNull: false));
-  
- 
 
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
+    late Query<Map<String,dynamic>> query;
     final lastJobDoc = ref.read(lastJobDocProvider);
+    if (degreesFilterSet.isNotEmpty) {
+      query = collectionRef.where("degree", whereIn: degreesFilterSet);
+    }
+    if (jobTypesFilterSet.isNotEmpty) {
+     query =  collectionRef.where("jobType", whereIn: jobTypesFilterSet);
+    }
+    if(isRemoteEligibleFilterBoolean) {
+      query = collectionRef.where("isRemote", isEqualTo: isRemoteEligibleFilterBoolean);
+    }
+    if(writtenFilterList.isNotEmpty) {
+      query = collectionRef.where("searchTokens", arrayContainsAny: writtenFilterList);
+    }
+    if(orderBy!=null) {
+      query = query.orderBy(orderBy);
+    }
+
     if (lastJobDoc != null) {
       debugPrint("jobNotifier-0");
       if (whatDoYouWantToDoFilterList.isNotEmpty) {}
-      final snapshot = await collectionRef
-          .startAfterDocument(lastJobDoc)
-          
-          .limit(15)
-          .get();
+      final snapshot =
+          await query.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
@@ -112,7 +125,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     } else {
       debugPrint("jobNotifier-2");
 
-      final snapshot = await collectionRef.limit(15).get();
+      final snapshot = await query.limit(15).get();
       debugPrint("jobNotifier-3");
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
