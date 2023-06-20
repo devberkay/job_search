@@ -47,6 +47,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     final degreesFilterSet = ref.watch(degreesSetProvider);
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
     final isRemoteEligibleFilter = ref.watch(isRemoteEligibleProvider);
+    final filters = Filter.and(Filter.or(Filter("degree",whereIn: degreesFilterSet.toList()), filter2), filter2)
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
     final lastJobDoc = ref.read(lastJobDocProvider);
