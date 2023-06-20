@@ -20,11 +20,21 @@ class DetailsPage extends HookConsumerWidget {
           const DetailSidebar(),
           Expanded(
               child: Padding(
-            padding: const EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0),
-            child: selectedJobModel != null
-                ? DetailCard(jobModel: selectedJobModel)
-                : null,
-          ))
+                  padding:
+                      const EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0),
+                  child: AnimatedSwitcher(
+                    
+                    switchInCurve: Curves.easeOut,
+                    switchOutCurve: Curves.easeIn,
+                    duration: Duration(milliseconds: 250),
+                    reverseDuration: Duration(milliseconds: 250),
+                    transitionBuilder: (child, animation) {
+                      return FadeTransition(opacity: animation, child: child,key: ValueKey(selectedJobModel),);
+                    },
+                    child: selectedJobModel != null
+                        ? DetailCard(jobModel: selectedJobModel,key: ValueKey(selectedJobModel),)
+                        : null,
+                  )))
         ],
       ),
     );
