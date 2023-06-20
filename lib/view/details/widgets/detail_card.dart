@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -98,7 +99,20 @@ class DetailCard extends HookConsumerWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
-                              color: Colors.blueAccent.shade700))
+                              color: Colors.blueAccent.shade700)),
+                      const SizedBox(width: 10),
+                      FilledCupertinoButton(
+                          onPressed: () {},
+                          height: 35,
+                          width: 105,
+                          fillColor: Colors.blueAccent.shade700,
+                          borderRadius: BorderRadius.circular(2.5),
+                          child: const Text(
+                            "Apply",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ))
                     ],
                   )
                 ],
@@ -114,7 +128,7 @@ class DetailCard extends HookConsumerWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
-                      fontSize: 20)),
+                      fontSize: 16)),
               const SizedBox(height: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +139,7 @@ class DetailCard extends HookConsumerWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade900,
-                          fontSize: 18));
+                          fontSize: 14));
                 }).toList(),
               ),
               const SizedBox(height: 15),
@@ -133,7 +147,7 @@ class DetailCard extends HookConsumerWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
-                      fontSize: 20)),
+                      fontSize: 16)),
               const SizedBox(height: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +158,7 @@ class DetailCard extends HookConsumerWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade900,
-                          fontSize: 18));
+                          fontSize: 14));
                 }).toList(),
               ),
               const SizedBox(height: 15),
@@ -152,7 +166,7 @@ class DetailCard extends HookConsumerWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
-                      fontSize: 20)),
+                      fontSize: 16)),
               const SizedBox(height: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,7 +176,7 @@ class DetailCard extends HookConsumerWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade900,
-                          fontSize: 18));
+                          fontSize: 14));
                 }).toList(),
               )
             ],
