@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 final orderByProvider = StateProvider<String?>((ref) {
   return null;
 });
@@ -31,8 +30,6 @@ final isRemoteEligibleProvider = StateProvider<bool>((ref) {
   return false;
 });
 
-
-
 final lastJobDocProvider = StateProvider<DocumentSnapshot?>((ref) {
   return null;
 });
@@ -44,29 +41,39 @@ final jobNotifierProvider =
 class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
   @override
   FutureOr<List<JobModel>?> build() async {
+    final orderBy = ref.watch(orderByProvider);
+    final whatDoYouWantToDoFilterList = ref.watch(whatDoYouWantToDoListProvider);
+    final skillsFilterList = ref.watch(skillsListProvider);
+    final degreesFilterSet = ref.watch(degreesSetProvider);
+    final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
+    final isRemoteEligibleFilter = ref.watch(isRemoteEligibleProvider);
     final firestore = ref.watch(firestoreProvider);
-    final collectionRef = firestore.collection("jobPosts");
+    var collectionRef = firestore.collection("jobPosts");
     final lastJobDoc = ref.read(lastJobDocProvider);
     if (lastJobDoc != null) {
       debugPrint("jobNotifier-0");
-      final query =
+      if(whatDoYouWantToDoFilterList.isNotEmpty) {
+        
+      }
+      final snapshot =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
-      final jobModels = query.docs.map((e) {
+      final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
-      ref.read(lastJobDocProvider.notifier).state = query.docs.last;
+      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.last;
       // debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
       debugPrint("jobNotifier-2");
-      final query = await collectionRef.limit(15).get();
+
+      final snapshot = await collectionRef.limit(15).get();
       debugPrint("jobNotifier-3");
-      final jobModels = query.docs.map((e) {
+      final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
       debugPrint("jobNotifier-4");
-      ref.read(lastJobDocProvider.notifier).state = query.docs.last;
+      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.last;
       debugPrint("jobModels : $jobModels");
       return jobModels;
     }
