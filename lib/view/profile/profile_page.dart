@@ -28,7 +28,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 // ignore: no_leading_underscores_for_local_identifiers
                 data: (_userModel) {
                   if (_userModel != null) {
-                    return ProfileDashboardProfileView(usermodel: _userModel);
+                    return ProfileDashboardProfileView(userModel: _userModel);
                   } else {
                    return const Column(
                       children: [
@@ -73,7 +73,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 // ignore: no_leading_underscores_for_local_identifiers
                 data: (_userModel) {
                   if (_userModel != null) {
-                    return ProfileDashboardProfileView(usermodel: _userModel);
+                    return ProfileDashboardProfileView(userModel: _userModel);
                   } else {
                     return const Column(
                       children: [
