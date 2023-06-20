@@ -1,5 +1,4 @@
 import 'package:JobSearch/model/service/firestore/job_notifier.dart';
-import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,17 +49,13 @@ class FilterSidebar extends HookConsumerWidget {
                   label: Text(e),
                   backgroundColor: Colors.white,
                   side: BorderSide(color: Colors.grey.shade400),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.w600),
                   onDeleted: () {
-                    var temp = items;
-                    temp.remove(e);
-                    ref.read(whatDoYouWantToDoListProvider.notifier).state = [
-                      ...temp
-                    ];
+                    ref.read(whatDoYouWantToDoListProvider.notifier).remove(e);
                   },
                   deleteButtonTooltipMessage: "Remove filter",
-                  deleteIcon: Icon(
+                  deleteIcon: const Icon(
                     Icons.close,
                     color: Colors.black,
                   ),
@@ -71,17 +66,15 @@ class FilterSidebar extends HookConsumerWidget {
           const SizedBox(height: 15),
           HookConsumer(builder: (context, ref, child) {
             final controller = useTextEditingController();
-            final items = ref.watch(whatDoYouWantToDoListProvider);
+            ref.watch(whatDoYouWantToDoListProvider);
             return CupertinoTextField(
               padding: const EdgeInsets.all(15),
               controller: controller,
               placeholder: "Software Engineering, Design, Sales",
               onSubmitted: (value) {
-                var temp = items;
-                temp.addAll(value.split(" "));
-                ref.read(whatDoYouWantToDoListProvider.notifier).state = [
-                  ...temp
-                ];
+                ref
+                    .read(whatDoYouWantToDoListProvider.notifier)
+                    .add(value.split(" "));
                 controller.clear();
               },
               placeholderStyle: TextStyle(
@@ -213,7 +206,7 @@ class FilterSidebar extends HookConsumerWidget {
                                   label: Text(e),
                                   backgroundColor: Colors.white,
                                   side: BorderSide(color: Colors.grey.shade400),
-                                  labelStyle: TextStyle(
+                                  labelStyle: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600),
                                   onDeleted: () {
@@ -222,7 +215,7 @@ class FilterSidebar extends HookConsumerWidget {
                                         .remove(e);
                                   },
                                   deleteButtonTooltipMessage: "Remove filter",
-                                  deleteIcon: Icon(
+                                  deleteIcon: const Icon(
                                     Icons.close,
                                     color: Colors.black,
                                   ),
@@ -230,7 +223,7 @@ class FilterSidebar extends HookConsumerWidget {
                               }).toList(),
                             );
                           }),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           HookConsumer(builder: (context, ref, child) {
                             final controller = useTextEditingController();
 
@@ -853,12 +846,15 @@ class FilterSidebar extends HookConsumerWidget {
                                           debugPrint("cenkhoca: $value");
                                           if (value == true) {
                                             ref
-                                          .read(jobTypesSetProvider.notifier)
-                                          .add("Vehicle-driving roles");
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .add("Vehicle-driving roles");
                                           } else {
                                             ref
-                                          .read(jobTypesSetProvider.notifier)
-                                          .remove("Vehicle-driving roles");
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .remove(
+                                                    "Vehicle-driving roles");
                                           }
                                         },
                                       ),
