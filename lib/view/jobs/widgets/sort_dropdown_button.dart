@@ -9,7 +9,7 @@ class SortDropdownButton extends HookConsumerWidget {
   const SortDropdownButton({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedSortBy = useState("Relevance");
+    final selectedSortBy = ref.watch(or);
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
