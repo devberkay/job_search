@@ -13,8 +13,10 @@ class JobsPage extends StatefulHookConsumerWidget {
 class _JobsPageState extends ConsumerState<JobsPage> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [FilterSidebar(),Expanded(child: DashboardView())],
+    return Container(
+      child: Row(
+        children: [FilterSidebar(), Expanded(child: DashboardView())],
+      ),
     );
   }
 }
