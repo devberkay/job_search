@@ -21,7 +21,7 @@ class ProfileBox extends HookConsumerWidget {
       if (_userModel != null) {
         return HeadlessCupertinoButton(
           onPressed: () {
-            context.go("/profile");
+            context.go("/profile/${_userModel.uid}");
           },
           child: Container(
             height: height,
