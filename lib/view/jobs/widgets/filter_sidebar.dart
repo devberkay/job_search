@@ -315,7 +315,15 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack
+                                           if (value==true) {
+                                      var temp = items;
+                                      temp.add("Associate");
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                    } else {
+                                      var temp = items;
+                                      temp.remove("Associate");
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                    }
                                         },
                                       ),
                                       Text("Associate",
@@ -351,7 +359,15 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack
+                                           if (value==true) {
+                                      var temp = items;
+                                      temp.add("Bachelor's");
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                    } else {
+                                      var temp = items;
+                                      temp.remove("Bachelor's");
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                    }
                                         },
                                       ),
                                       Text("Bachelor's",
