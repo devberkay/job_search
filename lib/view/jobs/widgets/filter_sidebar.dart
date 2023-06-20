@@ -14,6 +14,7 @@ class FilterSidebar extends HookConsumerWidget {
     final skillsNotifier = useValueNotifier(<String>[]);
     final degreesNotifier = useValueNotifier(<String>{});
     final jobTypesNotifier = useValueNotifier(<String>{});
+    final isRemoteEligibleNotifier = useValueNotifier(false);
     return Container(
       height: double.infinity,
       width: 400,
@@ -151,7 +152,10 @@ class FilterSidebar extends HookConsumerWidget {
                           final isRemoteNotifier = useState(false);
                           return GestureDetector(
                             onTap: () {
+                              isRemoteEligibleNotifier.value =
+                                  !isRemoteNotifier.value;
                               isRemoteNotifier.value = !isRemoteNotifier.value;
+                              
                             },
                             child: Row(
                               children: [
