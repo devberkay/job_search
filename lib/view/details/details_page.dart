@@ -12,7 +12,7 @@ class DetailsPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedJobModel = ref.watch(selectedJobModelProvider);
-    final jobModels = ref.watch(jobNotifierProvider(false));
+
     return Container(
       color: Colors.grey.shade100.withOpacity(0.5),
       child: Row(
