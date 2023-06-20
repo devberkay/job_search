@@ -14,6 +14,7 @@ class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     required Map<String,String> questionnaireAnswers,
     required String uid,
+    required String ownerUid,
     required String jobId,
     required dynamic timestampField
   }) = _ApplicationModel;

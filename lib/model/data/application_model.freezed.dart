@@ -23,6 +23,7 @@ mixin _$ApplicationModel {
   Map<String, String> get questionnaireAnswers =>
       throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  String get ownerUid => throw _privateConstructorUsedError;
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
   $Res call(
       {Map<String, String> questionnaireAnswers,
       String uid,
+      String ownerUid,
       String jobId,
       dynamic timestampField});
 }
@@ -60,6 +62,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
   $Res call({
     Object? questionnaireAnswers = null,
     Object? uid = null,
+    Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
   }) {
@@ -71,6 +74,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerUid: null == ownerUid
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
               as String,
       jobId: null == jobId
           ? _value.jobId
@@ -95,6 +102,7 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
   $Res call(
       {Map<String, String> questionnaireAnswers,
       String uid,
+      String ownerUid,
       String jobId,
       dynamic timestampField});
 }
@@ -112,6 +120,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
   $Res call({
     Object? questionnaireAnswers = null,
     Object? uid = null,
+    Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
   }) {
@@ -123,6 +132,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerUid: null == ownerUid
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
               as String,
       jobId: null == jobId
           ? _value.jobId
@@ -144,6 +157,7 @@ class _$_ApplicationModel
   const _$_ApplicationModel(
       {required final Map<String, String> questionnaireAnswers,
       required this.uid,
+      required this.ownerUid,
       required this.jobId,
       required this.timestampField})
       : _questionnaireAnswers = questionnaireAnswers;
@@ -163,13 +177,15 @@ class _$_ApplicationModel
   @override
   final String uid;
   @override
+  final String ownerUid;
+  @override
   final String jobId;
   @override
   final dynamic timestampField;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, jobId: $jobId, timestampField: $timestampField)';
+    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField)';
   }
 
   @override
@@ -179,6 +195,7 @@ class _$_ApplicationModel
       ..add(DiagnosticsProperty('type', 'ApplicationModel'))
       ..add(DiagnosticsProperty('questionnaireAnswers', questionnaireAnswers))
       ..add(DiagnosticsProperty('uid', uid))
+      ..add(DiagnosticsProperty('ownerUid', ownerUid))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('timestampField', timestampField));
   }
@@ -191,6 +208,8 @@ class _$_ApplicationModel
             const DeepCollectionEquality()
                 .equals(other._questionnaireAnswers, _questionnaireAnswers) &&
             (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.ownerUid, ownerUid) ||
+                other.ownerUid == ownerUid) &&
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField));
@@ -202,6 +221,7 @@ class _$_ApplicationModel
       runtimeType,
       const DeepCollectionEquality().hash(_questionnaireAnswers),
       uid,
+      ownerUid,
       jobId,
       const DeepCollectionEquality().hash(timestampField));
 
@@ -223,6 +243,7 @@ abstract class _ApplicationModel implements ApplicationModel {
   const factory _ApplicationModel(
       {required final Map<String, String> questionnaireAnswers,
       required final String uid,
+      required final String ownerUid,
       required final String jobId,
       required final dynamic timestampField}) = _$_ApplicationModel;
 
@@ -233,6 +254,8 @@ abstract class _ApplicationModel implements ApplicationModel {
   Map<String, String> get questionnaireAnswers;
   @override
   String get uid;
+  @override
+  String get ownerUid;
   @override
   String get jobId;
   @override
