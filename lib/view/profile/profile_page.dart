@@ -1,6 +1,6 @@
 
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
-import 'package:JobSearch/view/profile/widgets/profile_dashboard_view.dart';
+import 'package:JobSearch/view/profile/widgets/profile_dashboard_profile_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,7 +19,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     return  Row(
       children: [ProfileSidebar(), Expanded(child: HookConsumer(
         builder: (context,ref,child) {
-          
+
           return ProfileDashboardView();
         }
       ))],
