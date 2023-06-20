@@ -62,14 +62,34 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
     final isRemoteEligibleFilterBoolean = ref.watch(isRemoteEligibleProvider);
     var filters = <Filter>[];
-    if(degreesFilterSet.isNotEmpty) {
+    final writtenFilterList = [
+      ...whatDoYouWantToDoFilterList,
+      ...skillsFilterList
+    ];
+    if (degreesFilterSet.isNotEmpty) {
       final filters = Filter.and(
-        Filter("degree", whereIn: degreesFilterSet.toList()),
-        Filter("isRemote", isEqualTo: isRemoteEligibleFilterBoolean),
-        Filter("jobType", whereIn: jobTypesFilterSet.toList()),
-        Filter("searchTokens",
-            arrayContainsAny: [...whatDoYouWantToDoFilterList,...skillsFilterList])
-        );
+          degreesFilterSet.toList().isNotEmpty
+              ? Filter("degree", whereIn: degreesFilterSet.toList())
+              : Filter("degree", whereIn: [
+                  "Associate"
+                      "Bachelor’s"
+                      "Master’s"
+                      "Ph.D."
+                      "Pursuing Degree"
+                ]),
+          Filter("isRemote", isEqualTo: isRemoteEligibleFilterBoolean),
+          jobTypesFilterSet.isNotEmpty
+              ? Filter("jobType", whereIn: jobTypesFilterSet.toList())
+              : Filter("jobType", whereIn: [
+                  "White-collar roles",
+                  "Blue-collar roles",
+                  "IT roles",
+                  "Vehicle-driving roles",
+                  "Management roles",
+                  "Creative roles",
+                  "Sales roles"
+                ]),
+       writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList)) : ;
     }
 
     final firestore = ref.watch(firestoreProvider);
