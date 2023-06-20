@@ -42,20 +42,38 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
   @override
   FutureOr<List<JobModel>?> build() async {
     final orderBy = ref.watch(orderByProvider);
-    final whatDoYouWantToDoFilterList = ref.watch(whatDoYouWantToDoListProvider);
-    final skillsFilterList = ref.watch(skillsListProvider);
+    final whatDoYouWantToDoFilterList = ref
+        .watch(whatDoYouWantToDoListProvider)
+        .expand((element) => [
+              element,
+              element.toLowerCase(),
+              element[0].toUpperCase() + element.substring(1)
+            ])
+        .toList();
+    final skillsFilterList = ref
+        .watch(skillsListProvider)
+        .expand((element) => [
+              element,
+              element.toLowerCase(),
+              element[0].toUpperCase() + element.substring(1)
+            ])
+        .toList();
     final degreesFilterSet = ref.watch(degreesSetProvider);
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
     final isRemoteEligibleFilter = ref.watch(isRemoteEligibleProvider);
-    final filters = Filter.and(Filter.or(Filter("degree",whereIn: degreesFilterSet.toList()), filter2), filter2)
+    final filters = Filter.and(
+        Filter("degree", whereIn: degreesFilterSet.toList()),
+        Filter("isRemote", isEqualTo: isRemoteEligibleFilter),
+        Filter("jobType", whereIn: jobTypesFilterSet.toList()),
+        Filter()
+        
+        );
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
     final lastJobDoc = ref.read(lastJobDocProvider);
     if (lastJobDoc != null) {
       debugPrint("jobNotifier-0");
-      if(whatDoYouWantToDoFilterList.isNotEmpty) {
-        
-      }
+      if (whatDoYouWantToDoFilterList.isNotEmpty) {}
       final snapshot =
           await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
       debugPrint("jobNotifier-1");
