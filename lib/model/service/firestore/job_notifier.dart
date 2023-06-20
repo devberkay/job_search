@@ -7,9 +7,30 @@ import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
-final orderByProvider = StateProvider<>((ref) {
-  return ;
+final orderByProvider = StateProvider<String?>((ref) {
+  return null;
 });
+
+final whatDoYouWantToDoListProvider = StateProvider<List<String>>((ref) {
+  return [];
+});
+
+final skillsListProvider = StateProvider<List<String>>((ref) {
+  return [];
+});
+
+final degreesSetProvider = StateProvider<Set<String>>((ref) {
+  return {};
+});
+
+final jobTypesSetProvider = StateProvider<Set<String>>((ref) {
+  return {};
+});
+
+final isRemoteEligibleProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
 
 
 final lastJobDocProvider = StateProvider<DocumentSnapshot?>((ref) {

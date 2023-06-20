@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,13 @@ class FilterSidebar extends HookConsumerWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.blueAccent.shade700)),
-                  onPressed: () {})
+                  onPressed: () {
+                    ref.invalidate(whatDoYouWantToDoListProvider);
+                    ref.invalidate(skillsListProvider);
+                    ref.invalidate(degreesSetProvider);
+                    ref.invalidate(jobTypesSetProvider);
+                    ref.invalidate(isRemoteEligibleProvider);
+                  })
             ],
           ),
           const SizedBox(height: 15),
@@ -155,7 +162,6 @@ class FilterSidebar extends HookConsumerWidget {
                               isRemoteEligibleNotifier.value =
                                   !isRemoteNotifier.value;
                               isRemoteNotifier.value = !isRemoteNotifier.value;
-                              
                             },
                             child: Row(
                               children: [
@@ -751,7 +757,18 @@ class FilterSidebar extends HookConsumerWidget {
           }),
           const SizedBox(height: 50),
           FilledCupertinoButton(
-              onPressed: () {},
+              onPressed: () {
+                ref.read(whatDoYouWantToDoListProvider.notifier).state =
+                    whatDoYouWantToDoListNotifier.value;
+                ref.read(skillsListProvider.notifier).state =
+                    skillsNotifier.value;
+                ref.read(degreesSetProvider.notifier).state =
+                    degreesNotifier.value;
+                ref.read(jobTypesSetProvider.notifier).state =
+                    jobTypesNotifier.value;
+                ref.read(isRemoteEligibleProvider.notifier).state =
+                    isRemoteEligibleNotifier.value;
+              },
               height: 50,
               width: double.maxFinite,
               fillColor: Colors.blueAccent.shade700,

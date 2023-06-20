@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class SortDropdownButton extends HookConsumerWidget {
       onChanged: (value) {
         debugPrint("sortBy : $value");
         selectedSortBy.value = value!;
+        ref.read(orderByProvider.notifier).state = value;
       },
       value: selectedSortBy.value,
       items: <String>['Relevance', 'Salary', 'No of applicants']
