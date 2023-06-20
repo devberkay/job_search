@@ -34,7 +34,9 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   Text("Name"),
                   SizedBox(height: 10),
                   CupertinoTextField(
-                    readOnly: true,
+                    onChanged: (value) {
+                      ref.read(draftUserModelProvider.notifier).state = usermodel.copyWith(name: value);
+                    },
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
