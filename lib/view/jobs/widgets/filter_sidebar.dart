@@ -73,7 +73,7 @@ class FilterSidebar extends HookConsumerWidget {
               placeholder: "Software Engineering, Design, Sales",
               onSubmitted: (value) {
                 var temp = whatDoYouWantToDoListNotifier.value;
-                temp.add(value);
+                temp.addAll(value.split(" "));
                 whatDoYouWantToDoListNotifier.value = [...temp];
                 controller.clear();
               },
@@ -190,6 +190,37 @@ class FilterSidebar extends HookConsumerWidget {
                           horizontal: 10, vertical: 5),
                       child: Column(
                         children: [
+                          ValueListenableBuilder(
+                              valueListenable: skillsNotifier,
+                              builder: (context, items, child) {
+                                return Wrap(
+                                  spacing: 5,
+                                  runSpacing: 5,
+                                  children: items.map<Widget>((e) {
+                                    return Chip(
+                                      label: Text(e),
+                                      backgroundColor: Colors.white,
+                                      side: BorderSide(
+                                          color: Colors.grey.shade400),
+                                      labelStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                      onDeleted: () {
+                                        var temp = skillsNotifier.value;
+                                        temp.remove(e);
+                                        skillsNotifier.value = [...temp];
+                                      },
+                                      deleteButtonTooltipMessage:
+                                          "Remove filter",
+                                      deleteIcon: Icon(
+                                        Icons.close,
+                                        color: Colors.black,
+                                      ),
+                                    );
+                                  }).toList(),
+                                );
+                              }),
+                          SizedBox(height: 15),
                           HookConsumer(builder: (context, ref, child) {
                             final controller = useTextEditingController();
                             return CupertinoTextField(
@@ -200,7 +231,7 @@ class FilterSidebar extends HookConsumerWidget {
                               placeholder: "Programming, Finance, UX design",
                               onSubmitted: (value) {
                                 var temp = skillsNotifier.value;
-                                temp.add(value);
+                                temp.addAll(value.split(" "));
                                 skillsNotifier.value = [...temp];
                                 controller.clear();
                               },
