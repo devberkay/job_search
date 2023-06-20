@@ -22,7 +22,7 @@ class ProfileAvatar extends HookConsumerWidget {
       if (rawData != null) {
         return HeadlessCupertinoButton(
           onPressed: () {
-            context.go("/profile");
+            
           },
           child: CircleAvatar(
             radius: radius,
@@ -32,7 +32,7 @@ class ProfileAvatar extends HookConsumerWidget {
       } else {
         return HeadlessCupertinoButton(
           onPressed: () {
-            context.go("/profile");
+            
           },
           child: Container(
               height: radius,

@@ -5,6 +5,7 @@ import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:JobSearch/view/shared/profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -19,7 +20,9 @@ class ProfileBox extends HookConsumerWidget {
     return userModel.when(data: (_userModel) {
       if (_userModel != null) {
         return HeadlessCupertinoButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go("/profile");
+          },
           child: Container(
             height: height,
             width: width,

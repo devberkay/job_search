@@ -5,6 +5,7 @@ import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
@@ -30,12 +31,17 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
       ]),
       child: Row(
         children: [
-          const Text(
-            "Careers",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          HeadlessCupertinoButton(
+            onPressed: () {
+              context.go("/");
+            },
+            child: const Text(
+              "Careers",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(width: 40),
