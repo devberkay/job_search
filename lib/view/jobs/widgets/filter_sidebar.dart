@@ -11,11 +11,6 @@ class FilterSidebar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final whatDoYouWantToDoListNotifier = useValueNotifier(<String>[]);
-    final skillsNotifier = useValueNotifier(<String>[]);
-    final degreesNotifier = useValueNotifier(<String>{});
-    final jobTypesNotifier = useValueNotifier(<String>{});
-    final isRemoteEligibleNotifier = useValueNotifier(false);
     return Container(
       height: double.infinity,
       width: 400,
@@ -41,53 +36,52 @@ class FilterSidebar extends HookConsumerWidget {
                     ref.invalidate(degreesSetProvider);
                     ref.invalidate(jobTypesSetProvider);
                     ref.invalidate(isRemoteEligibleProvider);
-                    whatDoYouWantToDoListNotifier.value = [];
-                    skillsNotifier.value = [];
-                    degreesNotifier.value = {};
-                    jobTypesNotifier.value = {};
-                    isRemoteEligibleNotifier.value = false;
                   })
             ],
           ),
           const SizedBox(height: 15),
-          ValueListenableBuilder(
-              valueListenable: whatDoYouWantToDoListNotifier,
-              builder: (context, items, child) {
-                return Wrap(
-                  spacing: 5,
-                  runSpacing: 5,
-                  children: items.map<Widget>((e) {
-                    return Chip(
-                      label: Text(e),
-                      backgroundColor: Colors.white,
-                      side: BorderSide(color: Colors.grey.shade400),
-                      labelStyle: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w600),
-                      onDeleted: () {
-                        var temp = whatDoYouWantToDoListNotifier.value;
-                        temp.remove(e);
-                        whatDoYouWantToDoListNotifier.value = [...temp];
-                      },
-                      deleteButtonTooltipMessage: "Remove filter",
-                      deleteIcon: Icon(
-                        Icons.close,
-                        color: Colors.black,
-                      ),
-                    );
-                  }).toList(),
+          HookConsumer(builder: (context, ref, child) {
+            final items = ref.watch(whatDoYouWantToDoListProvider);
+            return Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children: items.map<Widget>((e) {
+                return Chip(
+                  label: Text(e),
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.grey.shade400),
+                  labelStyle: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.w600),
+                  onDeleted: () {
+                    var temp = items;
+                    temp.remove(e);
+                    ref.read(whatDoYouWantToDoListProvider.notifier).state = [
+                      ...temp
+                    ];
+                  },
+                  deleteButtonTooltipMessage: "Remove filter",
+                  deleteIcon: Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
                 );
-              }),
+              }).toList(),
+            );
+          }),
           const SizedBox(height: 15),
           HookConsumer(builder: (context, ref, child) {
             final controller = useTextEditingController();
+            final items = ref.watch(whatDoYouWantToDoListProvider);
             return CupertinoTextField(
               padding: const EdgeInsets.all(15),
               controller: controller,
               placeholder: "Software Engineering, Design, Sales",
               onSubmitted: (value) {
-                var temp = whatDoYouWantToDoListNotifier.value;
+                var temp = items;
                 temp.addAll(value.split(" "));
-                whatDoYouWantToDoListNotifier.value = [...temp];
+                ref.read(whatDoYouWantToDoListProvider.notifier).state = [
+                  ...temp
+                ];
                 controller.clear();
               },
               placeholderStyle: TextStyle(
@@ -161,21 +155,24 @@ class FilterSidebar extends HookConsumerWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         child: HookConsumer(builder: (context, ref, child) {
-                          final isRemoteNotifier = useState(false);
+                          final isRemoteEligible =
+                              ref.watch(isRemoteEligibleProvider);
                           return GestureDetector(
                             onTap: () {
-                              isRemoteEligibleNotifier.value =
-                                  !isRemoteNotifier.value;
-                              isRemoteNotifier.value = !isRemoteNotifier.value;
+                              ref
+                                  .read(isRemoteEligibleProvider.notifier)
+                                  .state = !isRemoteEligible;
                             },
                             child: Row(
                               children: [
                                 CupertinoCheckbox(
-                                  value: isRemoteNotifier.value,
+                                  value: isRemoteEligible,
                                   side: BorderSide(
                                       color: Colors.grey.shade400, width: 2),
                                   onChanged: (value) {
-                                    isRemoteNotifier.value = value ?? false;
+                                    ref
+                                        .read(isRemoteEligibleProvider.notifier)
+                                        .state = value ?? false;
                                   },
                                 ),
                                 Text("Remote eligible",
@@ -206,39 +203,39 @@ class FilterSidebar extends HookConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ValueListenableBuilder(
-                              valueListenable: skillsNotifier,
-                              builder: (context, items, child) {
-                                return Wrap(
-                                  spacing: 5,
-                                  runSpacing: 5,
-                                  children: items.map<Widget>((e) {
-                                    return Chip(
-                                      label: Text(e),
-                                      backgroundColor: Colors.white,
-                                      side: BorderSide(
-                                          color: Colors.grey.shade400),
-                                      labelStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600),
-                                      onDeleted: () {
-                                        var temp = skillsNotifier.value;
-                                        temp.remove(e);
-                                        skillsNotifier.value = [...temp];
-                                      },
-                                      deleteButtonTooltipMessage:
-                                          "Remove filter",
-                                      deleteIcon: Icon(
-                                        Icons.close,
-                                        color: Colors.black,
-                                      ),
-                                    );
-                                  }).toList(),
+                          HookConsumer(builder: (context, ref, child) {
+                            final items = ref.watch(skillsListProvider);
+                            return Wrap(
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: items.map<Widget>((e) {
+                                return Chip(
+                                  label: Text(e),
+                                  backgroundColor: Colors.white,
+                                  side: BorderSide(color: Colors.grey.shade400),
+                                  labelStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600),
+                                  onDeleted: () {
+                                    var temp = items;
+                                    temp.remove(e);
+                                    ref
+                                        .read(skillsListProvider.notifier)
+                                        .state = [...temp];
+                                  },
+                                  deleteButtonTooltipMessage: "Remove filter",
+                                  deleteIcon: Icon(
+                                    Icons.close,
+                                    color: Colors.black,
+                                  ),
                                 );
-                              }),
+                              }).toList(),
+                            );
+                          }),
                           SizedBox(height: 15),
                           HookConsumer(builder: (context, ref, child) {
                             final controller = useTextEditingController();
+                            final items = ref.watch(skillsListProvider);
                             return CupertinoTextField(
                               controller: controller,
                               prefix: Icon(Icons.location_on,
@@ -246,9 +243,9 @@ class FilterSidebar extends HookConsumerWidget {
                               padding: const EdgeInsets.all(15),
                               placeholder: "Programming, Finance, UX design",
                               onSubmitted: (value) {
-                                var temp = skillsNotifier.value;
+                                var temp = items;
                                 temp.addAll(value.split(" "));
-                                skillsNotifier.value = [...temp];
+                                ref.read(skillsListProvider.notifier).state = [...temp];
                                 controller.clear();
                               },
                               placeholderStyle: TextStyle(
@@ -293,30 +290,32 @@ class FilterSidebar extends HookConsumerWidget {
                             runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
-                                final isAssociate = useState(false);
+                                
+                                final items = ref.watch(degreesSetProvider);
+                                final isContain = items.contains("Associate");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isAssociate.value) {
-                                      var temp = degreesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Associate");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = degreesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Associate");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isAssociate.value = !isAssociate.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isAssociate.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isAssociate.value = value ?? false;
+                                          
                                         },
                                       ),
                                       Text("Associate",
@@ -328,7 +327,8 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isBachelor = useState(false);
+                                final items = ref.watch(degreesSetProvider);
+                                final isContain = items.contains("Associate");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isBachelor.value) {
