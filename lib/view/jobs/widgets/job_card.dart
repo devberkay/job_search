@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final selectedJobModelProvider = StateProvider.autoDispose<JobModel>((ref) {
+  return ;
+});
+
 class JobCard extends HookConsumerWidget {
   const JobCard({super.key, required this.jobModel});
   final JobModel jobModel;
