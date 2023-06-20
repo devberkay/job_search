@@ -5,6 +5,9 @@ class DetailSidebar extends HookConsumerWidget {
   const DetailSidebar({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return Container(
+      height: double.infinity,
+      width: 400,
+    );
   }
 }
