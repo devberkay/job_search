@@ -9,11 +9,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final shouldPaginateNextProvider = StateProvider.autoDispose<bool>((ref) {
+  return false;
+});
+
 class DashboardView extends HookConsumerWidget {
   const DashboardView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final jobsNotifier = ref.watch(jobNotifierProvider);
+    final shouldPaginateNext = ref.watch(shouldPaginateNextProvider);
+    final jobsNotifier = ref.watch(jobNotifierProvider(shouldPaginateNext));
     return Padding(
         padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
         child: jobsNotifier.when(data: (jobs) {
@@ -97,7 +102,7 @@ class DashboardView extends HookConsumerWidget {
               const SizedBox(height: 20),
               FilledCupertinoButton(
                   onPressed: () {
-                    ref.refresh(jobNotifierProvider);
+                    ref.invalidate(jobNotifierProvider(shouldPaginateNext));
                   },
                   height: 35,
                   width: 70,

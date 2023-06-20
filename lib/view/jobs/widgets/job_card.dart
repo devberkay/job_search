@@ -118,12 +118,12 @@ class JobCard extends HookConsumerWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                         fontSize: 15)),
-                const SizedBox(height: 25),
+                const SizedBox(height: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:
                       jobModel.minimumQualifications.map<Widget>((sentence) {
-                    return Text("• $sentence",
+                    return Text("  • $sentence",
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontWeight: FontWeight.w500,

@@ -84,12 +84,12 @@ final lastJobDocProvider = StateProvider<DocumentSnapshot?>((ref) {
 });
 
 final jobNotifierProvider =
-    AsyncNotifierProvider.autoDispose.family<JobNotifier, List<JobModel>?,DocumentSnapshot?>(
+    AsyncNotifierProvider.autoDispose.family<JobNotifier, List<JobModel>?,bool>(
         JobNotifier.new);
 
-class JobNotifier extends AutoDisposeFamilyAsyncNotifier<List<JobModel>?,DocumentSnapshot?> {
+class JobNotifier extends AutoDisposeFamilyAsyncNotifier<List<JobModel>?,bool> {
   @override
-  FutureOr<List<JobModel>?> build(DocumentSnapshot? arg) async {
+  FutureOr<List<JobModel>?> build(bool arg) async {
     final orderBy = ref.watch(orderByProvider);
     final whatDoYouWantToDoFilterList = ref
         .watch(whatDoYouWantToDoListProvider)
@@ -193,7 +193,7 @@ class JobNotifier extends AutoDisposeFamilyAsyncNotifier<List<JobModel>?,Documen
       }
     }
 
-    if (lastJobDoc != null) {
+    if (lastJobDoc != null && arg) {
       debugPrint("jobNotifier-0");
       
       final snapshot =
