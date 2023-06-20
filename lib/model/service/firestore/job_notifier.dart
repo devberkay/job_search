@@ -48,7 +48,7 @@ final degreesSetProvider = NotifierProvider<DegreesSetNotifier,Set<String> >(Deg
 class DegreesSetNotifier extends Notifier<Set<String>> {
   @override
    build() {
-    return [];
+    return {};
   }
   void add(String value) {
     state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
