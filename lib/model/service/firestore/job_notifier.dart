@@ -92,7 +92,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
 
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
-    Query<Map<String,dynamic>>? query;
+    Query<Map<String,dynamic>>? query=null;
     
     final lastJobDoc = ref.read(lastJobDocProvider);
     if (degreesFilterSet.isNotEmpty) {
@@ -132,13 +132,13 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         query = query.orderBy(orderBy);
       }
       else {
-         collectionRef = collectionRef.orderBy(orderBy);
+         query = collectionRef.orderBy(orderBy);
       }
     }
 
     if (lastJobDoc != null) {
       debugPrint("jobNotifier-0");
-      if (whatDoYouWantToDoFilterList.isNotEmpty) {}
+      
       final snapshot =
           await (query!=null ? query.startAfterDocument(lastJobDoc).limit(15).get() : collectionRef.startAfterDocument(lastJobDoc).limit(15).get());
       debugPrint("jobNotifier-1");
