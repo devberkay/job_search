@@ -53,7 +53,17 @@ class DetailSidebar extends HookConsumerWidget {
                       separatorBuilder: (context, index) {
                         return SizedBox(height: 20);
                       },
-                      itemBuilder: (context, index) {},
+                      itemBuilder: (context, index) {
+                        data.map<Widget>((jobModel) => HookConsumer(
+                          builder: (context,ref,child) {
+                            return MouseRegion(
+                              child: InkWell(onTap: () {
+                                
+                              },child: Container()),
+                            );
+                          }
+                        ));
+                      },
                     ),
                   ),
                 ],
