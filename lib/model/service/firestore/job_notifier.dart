@@ -92,7 +92,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
 
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
-    late Query<Map<String,dynamic>>? query=null;
+    Query<Map<String,dynamic>>? query;
     final lastJobDoc = ref.read(lastJobDocProvider);
     if (degreesFilterSet.isNotEmpty) {
       if(query!=null) {
