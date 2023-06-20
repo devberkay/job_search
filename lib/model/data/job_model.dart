@@ -24,6 +24,7 @@ class JobModel with _$JobModel {
     required double latitude,
     required double salaryPerHour,
     required int applicantCounter,
+    required dynamic timestampField,
     String? jobId,
     required List<String> responsibilities,
     required List<String> minimumQualifications,

@@ -23,6 +23,7 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
       latitude: (json['latitude'] as num).toDouble(),
       salaryPerHour: (json['salaryPerHour'] as num).toDouble(),
       applicantCounter: json['applicantCounter'] as int,
+      timestampField: json['timestampField'],
       jobId: json['jobId'] as String?,
       responsibilities: (json['responsibilities'] as List<dynamic>)
           .map((e) => e as String)
@@ -50,6 +51,7 @@ Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
       'latitude': instance.latitude,
       'salaryPerHour': instance.salaryPerHour,
       'applicantCounter': instance.applicantCounter,
+      'timestampField': instance.timestampField,
       'jobId': instance.jobId,
       'responsibilities': instance.responsibilities,
       'minimumQualifications': instance.minimumQualifications,
