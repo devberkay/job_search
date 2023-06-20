@@ -17,7 +17,7 @@ class ProfileSexDropdownButton extends HookConsumerWidget {
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
-        ref.read(draftUserModelProvider.notifier).state = 
+        ref.read(draftUserModelProvider.notifier).state = draftModel.copyWith()
       },
       value: draftSex,
       items: <String>['Woman', 'Man']
