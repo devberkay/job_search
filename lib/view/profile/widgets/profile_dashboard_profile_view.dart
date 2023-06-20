@@ -242,7 +242,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 90),
           ValueListenableBuilder(
               valueListenable: draftUserModelNotifier,
               builder: (context, draftModel, child) {
