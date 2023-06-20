@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -6,21 +7,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileAgeDropdownButton extends HookConsumerWidget {
-  const ProfileAgeDropdownButton({super.key});
-  
+  const ProfileAgeDropdownButton({super.key,required this.draftUserModelNotifier});
+  final ValueNotifier<UserModel> draftUserModelNotifier;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedSortBy = ref.watch(orderByProvider);
+    final ageList =  List.generate(100, (index) => index+1);
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
-        
+        draftUserModelNotifier.value = draftUserModelNotifier.value.copyWith(age: value);
       },
-      value: _displayStringBuilder(selectedSortBy ?? "Relevance"),
-      items: <String>['Relevance', 'Salary', 'No of applicants', 'Date']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
+      value: draftUserModelNotifier.value.age,
+      items: ageList
+          .map<DropdownMenuItem<int>>((int value) {
+        return DropdownMenuItem<int>(
           value: value,
           child: Text(
             '$value',

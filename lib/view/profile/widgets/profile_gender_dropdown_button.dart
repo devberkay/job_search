@@ -20,7 +20,7 @@ class ProfileSexDropdownButton extends HookConsumerWidget {
         draftUserModelNotifier.value =
             draftUserModelNotifier.value.copyWith(sex: value);
       },
-      value: draftUserModelNotifier.value,
+      value: draftUserModelNotifier.value.sex,
       items: <String>['Woman', 'Man']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
