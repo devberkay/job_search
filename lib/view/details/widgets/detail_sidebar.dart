@@ -17,7 +17,7 @@ class DetailSidebar extends HookConsumerWidget {
     return Container(
         color: Colors.white,
         height: double.infinity,
-        padding: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
+        padding: const EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
         width: 400,
         child: jobModels.whenOrNull(
           data: (data) {
@@ -46,20 +46,23 @@ class DetailSidebar extends HookConsumerWidget {
                           ],
                         ),
                       ),
-                      Spacer()
+                      const Spacer()
                     ],
                   ),
+                  const SizedBox(height: 20),
                   Expanded(
                     child: ListView.separated(
                       itemCount: data.length,
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: 20);
+                        return const SizedBox(height: 20);
                       },
                       itemBuilder: (context, index) {
                         return HookConsumer(builder: (context, ref, child) {
-                          const companyEmoji = '\u{1F3E2}'; // display if on-site
+                          const companyEmoji =
+                              '\u{1F3E2}'; // display if on-site
                           const locationEmoji = '\u{1F4CD}';
-                          const computerEmoji = '\u{1F4BB}'; // display if remote
+                          const computerEmoji =
+                              '\u{1F4BB}'; // display if remote
                           final isSelected = ref.watch(
                               selectedJobModelProvider.select((value) =>
                                   value?.jobId == data[index].jobId));
@@ -79,6 +82,7 @@ class DetailSidebar extends HookConsumerWidget {
                                 },
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 250),
+                                  height: 75,
                                   transformAlignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -106,13 +110,27 @@ class DetailSidebar extends HookConsumerWidget {
                                             spreadRadius:
                                                 isHovering.value ? 1.25 : 0)
                                       ]),
-                                      child: Column(
-                                        children: [
-                                          Text(data[index].title,style: TextStyle(fontWeight: FontWeight.w900)),
-                                          SizedBox(height: 5),
-                                          Text(data[index].organization,style: TextStyle(fontWeight: FontWeight.w700)),
-                                        ],
-                                      ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(data[index].title,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 12)),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                          "$companyEmoji ${data[index].organization}",
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 10)),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                          "${data[index].isRemote ? computerEmoji : locationEmoji} ${data[index].isRemote ? 'In-office' : 'Remote available'}",
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 10)),
+                                    ],
+                                  ),
                                 )),
                           );
                         });
