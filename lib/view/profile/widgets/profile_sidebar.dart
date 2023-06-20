@@ -46,6 +46,22 @@ class ProfileSidebar extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: const Row(
                     children: [
+                      Icon(Icons.edit),
+                      SizedBox(width: 5),
+                      Text("My applications")
+                    ],
+                  ));
+            }),
+            HookConsumer(builder: (context, ref, child) {
+              final isSelected = ref.watch(sidebarIndexProvider.select((value) => value==0));
+              return FilledCupertinoButton(
+                  onPressed: () {},
+                  height: 100,
+                  width: double.maxFinite,
+                  fillColor: isSelected ? Colors.blueAccent.shade700 : Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  child: const Row(
+                    children: [
                       Icon(Icons.add),
                       SizedBox(width: 5),
                       Text("Create job post")
