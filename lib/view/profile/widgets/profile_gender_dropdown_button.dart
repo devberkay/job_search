@@ -7,17 +7,17 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileSexDropdownButton extends HookConsumerWidget {
-  const ProfileSexDropdownButton({super.key});
-  
+  const ProfileSexDropdownButton({super.key,required this.uid});
+  final String uid;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final draftModel = ref.watch(draftUserModelProvider);
+    final draftModel = ref.watch(draftUserModelProvider(uid));
     final draftSex = draftModel?.sex;
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
-        ref.read(draftUserModelProvider.notifier).state = draftModel.copyWith()
+        ref.read(draftUserModelProvider(uid).notifier).state = draftModel.copyWith()
       },
       value: draftSex,
       items: <String>['Woman', 'Man']
