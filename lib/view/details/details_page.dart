@@ -9,7 +9,7 @@ class DetailsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedJobModel = ref.watch(selectedJobModelProvider)!;
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.only(left: 30.0, top: 30, right: 30),
       child: DetailCard(jobModel: selectedJobModel),
     );
   }
