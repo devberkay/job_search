@@ -17,13 +17,18 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final draftUserModelNotifier = useValueNotifier(userModel);
+    final nameController = useTextEditingController(text: userModel.name);
+    final lastNameController = useTextEditingController(text: userModel.surname);
+    final phoneController = useTextEditingController(text: userModel.phone);
+    final emailController = useTextEditingController(text: userModel.mail);
+    final bioController = useTextEditingController(text: userModel.bio);
     final user = ref.watch(userProvider);
     final isSelf = userModel.uid == user!.uid;
     if (isSelf) {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         children: [
-          ProfileAvatar(radius: 50, userId: userModel.uid),
+          ProfileAvatar(radius: 100, userId: userModel.uid),
           const SizedBox(height: 30),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,132 +53,157 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                controller: TextEditingController(text: userModel.name),
+                controller: bioController,
               )
             ],
           ),
           const SizedBox(height: 30),
           Row(
             children: [
-              Column(
-                children: [
-                  const Text("Name",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  CupertinoTextField(
-                    onChanged: (value) {
-                      draftUserModelNotifier.value =
-                          draftUserModelNotifier.value.copyWith(name: value);
-                    },
-                    maxLines: 1,
-                    maxLength: 20,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    controller: TextEditingController(text: userModel.name),
-                  )
-                ],
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Name",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    CupertinoTextField(
+                      onChanged: (value) {
+                        draftUserModelNotifier.value =
+                            draftUserModelNotifier.value.copyWith(name: value);
+                      },
+                      maxLines: 1,
+                      maxLength: 20,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      controller: nameController,
+                    )
+                  ],
+                ),
               ),
-              const Spacer(),
-              Column(
-                children: [
-                  const Text("Last name",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  CupertinoTextField(
-                    onChanged: (value) {
-                      draftUserModelNotifier.value =
-                          draftUserModelNotifier.value.copyWith(surname: value);
-                    },
-                    maxLines: 1,
-                    maxLength: 20,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    controller: TextEditingController(text: userModel.name),
-                  )
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 30),
-          Row(
-            children: [
-              Column(
-                children: [
-                  const Text("Phone",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  CupertinoTextField(
-                    onChanged: (value) {
-                      draftUserModelNotifier.value =
-                          draftUserModelNotifier.value.copyWith(phone: value);
-                    },
-                    maxLines: 1,
-                    maxLength: 15,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    controller: TextEditingController(text: userModel.name),
-                  )
-                ],
-              ),
-              const Spacer(),
-              Column(
-                children: [
-                  const Text("Mail",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  CupertinoTextField(
-                    onChanged: (value) {
-                      draftUserModelNotifier.value =
-                          draftUserModelNotifier.value.copyWith(mail: value);
-                    },
-                    maxLines: 1,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    controller: TextEditingController(text: userModel.name),
-                  )
-                ],
+              Spacer(),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Last name",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    CupertinoTextField(
+                      onChanged: (value) {
+                        draftUserModelNotifier.value = draftUserModelNotifier
+                            .value
+                            .copyWith(surname: value);
+                      },
+                      maxLines: 1,
+                      maxLength: 20,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      controller: lastNameController,
+                    )
+                  ],
+                ),
               ),
             ],
           ),
           const SizedBox(height: 30),
           Row(
             children: [
-              Column(
-                children: [
-                  const Text("Age",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  ProfileAgeDropdownButton(
-                      draftUserModelNotifier: draftUserModelNotifier)
-                ],
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Phone",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    CupertinoTextField(
+                      onChanged: (value) {
+                        draftUserModelNotifier.value =
+                            draftUserModelNotifier.value.copyWith(phone: value);
+                      },
+                      maxLines: 1,
+                      maxLength: 15,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      controller: phoneController,
+                    )
+                  ],
+                ),
               ),
               const Spacer(),
-              Column(
-                children: [
-                  const Text("Sex",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  ProfileSexDropdownButton(
-                      draftUserModelNotifier: draftUserModelNotifier)
-                ],
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Mail",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    CupertinoTextField(
+                      onChanged: (value) {
+                        draftUserModelNotifier.value =
+                            draftUserModelNotifier.value.copyWith(mail: value);
+                      },
+                      maxLines: 1,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      controller: emailController,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          Row(
+            children: [
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Age",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    ProfileAgeDropdownButton(
+                        draftUserModelNotifier: draftUserModelNotifier)
+                  ],
+                ),
+              ),
+              const Spacer(),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Sex",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(height: 10),
+                    ProfileSexDropdownButton(
+                        draftUserModelNotifier: draftUserModelNotifier)
+                  ],
+                ),
               ),
             ],
           ),
