@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
+import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -55,50 +56,66 @@ class DetailSidebar extends HookConsumerWidget {
                         return SizedBox(height: 20);
                       },
                       itemBuilder: (context, index) {
-                        returndata.map<Widget>((jobModel) =>
-                            HookConsumer(builder: (context, ref, child) {
-                              final isHovering = useState(false);
-                              return MouseRegion(
-                                onEnter: (event) {
-                                  isHovering.value = true;
+                        return HookConsumer(builder: (context, ref, child) {
+                          const companyEmoji = '\u{1F3E2}'; // display if on-site
+                          const locationEmoji = '\u{1F4CD}';
+                          const computerEmoji = '\u{1F4BB}'; // display if remote
+                          final isSelected = ref.watch(
+                              selectedJobModelProvider.select((value) =>
+                                  value?.jobId == data[index].jobId));
+                          final isHovering = useState(false);
+                          return MouseRegion(
+                            onEnter: (event) {
+                              isHovering.value = true;
+                            },
+                            onExit: (event) {
+                              isHovering.value = false;
+                            },
+                            child: InkWell(
+                                onTap: () {
+                                  ref
+                                      .read(selectedJobModelProvider.notifier)
+                                      .state = data[index];
                                 },
-                                onExit: (event) {
-                                  isHovering.value = false;
-                                },
-                                child: InkWell(
-                                    onTap: () {},
-                                    child: AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 250),
-                                      transformAlignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: Border.all(
-                                              color: Colors.grey.shade300),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey.shade500,
-                                                offset: Offset(
-                                                    isHovering.value ? -1 : 0,
-                                                    isHovering.value ? -1 : 0),
-                                                blurRadius:
-                                                    isHovering.value ? 1.25 : 0,
-                                                spreadRadius: isHovering.value
-                                                    ? 1.25
-                                                    : 0),
-                                            BoxShadow(
-                                                color: Colors.grey.shade500,
-                                                offset: Offset(
-                                                    isHovering.value ? 1 : 0,
-                                                    isHovering.value ? 1 : 0),
-                                                blurRadius:
-                                                    isHovering.value ? 1.25 : 0,
-                                                spreadRadius:
-                                                    isHovering.value ? 1.25 : 0)
-                                          ]),
-                                    )),
-                              );
-                            }));
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 250),
+                                  transformAlignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                          color: isSelected
+                                              ? Colors.blueAccent.shade700
+                                              : Colors.grey.shade300),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.shade500,
+                                            offset: Offset(
+                                                isHovering.value ? -1 : 0,
+                                                isHovering.value ? -1 : 0),
+                                            blurRadius:
+                                                isHovering.value ? 1.25 : 0,
+                                            spreadRadius:
+                                                isHovering.value ? 1.25 : 0),
+                                        BoxShadow(
+                                            color: Colors.grey.shade500,
+                                            offset: Offset(
+                                                isHovering.value ? 1 : 0,
+                                                isHovering.value ? 1 : 0),
+                                            blurRadius:
+                                                isHovering.value ? 1.25 : 0,
+                                            spreadRadius:
+                                                isHovering.value ? 1.25 : 0)
+                                      ]),
+                                      child: Column(
+                                        children: [
+                                          Text(data[index].title,style: TextStyle(fontWeight: FontWeight.w900)),
+                                          SizedBox(height: 5),
+                                          Text(data[index].organization,style: TextStyle(fontWeight: FontWeight.w700)),
+                                        ],
+                                      ),
+                                )),
+                          );
+                        });
                       },
                     ),
                   ),
