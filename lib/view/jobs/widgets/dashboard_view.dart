@@ -9,7 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final shouldPaginateNextProvider = StateProvider.autoDispose<bool>((ref) {
+final shouldPaginateNextProvider = StateProvider<bool>((ref) {
   return false;
 });
 
