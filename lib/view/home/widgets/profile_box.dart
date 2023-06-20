@@ -34,7 +34,7 @@ class ProfileBox extends HookConsumerWidget {
                     color: Colors.grey.shade600.withOpacity(0.25), width: 2)),
             child: Row(
               children: [
-                ProfileAvatar(radius: height * 0.5),
+                ProfileAvatar(radius: height * 0.5,userId: _userModel.uid),
                 SizedBox(
                   width: width * 0.075,
                 ),
@@ -134,7 +134,7 @@ class ProfileBox extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProfileAvatar(radius: height * 0.5),
+            ProfileAvatar(radius: height * 0.5,userId: null,),
             const Spacer(),
             Expanded(
                 flex: 3,
