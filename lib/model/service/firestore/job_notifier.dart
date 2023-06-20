@@ -10,7 +10,7 @@ final orderByProvider = StateProvider<String?>((ref) {
   return null;
 });
 
-final whatDoYouWantToDoListProvider = StateProvider<List<String>>((ref) {
+final whatDoYouWantToDoListProvider = StateProvider<List<String>>((ref) { // search in title
   return [];
 });
 

@@ -457,12 +457,12 @@ class FilterSidebar extends HookConsumerWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isPursuing.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isPursuing.value = value ?? false;
+                                          //mayComeBack
                                         },
                                       ),
                                       Text("Pursuing degree",
@@ -500,32 +500,31 @@ class FilterSidebar extends HookConsumerWidget {
                             runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
-                                final isWhiteCollarRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("White-collar roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isWhiteCollarRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("White-collar roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("White-collar roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isWhiteCollarRoles.value =
-                                        !isWhiteCollarRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isWhiteCollarRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isWhiteCollarRoles.value =
-                                              value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("White-collar roles",
@@ -539,32 +538,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isBlueCollarRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("Blue-collar roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isBlueCollarRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Blue-collar roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Blue-collar roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isBlueCollarRoles.value =
-                                        !isBlueCollarRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isBlueCollarRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isBlueCollarRoles.value =
-                                              value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("Blue-collar roles",
@@ -576,30 +574,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isItRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("IT roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isItRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("IT roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("IT roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isItRoles.value = !isItRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isItRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isItRoles.value = value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("IT roles                  ",
@@ -611,30 +610,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isSalesRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("Sales roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isSalesRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Sales roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Sales roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isSalesRoles.value = !isSalesRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isSalesRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isSalesRoles.value = value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("Sales roles",
@@ -646,32 +646,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isManagementRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("Management roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isManagementRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Management roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Management roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isManagementRoles.value =
-                                        !isManagementRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isManagementRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isManagementRoles.value =
-                                              value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("Manager roles      ",
@@ -683,32 +682,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isCreativeRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("Creative roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isCreativeRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Creative roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Creative roles");
-                                      jobTypesNotifier.value = Set.from(temp);
+                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isCreativeRoles.value =
-                                        !isCreativeRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isCreativeRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isCreativeRoles.value =
-                                              value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("Creative roles",
@@ -720,32 +718,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isVehicleDrivingRoles = useState(false);
+                                final items = ref.watch(jobTypesSetProvider);
+                                final isContain = items.contains("Vehicle-driving roles");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isVehicleDrivingRoles.value) {
-                                      var temp = jobTypesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Vehicle-driving roles");
-                                      jobTypesNotifier.value = temp;
+                                      ref.read(jobTypesSetProvider.notifier).state = temp;
                                     } else {
-                                      var temp = jobTypesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Vehicle-driving roles");
-                                      jobTypesNotifier.value = temp;
+                                      ref.read(jobTypesSetProvider.notifier).state = temp;
                                     }
-                                    isVehicleDrivingRoles.value =
-                                        !isVehicleDrivingRoles.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isVehicleDrivingRoles.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isVehicleDrivingRoles.value =
-                                              value ?? false;
+                                          //mayComeBack2
                                         },
                                       ),
                                       Text("Vehicle-driving roles",
@@ -764,28 +761,19 @@ class FilterSidebar extends HookConsumerWidget {
               ],
             );
           }),
-          const SizedBox(height: 50),
-          FilledCupertinoButton(
-              onPressed: () {
-                ref.read(whatDoYouWantToDoListProvider.notifier).state =
-                    whatDoYouWantToDoListNotifier.value;
-                ref.read(skillsListProvider.notifier).state =
-                    skillsNotifier.value;
-                ref.read(degreesSetProvider.notifier).state =
-                    degreesNotifier.value;
-                ref.read(jobTypesSetProvider.notifier).state =
-                    jobTypesNotifier.value;
-                ref.read(isRemoteEligibleProvider.notifier).state =
-                    isRemoteEligibleNotifier.value;
-              },
-              height: 50,
-              width: double.maxFinite,
-              fillColor: Colors.blueAccent.shade700,
-              borderRadius: BorderRadius.circular(5),
-              child: const Text("Apply filters",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w900)))
+          // const SizedBox(height: 50),
+          // FilledCupertinoButton(
+          //     onPressed: () {
+                
+          //     },
+          //     height: 50,
+          //     width: double.maxFinite,
+          //     fillColor: Colors.blueAccent.shade700,
+          //     borderRadius: BorderRadius.circular(5),
+          //     child: const Text("Apply filters",
+          //         textAlign: TextAlign.center,
+          //         style: TextStyle(
+          //             color: Colors.white, fontWeight: FontWeight.w900)))
         ],
       ),
     );
