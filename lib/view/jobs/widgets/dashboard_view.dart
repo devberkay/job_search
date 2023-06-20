@@ -22,7 +22,7 @@ class DashboardView extends HookConsumerWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
         child: jobsNotifier.when(data: (jobs) {
-          if (jobs != null) {
+          if (jobs != null && jobs.isNotEmpty) {
             debugPrint("dashboard_view.dart: OK");
             return ListView.separated(
                 clipBehavior: Clip.none,
@@ -87,7 +87,12 @@ class DashboardView extends HookConsumerWidget {
           } else {
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Icon(Icons.question_mark), Text("No jobs found")],
+              children: [
+                Icon(Icons.question_mark, size: 40),
+                SizedBox(height: 25),
+                Text("No jobs found",
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 25))
+              ],
             );
           }
         }, error: (e, st) {
