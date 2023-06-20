@@ -74,7 +74,7 @@ class FilterSidebar extends HookConsumerWidget {
               onSubmitted: (value) {
                 ref.invalidate(jobTypesSetProvider);
                 ref.invalidate(degreesSetProvider);
-                
+                ref.invalidate(skillsListProvider);
                 ref
                     .read(whatDoYouWantToDoListProvider.notifier)
                     .add(value.split(" "));
@@ -237,6 +237,9 @@ class FilterSidebar extends HookConsumerWidget {
                               padding: const EdgeInsets.all(15),
                               placeholder: "Programming, Finance, UX design",
                               onSubmitted: (value) {
+                                ref.invalidate(jobTypesSetProvider);
+                                ref.invalidate(degreesSetProvider);
+                                ref.invalidate(whatDoYouWantToDoListProvider);
                                 ref
                                     .read(skillsListProvider.notifier)
                                     .add(value.split(" "));
