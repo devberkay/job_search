@@ -13,58 +13,108 @@ class ProfileSidebar extends HookConsumerWidget {
     return Container(
         height: double.infinity,
         width: 400,
-        color: Colors.grey.shade100.withOpacity(0.25),
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.grey.shade100.withOpacity(0.25),
             border: Border(right: BorderSide(color: Colors.grey.shade400))),
         child: Column(
           children: [
             HookConsumer(builder: (context, ref, child) {
-              final isSelected = ref.watch(sidebarIndexProvider.select((value) => value==0));
+              final isSelected =
+                  ref.watch(sidebarIndexProvider.select((value) => value == 0));
               return FilledCupertinoButton(
-                  onPressed: () {},
-                  height: 100,
+                  onPressed: () {
+                    ref.read(sidebarIndexProvider.notifier).state = 0;
+                  },
+                  height: 75,
+                  border: Border.all(color: Colors.black),
                   width: double.maxFinite,
-                  fillColor: isSelected ? Colors.blueAccent.shade700 : Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  child: const Row(
+                  fillColor: isSelected ? Colors.black : Colors.white,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.edit),
+                      Icon(Icons.edit,
+                          color: isSelected ? Colors.white : Colors.black),
                       SizedBox(width: 5),
-                      Text("Edit profile")
+                      Text("Edit profile",
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             }),
+            SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected = ref.watch(sidebarIndexProvider.select((value) => value==0));
+              final isSelected =
+                  ref.watch(sidebarIndexProvider.select((value) => value == 1));
               return FilledCupertinoButton(
-                  onPressed: () {},
-                  height: 100,
+                  onPressed: () {
+                    ref.read(sidebarIndexProvider.notifier).state = 1;
+                  },
+                  height: 75,
                   width: double.maxFinite,
-                  fillColor: isSelected ? Colors.blueAccent.shade700 : Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  child: const Row(
+                  border: Border.all(color: Colors.black),
+                  fillColor: isSelected ? Colors.black : Colors.white,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.edit),
+                      Icon(Icons.notifications,
+                          color: isSelected ? Colors.white : Colors.black),
                       SizedBox(width: 5),
-                      Text("My applications")
+                      Text("Notifications",
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             }),
+            SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected = ref.watch(sidebarIndexProvider.select((value) => value==0));
+              final isSelected =
+                  ref.watch(sidebarIndexProvider.select((value) => value == 2));
               return FilledCupertinoButton(
-                  onPressed: () {},
-                  height: 100,
+                  onPressed: () {
+                    ref.read(sidebarIndexProvider.notifier).state = 2;
+                  },
+                  height: 75,
+                  border: Border.all(color: Colors.black),
                   width: double.maxFinite,
-                  fillColor: isSelected ? Colors.blueAccent.shade700 : Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  child: const Row(
+                  fillColor: isSelected ? Colors.black : Colors.white,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add),
+                      Icon(Icons.present_to_all_sharp,
+                          color: isSelected ? Colors.white : Colors.black),
                       SizedBox(width: 5),
-                      Text("Create job post")
+                      Text("My applications",
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.black))
+                    ],
+                  ));
+            }),
+            SizedBox(height: 30),
+            HookConsumer(builder: (context, ref, child) {
+              final isSelected =
+                  ref.watch(sidebarIndexProvider.select((value) => value == 3));
+              return FilledCupertinoButton(
+                  onPressed: () {
+                    ref.read(sidebarIndexProvider.notifier).state = 3;
+                  },
+                  height: 75,
+                  border: Border.all(color: Colors.black),
+                  width: double.maxFinite,
+                  fillColor: isSelected ? Colors.black : Colors.white,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add_box_sharp,
+                          color: isSelected ? Colors.white : Colors.black),
+                      SizedBox(width: 5),
+                      Text("Create job post",
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.black))
                     ],
                   ));
             })

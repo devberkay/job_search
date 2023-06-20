@@ -14,12 +14,14 @@ class FilledCupertinoButton extends HookConsumerWidget {
       required this.width,
       required this.fillColor,
       required this.borderRadius,
+      this.border,
       this.boxShadow});
   final Widget child;
   final VoidFunction onPressed;
   final double height;
   final double width;
   final Color fillColor;
+  final BoxBorder? border;
   final BorderRadius borderRadius;
   final List<BoxShadow>? boxShadow;
   @override
@@ -43,6 +45,7 @@ class FilledCupertinoButton extends HookConsumerWidget {
               curve: Curves.easeOut,
               decoration: BoxDecoration(
                   color: color,
+                  border: border,
                   borderRadius: borderRadius,
                   boxShadow: boxShadow),
               duration: const Duration(milliseconds: 200),

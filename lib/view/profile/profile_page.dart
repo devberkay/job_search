@@ -1,5 +1,6 @@
 
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
+import 'package:JobSearch/view/profile/widgets/profile_dashboard_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,7 +17,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     
     return  Row(
-      children: [ProfileSidebar(), Expanded(child: DashboardView())],
+      children: [ProfileSidebar(), Expanded(child: ProfileDashboardView())],
     );
   }
 }
