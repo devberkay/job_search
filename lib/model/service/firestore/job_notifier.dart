@@ -170,10 +170,10 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     }
     if(whatDoYouWantToDoFilterList.isNotEmpty) {
       if(query!=null) {
-        query = query.where("searchTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
+        query = query.where("titleTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
       }
       else {
-        query = collectionRef.where("searchTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
+        query = collectionRef.where("titleTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
       }
     }
     if(skillsFilterList.isNotEmpty) {
@@ -202,7 +202,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
-      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.last;
+      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
       // debugPrint("jobModels : $jobModels");
       return jobModels;
     } else {
