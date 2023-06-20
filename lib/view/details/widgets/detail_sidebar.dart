@@ -44,7 +44,9 @@ class DetailSidebar extends HookConsumerWidget {
             separatorBuilder: (context, index) {
               
             },
-            itemBuilder: (context, index) {},
+            itemBuilder: (context, index) {
+              
+            },
 
           ),
         ],
