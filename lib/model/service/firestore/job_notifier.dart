@@ -19,7 +19,7 @@ class WhatDoYouWantToDoListNotifier extends Notifier<List<String>> {
     return [];
   }
   void add(String value) {
-    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+    state = [...state];
   }
   void remove(String value) {
     state = [...state]..remove(value);
@@ -35,7 +35,7 @@ class SkillsListNotifier extends Notifier<List<String>> {
     return [];
   }
   void add(String value) {
-    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+    state = [...state, value];
   }
   void remove(String value) {
     state = [...state]..remove(value);
@@ -51,17 +51,29 @@ class DegreesSetNotifier extends Notifier<Set<String>> {
     return {};
   }
   void add(String value) {
-    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+    state = {...state, value};
   }
   void remove(String value) {
-    state = [...state]..remove(value);
+    state = {...state}..remove(value);
   }
 }
 
 
-final jobTypesSetProvider = StateProvider<Set<String>>((ref) {
-  return {};
-});
+final jobTypesSetProvider = NotifierProvider<JobTypesSetNotifier,Set<String> >(JobTypesSetNotifier.new);
+
+class JobTypesSetNotifier extends Notifier<Set<String>> {
+  @override
+   build() {
+    return {};
+  }
+  void add(String value) {
+    state = {...state, value};
+  }
+  void remove(String value) {
+    state = {...state}..remove(value);
+  }
+}
+
 
 final isRemoteEligibleProvider = StateProvider<bool>((ref) {
   return false;
