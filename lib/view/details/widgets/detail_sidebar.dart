@@ -6,6 +6,7 @@ class DetailSidebar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
+      color: Colors.white,
       height: double.infinity,
       width: 400,
     );
