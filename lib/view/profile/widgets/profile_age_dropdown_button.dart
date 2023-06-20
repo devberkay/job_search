@@ -27,7 +27,7 @@ class ProfileAgeDropdownButton extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(5),
                 )),
             dropdownStyleData: DropdownStyleData(
-                maxHeight: 60,
+                maxHeight: 90,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(5),

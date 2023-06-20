@@ -187,6 +187,14 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         draftUserModelNotifier.value =
                             draftUserModelNotifier.value.copyWith(mail: value);
                       },
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600),
+                      placeholder: "Enter your mail address",
+                      placeholderStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400),
                       maxLines: 1,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -246,7 +254,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                     width: 150,
                     fillColor: (draftModel != userModel)
                         ? Colors.blueAccent
-                        : Colors.grey.shade400,
+                        : Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(5),
                     child: Text("Save changes",
                         style: TextStyle(
