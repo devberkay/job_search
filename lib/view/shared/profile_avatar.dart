@@ -20,14 +20,9 @@ class ProfileAvatar extends HookConsumerWidget {
     final rawData = ref.watch(rawPictureProvider("/users/${currentUser?.uid}"));
     return rawData.when(data: (rawData) {
       if (rawData != null) {
-        return HeadlessCupertinoButton(
-          onPressed: () {
-            
-          },
-          child: CircleAvatar(
-            radius: radius,
-            backgroundImage: MemoryImage(rawData),
-          ),
+        return CircleAvatar(
+          radius: radius,
+          backgroundImage: MemoryImage(rawData),
         );
       } else {
         return HeadlessCupertinoButton(

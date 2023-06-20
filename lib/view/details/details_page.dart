@@ -1,3 +1,5 @@
+import 'package:JobSearch/view/details/widgets/detail_card.dart';
+import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -5,6 +7,7 @@ class DetailsPage extends HookConsumerWidget {
   const DetailsPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    final selectedJobModel = ref.watch(selectedJobModelProvider)!;
+    return SingleChildScrollView(child: DetailCard(selectedJobModel: selectedJobModel));
   }
 }

@@ -2,6 +2,7 @@ import 'package:JobSearch/model/data/job_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectedJobModelProvider = StateProvider.autoDispose<JobModel?>((ref) {
@@ -13,6 +14,7 @@ class JobCard extends HookConsumerWidget {
   final JobModel jobModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(selectedJobModelProvider, (previous, next) {});
     const companyEmoji = '\u{1F3E2}'; // display if on-site
     const locationEmoji = '\u{1F4CD}';
     const computerEmoji = '\u{1F4BB}'; // display if remote
@@ -29,7 +31,10 @@ class JobCard extends HookConsumerWidget {
         isHovering.value = false;
       },
       child: InkWell(
-          onTap: () {},
+          onTap: () {
+            ref.read(selectedJobModelProvider.notifier).state = jobModel;
+            context.go('/jobs/details');
+          },
           child: AnimatedContainer(
             clipBehavior: Clip.none,
             duration: const Duration(milliseconds: 250),
