@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileDashboardView extends HookConsumerWidget {
-  const ProfileDashboardView({super.key});
+  const ProfileDashboardView({super.key,required this.dataModel});
+  dynamic dataModel;
 
   Widget _buildProfileDashboard(int index) {
     switch (index) {
@@ -12,9 +13,7 @@ class ProfileDashboardView extends HookConsumerWidget {
           padding: EdgeInsets.only(left: 20, right: 20, top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProfileAvatar(radius: 75, userId: userId)
-            ],
+            children: [ProfileAvatar(radius: 75, userId: userId)],
           ),
         );
       case 1:
