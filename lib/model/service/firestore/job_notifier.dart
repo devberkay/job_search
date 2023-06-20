@@ -170,10 +170,18 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     }
     if(whatDoYouWantToDoFilterList.isNotEmpty) {
       if(query!=null) {
-        query = query.where("searchTokens", arrayContainsAny: writtenFilterList);
+        query = query.where("searchTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
       }
       else {
-        query = collectionRef.where("searchTokens", arrayContainsAny: writtenFilterList);
+        query = collectionRef.where("searchTokens", arrayContainsAny: whatDoYouWantToDoFilterList);
+      }
+    }
+    if(skillsFilterList.isNotEmpty) {
+      if(query!=null) {
+        query = query.where("searchTokens", arrayContainsAny: skillsFilterList);
+      }
+      else {
+        query = collectionRef.where("searchTokens", arrayContainsAny: skillsFilterList);
       }
     }
     if(orderBy!=null) {
