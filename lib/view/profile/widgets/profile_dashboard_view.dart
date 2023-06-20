@@ -11,7 +11,7 @@ class ProfileDashboardView extends HookConsumerWidget {
         return Container(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20),
           child: Column(
-            
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProfileAvatar(radius: 75, userId: userId)
             ],
