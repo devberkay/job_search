@@ -2,6 +2,7 @@ import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -54,15 +55,50 @@ class DetailSidebar extends HookConsumerWidget {
                         return SizedBox(height: 20);
                       },
                       itemBuilder: (context, index) {
-                        data.map<Widget>((jobModel) => HookConsumer(
-                          builder: (context,ref,child) {
-                            return MouseRegion(
-                              child: InkWell(onTap: () {
-                                
-                              },child: Container()),
-                            );
-                          }
-                        ));
+                        returndata.map<Widget>((jobModel) =>
+                            HookConsumer(builder: (context, ref, child) {
+                              final isHovering = useState(false);
+                              return MouseRegion(
+                                onEnter: (event) {
+                                  isHovering.value = true;
+                                },
+                                onExit: (event) {
+                                  isHovering.value = false;
+                                },
+                                child: InkWell(
+                                    onTap: () {},
+                                    child: AnimatedContainer(
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      transformAlignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border: Border.all(
+                                              color: Colors.grey.shade300),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey.shade500,
+                                                offset: Offset(
+                                                    isHovering.value ? -1 : 0,
+                                                    isHovering.value ? -1 : 0),
+                                                blurRadius:
+                                                    isHovering.value ? 1.25 : 0,
+                                                spreadRadius: isHovering.value
+                                                    ? 1.25
+                                                    : 0),
+                                            BoxShadow(
+                                                color: Colors.grey.shade500,
+                                                offset: Offset(
+                                                    isHovering.value ? 1 : 0,
+                                                    isHovering.value ? 1 : 0),
+                                                blurRadius:
+                                                    isHovering.value ? 1.25 : 0,
+                                                spreadRadius:
+                                                    isHovering.value ? 1.25 : 0)
+                                          ]),
+                                    )),
+                              );
+                            }));
                       },
                     ),
                   ),
