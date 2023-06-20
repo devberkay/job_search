@@ -16,7 +16,12 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
       return Container();
     }
     else {
-      return Container();
+      return Column(
+        children: [
+          ProfileAvatar(radius: 50, userId: usermodel.uid),
+          
+        ],
+      );
     }
   }
 }
