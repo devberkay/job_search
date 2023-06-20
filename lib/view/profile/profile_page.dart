@@ -17,7 +17,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     
     return  Row(
-      children: [ProfileSidebar(), Expanded(child: ProfileDashboardView())],
+      children: [ProfileSidebar(), Expanded(child: HookConsumer(
+        builder: (context,ref,child) {
+          
+          return ProfileDashboardView();
+        }
+      ))],
     );
   }
 }
