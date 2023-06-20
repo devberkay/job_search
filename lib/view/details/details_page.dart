@@ -8,6 +8,9 @@ class DetailsPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedJobModel = ref.watch(selectedJobModelProvider)!;
-    return SingleChildScrollView(child: DetailCard(selectedJobModel: selectedJobModel));
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: DetailCard(jobModel: selectedJobModel),
+    );
   }
 }
