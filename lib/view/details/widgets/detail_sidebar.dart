@@ -26,11 +26,16 @@ class DetailSidebar extends HookConsumerWidget {
             child: Row(
               children: [
                 HeadlessCupertinoButton(
+                  onPressed: () {
+                    
+                  },
+                  
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [Icon(Icons.arrow_back_ios_new_rounded, size: 16), Text("Edit filters",style: TextStyle(color: Colors.grey.shade400))],
                   ),
-                )
+                ),
+                Spacer()
               ],
             ),
           ),
