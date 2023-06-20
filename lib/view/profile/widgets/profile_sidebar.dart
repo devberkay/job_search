@@ -39,7 +39,8 @@ class ProfileSidebar extends HookConsumerWidget {
                       const SizedBox(width: 5),
                       Text("Edit profile",
                           style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black))
+                              color: isSelected ? Colors.white : Colors.black,
+                              fontWeight: FontWeight.w600))
                     ],
                   ));
             }),
@@ -64,7 +65,8 @@ class ProfileSidebar extends HookConsumerWidget {
                       const SizedBox(width: 5),
                       Text("Notifications",
                           style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black))
+                              color: isSelected ? Colors.white : Colors.black,
+                              fontWeight: FontWeight.w600))
                     ],
                   ));
             }),
@@ -89,7 +91,8 @@ class ProfileSidebar extends HookConsumerWidget {
                       const SizedBox(width: 5),
                       Text("My applications",
                           style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black))
+                              color: isSelected ? Colors.white : Colors.black,
+                              fontWeight: FontWeight.w600))
                     ],
                   ));
             }),
@@ -114,16 +117,16 @@ class ProfileSidebar extends HookConsumerWidget {
                       const SizedBox(width: 5),
                       Text("Create job post",
                           style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black))
+                              color: isSelected ? Colors.white : Colors.black,
+                              fontWeight: FontWeight.w600))
                     ],
                   ));
             }),
             const Spacer(),
             HookConsumer(builder: (context, ref, child) {
-              
               return FilledCupertinoButton(
                   onPressed: () {
-                    ref.read(sidebarIndexProvider.notifier).state = 3;
+                    
                   },
                   height: 75,
                   width: double.maxFinite,
@@ -132,12 +135,11 @@ class ProfileSidebar extends HookConsumerWidget {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.logout_sharp,
-                          color: Colors.white),
+                      Icon(Icons.logout_sharp, color: Colors.white),
                       SizedBox(width: 5),
                       Text("Sign out",
                           style: TextStyle(
-                              color: Colors.white))
+                              color: Colors.white, fontWeight: FontWeight.w600))
                     ],
                   ));
             })
