@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:JobSearch/view/details/details_page.dart';
 import 'package:JobSearch/view/jobs/jobs_page.dart';
 import 'package:JobSearch/view/profile/profile_page.dart';
+import 'package:JobSearch/view/shared/custom_slide_transition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,7 +22,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
     ShellRoute(
         navigatorKey: _shellNavigator,
         pageBuilder: ((context, state, child) {
-          return MaterialPage(
+          return CustomSlideTransition(
               key: state.pageKey,
               child: SharedScaffold(
                 key: state.pageKey,
@@ -32,7 +33,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
         routes: [
           GoRoute(
               path: "/",
-              pageBuilder: (context, state) => MaterialPage(
+              pageBuilder: (context, state) => CustomSlideTransition(
                   key: state.pageKey,
                   child: HomePage(
                     key: state.pageKey,
@@ -40,7 +41,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                   routes: [
                     GoRoute(
                       path: "jobs",
-                      pageBuilder: (context, state) => MaterialPage(
+                      pageBuilder: (context, state) => CustomSlideTransition(
                           key: state.pageKey,
                           child: JobsPage(
                             key: state.pageKey,
@@ -49,7 +50,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                         GoRoute(
                       path: "details",
                       name:"details",
-                      pageBuilder: (context, state) => MaterialPage(
+                      pageBuilder: (context, state) => CustomSlideTransition(
                           key: state.pageKey,
                           child: DetailsPage(
                             key: state.pageKey,
@@ -59,7 +60,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                     ),
                     GoRoute(
                       path: "profile",
-                      pageBuilder: (context, state) => MaterialPage(
+                      pageBuilder: (context, state) => CustomSlideTransition(
                           key: state.pageKey,
                           child: ProfilePage(
                             key: state.pageKey,
