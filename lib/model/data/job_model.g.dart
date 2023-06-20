@@ -35,6 +35,9 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
           (json['preferredQualifications'] as List<dynamic>)
               .map((e) => e as String)
               .toList(),
+      questionnaire: (json['questionnaire'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
@@ -56,4 +59,5 @@ Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
       'responsibilities': instance.responsibilities,
       'minimumQualifications': instance.minimumQualifications,
       'preferredQualifications': instance.preferredQualifications,
+      'questionnaire': instance.questionnaire,
     };

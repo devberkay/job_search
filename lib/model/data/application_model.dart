@@ -14,7 +14,8 @@ class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     required Map<String,String> questionnaireAnswers,
     required String uid,
-    required String jobId
+    required String jobId,
+    required dynamic timestampField
   }) = _ApplicationModel;
 
   factory ApplicationModel.fromJson(Map<String, Object?> json) =>
