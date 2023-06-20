@@ -21,6 +21,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
     final isSelf = userModel.uid == user!.uid;
     if (isSelf) {
       return ListView(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         children: [
           ProfileAvatar(radius: 50, userId: userModel.uid),
           const SizedBox(height: 30),
@@ -181,20 +182,22 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               valueListenable: draftUserModelNotifier,
               builder: (context, draftModel, child) {
                 return FilledCupertinoButton(
+                    onPressed: () {
+                      if (draftModel != userModel) {}
+                    },
+                    height: 50,
+                    width: 150,
+                    fillColor: (draftModel != userModel)
+                        ? Colors.blueAccent
+                        : Colors.grey.shade400,
+                    borderRadius: BorderRadius.circular(5),
                     child: Text("Save changes",
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 15,
                             color: (draftModel != userModel)
                                 ? Colors.white
-                                : Colors.grey.shade500)),
-                    onPressed: () {},
-                    height: 50,
-                    width: 150,
-                    fillColor: (draftModel != userModel)
-                        ? Colors.blueAccent
-                        : Colors.grey.shade400,
-                    borderRadius: BorderRadius.circular(5));
+                                : Colors.grey.shade500)));
               })
         ],
       );
