@@ -41,6 +41,11 @@ class FilterSidebar extends HookConsumerWidget {
                     ref.invalidate(degreesSetProvider);
                     ref.invalidate(jobTypesSetProvider);
                     ref.invalidate(isRemoteEligibleProvider);
+                    whatDoYouWantToDoListNotifier.value = [];
+                    skillsNotifier.value = [];
+                    degreesNotifier.value = {};
+                    jobTypesNotifier.value = {};
+                    isRemoteEligibleNotifier.value = false;
                   })
             ],
           ),

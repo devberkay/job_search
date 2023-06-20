@@ -15,7 +15,15 @@ class SortDropdownButton extends HookConsumerWidget {
       onChanged: (value) {
         debugPrint("sortBy : $value");
         selectedSortBy.value = value!;
-        ref.read(orderByProvider.notifier).state = value;
+        if(value == "Salary") {
+          ref.read(orderByProvider.notifier).state = "salaryPerHour";
+        }
+        else if(value == "No of applicants") {
+          ref.read(orderByProvider.notifier).state = "applicantCounter";
+        }
+        else {
+          ref.read(orderByProvider.notifier).state = null;
+        }
       },
       value: selectedSortBy.value,
       items: <String>['Relevance', 'Salary', 'No of applicants']
