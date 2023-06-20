@@ -27,7 +27,7 @@ mixin _$UserModel {
   String? get bio => throw _privateConstructorUsedError;
   String? get mail => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  dynamic get birthDay => throw _privateConstructorUsedError;
+  int? get age => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? bio,
       String? mail,
       String? phone,
-      dynamic birthDay});
+      int? age});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? bio = freezed,
     Object? mail = freezed,
     Object? phone = freezed,
-    Object? birthDay = freezed,
+    Object? age = freezed,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -102,10 +102,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDay: freezed == birthDay
-          ? _value.birthDay
-          : birthDay // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      age: freezed == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -125,7 +125,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? bio,
       String? mail,
       String? phone,
-      dynamic birthDay});
+      int? age});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? bio = freezed,
     Object? mail = freezed,
     Object? phone = freezed,
-    Object? birthDay = freezed,
+    Object? age = freezed,
   }) {
     return _then(_$_UserModel(
       uid: null == uid
@@ -177,10 +177,10 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDay: freezed == birthDay
-          ? _value.birthDay
-          : birthDay // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      age: freezed == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -196,7 +196,7 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
       this.bio,
       this.mail,
       this.phone,
-      this.birthDay});
+      this.age});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -217,11 +217,11 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   @override
   final String? phone;
   @override
-  final dynamic birthDay;
+  final int? age;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserModel(uid: $uid, name: $name, surname: $surname, sex: $sex, bio: $bio, mail: $mail, phone: $phone, birthDay: $birthDay)';
+    return 'UserModel(uid: $uid, name: $name, surname: $surname, sex: $sex, bio: $bio, mail: $mail, phone: $phone, age: $age)';
   }
 
   @override
@@ -236,7 +236,7 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
       ..add(DiagnosticsProperty('bio', bio))
       ..add(DiagnosticsProperty('mail', mail))
       ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('birthDay', birthDay));
+      ..add(DiagnosticsProperty('age', age));
   }
 
   @override
@@ -251,13 +251,13 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.mail, mail) || other.mail == mail) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            const DeepCollectionEquality().equals(other.birthDay, birthDay));
+            (identical(other.age, age) || other.age == age));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, surname, sex, bio,
-      mail, phone, const DeepCollectionEquality().hash(birthDay));
+  int get hashCode =>
+      Object.hash(runtimeType, uid, name, surname, sex, bio, mail, phone, age);
 
   @JsonKey(ignore: true)
   @override
@@ -282,7 +282,7 @@ abstract class _UserModel implements UserModel {
       final String? bio,
       final String? mail,
       final String? phone,
-      final dynamic birthDay}) = _$_UserModel;
+      final int? age}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -302,7 +302,7 @@ abstract class _UserModel implements UserModel {
   @override
   String? get phone;
   @override
-  dynamic get birthDay;
+  int? get age;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

@@ -19,8 +19,7 @@ class UserModel with _$UserModel {
     String? bio,
     String? mail,
     String? phone,
-    dynamic
-        birthDay, // shown in profile with "joined at $createdAt" title
+    int? age, 
     
   }) = _UserModel;
 
