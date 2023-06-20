@@ -89,7 +89,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
                   "Creative roles",
                   "Sales roles"
                 ]),
-       writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList)) : ;
+       writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList) : Filter("searchTokens",isNull: false));
     }
 
     final firestore = ref.watch(firestoreProvider);
