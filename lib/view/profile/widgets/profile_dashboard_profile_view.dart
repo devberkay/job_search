@@ -31,7 +31,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(name: value);
                     },
                     maxLines: 5,
@@ -59,7 +59,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(name: value);
                     },
                     maxLines: 1,
@@ -80,7 +80,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(surname: value);
                     },
                     maxLines: 1,
@@ -105,7 +105,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(phone: value);
                     },
                     maxLines: 1,
@@ -126,7 +126,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(mail: value);
                     },
                     maxLines: 1,
@@ -147,7 +147,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(name: value);
                     },
                     maxLines: 1,
@@ -168,7 +168,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   const SizedBox(height: 10),
                   CupertinoTextField(
                     onChanged: (value) {
-                      ref.read(draftUserModelProvider.notifier).state =
+                      ref.read(draftUserModelProvider(userModel.uid).notifier).state =
                           userModel.copyWith(surname: value);
                     },
                     maxLines: 1,
