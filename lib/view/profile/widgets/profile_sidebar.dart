@@ -115,7 +115,7 @@ class ProfileSidebar extends HookConsumerWidget {
                       Icon(Icons.add_box_sharp,
                           color: isSelected ? Colors.white : Colors.black),
                       const SizedBox(width: 5),
-                      Text("Create job post",
+                      Text("Manage job post",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w600))
