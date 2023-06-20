@@ -127,7 +127,12 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       }
     }
     if(orderBy!=null) {
-      query = query.orderBy(orderBy);
+      if(query!=null) {
+        query = query.orderBy(orderBy);
+      }
+      else {
+        collectionRef = collectionRef.orderBy(orderBy);
+      }
     }
 
     if (lastJobDoc != null) {
