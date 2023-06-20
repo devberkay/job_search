@@ -215,7 +215,7 @@ class JobNotifier extends AutoDisposeFamilyAsyncNotifier<List<JobModel>?,bool> {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
       }).toList();
       debugPrint("jobNotifier-4");
-      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.last;
+      ref.read(lastJobDocProvider.notifier).state = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
       debugPrint("jobModels : $jobModels");
       return jobModels;
     }

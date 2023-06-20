@@ -6,6 +6,7 @@ import 'package:JobSearch/model/provider/storage/storage_picture_provider.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:http/http.dart' as http;
@@ -20,7 +21,9 @@ class ProfileAvatar extends HookConsumerWidget {
     return rawData.when(data: (rawData) {
       if (rawData != null) {
         return HeadlessCupertinoButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go("/profile");
+          },
           child: CircleAvatar(
             radius: radius,
             backgroundImage: MemoryImage(rawData),
@@ -28,7 +31,9 @@ class ProfileAvatar extends HookConsumerWidget {
         );
       } else {
         return HeadlessCupertinoButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go("/profile");
+          },
           child: Container(
               height: radius,
               width: radius,

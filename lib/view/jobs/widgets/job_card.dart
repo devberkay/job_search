@@ -94,7 +94,7 @@ class JobCard extends HookConsumerWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("$moneyEmoji ${jobModel.salaryPerHour}/hr",
+                        Text("$moneyEmoji \$${jobModel.salaryPerHour}/hr",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
