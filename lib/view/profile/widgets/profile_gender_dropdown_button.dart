@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/profile/widgets/profile_dashboard_profile_view.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
@@ -7,19 +8,19 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileSexDropdownButton extends HookConsumerWidget {
-  const ProfileSexDropdownButton({super.key,required this.uid});
-  final String uid;
+  const ProfileSexDropdownButton(
+      {super.key, required this.draftUserModelNotifier});
+  final ValueNotifier<UserModel> draftUserModelNotifier;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final draftModel = ref.watch(draftUserModelProvider(uid));
-    final draftSex = draftModel?.sex;
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
-        ref.read(draftUserModelProvider(uid).notifier).state = draftModel.copyWith()
+        draftUserModelNotifier.value =
+            draftUserModelNotifier.value.copyWith(sex: value);
       },
-      value: draftSex,
+      value: draftUserModelNotifier.value,
       items: <String>['Woman', 'Man']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
