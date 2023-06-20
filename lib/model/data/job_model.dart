@@ -29,6 +29,7 @@ class JobModel with _$JobModel {
     required List<String> responsibilities,
     required List<String> minimumQualifications,
     required List<String> preferredQualifications,
+    required List<String>? questionnaire
   }) = _JobModel;
 
   factory JobModel.fromJson(Map<String, Object?> json) =>
