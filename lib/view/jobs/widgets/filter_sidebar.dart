@@ -315,7 +315,7 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          
+                                          //mayComeBack
                                         },
                                       ),
                                       Text("Associate",
@@ -328,30 +328,30 @@ class FilterSidebar extends HookConsumerWidget {
                               }),
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(degreesSetProvider);
-                                final isContain = items.contains("Associate");
+                                final isContain = items.contains("Bachelor's");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isBachelor.value) {
-                                      var temp = degreesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Bachelor's");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = degreesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Bachelor's");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isBachelor.value = !isBachelor.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isBachelor.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isBachelor.value = value ?? false;
+                                          //mayComeBack
                                         },
                                       ),
                                       Text("Bachelor's",
@@ -363,30 +363,31 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isMaster = useState(false);
+                                final items = ref.watch(degreesSetProvider);
+                                final isContain = items.contains("Master's");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isMaster.value) {
-                                      var temp = degreesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Master's");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = degreesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Master's");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isMaster.value = !isMaster.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       CupertinoCheckbox(
-                                        value: isMaster.value,
+                                        value: isContain,
                                         side: BorderSide(
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          isMaster.value = value ?? false;
+                                          //mayComeBack
                                         },
                                       ),
                                       Text("Master's",
@@ -398,19 +399,20 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isPhd = useState(false);
+                                final items = ref.watch(degreesSetProvider);
+                                final isContain = items.contains("Ph.D.");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isPhd.value) {
-                                      var temp = degreesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Ph.D.");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = degreesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Ph.D.");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isPhd.value = !isPhd.value;
+                                    
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 9.0),
@@ -418,12 +420,12 @@ class FilterSidebar extends HookConsumerWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         CupertinoCheckbox(
-                                          value: isPhd.value,
+                                          value: isContain,
                                           side: BorderSide(
                                               color: Colors.grey.shade400,
                                               width: 2),
                                           onChanged: (value) {
-                                            isPhd.value = value ?? false;
+                                            //mayComeBack
                                           },
                                         ),
                                         Text("Ph.D.",
@@ -436,19 +438,20 @@ class FilterSidebar extends HookConsumerWidget {
                                 );
                               }),
                               HookConsumer(builder: (context, ref, child) {
-                                final isPursuing = useState(false);
+                                final items = ref.watch(degreesSetProvider);
+                                final isContain = items.contains("Ph.D.");
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isPursuing.value) {
-                                      var temp = degreesNotifier.value;
+                                    if (!isContain) {
+                                      var temp = items;
                                       temp.add("Pursuing degree");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     } else {
-                                      var temp = degreesNotifier.value;
+                                      var temp = items;
                                       temp.remove("Pursuing degree");
-                                      degreesNotifier.value = Set.from(temp);
+                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
                                     }
-                                    isPursuing.value = !isPursuing.value;
+                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
