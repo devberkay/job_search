@@ -66,8 +66,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         Filter("isRemote", isEqualTo: isRemoteEligibleFilter),
         Filter("jobType", whereIn: jobTypesFilterSet.toList()),
         Filter("searchTokens",
-            arrayContainsAny: whatDoYouWantToDoFilterList),")
-        
+            arrayContainsAny: [...whatDoYouWantToDoFilterList,...skillsFilterList])
         );
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
@@ -76,7 +75,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       debugPrint("jobNotifier-0");
       if (whatDoYouWantToDoFilterList.isNotEmpty) {}
       final snapshot =
-          await collectionRef.startAfterDocument(lastJobDoc).limit(15).get();
+          await collectionRef.startAfterDocument(lastJobDoc).where(filters).limit(15).get();
       debugPrint("jobNotifier-1");
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
@@ -87,7 +86,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     } else {
       debugPrint("jobNotifier-2");
 
-      final snapshot = await collectionRef.limit(15).get();
+      final snapshot = await collectionRef.where(filters).limit(15).get();
       debugPrint("jobNotifier-3");
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
