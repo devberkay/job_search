@@ -6,21 +6,58 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+
 final orderByProvider = StateProvider<String?>((ref) {
   return null;
 });
 
-final whatDoYouWantToDoListProvider = StateProvider<List<String>>((ref) { // search in title
-  return [];
-});
+final whatDoYouWantToDoListProvider = NotifierProvider<WhatDoYouWantToDoListNotifier,List<String>>(WhatDoYouWantToDoListNotifier.new);
 
-final skillsListProvider = StateProvider<List<String>>((ref) {
-  return [];
-});
+class WhatDoYouWantToDoListNotifier extends Notifier<List<String>> {
+  @override
+   build() {
+    return [];
+  }
+  void add(String value) {
+    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+  }
+  void remove(String value) {
+    state = [...state]..remove(value);
+  }
+}
 
-final degreesSetProvider = StateProvider<Set<String>>((ref) {
-  return {};
-});
+final skillsListProvider = NotifierProvider<SkillsListNotifier, List<String>>(SkillsListNotifier.new);
+
+
+class SkillsListNotifier extends Notifier<List<String>> {
+  @override
+   build() {
+    return [];
+  }
+  void add(String value) {
+    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+  }
+  void remove(String value) {
+    state = [...state]..remove(value);
+  }
+}
+
+
+final degreesSetProvider = NotifierProvider<DegreesSetNotifier,Set<String> >(DegreesSetNotifier.new);
+
+class DegreesSetNotifier extends Notifier<Set<String>> {
+  @override
+   build() {
+    return [];
+  }
+  void add(String value) {
+    state = [...state, value,value.toLowerCase(),value[0].toUpperCase() + value.substring(1)];
+  }
+  void remove(String value) {
+    state = [...state]..remove(value);
+  }
+}
+
 
 final jobTypesSetProvider = StateProvider<Set<String>>((ref) {
   return {};

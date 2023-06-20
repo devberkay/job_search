@@ -245,7 +245,9 @@ class FilterSidebar extends HookConsumerWidget {
                               onSubmitted: (value) {
                                 var temp = items;
                                 temp.addAll(value.split(" "));
-                                ref.read(skillsListProvider.notifier).state = [...temp];
+                                ref.read(skillsListProvider.notifier).state = [
+                                  ...temp
+                                ];
                                 controller.clear();
                               },
                               placeholderStyle: TextStyle(
@@ -290,7 +292,6 @@ class FilterSidebar extends HookConsumerWidget {
                             runSpacing: 5,
                             children: [
                               HookConsumer(builder: (context, ref, child) {
-                                
                                 final items = ref.watch(degreesSetProvider);
                                 final isContain = items.contains("Associate");
                                 return GestureDetector(
@@ -298,13 +299,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Associate");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Associate");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -315,15 +319,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                           if (value==true) {
-                                      var temp = items;
-                                      temp.add("Associate");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
-                                    } else {
-                                      var temp = items;
-                                      temp.remove("Associate");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
-                                    }
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Associate");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Associate");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Associate",
@@ -342,13 +352,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Bachelor's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Bachelor's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -359,15 +372,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                           if (value==true) {
-                                      var temp = items;
-                                      temp.add("Bachelor's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
-                                    } else {
-                                      var temp = items;
-                                      temp.remove("Bachelor's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
-                                    }
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Bachelor's");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Bachelor's");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Bachelor's",
@@ -386,13 +405,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Master's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Master's");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -403,7 +425,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Master's");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Master's");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Master's",
@@ -422,13 +458,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Ph.D.");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Ph.D.");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 9.0),
@@ -441,7 +480,21 @@ class FilterSidebar extends HookConsumerWidget {
                                               color: Colors.grey.shade400,
                                               width: 2),
                                           onChanged: (value) {
-                                            //mayComeBack
+                                            if (value == true) {
+                                              var temp = items;
+                                              temp.add("Ph.D.");
+                                              ref
+                                                  .read(degreesSetProvider
+                                                      .notifier)
+                                                  .state = Set.from(temp);
+                                            } else {
+                                              var temp = items;
+                                              temp.remove("Ph.D.");
+                                              ref
+                                                  .read(degreesSetProvider
+                                                      .notifier)
+                                                  .state = Set.from(temp);
+                                            }
                                           },
                                         ),
                                         Text("Ph.D.",
@@ -461,13 +514,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Pursuing degree");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Pursuing degree");
-                                      ref.read(degreesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(degreesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -478,7 +534,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Pursuing degree");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Pursuing degree");
+                                            ref
+                                                .read(
+                                                    degreesSetProvider.notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Pursuing degree",
@@ -517,19 +587,23 @@ class FilterSidebar extends HookConsumerWidget {
                             children: [
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(jobTypesSetProvider);
-                                final isContain = items.contains("White-collar roles");
+                                final isContain =
+                                    items.contains("White-collar roles");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("White-collar roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("White-collar roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -540,7 +614,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("White-collar roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("White-collar roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("White-collar roles",
@@ -555,19 +643,23 @@ class FilterSidebar extends HookConsumerWidget {
                               }),
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(jobTypesSetProvider);
-                                final isContain = items.contains("Blue-collar roles");
+                                final isContain =
+                                    items.contains("Blue-collar roles");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Blue-collar roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Blue-collar roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -578,7 +670,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Blue-collar roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Blue-collar roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Blue-collar roles",
@@ -597,13 +703,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("IT roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("IT roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -614,7 +723,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("IT roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("IT roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("IT roles                  ",
@@ -633,13 +756,16 @@ class FilterSidebar extends HookConsumerWidget {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Sales roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Sales roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -650,7 +776,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Sales roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Sales roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Sales roles",
@@ -663,19 +803,23 @@ class FilterSidebar extends HookConsumerWidget {
                               }),
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(jobTypesSetProvider);
-                                final isContain = items.contains("Management roles");
+                                final isContain =
+                                    items.contains("Management roles");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Management roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Management roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -686,7 +830,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Management roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Management roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Manager roles      ",
@@ -699,19 +857,23 @@ class FilterSidebar extends HookConsumerWidget {
                               }),
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(jobTypesSetProvider);
-                                final isContain = items.contains("Creative roles");
+                                final isContain =
+                                    items.contains("Creative roles");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Creative roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     } else {
                                       var temp = items;
                                       temp.remove("Creative roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = Set.from(temp);
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = Set.from(temp);
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -722,7 +884,21 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Creative roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          } else {
+                                            var temp = items;
+                                            temp.remove("Creative roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = Set.from(temp);
+                                          }
                                         },
                                       ),
                                       Text("Creative roles",
@@ -735,19 +911,23 @@ class FilterSidebar extends HookConsumerWidget {
                               }),
                               HookConsumer(builder: (context, ref, child) {
                                 final items = ref.watch(jobTypesSetProvider);
-                                final isContain = items.contains("Vehicle-driving roles");
+                                final isContain =
+                                    items.contains("Vehicle-driving roles");
                                 return GestureDetector(
                                   onTap: () {
                                     if (!isContain) {
                                       var temp = items;
                                       temp.add("Vehicle-driving roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = temp;
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = temp;
                                     } else {
                                       var temp = items;
                                       temp.remove("Vehicle-driving roles");
-                                      ref.read(jobTypesSetProvider.notifier).state = temp;
+                                      ref
+                                          .read(jobTypesSetProvider.notifier)
+                                          .state = temp;
                                     }
-                                    
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -758,7 +938,23 @@ class FilterSidebar extends HookConsumerWidget {
                                             color: Colors.grey.shade400,
                                             width: 2),
                                         onChanged: (value) {
-                                          //mayComeBack2
+                                          debugPrint("cenkhoca: $value");
+                                          if (value == true) {
+                                            var temp = items;
+                                            temp.add("Vehicle-driving roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = temp;
+                                          } else {
+                                            var temp = items;
+                                            temp.remove(
+                                                "Vehicle-driving roles");
+                                            ref
+                                                .read(jobTypesSetProvider
+                                                    .notifier)
+                                                .state = temp;
+                                          }
                                         },
                                       ),
                                       Text("Vehicle-driving roles",
@@ -780,7 +976,7 @@ class FilterSidebar extends HookConsumerWidget {
           // const SizedBox(height: 50),
           // FilledCupertinoButton(
           //     onPressed: () {
-                
+
           //     },
           //     height: 50,
           //     width: double.maxFinite,
