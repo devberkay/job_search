@@ -18,7 +18,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final draftUserModelNotifier = useValueNotifier(userModel);
     final nameController = useTextEditingController(text: userModel.name);
-    final lastNameController = useTextEditingController(text: userModel.surname);
+    final lastNameController =
+        useTextEditingController(text: userModel.surname);
     final phoneController = useTextEditingController(text: userModel.phone);
     final emailController = useTextEditingController(text: userModel.mail);
     final bioController = useTextEditingController(text: userModel.bio);
@@ -43,6 +44,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                 },
                 maxLines: 5,
                 placeholder: "Write something about yourself",
+                style: TextStyle(
+                    color: Colors.grey.shade600, fontWeight: FontWeight.w600),
                 placeholderStyle: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -74,6 +77,14 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         draftUserModelNotifier.value =
                             draftUserModelNotifier.value.copyWith(name: value);
                       },
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600),
+                      placeholder: "Enter your last name",
+                      placeholderStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400),
                       maxLines: 1,
                       maxLength: 20,
                       padding: const EdgeInsets.all(10),
@@ -102,8 +113,16 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             .value
                             .copyWith(surname: value);
                       },
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600),
+                      placeholder: "Enter your last name",
+                      placeholderStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400),
                       maxLines: 1,
-                      maxLength: 20,
+                      maxLength: 25,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.grey.shade200,
@@ -134,7 +153,15 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             draftUserModelNotifier.value.copyWith(phone: value);
                       },
                       maxLines: 1,
-                      maxLength: 15,
+                      maxLength: 25,
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600),
+                      placeholder: "Enter your phone number with country code",
+                      placeholderStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.grey.shade200,
@@ -227,7 +254,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             fontSize: 15,
                             color: (draftModel != userModel)
                                 ? Colors.white
-                                : Colors.grey.shade500)));
+                                : Colors.grey.shade400)));
               })
         ],
       );
