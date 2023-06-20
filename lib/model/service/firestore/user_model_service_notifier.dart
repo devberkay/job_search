@@ -20,6 +20,6 @@ class UserModelServiceNotifier extends AutoDisposeAsyncNotifier<void> {
     final docRef = collectionRef.doc(draftUserModel.uid);
     await docRef.update(draftUserModel.toJson());
     ref.invalidate(userModelProvider);
-    state = AsyncData(null);
+    state = AsyncData("OK");
   }
 }

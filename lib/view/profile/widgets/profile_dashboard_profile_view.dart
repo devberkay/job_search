@@ -42,7 +42,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               CupertinoTextField(
                 onChanged: (value) {
                   draftUserModelNotifier.value =
-                      draftUserModelNotifier.value.copyWith(name: value);
+                      draftUserModelNotifier.value.copyWith(bio: value);
                 },
                 maxLines: 5,
                 placeholder: "Write something about yourself",
@@ -82,7 +82,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       style: TextStyle(
                           color: Colors.grey.shade600,
                           fontWeight: FontWeight.w600),
-                      placeholder: "Enter your last name",
+                      placeholder: "Enter your name",
                       placeholderStyle: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
