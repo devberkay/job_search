@@ -199,6 +199,7 @@ class FilterSidebar extends HookConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ValueListenableBuilder(
                               valueListenable: skillsNotifier,

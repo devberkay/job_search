@@ -61,37 +61,35 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     final degreesFilterSet = ref.watch(degreesSetProvider);
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
     final isRemoteEligibleFilterBoolean = ref.watch(isRemoteEligibleProvider);
-    Filter filters;
+    // Filter filters;
     final writtenFilterList = [
       ...whatDoYouWantToDoFilterList,
       ...skillsFilterList];
-     filters = Filter.and(
-          degreesFilterSet.toList().isNotEmpty
-              ? Filter("degree", whereIn: degreesFilterSet.toList())
-              : Filter("degree", whereIn: [
-                  "Associate"
-                      "Bachelor’s"
-                      "Master’s"
-                      "Ph.D."
-                      "Pursuing Degree"
-                ]),
-          Filter("isRemote", isEqualTo: isRemoteEligibleFilterBoolean),
-          jobTypesFilterSet.isNotEmpty
-              ? Filter("jobType", whereIn: jobTypesFilterSet.toList())
-              : Filter("jobType", whereIn: [
-                  "White-collar roles",
-                  "Blue-collar roles",
-                  "IT roles",
-                  "Vehicle-driving roles",
-                  "Management roles",
-                  "Creative roles",
-                  "Sales roles"
-                ]),
-       writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList) : Filter("searchTokens",isNull: false));
+    //  filters = Filter.and(
+    //       degreesFilterSet.toList().isNotEmpty
+    //           ? Filter("degree", whereIn: degreesFilterSet.toList())
+    //           : Filter("degree", whereIn: [
+    //               "Associate"
+    //                   "Bachelor’s"
+    //                   "Master’s"
+    //                   "Ph.D."
+    //                   "Pursuing Degree"
+    //             ]),
+    //       Filter("isRemote", isEqualTo: isRemoteEligibleFilterBoolean),
+    //       jobTypesFilterSet.isNotEmpty
+    //           ? Filter("jobType", whereIn: jobTypesFilterSet.toList())
+    //           : Filter("jobType", whereIn: [
+    //               "White-collar roles",
+    //               "Blue-collar roles",
+    //               "IT roles",
+    //               "Vehicle-driving roles",
+    //               "Management roles",
+    //               "Creative roles",
+    //               "Sales roles"
+    //             ]),
+    //    writtenFilterList.isNotEmpty ?   Filter("searchTokens", arrayContainsAny: writtenFilterList) : Filter("searchTokens",isNull: false));
   
-    if (degreesFilterSet.isNotEmpty) {
-      
-    }
+ 
 
     final firestore = ref.watch(firestoreProvider);
     var collectionRef = firestore.collection("jobPosts");
@@ -101,7 +99,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
       if (whatDoYouWantToDoFilterList.isNotEmpty) {}
       final snapshot = await collectionRef
           .startAfterDocument(lastJobDoc)
-          .where(filters)
+          
           .limit(15)
           .get();
       debugPrint("jobNotifier-1");
@@ -114,7 +112,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     } else {
       debugPrint("jobNotifier-2");
 
-      final snapshot = await collectionRef.where(filters).limit(15).get();
+      final snapshot = await collectionRef.limit(15).get();
       debugPrint("jobNotifier-3");
       final jobModels = snapshot.docs.map((e) {
         return JobModel.fromJson(e.data()).copyWith(jobId: e.id);
