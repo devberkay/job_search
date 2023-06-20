@@ -60,9 +60,11 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                     ),
                     GoRoute(
                       path: "profile",
+                      name: "profile",
                       pageBuilder: (context, state) => CustomSlideTransition(
                           key: state.pageKey,
                           child: ProfilePage(
+                            userId: state.pathParameters["userId"]!,
                             key: state.pageKey,
                           )),
                     ),
