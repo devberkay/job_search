@@ -72,6 +72,9 @@ class FilterSidebar extends HookConsumerWidget {
               controller: controller,
               placeholder: "Software Engineering, Design, Sales",
               onSubmitted: (value) {
+                ref.invalidate(jobTypesSetProvider);
+                ref.invalidate(degreesSetProvider);
+                
                 ref
                     .read(whatDoYouWantToDoListProvider.notifier)
                     .add(value.split(" "));
