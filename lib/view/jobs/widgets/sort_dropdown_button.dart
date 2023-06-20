@@ -21,12 +21,15 @@ class SortDropdownButton extends HookConsumerWidget {
         else if(value == "No of applicants") {
           ref.read(orderByProvider.notifier).state = "applicantCounter";
         }
+        else if(value == "Date") {
+          ref.read(orderByProvider.notifier).state = "timestampField";
+        }
         else {
           ref.read(orderByProvider.notifier).state = null;
         }
       },
       value: selectedSortBy.value,
-      items: <String>['Relevance', 'Salary', 'No of applicants']
+      items: <String>['Relevance', 'Salary', 'No of applicants','Date']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
