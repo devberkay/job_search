@@ -60,12 +60,12 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         .toList();
     final degreesFilterSet = ref.watch(degreesSetProvider);
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
-    final isRemoteEligibleFilter = ref.watch(isRemoteEligibleProvider);
+    final isRemoteEligibleFilterBoolean = ref.watch(isRemoteEligibleProvider);
     var filters = <Filter>[];
     if(degreesFilterSet.isNotEmpty) {
       final filters = Filter.and(
         Filter("degree", whereIn: degreesFilterSet.toList()),
-        Filter("isRemote", isEqualTo: isRemoteEligibleFilter),
+        Filter("isRemote", isEqualTo: isRemoteEligibleFilterBoolean),
         Filter("jobType", whereIn: jobTypesFilterSet.toList()),
         Filter("searchTokens",
             arrayContainsAny: [...whatDoYouWantToDoFilterList,...skillsFilterList])
