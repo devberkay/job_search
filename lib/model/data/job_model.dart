@@ -13,6 +13,7 @@ part 'job_model.g.dart';
 class JobModel with _$JobModel {
   const factory JobModel({
     required String title,
+    required List<String> titleTokens,
     required String degree, 
     required String jobType,
     required bool isRemote, // man or woman

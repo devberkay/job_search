@@ -21,6 +21,7 @@ JobModel _$JobModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$JobModel {
   String get title => throw _privateConstructorUsedError;
+  List<String> get titleTokens => throw _privateConstructorUsedError;
   String get degree => throw _privateConstructorUsedError;
   String get jobType => throw _privateConstructorUsedError;
   bool get isRemote => throw _privateConstructorUsedError; // man or woman
@@ -50,6 +51,7 @@ abstract class $JobModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String title,
+      List<String> titleTokens,
       String degree,
       String jobType,
       bool isRemote,
@@ -80,6 +82,7 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
   @override
   $Res call({
     Object? title = null,
+    Object? titleTokens = null,
     Object? degree = null,
     Object? jobType = null,
     Object? isRemote = null,
@@ -100,6 +103,10 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      titleTokens: null == titleTokens
+          ? _value.titleTokens
+          : titleTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       degree: null == degree
           ? _value.degree
           : degree // ignore: cast_nullable_to_non_nullable
@@ -169,6 +176,7 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String title,
+      List<String> titleTokens,
       String degree,
       String jobType,
       bool isRemote,
@@ -197,6 +205,7 @@ class __$$_JobModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
+    Object? titleTokens = null,
     Object? degree = null,
     Object? jobType = null,
     Object? isRemote = null,
@@ -217,6 +226,10 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      titleTokens: null == titleTokens
+          ? _value._titleTokens
+          : titleTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       degree: null == degree
           ? _value.degree
           : degree // ignore: cast_nullable_to_non_nullable
@@ -282,6 +295,7 @@ class __$$_JobModelCopyWithImpl<$Res>
 class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   const _$_JobModel(
       {required this.title,
+      required final List<String> titleTokens,
       required this.degree,
       required this.jobType,
       required this.isRemote,
@@ -296,7 +310,8 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required final List<String> responsibilities,
       required final List<String> minimumQualifications,
       required final List<String> preferredQualifications})
-      : _searchTokens = searchTokens,
+      : _titleTokens = titleTokens,
+        _searchTokens = searchTokens,
         _responsibilities = responsibilities,
         _minimumQualifications = minimumQualifications,
         _preferredQualifications = preferredQualifications;
@@ -306,6 +321,14 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
 
   @override
   final String title;
+  final List<String> _titleTokens;
+  @override
+  List<String> get titleTokens {
+    if (_titleTokens is EqualUnmodifiableListView) return _titleTokens;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_titleTokens);
+  }
+
   @override
   final String degree;
   @override
@@ -364,7 +387,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobModel(title: $title, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, jobId: $jobId, responsibilities: $responsibilities, minimumQualifications: $minimumQualifications, preferredQualifications: $preferredQualifications)';
+    return 'JobModel(title: $title, titleTokens: $titleTokens, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, jobId: $jobId, responsibilities: $responsibilities, minimumQualifications: $minimumQualifications, preferredQualifications: $preferredQualifications)';
   }
 
   @override
@@ -373,6 +396,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
     properties
       ..add(DiagnosticsProperty('type', 'JobModel'))
       ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('titleTokens', titleTokens))
       ..add(DiagnosticsProperty('degree', degree))
       ..add(DiagnosticsProperty('jobType', jobType))
       ..add(DiagnosticsProperty('isRemote', isRemote))
@@ -396,6 +420,8 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
         (other.runtimeType == runtimeType &&
             other is _$_JobModel &&
             (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality()
+                .equals(other._titleTokens, _titleTokens) &&
             (identical(other.degree, degree) || other.degree == degree) &&
             (identical(other.jobType, jobType) || other.jobType == jobType) &&
             (identical(other.isRemote, isRemote) ||
@@ -428,6 +454,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   int get hashCode => Object.hash(
       runtimeType,
       title,
+      const DeepCollectionEquality().hash(_titleTokens),
       degree,
       jobType,
       isRemote,
@@ -460,6 +487,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
 abstract class _JobModel implements JobModel {
   const factory _JobModel(
       {required final String title,
+      required final List<String> titleTokens,
       required final String degree,
       required final String jobType,
       required final bool isRemote,
@@ -479,6 +507,8 @@ abstract class _JobModel implements JobModel {
 
   @override
   String get title;
+  @override
+  List<String> get titleTokens;
   @override
   String get degree;
   @override

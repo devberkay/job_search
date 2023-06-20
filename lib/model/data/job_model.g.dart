@@ -8,6 +8,9 @@ part of 'job_model.dart';
 
 _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
       title: json['title'] as String,
+      titleTokens: (json['titleTokens'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       degree: json['degree'] as String,
       jobType: json['jobType'] as String,
       isRemote: json['isRemote'] as bool,
@@ -36,6 +39,7 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
 Map<String, dynamic> _$$_JobModelToJson(_$_JobModel instance) =>
     <String, dynamic>{
       'title': instance.title,
+      'titleTokens': instance.titleTokens,
       'degree': instance.degree,
       'jobType': instance.jobType,
       'isRemote': instance.isRemote,
