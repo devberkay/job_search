@@ -22,37 +22,30 @@ class DetailSidebar extends HookConsumerWidget {
             if (data != null) {
               return Column(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        border: Border.symmetric(
-                            horizontal:
-                                BorderSide(color: Colors.grey.shade300))),
-                    child: Row(
-                      children: [
-                        HeadlessCupertinoButton(
-                          onPressed: () {
-                            context.go("/jobs");
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios_new_rounded,
-                                size: 16,
-                                color: Colors.grey.shade400,
-                              ),
-                              Text("Edit filters",
-                                  style: TextStyle(
-                                      color: Colors.grey.shade400,
-                                      fontSize: 15))
-                            ],
-                          ),
+                  Row(
+                    children: [
+                      HeadlessCupertinoButton(
+                        onPressed: () {
+                          context.go("/jobs");
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: 16,
+                              color: Colors.grey.shade500,
+                            ),
+                            Text("Edit filters",
+                                style: TextStyle(
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15))
+                          ],
                         ),
-                        Spacer()
-                      ],
-                    ),
+                      ),
+                      Spacer()
+                    ],
                   ),
                   Expanded(
                     child: ListView.separated(
