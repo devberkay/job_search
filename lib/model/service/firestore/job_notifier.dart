@@ -111,10 +111,10 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
     final jobTypesFilterSet = ref.watch(jobTypesSetProvider);
     final isRemoteEligibleFilterBoolean = ref.watch(isRemoteEligibleProvider);
     // Filter filters;
-    final writtenFilterList = [
-      ...whatDoYouWantToDoFilterList,
-      ...skillsFilterList
-    ];
+    // final writtenFilterList = [
+    //   ...whatDoYouWantToDoFilterList,
+    //   ...skillsFilterList
+    // ];
     //  filters = Filter.and(
     //       degreesFilterSet.toList().isNotEmpty
     //           ? Filter("degree", whereIn: degreesFilterSet.toList())
@@ -168,7 +168,7 @@ class JobNotifier extends AutoDisposeAsyncNotifier<List<JobModel>?> {
         query = collectionRef.where("isRemote", isEqualTo: isRemoteEligibleFilterBoolean);
       }
     }
-    if(writtenFilterList.isNotEmpty) {
+    if(whatDoYouWantToDoFilterList.isNotEmpty) {
       if(query!=null) {
         query = query.where("searchTokens", arrayContainsAny: writtenFilterList);
       }
