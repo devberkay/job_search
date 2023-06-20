@@ -7,14 +7,27 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SortDropdownButton extends HookConsumerWidget {
   const SortDropdownButton({super.key});
+
+  String _displayStringBuilder(String dbValue) {
+    if (dbValue == "salaryPerHour") {
+      return "Salary";
+    } else if (dbValue == "applicantCounter") {
+      return "No of applicants";
+    } else if (dbValue == "timestampField") {
+      return "Date";
+    } else {
+      return "Relevance";
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedSortBy = ref.watch(or);
+    final selectedSortBy = ref.watch(orderByProvider);
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
       onChanged: (value) {
         debugPrint("sortBy : $value");
-        selectedSortBy.value = value!;
+        
         if(value == "Salary") {
           ref.read(orderByProvider.notifier).state = "salaryPerHour";
         }
@@ -28,7 +41,7 @@ class SortDropdownButton extends HookConsumerWidget {
           ref.read(orderByProvider.notifier).state = null;
         }
       },
-      value: selectedSortBy.value,
+      value: _displayStringBuilder(selectedSortBy ?? "Relevance"),
       items: <String>['Relevance', 'Salary', 'No of applicants','Date']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
