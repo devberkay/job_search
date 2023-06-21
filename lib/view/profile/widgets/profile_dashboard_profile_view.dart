@@ -343,31 +343,54 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Skills",
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-              const SizedBox(height: 10),
-              CupertinoTextField(
-                onChanged: (value) {
-                  draftUserModelNotifier.value =
-                      draftUserModelNotifier.value.copyWith(bio: value);
-                },
-                maxLines: 1,
-                placeholder: "Add a skill or experience",
-                style: TextStyle(
-                    color: Colors.grey.shade600, fontWeight: FontWeight.w600),
-                placeholderStyle: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey.shade400),
-                maxLength: 500,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                controller: bioController,
+              Row(
+                children: [
+                  const Text("Skills & Qualifications",
+                      style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(width: 10),
+                  CupertinoTextField(
+                      onChanged: (value) {
+                        draftUserModelNotifier.value =
+                            draftUserModelNotifier.value.copyWith(mail: value);
+                      },
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600),
+                      placeholder: "Add skill",
+                      placeholderStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400),
+                      maxLines: 1,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      controller: emailController,
+                    )
+                ],
               ),
-              Wrap()
+              const SizedBox(height: 10),
+              Wrap(
+                children: draftUserModelNotifier.value.skills.map<Widget>((e) {
+                  return Chip(
+                  label: Text(e),
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.grey.shade400),
+                  labelStyle: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.w600),
+                  onDeleted: () {
+                    
+                  },
+                  deleteButtonTooltipMessage: "Remove filter",
+                  deleteIcon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                ); 
+                }).toList(),
+              )
             ],
           ),
           const SizedBox(height: 90),

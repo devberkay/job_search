@@ -14,8 +14,8 @@ class UserModel with _$UserModel {
   const factory UserModel({
     required String uid,
     required bool isSeekingJob,
-    List<String>? skills, 
-    List<String>? positionTitles,
+    @Default([]) List<String> skills, 
+    @Default([]) List<String> positionTitles,
     String? name, 
     String? surname,
     String? sex, 

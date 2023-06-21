@@ -22,12 +22,12 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   String get uid => throw _privateConstructorUsedError;
   bool get isSeekingJob => throw _privateConstructorUsedError;
+  List<String> get skills => throw _privateConstructorUsedError;
+  List<String> get positionTitles => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get surname => throw _privateConstructorUsedError;
   String? get sex => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
-  List<String>? get skills => throw _privateConstructorUsedError;
-  List<String>? get positionTitles => throw _privateConstructorUsedError;
   String? get mail => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   int? get age => throw _privateConstructorUsedError;
@@ -46,12 +46,12 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {String uid,
       bool isSeekingJob,
+      List<String> skills,
+      List<String> positionTitles,
       String? name,
       String? surname,
       String? sex,
       String? bio,
-      List<String>? skills,
-      List<String>? positionTitles,
       String? mail,
       String? phone,
       int? age});
@@ -72,12 +72,12 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? uid = null,
     Object? isSeekingJob = null,
+    Object? skills = null,
+    Object? positionTitles = null,
     Object? name = freezed,
     Object? surname = freezed,
     Object? sex = freezed,
     Object? bio = freezed,
-    Object? skills = freezed,
-    Object? positionTitles = freezed,
     Object? mail = freezed,
     Object? phone = freezed,
     Object? age = freezed,
@@ -91,6 +91,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.isSeekingJob
           : isSeekingJob // ignore: cast_nullable_to_non_nullable
               as bool,
+      skills: null == skills
+          ? _value.skills
+          : skills // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      positionTitles: null == positionTitles
+          ? _value.positionTitles
+          : positionTitles // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -107,14 +115,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      skills: freezed == skills
-          ? _value.skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      positionTitles: freezed == positionTitles
-          ? _value.positionTitles
-          : positionTitles // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       mail: freezed == mail
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
@@ -141,12 +141,12 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   $Res call(
       {String uid,
       bool isSeekingJob,
+      List<String> skills,
+      List<String> positionTitles,
       String? name,
       String? surname,
       String? sex,
       String? bio,
-      List<String>? skills,
-      List<String>? positionTitles,
       String? mail,
       String? phone,
       int? age});
@@ -165,12 +165,12 @@ class __$$_UserModelCopyWithImpl<$Res>
   $Res call({
     Object? uid = null,
     Object? isSeekingJob = null,
+    Object? skills = null,
+    Object? positionTitles = null,
     Object? name = freezed,
     Object? surname = freezed,
     Object? sex = freezed,
     Object? bio = freezed,
-    Object? skills = freezed,
-    Object? positionTitles = freezed,
     Object? mail = freezed,
     Object? phone = freezed,
     Object? age = freezed,
@@ -184,6 +184,14 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.isSeekingJob
           : isSeekingJob // ignore: cast_nullable_to_non_nullable
               as bool,
+      skills: null == skills
+          ? _value._skills
+          : skills // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      positionTitles: null == positionTitles
+          ? _value._positionTitles
+          : positionTitles // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -200,14 +208,6 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      skills: freezed == skills
-          ? _value._skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      positionTitles: freezed == positionTitles
-          ? _value._positionTitles
-          : positionTitles // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       mail: freezed == mail
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
@@ -230,12 +230,12 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   const _$_UserModel(
       {required this.uid,
       required this.isSeekingJob,
+      final List<String> skills = const [],
+      final List<String> positionTitles = const [],
       this.name,
       this.surname,
       this.sex,
       this.bio,
-      final List<String>? skills,
-      final List<String>? positionTitles,
       this.mail,
       this.phone,
       this.age})
@@ -249,6 +249,24 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   final String uid;
   @override
   final bool isSeekingJob;
+  final List<String> _skills;
+  @override
+  @JsonKey()
+  List<String> get skills {
+    if (_skills is EqualUnmodifiableListView) return _skills;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_skills);
+  }
+
+  final List<String> _positionTitles;
+  @override
+  @JsonKey()
+  List<String> get positionTitles {
+    if (_positionTitles is EqualUnmodifiableListView) return _positionTitles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_positionTitles);
+  }
+
   @override
   final String? name;
   @override
@@ -257,26 +275,6 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   final String? sex;
   @override
   final String? bio;
-  final List<String>? _skills;
-  @override
-  List<String>? get skills {
-    final value = _skills;
-    if (value == null) return null;
-    if (_skills is EqualUnmodifiableListView) return _skills;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _positionTitles;
-  @override
-  List<String>? get positionTitles {
-    final value = _positionTitles;
-    if (value == null) return null;
-    if (_positionTitles is EqualUnmodifiableListView) return _positionTitles;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   @override
   final String? mail;
   @override
@@ -286,7 +284,7 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserModel(uid: $uid, isSeekingJob: $isSeekingJob, name: $name, surname: $surname, sex: $sex, bio: $bio, skills: $skills, positionTitles: $positionTitles, mail: $mail, phone: $phone, age: $age)';
+    return 'UserModel(uid: $uid, isSeekingJob: $isSeekingJob, skills: $skills, positionTitles: $positionTitles, name: $name, surname: $surname, sex: $sex, bio: $bio, mail: $mail, phone: $phone, age: $age)';
   }
 
   @override
@@ -296,12 +294,12 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
       ..add(DiagnosticsProperty('type', 'UserModel'))
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('isSeekingJob', isSeekingJob))
+      ..add(DiagnosticsProperty('skills', skills))
+      ..add(DiagnosticsProperty('positionTitles', positionTitles))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('surname', surname))
       ..add(DiagnosticsProperty('sex', sex))
       ..add(DiagnosticsProperty('bio', bio))
-      ..add(DiagnosticsProperty('skills', skills))
-      ..add(DiagnosticsProperty('positionTitles', positionTitles))
       ..add(DiagnosticsProperty('mail', mail))
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('age', age));
@@ -315,13 +313,13 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.isSeekingJob, isSeekingJob) ||
                 other.isSeekingJob == isSeekingJob) &&
+            const DeepCollectionEquality().equals(other._skills, _skills) &&
+            const DeepCollectionEquality()
+                .equals(other._positionTitles, _positionTitles) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.bio, bio) || other.bio == bio) &&
-            const DeepCollectionEquality().equals(other._skills, _skills) &&
-            const DeepCollectionEquality()
-                .equals(other._positionTitles, _positionTitles) &&
             (identical(other.mail, mail) || other.mail == mail) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.age, age) || other.age == age));
@@ -333,12 +331,12 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
       runtimeType,
       uid,
       isSeekingJob,
+      const DeepCollectionEquality().hash(_skills),
+      const DeepCollectionEquality().hash(_positionTitles),
       name,
       surname,
       sex,
       bio,
-      const DeepCollectionEquality().hash(_skills),
-      const DeepCollectionEquality().hash(_positionTitles),
       mail,
       phone,
       age);
@@ -361,12 +359,12 @@ abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {required final String uid,
       required final bool isSeekingJob,
+      final List<String> skills,
+      final List<String> positionTitles,
       final String? name,
       final String? surname,
       final String? sex,
       final String? bio,
-      final List<String>? skills,
-      final List<String>? positionTitles,
       final String? mail,
       final String? phone,
       final int? age}) = _$_UserModel;
@@ -379,6 +377,10 @@ abstract class _UserModel implements UserModel {
   @override
   bool get isSeekingJob;
   @override
+  List<String> get skills;
+  @override
+  List<String> get positionTitles;
+  @override
   String? get name;
   @override
   String? get surname;
@@ -386,10 +388,6 @@ abstract class _UserModel implements UserModel {
   String? get sex;
   @override
   String? get bio;
-  @override
-  List<String>? get skills;
-  @override
-  List<String>? get positionTitles;
   @override
   String? get mail;
   @override
