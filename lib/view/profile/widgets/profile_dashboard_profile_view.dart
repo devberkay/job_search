@@ -339,6 +339,37 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               ),
             ],
           ),
+          const SizedBox(height: 30),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Skills",
+                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+              const SizedBox(height: 10),
+              CupertinoTextField(
+                onChanged: (value) {
+                  draftUserModelNotifier.value =
+                      draftUserModelNotifier.value.copyWith(bio: value);
+                },
+                maxLines: 1,
+                placeholder: "Add a skill or experience",
+                style: TextStyle(
+                    color: Colors.grey.shade600, fontWeight: FontWeight.w600),
+                placeholderStyle: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade400),
+                maxLength: 500,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                controller: bioController,
+              ),
+              Wrap()
+            ],
+          ),
           const SizedBox(height: 90),
           ValueListenableBuilder(
               valueListenable: draftUserModelNotifier,
@@ -387,7 +418,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         );
                       });
                     }));
-              })
+              }),
         ],
       );
     } else {
