@@ -32,28 +32,33 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         children: [
           SizedBox(
-            height: 200,
-            width: 200,
+            height: 150,
+            width: 150,
             child: FittedBox(
                 fit: BoxFit.contain,
                 child: HookConsumer(builder: (context, ref, child) {
                   final controller = useAnimationController();
-                  return MouseRegion(onExit: (event) {
-                    
-                  },onEnter: (event) {
-                    
-                  },child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            
-                          )
-                        ),
-                      ),
-                      ProfileAvatar(radius: 100, userId: userModel.uid),
-                    ],
-                  ));
+                  return MouseRegion(
+                      onExit: (event) {},
+                      onEnter: (event) {},
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            bottom: 0,
+                            child: Container(
+                              width: 75,
+                              height: 75 / 2,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.5),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomRight: Radius.circular(100),
+                                    bottomLeft: Radius.circular(100),
+                                  )),
+                            ),
+                          ),
+                          ProfileAvatar(radius: 75, userId: userModel.uid),
+                        ],
+                      ));
                 })),
           ),
           const SizedBox(height: 30),
