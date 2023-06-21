@@ -117,7 +117,7 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                       },
                     );
                   })
-              : ProfileBox(height: 50, width: 100)
+              : ProfileBox(height: 50, width: 150)
         ],
       ),
     );

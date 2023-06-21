@@ -33,15 +33,17 @@ class ProfileBox extends HookConsumerWidget {
                 border: Border.all(
                     color: Colors.grey.shade600.withOpacity(0.25), width: 2)),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Spacer(),
                 ProfileAvatar(radius: height * 0.3, userId: _userModel.uid),
+                Spacer(),
                 Text(_userModel.name!,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         color: Colors.grey.shade700,
-                        fontSize: height * 0.25,
-                        fontWeight: FontWeight.w500))
+                        fontSize: height * 0.3,
+                        fontWeight: FontWeight.w500)),
+                Spacer(),
               ],
             ),
           ),

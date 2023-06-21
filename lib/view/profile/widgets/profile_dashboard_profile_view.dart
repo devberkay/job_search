@@ -37,112 +37,93 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
       return ListView(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         children: [
-          SizedBox(
+          Container(
             height: 150,
             width: 150,
-            child: FittedBox(
-                fit: BoxFit.contain,
-                child: HookConsumer(builder: (context, ref, child) {
-                  final opacityNotifier = useValueNotifier(0.0);
+            alignment: Alignment.center,
+            child: HookConsumer(builder: (context, ref, child) {
+              final opacityNotifier = useValueNotifier(0.0);
+              final picker = ImagePicker();
+              final cropper = ImageCropper();
+              return MouseRegion(
+                  onExit: (event) {
+                    opacityNotifier.value = 0.0;
+                  },
+                  onEnter: (event) {
+                    opacityNotifier.value = 1.0;
+                  },
+                  child: HeadlessCupertinoButton(
+                    onPressed: () async {
+                      try {
+                        final xFile =
+                            await picker.pickImage(source: ImageSource.gallery);
+                        // final rawPicture =
+                        //     await xFile!.readAsBytes();
+                        if (xFile != null) {
+                          final croppedFile = await cropper
+                              .cropImage(sourcePath: xFile.path, uiSettings: [
+                            // ignore: use_build_context_synchronously
+                            WebUiSettings(
+                                context: context,
+                                viewPort: const CroppieViewPort(type: 'circle'))
+                          ]);
+                          final croppedImage = await croppedFile!.readAsBytes();
+                          ref
+                              .read(uploadServiceProvider.notifier)
+                              .uploadPicture(
+                                  rawPicture: croppedImage,
+                                  userId: userModel.uid);
+                        }
+                      } catch (e) {
+                        context
+                            .showErrorFlushbar("Image could not be selected");
+                      }
 
-                  return MouseRegion(
-                      onExit: (event) {
-                        opacityNotifier.value = 0.0;
-                      },
-                      onEnter: (event) {
-                        opacityNotifier.value = 1.0;
-                      },
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 0,
-                            child: ValueListenableBuilder(
-                                valueListenable: opacityNotifier,
-                                builder: (context, opacity, child) {
-                                  return AnimatedOpacity(
-                                      opacity: opacity,
-                                      curve: Curves.easeOut,
-                                      duration:
-                                          const Duration(milliseconds: 250),
-                                      child: Container(
-                                          width: 75,
-                                          height: 75 / 2,
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                bottomRight:
-                                                    Radius.circular(100),
-                                                bottomLeft:
-                                                    Radius.circular(100),
-                                              )),
-                                          child: const Padding(
-                                            padding: EdgeInsets.only(top: 12.0),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "Upload photo",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 8,
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                SizedBox(height: 1),
-                                                Icon(
-                                                  Icons.file_upload_outlined,
-                                                  color: Colors.white,
-                                                  size: 12,
-                                                )
-                                              ],
-                                            ),
-                                          )));
-                                }),
-                          ),
-                          HookConsumer(builder: (context, ref, child) {
-                            final picker = ImagePicker();
-                            final cropper = ImageCropper();
-                            return HeadlessCupertinoButton(
-                                onPressed: () async {
-                                  try {
-                                    final xFile = await picker.pickImage(
-                                        source: ImageSource.gallery);
-                                    // final rawPicture =
-                                    //     await xFile!.readAsBytes();
-                                    if (xFile != null) {
-                                      final croppedFile = await cropper
-                                          .cropImage(
-                                              sourcePath: xFile.path,
-                                              uiSettings: [
-                                            // ignore: use_build_context_synchronously
-                                            WebUiSettings(
-                                                context: context,
-                                                viewPort: const CroppieViewPort(
-                                                    type: 'circle'))
-                                          ]);
-                                      final croppedImage =
-                                          await croppedFile!.readAsBytes();
-                                      ref
-                                          .read(uploadServiceProvider.notifier)
-                                          .uploadPicture(
-                                              rawPicture: croppedImage,
-                                              userId: userModel.uid);
-                                    }
-                                  } catch (e) {
-                                    context.showErrorFlushbar(
-                                        "Image could not be selected");
-                                  }
-
-                                  // ref.read
-                                },
-                                child: ProfileAvatar(
-                                    radius: 75, userId: userModel.uid));
-                          }),
-                        ],
-                      ));
-                })),
+                      // ref.read
+                    },
+                    child: Stack(
+                      children: [
+                        ProfileAvatar(radius: 75, userId: userModel.uid),
+                        ValueListenableBuilder(
+                            valueListenable: opacityNotifier,
+                            builder: (context, opacity, child) {
+                              return AnimatedOpacity(
+                                  opacity: opacity,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 250),
+                                  child: Container(
+                                      width: 150,
+                                      height: 150,
+                                      padding: EdgeInsets.only(bottom: 15),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.75),
+                                          borderRadius:
+                                              BorderRadius.circular(75)),
+                                      child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "Upload photo",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Icon(
+                                            Icons.file_upload_outlined,
+                                            color: Colors.white,
+                                            size: 25,
+                                          )
+                                        ],
+                                      )));
+                            }),
+                      ],
+                    ),
+                  ));
+            }),
           ),
           const SizedBox(height: 30),
           Column(
