@@ -17,6 +17,9 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final jobSeekersEmoji = String.fromCharCode(0x1F9D1) +
+        String.fromCharCode(0x200D) +
+        String.fromCharCode(0x1F4BC);
     final currentUser = ref.watch(userProvider);
     return Container(
       height: customPreferredSize.height,
@@ -66,7 +69,7 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.only(top: 2),
             child: HeadlessCupertinoButton(
               child: Text(
-                "${String.fromCharCode(0x1F30D)}  Locations",
+                "$jobSeekersEmoji  Job seekers",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
