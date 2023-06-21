@@ -357,6 +357,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       Expanded(
                         flex: 45,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text("Skills & Qualifications",
                                 style: TextStyle(
@@ -406,6 +407,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       Expanded(
                         flex: 45,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text("Position title",
                                 style: TextStyle(
