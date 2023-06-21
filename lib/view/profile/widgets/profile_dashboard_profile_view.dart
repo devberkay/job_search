@@ -451,6 +451,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   child: Row(
                     children: [
                       Expanded(
+                        flex: 48,
                         child: ValueListenableBuilder(
                             valueListenable: draftUserModelNotifier,
                             builder: (context, _, __) {
@@ -486,7 +487,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               );
                             }),
                       ),
-                      Spacer()
+                      Spacer(flex: 9),
+                      Expanded(flex: 48,child: )
                     ],
                   ),
                 )
