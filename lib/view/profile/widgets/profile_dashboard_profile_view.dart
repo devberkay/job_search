@@ -359,7 +359,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               fontWeight: FontWeight.w900, fontSize: 16)),
                       const SizedBox(width: 10),
                       Expanded(
-                        flex: 2,
+                        flex: 45,
                         child: CupertinoTextField(
                           onSubmitted: (value) {
                             if (!draftUserModelNotifier.value.skills
@@ -396,45 +396,81 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           controller: skillsController,
                         ),
                       ),
-                      Spacer(flex: 4)
+                      Spacer(flex: 30),
+                      const Text("Position title",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 16)),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        flex: 45,
+                        child: CupertinoTextField(
+                          onChanged: (value) {
+                            draftUserModelNotifier.value =
+                                draftUserModelNotifier.value
+                                    .copyWith(positionTitles: value.split(" "));
+                          },
+                          inputFormatters: [WordByWordInputFormatter()],
+                          style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w600),
+                          placeholder: "Enter your position title",
+                
+                          textAlign: TextAlign.start,
+                          textAlignVertical: TextAlignVertical.center,
+                          cursorColor: Colors.grey.shade400.withOpacity(0.5),
+                          maxLines: 1,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          controller: skillsController,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 Expanded(
                   flex: 4,
-                  child: ValueListenableBuilder(
-                      valueListenable: draftUserModelNotifier,
-                      builder: (context, _, __) {
-                        return Wrap(
-                          spacing: 5,
-                          runSpacing: 5,
-                          children: draftUserModelNotifier.value.skills
-                              .map<Widget>((e) {
-                            return Chip(
-                              label: Text(e),
-                              backgroundColor: Colors.grey.shade500.withOpacity(0.75),
-                              side: BorderSide(color: Colors.grey.shade400),
-                              labelStyle:  TextStyle(
-                              color: Colors.grey.shade600,
-                              fontWeight: FontWeight.w600),
-                              onDeleted: () {
-                                draftUserModelNotifier.value =
-                                    draftUserModelNotifier.value.copyWith(
-                                        skills: draftUserModelNotifier
-                                            .value.skills
-                                            .where((element) => element != e)
-                                            .toList());
-                              },
-                              deleteButtonTooltipMessage: "Remove filter",
-                              deleteIcon: const Icon(
-                                Icons.close,
-                                color: Colors.black,
-                              ),
-                            );
-                          }).toList(),
-                        );
-                      }),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ValueListenableBuilder(
+                            valueListenable: draftUserModelNotifier,
+                            builder: (context, _, __) {
+                              return Wrap(
+                                spacing: 5,
+                                runSpacing: 5,
+                                children: draftUserModelNotifier.value.skills
+                                    .map<Widget>((e) {
+                                  return Chip(
+                                    label: Text(e),
+                                    backgroundColor: Colors.grey.shade500.withOpacity(0.75),
+                                    side: BorderSide(color: Colors.grey.shade400),
+                                    labelStyle:  TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w600),
+                                    onDeleted: () {
+                                      draftUserModelNotifier.value =
+                                          draftUserModelNotifier.value.copyWith(
+                                              skills: draftUserModelNotifier
+                                                  .value.skills
+                                                  .where((element) => element != e)
+                                                  .toList());
+                                    },
+                                    deleteButtonTooltipMessage: "Remove filter",
+                                    deleteIcon: const Icon(
+                                      Icons.close,
+                                      color: Colors.black,
+                                    ),
+                                  );
+                                }).toList(),
+                              );
+                            }),
+                      ),
+                      Spacer()
+                    ],
+                  ),
                 )
               ],
             ),
