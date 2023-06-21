@@ -101,10 +101,11 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           HookConsumer(builder: (context, ref, child) {
                             final _picker = ImagePicker();
                             return HeadlessCupertinoButton(
-                                onPressed: () a{
+                                onPressed: () async {
                                   context.loaderOverlay.show();
                                   await _picker.pickImage(
                                       source: ImageSource.gallery);
+                                  // ref.read
                                 },
                                 child: ProfileAvatar(
                                     radius: 75, userId: userModel.uid));
