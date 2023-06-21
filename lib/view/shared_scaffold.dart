@@ -24,10 +24,11 @@ class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
         context.loaderOverlay.hide();
         if (fileType == "picture") {
           context.showSuccesFlashbar("Profile picture updated successfully");
-        } else if(fileType == "file") {
+        } else if (fileType == "file") {
           context.showSuccesFlashbar("File uploaded successfully");
         }
       }, error: (e, st) {
+        debugPrint("error_type: ${e.runtimeType}");
         context.loaderOverlay.hide();
         context.showErrorFlushbar(e.toString());
       }, loading: () {

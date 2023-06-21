@@ -108,8 +108,6 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 onPressed: () async {
                                   try {
                                     final xFile = await picker.pickImage(
-                                        maxHeight: 150,
-                                        maxWidth: 150,
                                         source: ImageSource.gallery);
                                     // final rawPicture =
                                     //     await xFile!.readAsBytes();
@@ -122,11 +120,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                             WebUiSettings(
                                                 context: context,
                                                 viewPort: const CroppieViewPort(
-                                                    height: 150,
-                                                    width: 150,
                                                     type: 'circle'))
                                           ]);
-                                      final croppedImage = await croppedFile!.readAsBytes();
+                                      final croppedImage =
+                                          await croppedFile!.readAsBytes();
                                       ref
                                           .read(uploadServiceProvider.notifier)
                                           .uploadPicture(
@@ -134,6 +131,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                               userId: userModel.uid);
                                     }
                                   } catch (e) {
+                                    debugPrint("error_type : ${e.runtimeType}");
                                     context.showErrorFlushbar(e.toString());
                                   }
 
