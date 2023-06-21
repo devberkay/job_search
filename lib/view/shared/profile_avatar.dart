@@ -18,7 +18,7 @@ class ProfileAvatar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rawData =
-        ref.watch(rawPictureProvider(userId != null ? "/users/$userId" : null));
+        ref.watch(rawPictureProvider(userId != null ? "/users/$userId/profile" : null));
     return rawData.when(data: (rawData) {
       if (rawData != null) {
         return CircleAvatar(
