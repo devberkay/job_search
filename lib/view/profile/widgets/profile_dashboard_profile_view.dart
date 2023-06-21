@@ -207,46 +207,51 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                     color: Colors.black, size: 25)
                               ],
                             ),
-                            ValueListenableBuilder(
-                                valueListenable: opacityNotifier,
-                                builder: (context, opacity, child) {
-                                  return AnimatedOpacity(
-                                      opacity: opacity,
-                                      curve: Curves.easeOut,
-                                      duration:
-                                          const Duration(milliseconds: 250),
-                                      child: Container(
-                                          width: 150,
-                                          height: 150,
-                                          padding:
-                                              const EdgeInsets.only(bottom: 15),
-                                          decoration: BoxDecoration(
-                                              color: Colors.black
-                                                  .withOpacity(0.75),
-                                              borderRadius:
-                                                  BorderRadius.circular(75)),
-                                          child: const Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "Upload CV",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 15,
+                            HookConsumer(
+                              builder: (context,ref,child) {
+                                
+                                return ValueListenableBuilder(
+                                    valueListenable: opacityNotifier,
+                                    builder: (context, opacity, child) {
+                                      return AnimatedOpacity(
+                                          opacity: opacity,
+                                          curve: Curves.easeOut,
+                                          duration:
+                                              const Duration(milliseconds: 250),
+                                          child: Container(
+                                              width: 150,
+                                              height: 150,
+                                              padding:
+                                                  const EdgeInsets.only(bottom: 15),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black
+                                                      .withOpacity(0.75),
+                                                  borderRadius:
+                                                      BorderRadius.circular(75)),
+                                              child: const Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    "Upload CV",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  SizedBox(height: 5),
+                                                  Icon(
+                                                    Icons.file_upload_outlined,
                                                     color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              SizedBox(height: 5),
-                                              Icon(
-                                                Icons.file_upload_outlined,
-                                                color: Colors.white,
-                                                size: 25,
-                                              )
-                                            ],
-                                          )));
-                                }),
+                                                    size: 25,
+                                                  )
+                                                ],
+                                              )));
+                                    });
+                              }
+                            ),
                           ],
                         ),
                       ));
