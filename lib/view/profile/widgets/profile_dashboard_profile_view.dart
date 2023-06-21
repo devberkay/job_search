@@ -25,6 +25,9 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final draftUserModelNotifier = useValueNotifier(userModel);
+    final skillsController = useTextEditingController();
+    final positionTitleController =
+        useTextEditingController(text: userModel.positionTitles.join(' '));
     final nameController = useTextEditingController(text: userModel.name);
     final lastNameController =
         useTextEditingController(text: userModel.surname);
@@ -341,66 +344,77 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
           ),
           const SizedBox(height: 30),
           SizedBox(
-            height: 100,
+            height: 200,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    const Text("Skills & Qualifications",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 16)),
-                    const SizedBox(width: 10),
-                    CupertinoTextField(
-                      onChanged: (value) {
-                        draftUserModelNotifier.value =
-                            draftUserModelNotifier.value.copyWith(mail: value);
-                      },
-                      style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontWeight: FontWeight.w600),
-                      placeholder: "Add skill",
-                      placeholderStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade400),
-                      maxLines: 1,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(10),
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      const Text("Skills & Qualifications",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 16)),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        flex: 2,
+                        child: CupertinoTextField(
+                          onSubmitted: (value) {
+                            draftUserModelNotifier.value = draftUserModelNotifier
+                                .value
+                                .copyWith(skills: value);
+                          },
+                          style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w600),
+                          prefix: Icon(
+                            Icons.add,
+                            color: Colors.grey.shade500.withOpacity(0.75),
+                          ),
+                          textAlign: TextAlign.start,
+                          textAlignVertical: TextAlignVertical.center,
+                          cursorColor: Colors.grey.shade400.withOpacity(0.5),
+                          maxLines: 1,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          controller: skillsController,
+                        ),
                       ),
-                      controller: emailController,
-                    ),
-                    Spacer()
-                  ],
+                      Spacer(flex: 4)
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
-                ValueListenableBuilder(
-                    valueListenable: draftUserModelNotifier,
-                    builder: (context, _, __) {
-                      return Wrap(
-                        spacing: 5,
-                        runSpacing: 5,
-                        children: draftUserModelNotifier.value.skills
-                            .map<Widget>((e) {
-                          return Chip(
-                            label: Text(e),
-                            backgroundColor: Colors.white,
-                            side: BorderSide(color: Colors.grey.shade400),
-                            labelStyle: const TextStyle(
+                Expanded(
+                  flex: 4,
+                  child: ValueListenableBuilder(
+                      valueListenable: draftUserModelNotifier,
+                      builder: (context, _, __) {
+                        return Wrap(
+                          spacing: 5,
+                          runSpacing: 5,
+                          children: draftUserModelNotifier.value.skills
+                              .map<Widget>((e) {
+                            return Chip(
+                              label: Text(e),
+                              backgroundColor: Colors.white,
+                              side: BorderSide(color: Colors.grey.shade400),
+                              labelStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600),
+                              onDeleted: () {},
+                              deleteButtonTooltipMessage: "Remove filter",
+                              deleteIcon: const Icon(
+                                Icons.close,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w600),
-                            onDeleted: () {},
-                            deleteButtonTooltipMessage: "Remove filter",
-                            deleteIcon: const Icon(
-                              Icons.close,
-                              color: Colors.black,
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    })
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      }),
+                )
               ],
             ),
           ),
