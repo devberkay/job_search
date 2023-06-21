@@ -368,11 +368,14 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       controller: emailController,
-                    )
+                    ),
+                    Spacer()
                 ],
               ),
               const SizedBox(height: 10),
               Wrap(
+                spacing: 5,
+              runSpacing: 5,
                 children: draftUserModelNotifier.value.skills.map<Widget>((e) {
                   return Chip(
                   label: Text(e),
