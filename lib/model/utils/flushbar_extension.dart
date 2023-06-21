@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 extension FlushBarExtension on BuildContext {
   showErrorFlushbar(String text) {
     Flushbar(
-      flushbarStyle: FlushbarStyle.GROUNDED,
+      flushbarStyle: FlushbarStyle.FLOATING,
       maxWidth: MediaQuery.of(this).size.width * 0.5,
       duration: const Duration(seconds: 4),
       borderRadius:
-          BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
+          BorderRadius.circular(MediaQuery.of(this).size.height * 0.02),
       margin: EdgeInsets.only(top: 15),
       backgroundColor: Colors.red,
       messageText: Text(
@@ -25,11 +25,12 @@ extension FlushBarExtension on BuildContext {
 
   showSuccesFlashbar(String text) {
     Flushbar(
+      flushbarStyle: FlushbarStyle.FLOATING,
       maxWidth: MediaQuery.of(this).size.width * 0.5,
       duration: const Duration(seconds: 4),
       margin: EdgeInsets.only(top: 15),
       borderRadius:
-          BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
+          BorderRadius.circular(MediaQuery.of(this).size.height * 0.02),
       backgroundColor: Colors.green,
       messageText: Text(
         text,
@@ -45,11 +46,12 @@ extension FlushBarExtension on BuildContext {
 
   showInfoFlashbar(String text) {
     Flushbar(
+      flushbarStyle: FlushbarStyle.FLOATING,
       maxWidth: MediaQuery.of(this).size.width * 0.5,
       duration: const Duration(seconds: 5),
       margin: EdgeInsets.only(top: 15),
       borderRadius:
-          BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
+          BorderRadius.circular(MediaQuery.of(this).size.height * 0.02),
       backgroundColor: Colors.black,
       messageText: Text(
         text,

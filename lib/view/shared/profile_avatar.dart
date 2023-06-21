@@ -14,12 +14,13 @@ import 'package:http/http.dart' as http;
 class ProfileAvatar extends HookConsumerWidget {
   const ProfileAvatar({super.key, required this.radius, required this.userId});
   final double radius;
-  final String userId;
+  final String? userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rawData = ref.watch(
         rawPictureProvider(userId != null ? "users/$userId/profile" : null));
     return rawData.when(data: (rawData) {
+      debugPrint("heyyo-0 : ${rawData}");
       if (rawData != null) {
         debugPrint("heyyo-1");
         return CircleAvatar(
@@ -37,6 +38,7 @@ class ProfileAvatar extends HookConsumerWidget {
             child: Icon(Icons.person, color: Colors.black54, size: radius / 2));
       }
     }, error: (e, st) {
+      debugPrint("heyyo-3 : ${e}");
       return Shimmer.fromColors(
         baseColor: Colors.grey.shade400.withOpacity(0.5),
         highlightColor: Colors.grey.shade100.withOpacity(0.5),
