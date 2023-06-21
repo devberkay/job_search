@@ -17,6 +17,8 @@ class UserModel with _$UserModel {
     String? surname,
     String? sex, // man or woman
     String? bio, // to be List of string in the future
+    // List<String> skills, // to be List of string in the future
+    // required bool isSeekingJob:  // true or false
     String? mail,
     String? phone,
     int? age, 
