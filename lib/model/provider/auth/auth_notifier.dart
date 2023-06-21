@@ -63,7 +63,7 @@ class AuthNotifier extends AutoDisposeAsyncNotifier<void> {
           email: email!, password: password!);
       final uid = await firebaseAuth.currentUser!.uid;
       firestore.collection("users").doc(uid).set(
-          UserModel(uid: uid, name: name, surname: surname, mail: email)
+          UserModel(uid: uid, name: name, surname: surname, mail: email,isSeekingJob: false)
               .toJson());
       state = const AsyncData(null);
     } catch (e, st) {

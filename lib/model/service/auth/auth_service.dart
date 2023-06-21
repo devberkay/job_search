@@ -28,6 +28,7 @@ class AuthService {
     final googleUser =
         await _firebaseAuthInstance.signInWithPopup(GoogleAuthProvider());
     final newUserModel = UserModel(
+        isSeekingJob: false,
         uid: googleUser.user!.uid,
         mail: googleUser.user!.email,
         name: googleUser.user!.displayName,
