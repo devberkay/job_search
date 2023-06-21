@@ -31,11 +31,11 @@ class UploadServiceNotifier extends AsyncNotifier<String?> {
   }
 
   Future<void> uploadFile(
-      {required File cvFile, required String userId}) async {
+      {required Uint8List cvFile, required String userId}) async {
     try {
       state = const AsyncLoading();
       final storage = ref.read(storageProvider);
-      await storage.ref("users/$userId/cv").putBlob(cvFile);
+      await storage.ref("users/$userId/cv").putData(cvFile);
       state = const AsyncData("file");
     } catch (e, st) {
       state = AsyncError(e, st);

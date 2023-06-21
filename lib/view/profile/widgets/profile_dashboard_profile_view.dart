@@ -12,6 +12,7 @@ import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart'
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:JobSearch/view/shared/profile_avatar.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -49,7 +50,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             alignment: Alignment.center,
             child: Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 HookConsumer(builder: (context, ref, child) {
                   final opacityNotifier = useValueNotifier(0.0);
                   final picker = ImagePicker();
@@ -142,7 +143,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         ),
                       ));
                 }),
-                SizedBox(width: 25),
+                const SizedBox(width: 25),
                 HookConsumer(builder: (context, ref, child) {
                   final opacityNotifier = useValueNotifier(0.0);
                   final picker = ImagePicker();
@@ -157,33 +158,23 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       child: HeadlessCupertinoButton(
                         onPressed: () async {
                           try {
-                            final xFile = await picker.pickImage(
-                                source: ImageSource.gallery);
-                            // final rawPicture =
-                            //     await xFile!.readAsBytes();
-                            if (xFile != null) {
-                              final croppedFile = await cropper.cropImage(
-                                  sourcePath: xFile.path,
-                                  uiSettings: [
-                                    // ignore: use_build_context_synchronously
-                                    WebUiSettings(
-                                        context: context,
-                                        enableZoom: true,
-                                        enableResize: true,
-                                        viewPort: const CroppieViewPort(
-                                            type: 'circle'))
-                                  ]);
-                              final croppedImage =
-                                  await croppedFile!.readAsBytes();
-                              ref
+                            final pickedFile =
+                                await FilePicker.platform.pickFiles(
+                              type: FileType.custom,
+                              allowedExtensions: ['pdf', 'doc', 'docx'],
+                            );
+                            if (pickedFile != null &&
+                                pickedFile.files.isNotEmpty) {
+                             await ref
                                   .read(uploadServiceProvider.notifier)
-                                  .uploadPicture(
-                                      rawPicture: croppedImage,
+                                  .uploadFile(
+                                      cvFile: pickedFile.files.first.bytes!,
                                       userId: userModel.uid);
                             }
                           } catch (e) {
+                            debugPrint("heyerror :$e");
                             context.showErrorFlushbar(
-                                "Image could not be selected");
+                                "File could not be selected");
                           }
 
                           // ref.read
@@ -191,8 +182,18 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            Icon(Icons.description,
-                                color: Colors.black, size: 150),
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("CV",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 75,
+                                        fontWeight: FontWeight.w900)),
+                                Icon(Icons.download,
+                                    color: Colors.black, size: 25)
+                              ],
+                            ),
                             ValueListenableBuilder(
                                 valueListenable: opacityNotifier,
                                 builder: (context, opacity, child) {
@@ -237,7 +238,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         ),
                       ));
                 }),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
