@@ -23,15 +23,15 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mime/mime.dart';
+
 class ProfileDashboardProfileView extends HookConsumerWidget {
   const ProfileDashboardProfileView({super.key, required this.userModel});
   final UserModel userModel;
 
   String getMimeType(String extension) {
-  final mimeTypeResolver = MimeTypes();
-  final mimeType = mimeTypeResolver.lookup(extension);
-  return mimeType;
-}
+    
+    return lookupMimeType(extension)!;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -180,9 +180,9 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                   .read(uploadServiceProvider.notifier)
                                   .uploadFile(
                                       cvFile: pickedFile.files.first.bytes!,
-                                      userId: userModel.uid,settableMetadata: SettableMetadata(
-                                          contentType: pickedFile.files.first.extension
-                                      ));
+                                      userId: userModel.uid,
+                                      settableMetadata: SettableMetadata(
+                                          contentType: lookupMimeType(pickedFile.files.first.extension!)));
                             }
                           } catch (e) {
                             debugPrint("heyerror :$e");
