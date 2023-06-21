@@ -13,6 +13,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class ProfileDashboardProfileView extends HookConsumerWidget {
   const ProfileDashboardProfileView({super.key, required this.userModel});
@@ -100,8 +101,9 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           HookConsumer(builder: (context, ref, child) {
                             final _picker = ImagePicker();
                             return HeadlessCupertinoButton(
-                                onPressed: () {
-                                  _picker.pickImage(
+                                onPressed: () a{
+                                  context.loaderOverlay.show();
+                                  await _picker.pickImage(
                                       source: ImageSource.gallery);
                                 },
                                 child: ProfileAvatar(
