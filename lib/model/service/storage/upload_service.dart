@@ -6,12 +6,12 @@ import 'dart:typed_data';
 import 'package:JobSearch/model/provider/storage/storage_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final uploadServiceProvider = AsyncNotifierProvider<UploadServiceNotifier, >(UploadServiceNotifier.new);
+final uploadServiceProvider = AsyncNotifierProvider<UploadServiceNotifier,String? >(UploadServiceNotifier.new);
 
-class UploadServiceNotifier extends AsyncNotifier<void> {
+class UploadServiceNotifier extends AsyncNotifier<String?> {
   @override
-  FutureOr<void> build() async {
-    return;
+  FutureOr<String?> build() async {
+    return null;
   }
 
   Future<void> uploadPicture(
@@ -20,7 +20,7 @@ class UploadServiceNotifier extends AsyncNotifier<void> {
       state = const AsyncLoading();
       final storage = ref.read(storageProvider);
       await storage.ref("/users/$userId/profile").putData(rawPicture);
-      state = const AsyncData(null);
+      state = const AsyncData("picture");
     } catch (e, st) {
       state = AsyncError(e, st);
     }
@@ -32,7 +32,7 @@ class UploadServiceNotifier extends AsyncNotifier<void> {
       state = const AsyncLoading();
       final storage = ref.read(storageProvider);
       await storage.ref("/users/$userId/cv").putBlob(cvFile);
-      state = const AsyncData(null);
+      state = const AsyncData("file");
     } catch (e, st) {
       state = AsyncError(e, st);
     }

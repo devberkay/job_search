@@ -2,6 +2,8 @@ import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
+import 'package:JobSearch/model/service/storage/upload_service.dart';
+import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
@@ -99,12 +101,23 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 }),
                           ),
                           HookConsumer(builder: (context, ref, child) {
-                            final _picker = ImagePicker();
+                            final picker = ImagePicker();
                             return HeadlessCupertinoButton(
                                 onPressed: () async {
-                                  context.loaderOverlay.show();
-                                  await _picker.pickImage(
-                                      source: ImageSource.gallery);
+                                  try {
+                                    final xFile = await picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    final rawPicture =
+                                        await xFile!.readAsBytes();
+                                    ref
+                                        .read(uploadServiceProvider.notifier)
+                                        .uploadPicture(
+                                            rawPicture: rawPicture,
+                                            userId: userModel.uid);
+                                  } catch (e) {
+                                    context.showErrorFlushbar(e.toString());
+                                  }
+
                                   // ref.read
                                 },
                                 child: ProfileAvatar(

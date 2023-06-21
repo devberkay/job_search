@@ -10,15 +10,13 @@ extension FlushBarExtension on BuildContext {
       borderRadius:
           BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
       margin: EdgeInsets.only(top: 15),
-      backgroundColor: Colors.black,
-      leftBarIndicatorColor: Colors.red,
+      backgroundColor: Colors.red,
       messageText: Text(
         text,
         textAlign: TextAlign.center,
         style: TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
-            fontFamily: "Montserrat",
             fontSize: MediaQuery.of(this).size.height * 0.0175),
       ),
       flushbarPosition: FlushbarPosition.TOP,
@@ -32,8 +30,7 @@ extension FlushBarExtension on BuildContext {
       margin: EdgeInsets.only(top: 15),
       borderRadius:
           BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
-      backgroundColor: Colors.black,
-      leftBarIndicatorColor: Colors.green,
+      backgroundColor: Colors.green,
       messageText: Text(
         text,
         textAlign: TextAlign.center,
@@ -54,7 +51,6 @@ extension FlushBarExtension on BuildContext {
       borderRadius:
           BorderRadius.circular(MediaQuery.of(this).size.height * 0.01),
       backgroundColor: Colors.black,
-      leftBarIndicatorColor: Colors.grey.shade400,
       messageText: Text(
         text,
         textAlign: TextAlign.center,
