@@ -31,7 +31,31 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         children: [
-          ProfileAvatar(radius: 100, userId: userModel.uid),
+          SizedBox(
+            height: 200,
+            width: 200,
+            child: FittedBox(
+                fit: BoxFit.contain,
+                child: HookConsumer(builder: (context, ref, child) {
+                  final controller = useAnimationController();
+                  return MouseRegion(onExit: (event) {
+                    
+                  },onEnter: (event) {
+                    
+                  },child: Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            
+                          )
+                        ),
+                      ),
+                      ProfileAvatar(radius: 100, userId: userModel.uid),
+                    ],
+                  ));
+                })),
+          ),
           const SizedBox(height: 30),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
