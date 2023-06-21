@@ -352,30 +352,59 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Row(
+                  child: Column(
                     children: [
                       const Text("Skills & Qualifications",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 16)),
+                      const SizedBox(width: 10),
+                      CupertinoTextField(
+                        onSubmitted: (value) {
+                          if (!draftUserModelNotifier.value.skills
+                              .contains(value)) {
+                            value = FirstLetterFormatter.formatString(value);
+                            draftUserModelNotifier.value =
+                                draftUserModelNotifier.value.copyWith(
+                                    skills: [
+                                  ...draftUserModelNotifier.value.skills,
+                                  value
+                                ]);
+                          } else {
+                            context.showErrorFlushbar(
+                                "This skill already exists, add unique one");
+                          }
+                          skillsController.clear();
+                        },
+                        inputFormatters: [WordByWordInputFormatter()],
+                        style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontWeight: FontWeight.w600),
+                        prefix: Icon(
+                          Icons.add,
+                          color: Colors.grey.shade500.withOpacity(0.75),
+                        ),
+                        textAlign: TextAlign.start,
+                        textAlignVertical: TextAlignVertical.center,
+                        cursorColor: Colors.grey.shade400.withOpacity(0.5),
+                        maxLines: 1,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        controller: skillsController,
+                      ),
+                      Spacer(flex: 15),
+                      const Text("Position title",
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 16)),
                       const SizedBox(width: 10),
                       Expanded(
                         flex: 45,
                         child: CupertinoTextField(
-                          onSubmitted: (value) {
-                            if (!draftUserModelNotifier.value.skills
-                                .contains(value)) {
-                              value = FirstLetterFormatter.formatString(value);
-                              draftUserModelNotifier.value =
-                                  draftUserModelNotifier.value.copyWith(
-                                      skills: [
-                                    ...draftUserModelNotifier.value.skills,
-                                    value
-                                  ]);
-                            } else {
-                              context.showErrorFlushbar(
-                                  "This skill already exists, add unique one");
-                            }
-                            skillsController.clear();
+                          onChanged: (value) {
+                            draftUserModelNotifier.value =
+                                draftUserModelNotifier.value
+                                    .copyWith(positionTitles: value.split(" "));
                           },
                           inputFormatters: [WordByWordInputFormatter()],
                           style: TextStyle(
@@ -393,37 +422,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          controller: skillsController,
-                        ),
-                      ),
-                      Spacer(flex: 30),
-                      const Text("Position title",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 16)),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        flex: 45,
-                        child: CupertinoTextField(
-                          onChanged: (value) {
-                            draftUserModelNotifier.value =
-                                draftUserModelNotifier.value
-                                    .copyWith(positionTitles: value.split(" "));
-                          },
-                          inputFormatters: [WordByWordInputFormatter()],
-                          style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontWeight: FontWeight.w600),
-                          placeholder: "Enter your position title",
-                
-                          textAlign: TextAlign.start,
-                          textAlignVertical: TextAlignVertical.center,
-                          cursorColor: Colors.grey.shade400.withOpacity(0.5),
-                          maxLines: 1,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          controller: skillsController,
+                          controller: positionTitleController,
                         ),
                       ),
                     ],
@@ -445,17 +444,20 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                     .map<Widget>((e) {
                                   return Chip(
                                     label: Text(e),
-                                    backgroundColor: Colors.grey.shade500.withOpacity(0.75),
-                                    side: BorderSide(color: Colors.grey.shade400),
-                                    labelStyle:  TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.w600),
+                                    backgroundColor:
+                                        Colors.grey.shade500.withOpacity(0.75),
+                                    side:
+                                        BorderSide(color: Colors.grey.shade400),
+                                    labelStyle: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontWeight: FontWeight.w600),
                                     onDeleted: () {
                                       draftUserModelNotifier.value =
                                           draftUserModelNotifier.value.copyWith(
                                               skills: draftUserModelNotifier
                                                   .value.skills
-                                                  .where((element) => element != e)
+                                                  .where(
+                                                      (element) => element != e)
                                                   .toList());
                                     },
                                     deleteButtonTooltipMessage: "Remove filter",
