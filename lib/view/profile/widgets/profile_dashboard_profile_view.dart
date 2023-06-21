@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -102,13 +103,17 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           ),
                           HookConsumer(builder: (context, ref, child) {
                             final picker = ImagePicker();
+                            final cropper = ImageCropper();
                             return HeadlessCupertinoButton(
                                 onPressed: () async {
                                   try {
                                     final xFile = await picker.pickImage(
+                                        maxHeight: 150,
+                                        maxWidth: 150,
                                         source: ImageSource.gallery);
                                     final rawPicture =
                                         await xFile!.readAsBytes();
+                                    
                                     ref
                                         .read(uploadServiceProvider.notifier)
                                         .uploadPicture(
