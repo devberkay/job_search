@@ -81,8 +81,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                         viewPort: const CroppieViewPort(
                                             type: 'circle'))
                                   ]);
+                                
                               final croppedImage =
                                   await croppedFile!.readAsBytes();
+                            
                               ref
                                   .read(uploadServiceProvider.notifier)
                                   .uploadPicture(
