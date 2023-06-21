@@ -22,10 +22,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-
+import 'package:mime/mime.dart';
 class ProfileDashboardProfileView extends HookConsumerWidget {
   const ProfileDashboardProfileView({super.key, required this.userModel});
   final UserModel userModel;
+
+  String getMimeType(String extension) {
+  final mimeTypeResolver = MimeTypes();
+  final mimeType = mimeTypeResolver.lookup(extension);
+  return mimeType;
+}
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
