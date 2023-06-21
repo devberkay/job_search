@@ -3,6 +3,7 @@ import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
+import 'package:JobSearch/model/utils/first_letter_formatter.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/model/utils/word_by_word_formatter.dart';
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
@@ -363,6 +364,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           onSubmitted: (value) {
                             if (!draftUserModelNotifier.value.skills
                                 .contains(value)) {
+                              value = FirstLetterFormatter.formatString(value);
                               draftUserModelNotifier.value =
                                   draftUserModelNotifier.value.copyWith(
                                       skills: [
