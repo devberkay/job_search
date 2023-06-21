@@ -340,15 +340,18 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             ],
           ),
           const SizedBox(height: 30),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Text("Skills & Qualifications",
-                      style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
-                  const SizedBox(width: 10),
-                  CupertinoTextField(
+          SizedBox(
+            height: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Text("Skills & Qualifications",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16)),
+                    const SizedBox(width: 10),
+                    CupertinoTextField(
                       onChanged: (value) {
                         draftUserModelNotifier.value =
                             draftUserModelNotifier.value.copyWith(mail: value);
@@ -370,31 +373,36 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       controller: emailController,
                     ),
                     Spacer()
-                ],
-              ),
-              const SizedBox(height: 10),
-              Wrap(
-                spacing: 5,
-              runSpacing: 5,
-                children: draftUserModelNotifier.value.skills.map<Widget>((e) {
-                  return Chip(
-                  label: Text(e),
-                  backgroundColor: Colors.white,
-                  side: BorderSide(color: Colors.grey.shade400),
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w600),
-                  onDeleted: () {
-                    
-                  },
-                  deleteButtonTooltipMessage: "Remove filter",
-                  deleteIcon: const Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ),
-                ); 
-                }).toList(),
-              )
-            ],
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ValueListenableBuilder(
+                    valueListenable: draftUserModelNotifier,
+                    builder: (context, _, __) {
+                      return Wrap(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: draftUserModelNotifier.value.skills
+                            .map<Widget>((e) {
+                          return Chip(
+                            label: Text(e),
+                            backgroundColor: Colors.white,
+                            side: BorderSide(color: Colors.grey.shade400),
+                            labelStyle: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
+                            onDeleted: () {},
+                            deleteButtonTooltipMessage: "Remove filter",
+                            deleteIcon: const Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    })
+              ],
+            ),
           ),
           const SizedBox(height: 90),
           ValueListenableBuilder(
