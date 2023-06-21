@@ -8,7 +8,7 @@ part of 'user_model.dart';
 
 _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       uid: json['uid'] as String,
-      isSeekingJob: json['isSeekingJob'] as bool,
+      isSeekingJob: json['isSeekingJob'] as bool? ?? false,
       skills: (json['skills'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??

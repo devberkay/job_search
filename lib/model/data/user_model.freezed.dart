@@ -229,7 +229,7 @@ class __$$_UserModelCopyWithImpl<$Res>
 class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   const _$_UserModel(
       {required this.uid,
-      required this.isSeekingJob,
+      this.isSeekingJob = false,
       final List<String> skills = const [],
       final List<String> positionTitles = const [],
       this.name,
@@ -248,6 +248,7 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
   @override
   final String uid;
   @override
+  @JsonKey()
   final bool isSeekingJob;
   final List<String> _skills;
   @override
@@ -358,7 +359,7 @@ class _$_UserModel with DiagnosticableTreeMixin implements _UserModel {
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {required final String uid,
-      required final bool isSeekingJob,
+      final bool isSeekingJob,
       final List<String> skills,
       final List<String> positionTitles,
       final String? name,

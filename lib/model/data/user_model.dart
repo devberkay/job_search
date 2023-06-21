@@ -13,7 +13,7 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   const factory UserModel({
     required String uid,
-    required bool isSeekingJob,
+    @Default(false) bool isSeekingJob,
     @Default([]) List<String> skills, 
     @Default([]) List<String> positionTitles, 
     String? name, 
