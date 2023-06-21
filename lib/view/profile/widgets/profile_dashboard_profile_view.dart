@@ -51,86 +51,97 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
               final opacityNotifier = useValueNotifier(0.0);
               final picker = ImagePicker();
               final cropper = ImageCropper();
-              return MouseRegion(
-                  onExit: (event) {
-                    opacityNotifier.value = 0.0;
-                  },
-                  onEnter: (event) {
-                    opacityNotifier.value = 1.0;
-                  },
-                  child: HeadlessCupertinoButton(
-                    onPressed: () async {
-                      try {
-                        final xFile =
-                            await picker.pickImage(source: ImageSource.gallery);
-                        // final rawPicture =
-                        //     await xFile!.readAsBytes();
-                        if (xFile != null) {
-                          final croppedFile = await cropper
-                              .cropImage(sourcePath: xFile.path, uiSettings: [
-                            // ignore: use_build_context_synchronously
-                            WebUiSettings(
-                                context: context,
-                                enableZoom: true,
-                                enableResize: true,
-                                viewPort: const CroppieViewPort(type: 'circle'))
-                          ]);
-                          final croppedImage = await croppedFile!.readAsBytes();
-                          ref
-                              .read(uploadServiceProvider.notifier)
-                              .uploadPicture(
-                                  rawPicture: croppedImage,
-                                  userId: userModel.uid);
-                        }
-                      } catch (e) {
-                        context
-                            .showErrorFlushbar("Image could not be selected");
-                      }
+              return Row(
+                children: [
+                  MouseRegion(
+                      onExit: (event) {
+                        opacityNotifier.value = 0.0;
+                      },
+                      onEnter: (event) {
+                        opacityNotifier.value = 1.0;
+                      },
+                      child: HeadlessCupertinoButton(
+                        onPressed: () async {
+                          try {
+                            final xFile = await picker.pickImage(
+                                source: ImageSource.gallery);
+                            // final rawPicture =
+                            //     await xFile!.readAsBytes();
+                            if (xFile != null) {
+                              final croppedFile = await cropper.cropImage(
+                                  sourcePath: xFile.path,
+                                  uiSettings: [
+                                    // ignore: use_build_context_synchronously
+                                    WebUiSettings(
+                                        context: context,
+                                        enableZoom: true,
+                                        enableResize: true,
+                                        viewPort: const CroppieViewPort(
+                                            type: 'circle'))
+                                  ]);
+                              final croppedImage =
+                                  await croppedFile!.readAsBytes();
+                              ref
+                                  .read(uploadServiceProvider.notifier)
+                                  .uploadPicture(
+                                      rawPicture: croppedImage,
+                                      userId: userModel.uid);
+                            }
+                          } catch (e) {
+                            context.showErrorFlushbar(
+                                "Image could not be selected");
+                          }
 
-                      // ref.read
-                    },
-                    child: Stack(
-                      children: [
-                        ProfileAvatar(radius: 75, userId: userModel.uid),
-                        ValueListenableBuilder(
-                            valueListenable: opacityNotifier,
-                            builder: (context, opacity, child) {
-                              return AnimatedOpacity(
-                                  opacity: opacity,
-                                  curve: Curves.easeOut,
-                                  duration: const Duration(milliseconds: 250),
-                                  child: Container(
-                                      width: 150,
-                                      height: 150,
-                                      padding: EdgeInsets.only(bottom: 15),
-                                      decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.75),
-                                          borderRadius:
-                                              BorderRadius.circular(75)),
-                                      child: const Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            "Upload photo",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 15,
+                          // ref.read
+                        },
+                        child: Stack(
+                          children: [
+                            ProfileAvatar(radius: 75, userId: userModel.uid),
+                            ValueListenableBuilder(
+                                valueListenable: opacityNotifier,
+                                builder: (context, opacity, child) {
+                                  return AnimatedOpacity(
+                                      opacity: opacity,
+                                      curve: Curves.easeOut,
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      child: Container(
+                                          width: 150,
+                                          height: 150,
+                                          padding:
+                                              const EdgeInsets.only(bottom: 15),
+                                          decoration: BoxDecoration(
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                              borderRadius:
+                                                  BorderRadius.circular(75)),
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                "Upload photo",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                              SizedBox(height: 5),
+                                              Icon(
+                                                Icons.file_upload_outlined,
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Icon(
-                                            Icons.file_upload_outlined,
-                                            color: Colors.white,
-                                            size: 25,
-                                          )
-                                        ],
-                                      )));
-                            }),
-                      ],
-                    ),
-                  ));
+                                                size: 25,
+                                              )
+                                            ],
+                                          )));
+                                }),
+                          ],
+                        ),
+                      )),
+                ],
+              );
             }),
           ),
           const SizedBox(height: 30),
@@ -404,7 +415,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           ],
                         ),
                       ),
-                      Spacer(flex: 9),
+                      const Spacer(flex: 9),
                       Expanded(
                         flex: 48,
                         child: Column(
@@ -465,7 +476,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                     backgroundColor: Colors.white,
                                     side:
                                         BorderSide(color: Colors.grey.shade400),
-                                    labelStyle: TextStyle(
+                                    labelStyle: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600),
                                     onDeleted: () {
@@ -487,8 +498,48 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               );
                             }),
                       ),
-                      Spacer(flex: 9),
-                      Expanded(flex: 48,child: )
+                      const Spacer(flex: 9),
+                      Expanded(
+                          flex: 48,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(top: 15),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text("Job seeking status",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16)),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: FittedBox(
+                                  child: ValueListenableBuilder(
+                                      valueListenable: draftUserModelNotifier,
+                                      builder: (context, _, __) {
+                                        return CupertinoSwitch(
+                                            value: draftUserModelNotifier
+                                                .value.isSeekingJob,
+                                            activeColor:
+                                                Colors.greenAccent.shade700,
+                                            trackColor: Colors.grey.shade400,
+                                            onChanged: (value) {
+                                              draftUserModelNotifier.value =
+                                                  draftUserModelNotifier.value
+                                                      .copyWith(
+                                                          isSeekingJob: value);
+                                            });
+                                      }),
+                                ),
+                              ),
+                            ],
+                          ))
                     ],
                   ),
                 )
