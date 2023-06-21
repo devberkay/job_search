@@ -47,13 +47,14 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             height: 150,
             width: 150,
             alignment: Alignment.center,
-            child: HookConsumer(builder: (context, ref, child) {
-              final opacityNotifier = useValueNotifier(0.0);
-              final picker = ImagePicker();
-              final cropper = ImageCropper();
-              return Row(
-                children: [
-                  MouseRegion(
+            child: Row(
+              children: [
+                Spacer(),
+                HookConsumer(builder: (context, ref, child) {
+                  final opacityNotifier = useValueNotifier(0.0);
+                  final picker = ImagePicker();
+                  final cropper = ImageCropper();
+                  return MouseRegion(
                       onExit: (event) {
                         opacityNotifier.value = 0.0;
                       },
@@ -139,10 +140,59 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 }),
                           ],
                         ),
-                      )),
-                      Stack(
+                      ));
+                }),
+                SizedBox(width: 25),
+                HookConsumer(builder: (context, ref, child) {
+                  final opacityNotifier = useValueNotifier(0.0);
+                  final picker = ImagePicker();
+                  final cropper = ImageCropper();
+                  return MouseRegion(
+                      onExit: (event) {
+                        opacityNotifier.value = 0.0;
+                      },
+                      onEnter: (event) {
+                        opacityNotifier.value = 1.0;
+                      },
+                      child: HeadlessCupertinoButton(
+                        onPressed: () async {
+                          try {
+                            final xFile = await picker.pickImage(
+                                source: ImageSource.gallery);
+                            // final rawPicture =
+                            //     await xFile!.readAsBytes();
+                            if (xFile != null) {
+                              final croppedFile = await cropper.cropImage(
+                                  sourcePath: xFile.path,
+                                  uiSettings: [
+                                    // ignore: use_build_context_synchronously
+                                    WebUiSettings(
+                                        context: context,
+                                        enableZoom: true,
+                                        enableResize: true,
+                                        viewPort: const CroppieViewPort(
+                                            type: 'circle'))
+                                  ]);
+                              final croppedImage =
+                                  await croppedFile!.readAsBytes();
+                              ref
+                                  .read(uploadServiceProvider.notifier)
+                                  .uploadPicture(
+                                      rawPicture: croppedImage,
+                                      userId: userModel.uid);
+                            }
+                          } catch (e) {
+                            context.showErrorFlushbar(
+                                "Image could not be selected");
+                          }
+
+                          // ref.read
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            Icon(Icons.update),
+                            Icon(Icons.description,
+                                color: Colors.black, size: 150),
                             ValueListenableBuilder(
                                 valueListenable: opacityNotifier,
                                 builder: (context, opacity, child) {
@@ -166,7 +216,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                                 MainAxisAlignment.end,
                                             children: [
                                               Text(
-                                                "Download CV",
+                                                "Upload CV",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 15,
@@ -185,9 +235,11 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 }),
                           ],
                         ),
-                ],
-              );
-            }),
+                      ));
+                }),
+                Spacer()
+              ],
+            ),
           ),
           const SizedBox(height: 30),
           Column(
