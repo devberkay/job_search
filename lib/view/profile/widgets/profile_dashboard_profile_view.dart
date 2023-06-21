@@ -111,14 +111,28 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                         maxHeight: 150,
                                         maxWidth: 150,
                                         source: ImageSource.gallery);
-                                    final rawPicture =
-                                        await xFile!.readAsBytes();
-                                    
-                                    ref
-                                        .read(uploadServiceProvider.notifier)
-                                        .uploadPicture(
-                                            rawPicture: rawPicture,
-                                            userId: userModel.uid);
+                                    // final rawPicture =
+                                    //     await xFile!.readAsBytes();
+                                    if (xFile != null) {
+                                      final croppedFile = await cropper
+                                          .cropImage(
+                                              sourcePath: xFile.path,
+                                              uiSettings: [
+                                            // ignore: use_build_context_synchronously
+                                            WebUiSettings(
+                                                context: context,
+                                                viewPort: const CroppieViewPort(
+                                                    height: 150,
+                                                    width: 150,
+                                                    type: 'circle'))
+                                          ]);
+                                      final croppedImage = await croppedFile!.readAsBytes();
+                                      ref
+                                          .read(uploadServiceProvider.notifier)
+                                          .uploadPicture(
+                                              rawPicture: croppedImage,
+                                              userId: userModel.uid);
+                                    }
                                   } catch (e) {
                                     context.showErrorFlushbar(e.toString());
                                   }
