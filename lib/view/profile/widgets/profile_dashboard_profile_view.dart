@@ -65,6 +65,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             // ignore: use_build_context_synchronously
                             WebUiSettings(
                                 context: context,
+                                enableZoom: true,
+                                enableResize: true,
                                 viewPort: const CroppieViewPort(type: 'circle'))
                           ]);
                           final croppedImage = await croppedFile!.readAsBytes();

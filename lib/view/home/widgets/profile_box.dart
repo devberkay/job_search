@@ -28,20 +28,18 @@ class ProfileBox extends HookConsumerWidget {
             width: width,
             padding: EdgeInsets.symmetric(
                 horizontal: width * 0.1, vertical: height * 0.025),
-            decoration: ShapeDecoration(shape: 
-            ),
             child: Row(
               children: [
-              
+                Spacer(),
                 ProfileAvatar(radius: height * 0.3, userId: _userModel.uid),
-                
+                Spacer(),
                 Text(_userModel.name!,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Colors.grey.shade700,
+                        color: Colors.black,
                         fontSize: height * 0.3,
-                        fontWeight: FontWeight.w500)),
-              
+                        fontWeight: FontWeight.w900)),
+                Spacer(),
               ],
             ),
           ),
