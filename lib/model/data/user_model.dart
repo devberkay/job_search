@@ -16,7 +16,7 @@ class UserModel with _$UserModel {
     String? name, 
     String? surname,
     String? sex, // man or woman
-    String? bio,
+    String? bio, // to be List of string in the future
     String? mail,
     String? phone,
     int? age, 
