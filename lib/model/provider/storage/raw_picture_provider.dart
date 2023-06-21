@@ -41,7 +41,7 @@ class StoragePictureNotifier
       debugPrint("what the fuck browzie-3: ${rawPicture.isNull}");
       return rawPicture;
     } catch (e) {
-      debugPrint("browzie_error: $e");
+      debugPrint("browzie_error: ${e.toString()}");
       return null;
     }
   }
