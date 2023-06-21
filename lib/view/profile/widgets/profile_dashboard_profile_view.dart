@@ -3,6 +3,7 @@ import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
+import 'package:JobSearch/model/utils/capitalize_text_input_formatter.dart';
 import 'package:JobSearch/model/utils/first_letter_formatter.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/model/utils/word_by_word_formatter.dart';
@@ -355,7 +356,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 45,
+                        flex: 48,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -403,9 +404,9 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           ],
                         ),
                       ),
-                      Spacer(flex: 15),
+                      Spacer(flex: 9),
                       Expanded(
-                        flex: 45,
+                        flex: 48,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -419,7 +420,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                     draftUserModelNotifier.value.copyWith(
                                         positionTitles: value.split(" "));
                               },
-                              inputFormatters: [WordByWordInputFormatter()],
+                              inputFormatters: [CapitalizeTextInputFormatter()],
                               style: TextStyle(
                                   color: Colors.grey.shade600,
                                   fontWeight: FontWeight.w600),
