@@ -182,7 +182,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                       cvFile: pickedFile.files.first.bytes!,
                                       userId: userModel.uid,
                                       settableMetadata: SettableMetadata(
-                                          contentType: lookupMimeType(pickedFile.files.first.extension!)));
+                                          contentType: lookupMimeType(pickedFile.files.first.extension!),customMetadata: {"name" : pickedFile.files.first.name}));
                             }
                           } catch (e) {
                             debugPrint("heyerror :$e");
