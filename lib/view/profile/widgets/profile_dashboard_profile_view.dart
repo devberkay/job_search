@@ -4,6 +4,7 @@ import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
+import 'package:JobSearch/model/utils/word_by_word_formatter.dart';
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
@@ -360,10 +361,21 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         flex: 2,
                         child: CupertinoTextField(
                           onSubmitted: (value) {
-                            draftUserModelNotifier.value = draftUserModelNotifier
-                                .value
-                                .copyWith(skills: value);
+                            if (!draftUserModelNotifier.value.skills
+                                .contains(value)) {
+                              draftUserModelNotifier.value =
+                                  draftUserModelNotifier.value.copyWith(
+                                      skills: [
+                                    ...draftUserModelNotifier.value.skills,
+                                    value
+                                  ]);
+                            } else {
+                              context.showErrorFlushbar(
+                                  "This skill already exists, add unique one");
+                            }
+                            skillsController.clear();
                           },
+                          inputFormatters: [WordByWordInputFormatter()],
                           style: TextStyle(
                               color: Colors.grey.shade600,
                               fontWeight: FontWeight.w600),
@@ -404,7 +416,14 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               labelStyle: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600),
-                              onDeleted: () {},
+                              onDeleted: () {
+                                draftUserModelNotifier.value =
+                                    draftUserModelNotifier.value.copyWith(
+                                        skills: draftUserModelNotifier
+                                            .value.skills
+                                            .where((element) => element != e)
+                                            .toList());
+                              },
                               deleteButtonTooltipMessage: "Remove filter",
                               deleteIcon: const Icon(
                                 Icons.close,
