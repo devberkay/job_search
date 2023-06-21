@@ -37,7 +37,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             child: FittedBox(
                 fit: BoxFit.contain,
                 child: HookConsumer(builder: (context, ref, child) {
-                  final controller = useAnimationController();
+                  final controller = useAnimationController(duration: Duration(milliseconds: 500),upperBound: 0.5);
+
                   return MouseRegion(
                       onExit: (event) {},
                       onEnter: (event) {},
@@ -45,15 +46,21 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         children: [
                           Positioned(
                             bottom: 0,
-                            child: Container(
-                              width: 75,
-                              height: 75 / 2,
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.5),
-                                  borderRadius: const BorderRadius.only(
-                                    bottomRight: Radius.circular(100),
-                                    bottomLeft: Radius.circular(100),
-                                  )),
+                            child: AnimatedBuilder(
+                              animation: controller,
+                              builder: (context, child) {
+                                return Container(
+                                  width: 75,
+                                  height: 75 / 2,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.5),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomRight: Radius.circular(100),
+                                        bottomLeft: Radius.circular(100),
+                                      )),
+                                  child: Text("")
+                                );
+                              },
                             ),
                           ),
                           ProfileAvatar(radius: 75, userId: userModel.uid),
