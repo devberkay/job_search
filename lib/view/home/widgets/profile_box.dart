@@ -33,17 +33,15 @@ class ProfileBox extends HookConsumerWidget {
                 border: Border.all(
                     color: Colors.grey.shade600.withOpacity(0.25), width: 2)),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProfileAvatar(radius: height * 0.5,userId: _userModel.uid),
-                SizedBox(
-                  width: width * 0.075,
-                ),
+                ProfileAvatar(radius: height * 0.3, userId: _userModel.uid),
                 Text(_userModel.name!,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         color: Colors.grey.shade700,
-                        fontSize: height * 0.3,
-                        fontWeight: FontWeight.w500)),
+                        fontSize: height * 0.25,
+                        fontWeight: FontWeight.w500))
               ],
             ),
           ),
@@ -134,7 +132,10 @@ class ProfileBox extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProfileAvatar(radius: height * 0.5,userId: null,),
+            ProfileAvatar(
+              radius: height * 0.5,
+              userId: null,
+            ),
             const Spacer(),
             Expanded(
                 flex: 3,

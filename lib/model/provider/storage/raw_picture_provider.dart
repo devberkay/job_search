@@ -14,7 +14,7 @@ class StoragePictureNotifier
     extends AutoDisposeFamilyAsyncNotifier<Uint8List?, String?> {
   @override
   FutureOr<Uint8List?> build(String? arg) async {
-    debugPrint("what the fuck browzie : $arg");
+    
     if (arg == null) {
       return null;
     }
@@ -26,19 +26,19 @@ class StoragePictureNotifier
 
   Future<Uint8List?> downloadRawData() async {
     try {
-      debugPrint("what the fuck browzie-1 : $arg");
+      
       if (arg == null) {
-        debugPrint("holo-1: ");
+        
         return null;
       }
       final fullRefPath = arg;
-      debugPrint("what the fuck browzie-2 : $fullRefPath");
+      
 
       final storage = ref.read(storageProvider);
       final storageRef = storage.ref(fullRefPath);
       // final downloadUrl = await storageRef.getDownloadURL();
       final rawPicture = await storageRef.getData();
-      debugPrint("what the fuck browzie-3: ${rawPicture.isNull}");
+      
       return rawPicture;
     } catch (e) {
       debugPrint("browzie_error: ${e.toString()}");

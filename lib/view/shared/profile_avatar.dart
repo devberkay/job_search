@@ -20,7 +20,6 @@ class ProfileAvatar extends HookConsumerWidget {
     final rawData = ref.watch(
         rawPictureProvider(userId != null ? "users/$userId/profile" : null));
     return rawData.when(data: (rawData) {
-      debugPrint("heyyo-0 : ${rawData}");
       if (rawData != null) {
         debugPrint("heyyo-1");
         return CircleAvatar(
