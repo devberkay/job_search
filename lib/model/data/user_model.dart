@@ -15,7 +15,7 @@ class UserModel with _$UserModel {
     required String uid,
     required bool isSeekingJob,
     @Default([]) List<String> skills, 
-    @Default([]) List<String> positionTitles,
+    @Default([]) List<String> positionTitles, 
     String? name, 
     String? surname,
     String? sex, 

@@ -413,11 +413,11 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               .map<Widget>((e) {
                             return Chip(
                               label: Text(e),
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.grey.shade500.withOpacity(0.75),
                               side: BorderSide(color: Colors.grey.shade400),
-                              labelStyle: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
+                              labelStyle:  TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w600),
                               onDeleted: () {
                                 draftUserModelNotifier.value =
                                     draftUserModelNotifier.value.copyWith(
