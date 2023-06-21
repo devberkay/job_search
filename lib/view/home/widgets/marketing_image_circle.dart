@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final marketingImageIndexProvider =
     StreamProvider.autoDispose<int>((ref) async* {
   yield* Stream.periodic(const Duration(milliseconds: 2400), (index) {
-    debugPrint("motfucka:${(index) % 3}");
+    
     return index % 3;
   });
 });

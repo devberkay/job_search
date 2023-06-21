@@ -23,7 +23,6 @@ class UserModel with _$UserModel {
     String? mail,
     String? phone,
     int? age, 
-    
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, Object?> json) =>
