@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
 final rawPictureProvider = AsyncNotifierProvider.autoDispose
-    .family<StoragePictureNotifier, Uint8List?, String?>(
+    .family<StoragePictureNotifier, Uint8List?, String>(
         StoragePictureNotifier.new);
 
 class StoragePictureNotifier

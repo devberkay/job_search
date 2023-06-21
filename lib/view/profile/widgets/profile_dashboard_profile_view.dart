@@ -131,8 +131,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                               userId: userModel.uid);
                                     }
                                   } catch (e) {
-                                    debugPrint("error_type : ${e.runtimeType}");
-                                    context.showErrorFlushbar(e.toString());
+                                    context.showErrorFlushbar(
+                                        "Image could not be selected");
                                   }
 
                                   // ref.read

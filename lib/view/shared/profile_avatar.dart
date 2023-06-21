@@ -14,18 +14,20 @@ import 'package:http/http.dart' as http;
 class ProfileAvatar extends HookConsumerWidget {
   const ProfileAvatar({super.key, required this.radius, required this.userId});
   final double radius;
-  final String? userId;
+  final String userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final rawData =
-        ref.watch(rawPictureProvider(userId != null ? "/users/$userId/profile" : null));
+    final rawData = ref.watch(
+        rawPictureProvider(userId != null ? "users/$userId/profile" : null));
     return rawData.when(data: (rawData) {
       if (rawData != null) {
+        debugPrint("heyyo-1");
         return CircleAvatar(
           radius: radius,
           backgroundImage: MemoryImage(rawData),
         );
       } else {
+        debugPrint("heyyo-2");
         return Container(
             height: radius,
             width: radius,

@@ -22,7 +22,7 @@ class UploadServiceNotifier extends AsyncNotifier<String?> {
     try {
       state = const AsyncLoading();
       final storage = ref.read(storageProvider);
-      await storage.ref("/users/$userId/profile").putData(rawPicture);
+      await storage.ref("users/$userId/profile").putData(rawPicture);
       ref.invalidate(rawPictureProvider("users/$userId/profile"));
       state = const AsyncData("picture");
     } catch (e, st) {
@@ -35,7 +35,7 @@ class UploadServiceNotifier extends AsyncNotifier<String?> {
     try {
       state = const AsyncLoading();
       final storage = ref.read(storageProvider);
-      await storage.ref("/users/$userId/cv").putBlob(cvFile);
+      await storage.ref("users/$userId/cv").putBlob(cvFile);
       state = const AsyncData("file");
     } catch (e, st) {
       state = AsyncError(e, st);
