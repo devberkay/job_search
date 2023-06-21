@@ -12,12 +12,13 @@ import 'package:shimmer/shimmer.dart';
 import 'package:http/http.dart' as http;
 
 class ProfileAvatar extends HookConsumerWidget {
-  const ProfileAvatar({super.key, required this.radius,required this.userId});
+  const ProfileAvatar({super.key, required this.radius, required this.userId});
   final double radius;
   final String? userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final rawData = ref.watch(rawPictureProvider(userId!=null ? "/users/$userId" : null));
+    final rawData =
+        ref.watch(rawPictureProvider(userId != null ? "/users/$userId" : null));
     return rawData.when(data: (rawData) {
       if (rawData != null) {
         return CircleAvatar(
@@ -25,17 +26,13 @@ class ProfileAvatar extends HookConsumerWidget {
           backgroundImage: MemoryImage(rawData),
         );
       } else {
-        return HeadlessCupertinoButton(
-          onPressed: () {},
-          child: Container(
-              height: radius,
-              width: radius,
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade600.withOpacity(0.25),
-                  shape: BoxShape.circle),
-              child:
-                  Icon(Icons.person, color: Colors.black54, size: radius / 2)),
-        );
+        return Container(
+            height: radius,
+            width: radius,
+            decoration: BoxDecoration(
+                color: Colors.grey.shade600.withOpacity(0.25),
+                shape: BoxShape.circle),
+            child: Icon(Icons.person, color: Colors.black54, size: radius / 2));
       }
     }, error: (e, st) {
       return Shimmer.fromColors(

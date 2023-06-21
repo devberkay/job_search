@@ -5,6 +5,7 @@ import 'package:JobSearch/model/service/firestore/user_model_service_notifier.da
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
+import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:JobSearch/view/shared/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                           )));
                                 }),
                           ),
-                          ProfileAvatar(radius: 75, userId: userModel.uid),
+                          HeadlessCupertinoButton(
+                              onPressed: () {},
+                              child: ProfileAvatar(
+                                  radius: 75, userId: userModel.uid)),
                         ],
                       ));
                 })),
