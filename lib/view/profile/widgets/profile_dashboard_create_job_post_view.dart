@@ -46,7 +46,9 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
             const SizedBox(height: 10),
             CupertinoTextField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                titleNotifier.value = value;
+              },
               maxLines: 1,
               placeholder: "Enter the required position's title",
               style: TextStyle(
@@ -72,7 +74,9 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
             const SizedBox(height: 10),
             CupertinoTextField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                aboutJobNotifier.value = value;
+              },
               maxLines: 5,
               placeholder: "Describe the job",
               style: TextStyle(
@@ -449,6 +453,182 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
               );
             }),
         const SizedBox(height: 30),
+        ValueListenableBuilder(
+            valueListenable: responsibilitiesNotifier,
+            builder: (context, _, __) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Preferred Qualifications (At least 3)",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  CupertinoTextField(
+                    onSubmitted: (value) {
+                      if (responsibilitiesNotifier.value.length < 8) {
+                        if (value.isNotEmpty) {
+                          responsibilitiesNotifier.value = [
+                            ...responsibilitiesNotifier.value,
+                            value
+                          ];
+                        }
+                        responsibilitiesController.clear();
+                      }
+                    },
+                    controller: responsibilitiesController,
+                    maxLines: 1,
+                    prefix: Icon(
+                      Icons.add,
+                      color: Colors.grey.shade500.withOpacity(0.75),
+                    ),
+                    placeholder: "Enter the required position's nice-to-haves",
+                    style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w600),
+                    placeholderStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade400),
+                    maxLength: 200,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ...responsibilitiesNotifier.value
+                      .mapIndexed<Widget>((index, e) {
+                    if (index == responsibilitiesNotifier.value.length - 1) {
+                      return HookConsumer(builder: (context, ref, child) {
+                        final isHovering = useState(false);
+                        return MouseRegion(
+                          onEnter: (event) {
+                            isHovering.value = true;
+                          },
+                          onExit: (event) {
+                            isHovering.value = false;
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            transformAlignment: Alignment.center,
+                            curve: Curves.easeOut,
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.shade500,
+                                      offset: Offset(isHovering.value ? -1 : 0,
+                                          isHovering.value ? -1 : 0),
+                                      blurRadius: isHovering.value ? 1.25 : 0,
+                                      spreadRadius:
+                                          isHovering.value ? 1.25 : 0),
+                                  BoxShadow(
+                                      color: Colors.grey.shade500,
+                                      offset: Offset(isHovering.value ? 1 : 0,
+                                          isHovering.value ? 1 : 0),
+                                      blurRadius: isHovering.value ? 1.25 : 0,
+                                      spreadRadius: isHovering.value ? 1.25 : 0)
+                                ]),
+                            child: Row(
+                              children: [
+                                Text(
+                                  e,
+                                  style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const Spacer(),
+                                HeadlessCupertinoButton(
+                                  onPressed: () {
+                                    responsibilitiesNotifier.value = [
+                                      ...responsibilitiesNotifier.value
+                                        ..removeAt(index)
+                                    ];
+                                  },
+                                  child: const Icon(Icons.remove,
+                                      color: Colors.red),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                    } else {
+                      return Column(
+                        children: [
+                          HookConsumer(builder: (context, ref, child) {
+                            final isHovering = useState(false);
+                            return MouseRegion(
+                              onEnter: (event) {
+                                isHovering.value = true;
+                              },
+                              onExit: (event) {
+                                isHovering.value = false;
+                              },
+                              child: AnimatedContainer(
+                                clipBehavior: Clip.none,
+                                duration: const Duration(milliseconds: 250),
+                                transformAlignment: Alignment.center,
+                                curve: Curves.easeOut,
+                                padding: const EdgeInsets.all(7),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade100,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.shade500,
+                                          offset: Offset(
+                                              isHovering.value ? -1 : 0,
+                                              isHovering.value ? -1 : 0),
+                                          blurRadius:
+                                              isHovering.value ? 1.25 : 0,
+                                          spreadRadius:
+                                              isHovering.value ? 1.25 : 0),
+                                      BoxShadow(
+                                          color: Colors.grey.shade500,
+                                          offset: Offset(
+                                              isHovering.value ? 1 : 0,
+                                              isHovering.value ? 1 : 0),
+                                          blurRadius:
+                                              isHovering.value ? 1.25 : 0,
+                                          spreadRadius:
+                                              isHovering.value ? 1.25 : 0)
+                                    ]),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      e,
+                                      style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Spacer(),
+                                    HeadlessCupertinoButton(
+                                      onPressed: () {
+                                        responsibilitiesNotifier.value = [
+                                          ...responsibilitiesNotifier.value
+                                            ..removeAt(index)
+                                        ];
+                                      },
+                                      child: const Icon(Icons.remove,
+                                          color: Colors.red),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                          SizedBox(height: 10),
+                        ],
+                      );
+                    }
+                  })
+                ],
+              );
+            }),
       ],
     );
   }
