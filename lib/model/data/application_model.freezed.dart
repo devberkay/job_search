@@ -22,10 +22,13 @@ ApplicationModel _$ApplicationModelFromJson(Map<String, dynamic> json) {
 mixin _$ApplicationModel {
   Map<String, String> get questionnaireAnswers =>
       throw _privateConstructorUsedError;
-  String get uid => throw _privateConstructorUsedError;
-  String get ownerUid => throw _privateConstructorUsedError;
+  String get uid =>
+      throw _privateConstructorUsedError; // user id of who applioed to the job
+  String get ownerUid =>
+      throw _privateConstructorUsedError; // user id of who posted the job
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
+  bool? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +47,8 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String uid,
       String ownerUid,
       String jobId,
-      dynamic timestampField});
+      dynamic timestampField,
+      bool? status});
 }
 
 /// @nodoc
@@ -65,6 +69,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       questionnaireAnswers: null == questionnaireAnswers
@@ -87,6 +92,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -104,7 +113,8 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
       String uid,
       String ownerUid,
       String jobId,
-      dynamic timestampField});
+      dynamic timestampField,
+      bool? status});
 }
 
 /// @nodoc
@@ -123,6 +133,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? status = freezed,
   }) {
     return _then(_$_ApplicationModel(
       questionnaireAnswers: null == questionnaireAnswers
@@ -145,6 +156,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -159,7 +174,8 @@ class _$_ApplicationModel
       required this.uid,
       required this.ownerUid,
       required this.jobId,
-      required this.timestampField})
+      required this.timestampField,
+      required this.status})
       : _questionnaireAnswers = questionnaireAnswers;
 
   factory _$_ApplicationModel.fromJson(Map<String, dynamic> json) =>
@@ -176,16 +192,20 @@ class _$_ApplicationModel
 
   @override
   final String uid;
+// user id of who applioed to the job
   @override
   final String ownerUid;
+// user id of who posted the job
   @override
   final String jobId;
   @override
   final dynamic timestampField;
+  @override
+  final bool? status;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField)';
+    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status)';
   }
 
   @override
@@ -197,7 +217,8 @@ class _$_ApplicationModel
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('ownerUid', ownerUid))
       ..add(DiagnosticsProperty('jobId', jobId))
-      ..add(DiagnosticsProperty('timestampField', timestampField));
+      ..add(DiagnosticsProperty('timestampField', timestampField))
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -212,7 +233,8 @@ class _$_ApplicationModel
                 other.ownerUid == ownerUid) &&
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
-                .equals(other.timestampField, timestampField));
+                .equals(other.timestampField, timestampField) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
@@ -223,7 +245,8 @@ class _$_ApplicationModel
       uid,
       ownerUid,
       jobId,
-      const DeepCollectionEquality().hash(timestampField));
+      const DeepCollectionEquality().hash(timestampField),
+      status);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +268,8 @@ abstract class _ApplicationModel implements ApplicationModel {
       required final String uid,
       required final String ownerUid,
       required final String jobId,
-      required final dynamic timestampField}) = _$_ApplicationModel;
+      required final dynamic timestampField,
+      required final bool? status}) = _$_ApplicationModel;
 
   factory _ApplicationModel.fromJson(Map<String, dynamic> json) =
       _$_ApplicationModel.fromJson;
@@ -254,12 +278,14 @@ abstract class _ApplicationModel implements ApplicationModel {
   Map<String, String> get questionnaireAnswers;
   @override
   String get uid;
-  @override
+  @override // user id of who applioed to the job
   String get ownerUid;
-  @override
+  @override // user id of who posted the job
   String get jobId;
   @override
   dynamic get timestampField;
+  @override
+  bool? get status;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationModelCopyWith<_$_ApplicationModel> get copyWith =>

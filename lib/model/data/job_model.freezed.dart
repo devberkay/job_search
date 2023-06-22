@@ -34,7 +34,8 @@ mixin _$JobModel {
   double get salaryPerHour => throw _privateConstructorUsedError;
   int get applicantCounter => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
-  bool get isActive => throw _privateConstructorUsedError;
+  bool get isActive =>
+      throw _privateConstructorUsedError; // can only be true or false
   String? get owner => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
   List<String> get responsibilities => throw _privateConstructorUsedError;
@@ -419,6 +420,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   final dynamic timestampField;
   @override
   final bool isActive;
+// can only be true or false
   @override
   @JsonKey()
   final String? owner;
@@ -629,7 +631,7 @@ abstract class _JobModel implements JobModel {
   dynamic get timestampField;
   @override
   bool get isActive;
-  @override
+  @override // can only be true or false
   String? get owner;
   @override
   String? get jobId;

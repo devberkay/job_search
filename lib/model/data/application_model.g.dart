@@ -14,6 +14,7 @@ _$_ApplicationModel _$$_ApplicationModelFromJson(Map<String, dynamic> json) =>
       ownerUid: json['ownerUid'] as String,
       jobId: json['jobId'] as String,
       timestampField: json['timestampField'],
+      status: json['status'] as bool?,
     );
 
 Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
       'ownerUid': instance.ownerUid,
       'jobId': instance.jobId,
       'timestampField': instance.timestampField,
+      'status': instance.status,
     };
