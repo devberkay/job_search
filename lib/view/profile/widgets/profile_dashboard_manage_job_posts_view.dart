@@ -68,7 +68,9 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                           jobModel.title,
                           style: const TextStyle(color: Colors.black),
                         ),
-                      )
+                      ),
+                      const SizedBox(width: 15),
+                      Icon(Icons.)
                     ],
                   ),
                 ),

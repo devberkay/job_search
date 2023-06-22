@@ -22,7 +22,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     final profileSidebarIndex = ref.watch(profileSidebarIndexProvider);
     final currentUser = ref.watch(userProvider);
-    return (currentUser?.uid != userId) ? Row(
+    return (currentUser?.uid == widget.userId) ? Row(
       children: [
         const ProfileSidebar(),
         Expanded(child: HookConsumer(builder: (context, ref, child) {
@@ -115,6 +115,45 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           }
         }))
       ],
-    ) : Row();
+    ) : HookConsumer(builder: (context, ref, child) {
+       final userModel = ref.watch(userModelProvider(widget.userId));
+        return userModel.when(
+            // ignore: no_leading_underscores_for_local_identifiers
+            data: (_userModel) {
+          if (_userModel != null) {
+            return ProfileDashboardProfileView(userModel: _userModel);
+          } else {
+            return const Column(
+              children: [
+                Icon(Icons.question_mark, color: Colors.black),
+                SizedBox(
+                  height: 25,
+                ),
+                Text("User not found",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 25)),
+              ],
+            );
+          }
+        }, error: (e, st) {
+          return const Column(
+            children: [
+              Icon(Icons.error, color: Colors.black),
+              SizedBox(
+                height: 25,
+              ),
+              Text("Error loading user",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+            ],
+          );
+        }, loading: () {
+          return const Center(
+            child: SpinKitRing(
+              color: Colors.black,
+            ),
+          );
+        });
+    });
   }
 }
