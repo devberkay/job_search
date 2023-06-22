@@ -49,16 +49,21 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       shape:
                           StadiumBorder(side: BorderSide(color: Colors.black))),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ProfileBoxStatic(
                           userModel: mergedInnerModel.applicantModel,
-                          height: 36,
-                          width: 108),
+                          height: 40,
+                          width: 120),
                       const Text(
-                          "has applied to following job published by you"),
+                        "has applied to following job published by you",
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
                       const SizedBox(width: 5),
                       Chip(
-                        backgroundColor: Colors.grey.shade100,
+                        shape: StadiumBorder(
+                            side: BorderSide(color: Colors.black)),
+                        backgroundColor: Colors.grey.shade200,
                         label: Text(
                           jobModel.title,
                           style: const TextStyle(color: Colors.black),
