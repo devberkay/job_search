@@ -11,5 +11,6 @@ class ApplicatioNServiceNotifier extends AsyncNotifier<void> {
     final firestore = ref.read(firestoreProvider);
     final applicationCollectionRef = firestore.collection('applications');
     final jobPostsCollectionRef = firestore.collection('jobPosts');
+    
   }
 }
