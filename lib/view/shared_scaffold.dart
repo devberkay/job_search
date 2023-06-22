@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/provider/auth/auth_stream_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
+import 'package:JobSearch/model/service/firestore/application_service.dart';
 import 'package:JobSearch/model/service/firestore/publish_service.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
@@ -22,6 +23,16 @@ class SharedScaffold extends StatefulHookConsumerWidget {
 class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
   @override
   Widget build(BuildContext context) {
+    ref.listen(applicationServiceProvider, (previous, next) {
+      next.whenData((value) {
+        if (value == "ALREADY_APPLIED") {
+          context.showErrorFlushbar("You've already applied to this job.");
+        } else if (value == "SUCCESS") {
+          context
+              .showSuccesFlashbar("You've successfully applied to this job.");
+        }
+      });
+    });
     ref.listen(userProvider, (previous, next) {
       if (next == null && widget.routerState.location.contains("profile")) {
         context.go("/");

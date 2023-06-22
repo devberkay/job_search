@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'widgets/profile_dashboard_manage_job_posts_view.dart';
+
 class ProfilePage extends StatefulHookConsumerWidget {
   const ProfilePage({super.key, required this.userId});
   final String? userId;
@@ -67,7 +69,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           } else if (profileSidebarIndex == 2) {
             return Container();
           } else if (profileSidebarIndex == 3) {
-            return Container();
+            return ProfileDashboardManageJobPostsView();
           } else if (profileSidebarIndex == 4) {
             return ProfileDashboardCreateJobPostView();
           } else {

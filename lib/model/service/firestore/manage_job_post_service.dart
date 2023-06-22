@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,MergedManageJobPostModel >(ManageJobPostServiceStreamNotifier.new);
 
 class ManageJobPostServiceStreamNotifier
-    extends StreamNotifier<MergedManageJobPostModel> {
+    extends AutoDisposeStreamNotifier<MergedManageJobPostModel> {
   @override
   Stream<MergedManageJobPostModel> build() async* {
     var applicationModels = <ApplicationModel>[];
