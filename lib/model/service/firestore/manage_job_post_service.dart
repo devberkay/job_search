@@ -14,6 +14,10 @@ class ManageJobPostServiceStreamNotifier
         .where('owner', isEqualTo: selfUserId)
         .where('isActive', isEqualTo: true)
         .snapshots();
+    final applicationStream = firestore
+        .collection('applications')
+        .where('applicant', isEqualTo: selfUserId)
+        .snapshots();
     await for (final jobs in jobPostStream) {
       firestore.collection("applications");
     }
