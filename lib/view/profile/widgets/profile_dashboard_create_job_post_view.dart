@@ -11,9 +11,28 @@ import 'package:collection/collection.dart';
 class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
   const ProfileDashboardCreateJobPostView({super.key});
 
+  bool isValid(
+      {required String title,
+      required String aboutJob,
+      required List<String> minimumQualifications,
+      required List<String> preferredQualifications,
+      required List<String> responsibilities,
+      required String degree,
+      required String jobType,
+      required bool isRemote,
+      required String organization,
+      required double salaryPerHour,
+      required List<String> questionnaire}) {
+    if (minimumQualifications.length > 2 &&
+        preferredQualifications.length > 2 &&
+        responsibilities.length > 2 &&
+        minimumQualifications.length < 9 &&
+        preferredQualifications.length < 9 &&
+        responsibilities.length < 9) {
+      return true;
+    }
 
-  bool canPublish() {
-    
+    return false;
   }
 
   @override
@@ -842,10 +861,8 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  ...questionnaireNotifier.value
-                      .mapIndexed<Widget>((index, e) {
-                    if (index ==
-                        questionnaireNotifier.value.length - 1) {
+                  ...questionnaireNotifier.value.mapIndexed<Widget>((index, e) {
+                    if (index == questionnaireNotifier.value.length - 1) {
                       return HookConsumer(builder: (context, ref, child) {
                         final isHovering = useState(false);
                         return MouseRegion(
@@ -954,10 +971,8 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                                     const Spacer(),
                                     HeadlessCupertinoButton(
                                       onPressed: () {
-                                        questionnaireNotifier.value =
-                                            [
-                                          ...questionnaireNotifier
-                                              .value
+                                        questionnaireNotifier.value = [
+                                          ...questionnaireNotifier.value
                                             ..removeAt(index)
                                         ];
                                       },
@@ -978,50 +993,48 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
               );
             }),
         const SizedBox(height: 90),
-        ValueListenableBuilder(
-                valueListenable: Listenable.merge([]),
-                builder: (context, draftModel, child) {
-                  return FilledCupertinoButton(
-                      onPressed: () {
-                        
-                      },
-                      height: 50,
-                      width: 150,
-                      fillColor: (draftModel != userModel)
-                          ? Colors.blueAccent
-                          : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(5),
-                      child: HookConsumer(builder: (context, ref, child) {
-                        final isUpdating = ref.watch(userModelServiceProvider);
-                        return isUpdating.when(data: (_) {
-                          return Text("Save changes",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 15,
-                                  color: (draftModel != userModel)
-                                      ? Colors.white
-                                      : Colors.grey.shade400));
-                        }, error: (e, st) {
-                          return const Center(
-                            child: SpinKitRing(
-                              size: 20,
-                              lineWidth: 3,
-                              duration: Duration(milliseconds: 500),
-                              color: Colors.white,
-                            ),
-                          );
-                        }, loading: () {
-                          return const Center(
-                            child: SpinKitRing(
-                              size: 20,
-                              lineWidth: 3,
-                              duration: Duration(milliseconds: 500),
-                              color: Colors.white,
-                            ),
-                          );
-                        });
-                      }));
-                }),
+        AnimatedBuilder(
+            animation:Listenable.merge([titleNotifier, minimumQualificationsNotifier, questionnaireNotifier, preferredQualificationsNotifier, aboutJobNotifier, jobTypeNotifier, degreeNotifier, isRemoteNotifier,salaryPerHourNotifier]), 
+            builder: (context, _) {
+              return FilledCupertinoButton(
+                  onPressed: () {},
+                  height: 50,
+                  width: 150,
+                  fillColor: (draftModel != userModel)
+                      ? Colors.blueAccent
+                      : Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(5),
+                  child: HookConsumer(builder: (context, ref, child) {
+                    final isUpdating = ref.watch(userModelServiceProvider);
+                    return isUpdating.when(data: (_) {
+                      return Text("Save changes",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                              color: (draftModel != userModel)
+                                  ? Colors.white
+                                  : Colors.grey.shade400));
+                    }, error: (e, st) {
+                      return const Center(
+                        child: SpinKitRing(
+                          size: 20,
+                          lineWidth: 3,
+                          duration: Duration(milliseconds: 500),
+                          color: Colors.white,
+                        ),
+                      );
+                    }, loading: () {
+                      return const Center(
+                        child: SpinKitRing(
+                          size: 20,
+                          lineWidth: 3,
+                          duration: Duration(milliseconds: 500),
+                          color: Colors.white,
+                        ),
+                      );
+                    });
+                  }));
+            }),
       ],
     );
   }
