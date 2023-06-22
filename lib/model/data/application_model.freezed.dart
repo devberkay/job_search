@@ -23,7 +23,7 @@ mixin _$ApplicationModel {
   Map<String, String>? get questionnaireAnswers =>
       throw _privateConstructorUsedError;
   String get uid =>
-      throw _privateConstructorUsedError; // user id of who applioed to the job, a.k.a sender
+      throw _privateConstructorUsedError; // user id of who applied to the job, a.k.a sender
   String get ownerUid =>
       throw _privateConstructorUsedError; // user id of who posted the job, a.k.a recipient
   String get jobId => throw _privateConstructorUsedError;
@@ -194,7 +194,7 @@ class _$_ApplicationModel
 
   @override
   final String uid;
-// user id of who applioed to the job, a.k.a sender
+// user id of who applied to the job, a.k.a sender
   @override
   final String ownerUid;
 // user id of who posted the job, a.k.a recipient
@@ -280,7 +280,7 @@ abstract class _ApplicationModel implements ApplicationModel {
   Map<String, String>? get questionnaireAnswers;
   @override
   String get uid;
-  @override // user id of who applioed to the job, a.k.a sender
+  @override // user id of who applied to the job, a.k.a sender
   String get ownerUid;
   @override // user id of who posted the job, a.k.a recipient
   String get jobId;

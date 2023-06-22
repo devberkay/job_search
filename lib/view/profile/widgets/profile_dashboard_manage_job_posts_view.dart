@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/data/merged_manage_job_post_inner_model.dart';
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +24,18 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
       if (_manageJobPostMergedModels != null &&
           _manageJobPostMergedModels.isNotEmpty) {
         final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
+        final applicantModels = _manageJobPostMergedModels.map((e) => e.applicantModel);
+        final applicationModels = _manageJobPostMergedModels.map((e) => e.applicationModel);
         return ExpansionPanelList(
           children: jobModels.map<ExpansionPanel>((e) {
+            MergedManageJobPostInnerModel innerModels;
             return ExpansionPanel(
                 headerBuilder: (context, isExpanded) {
                   return ManageCard(jobModel: e);
                 },
-                body: Container());
+                body: ListView(
+                  children: 
+                ));
           }).toList(),
         );
       } else {
