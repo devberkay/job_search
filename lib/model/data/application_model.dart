@@ -12,7 +12,7 @@ part 'application_model.g.dart';
 @freezed
 class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
-    required Map<String,String> questionnaireAnswers,
+    required Map<String,String>? questionnaireAnswers,
     required String uid, // user id of who applioed to the job
     required String ownerUid, // user id of who posted the job
     required String jobId,
