@@ -64,6 +64,19 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
     // final latitudeController = useTextEditingController();
     final questionnaireController = useTextEditingController(); // onSubmitted
 
+    isValid() {
+      if (minimumQualificationsNotifier.value.length > 2 &&
+          preferredQualificationsNotifier.value.length > 2 &&
+          responsibilitiesNotifier.value.length > 2 &&
+          minimumQualificationsNotifier.value.length < 9 &&
+          preferredQualificationsNotifier.value.length < 9 &&
+          responsibilitiesNotifier.value.length < 9) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       children: [
@@ -994,7 +1007,17 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
             }),
         const SizedBox(height: 90),
         AnimatedBuilder(
-            animation:Listenable.merge([titleNotifier, minimumQualificationsNotifier, questionnaireNotifier, preferredQualificationsNotifier, aboutJobNotifier, jobTypeNotifier, degreeNotifier, isRemoteNotifier,salaryPerHourNotifier]), 
+            animation: Listenable.merge([
+              titleNotifier,
+              minimumQualificationsNotifier,
+              questionnaireNotifier,
+              preferredQualificationsNotifier,
+              aboutJobNotifier,
+              jobTypeNotifier,
+              degreeNotifier,
+              isRemoteNotifier,
+              salaryPerHourNotifier
+            ]),
             builder: (context, _) {
               return Row(
                 children: [
@@ -1003,7 +1026,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                       onPressed: () {},
                       height: 50,
                       width: 150,
-                      fillColor: (draftModel != userModel)
+                      fillColor: isValid()
                           ? Colors.blueAccent
                           : Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(5),
@@ -1037,11 +1060,11 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                           );
                         });
                       })),
-                      Spacer()
+                  Spacer()
                 ],
               );
             }),
-          const SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
