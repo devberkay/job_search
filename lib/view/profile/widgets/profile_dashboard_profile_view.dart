@@ -155,8 +155,106 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         ),
                       ));
                 }),
-                // const SizedBox(width: 25),
-                
+                const SizedBox(width: 25),
+                HookConsumer(builder: (context, ref, child) {
+                  final opacityNotifier = useValueNotifier(0.0);
+
+                  return MouseRegion(
+                      onExit: (event) {
+                        opacityNotifier.value = 0.0;
+                      },
+                      onEnter: (event) {
+                        opacityNotifier.value = 1.0;
+                      },
+                      child: HeadlessCupertinoButton(
+                        onPressed: () async {
+                          try {
+                            final pickedFile =
+                                await FilePicker.platform.pickFiles(
+                              type: FileType.custom,
+                              allowedExtensions: ['pdf'],
+                            );
+                            if (pickedFile != null &&
+                                pickedFile.files.isNotEmpty) {
+                              await ref
+                                  .read(uploadServiceProvider.notifier)
+                                  .uploadFile(
+                                      cvFile: pickedFile.files.first.bytes!,
+                                      userId: userModel.uid,
+                                      settableMetadata: SettableMetadata(
+                                          contentType: lookupMimeType(pickedFile
+                                              .files.first.extension!),
+                                          customMetadata: {
+                                            "name": pickedFile.files.first.name
+                                          }));
+                            }
+                          } catch (e) {
+                            debugPrint("heyerror :$e");
+                            context.showErrorFlushbar(
+                                "File could not be selected");
+                          }
+
+                          // ref.read
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("CV",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 75,
+                                        fontWeight: FontWeight.w900)),
+                                Icon(Icons.download,
+                                    color: Colors.black, size: 25)
+                              ],
+                            ),
+                            ValueListenableBuilder(
+                                valueListenable: opacityNotifier,
+                                builder: (context, opacity, child) {
+                                  return AnimatedOpacity(
+                                      opacity: opacity,
+                                      curve: Curves.easeOut,
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      child: Container(
+                                          width: 150,
+                                          height: 150,
+                                          padding:
+                                              const EdgeInsets.only(bottom: 15),
+                                          decoration: BoxDecoration(
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                              borderRadius:
+                                                  BorderRadius.circular(75)),
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                "Upload CV",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                              SizedBox(height: 5),
+                                              Icon(
+                                                Icons.file_upload_outlined,
+                                                color: Colors.white,
+                                                size: 25,
+                                              )
+                                            ],
+                                          )));
+                                }),
+                          ],
+                        ),
+                      ));
+                }),
                 const Spacer()
               ],
             ),
@@ -618,8 +716,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
       //boo
       final downloadUrl =
           ref.watch(fileDownloadUrlProvider("/users/${userModel.uid}/cv"));
-     // ignore: no_leading_underscores_for_local_identifiers
-     return downloadUrl.when(data: (_downloadUrl) {
+      // ignore: no_leading_underscores_for_local_identifiers
+      return downloadUrl.when(data: (_downloadUrl) {
         if (_downloadUrl != null) {
           return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
