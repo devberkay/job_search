@@ -13,9 +13,9 @@ part 'merged_manage_job_post_model.freezed.dart';
 @freezed
 class MergedManageJobPostModel with _$MergedManageJobPostModel {
   const factory MergedManageJobPostModel({
-    required ApplicationModel applicationModel,
-    required JobModel jobModel,
-    required UserModel applicantModel,
+    required List<ApplicationModel> applicationModels,
+    required List<JobModel> jobModels,
+    required List<UserModel> applicantModels,
     
   }) = _MergedManageJobPostModel;
 

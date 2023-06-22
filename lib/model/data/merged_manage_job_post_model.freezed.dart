@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MergedManageJobPostModel {
-  ApplicationModel get applicationModel => throw _privateConstructorUsedError;
-  JobModel get jobModel => throw _privateConstructorUsedError;
-  UserModel get applicantModel => throw _privateConstructorUsedError;
+  List<ApplicationModel> get applicationModels =>
+      throw _privateConstructorUsedError;
+  List<JobModel> get jobModels => throw _privateConstructorUsedError;
+  List<UserModel> get applicantModels => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MergedManageJobPostModelCopyWith<MergedManageJobPostModel> get copyWith =>
@@ -32,13 +33,9 @@ abstract class $MergedManageJobPostModelCopyWith<$Res> {
       _$MergedManageJobPostModelCopyWithImpl<$Res, MergedManageJobPostModel>;
   @useResult
   $Res call(
-      {ApplicationModel applicationModel,
-      JobModel jobModel,
-      UserModel applicantModel});
-
-  $ApplicationModelCopyWith<$Res> get applicationModel;
-  $JobModelCopyWith<$Res> get jobModel;
-  $UserModelCopyWith<$Res> get applicantModel;
+      {List<ApplicationModel> applicationModels,
+      List<JobModel> jobModels,
+      List<UserModel> applicantModels});
 }
 
 /// @nodoc
@@ -55,48 +52,24 @@ class _$MergedManageJobPostModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationModel = null,
-    Object? jobModel = null,
-    Object? applicantModel = null,
+    Object? applicationModels = null,
+    Object? jobModels = null,
+    Object? applicantModels = null,
   }) {
     return _then(_value.copyWith(
-      applicationModel: null == applicationModel
-          ? _value.applicationModel
-          : applicationModel // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel,
-      jobModel: null == jobModel
-          ? _value.jobModel
-          : jobModel // ignore: cast_nullable_to_non_nullable
-              as JobModel,
-      applicantModel: null == applicantModel
-          ? _value.applicantModel
-          : applicantModel // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      applicationModels: null == applicationModels
+          ? _value.applicationModels
+          : applicationModels // ignore: cast_nullable_to_non_nullable
+              as List<ApplicationModel>,
+      jobModels: null == jobModels
+          ? _value.jobModels
+          : jobModels // ignore: cast_nullable_to_non_nullable
+              as List<JobModel>,
+      applicantModels: null == applicantModels
+          ? _value.applicantModels
+          : applicantModels // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ApplicationModelCopyWith<$Res> get applicationModel {
-    return $ApplicationModelCopyWith<$Res>(_value.applicationModel, (value) {
-      return _then(_value.copyWith(applicationModel: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $JobModelCopyWith<$Res> get jobModel {
-    return $JobModelCopyWith<$Res>(_value.jobModel, (value) {
-      return _then(_value.copyWith(jobModel: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get applicantModel {
-    return $UserModelCopyWith<$Res>(_value.applicantModel, (value) {
-      return _then(_value.copyWith(applicantModel: value) as $Val);
-    });
   }
 }
 
@@ -110,16 +83,9 @@ abstract class _$$_MergedManageJobPostModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel applicationModel,
-      JobModel jobModel,
-      UserModel applicantModel});
-
-  @override
-  $ApplicationModelCopyWith<$Res> get applicationModel;
-  @override
-  $JobModelCopyWith<$Res> get jobModel;
-  @override
-  $UserModelCopyWith<$Res> get applicantModel;
+      {List<ApplicationModel> applicationModels,
+      List<JobModel> jobModels,
+      List<UserModel> applicantModels});
 }
 
 /// @nodoc
@@ -134,23 +100,23 @@ class __$$_MergedManageJobPostModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationModel = null,
-    Object? jobModel = null,
-    Object? applicantModel = null,
+    Object? applicationModels = null,
+    Object? jobModels = null,
+    Object? applicantModels = null,
   }) {
     return _then(_$_MergedManageJobPostModel(
-      applicationModel: null == applicationModel
-          ? _value.applicationModel
-          : applicationModel // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel,
-      jobModel: null == jobModel
-          ? _value.jobModel
-          : jobModel // ignore: cast_nullable_to_non_nullable
-              as JobModel,
-      applicantModel: null == applicantModel
-          ? _value.applicantModel
-          : applicantModel // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      applicationModels: null == applicationModels
+          ? _value._applicationModels
+          : applicationModels // ignore: cast_nullable_to_non_nullable
+              as List<ApplicationModel>,
+      jobModels: null == jobModels
+          ? _value._jobModels
+          : jobModels // ignore: cast_nullable_to_non_nullable
+              as List<JobModel>,
+      applicantModels: null == applicantModels
+          ? _value._applicantModels
+          : applicantModels // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
     ));
   }
 }
@@ -161,20 +127,41 @@ class _$_MergedManageJobPostModel
     with DiagnosticableTreeMixin
     implements _MergedManageJobPostModel {
   const _$_MergedManageJobPostModel(
-      {required this.applicationModel,
-      required this.jobModel,
-      required this.applicantModel});
+      {required final List<ApplicationModel> applicationModels,
+      required final List<JobModel> jobModels,
+      required final List<UserModel> applicantModels})
+      : _applicationModels = applicationModels,
+        _jobModels = jobModels,
+        _applicantModels = applicantModels;
 
+  final List<ApplicationModel> _applicationModels;
   @override
-  final ApplicationModel applicationModel;
+  List<ApplicationModel> get applicationModels {
+    if (_applicationModels is EqualUnmodifiableListView)
+      return _applicationModels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_applicationModels);
+  }
+
+  final List<JobModel> _jobModels;
   @override
-  final JobModel jobModel;
+  List<JobModel> get jobModels {
+    if (_jobModels is EqualUnmodifiableListView) return _jobModels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_jobModels);
+  }
+
+  final List<UserModel> _applicantModels;
   @override
-  final UserModel applicantModel;
+  List<UserModel> get applicantModels {
+    if (_applicantModels is EqualUnmodifiableListView) return _applicantModels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_applicantModels);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MergedManageJobPostModel(applicationModel: $applicationModel, jobModel: $jobModel, applicantModel: $applicantModel)';
+    return 'MergedManageJobPostModel(applicationModels: $applicationModels, jobModels: $jobModels, applicantModels: $applicantModels)';
   }
 
   @override
@@ -182,9 +169,9 @@ class _$_MergedManageJobPostModel
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'MergedManageJobPostModel'))
-      ..add(DiagnosticsProperty('applicationModel', applicationModel))
-      ..add(DiagnosticsProperty('jobModel', jobModel))
-      ..add(DiagnosticsProperty('applicantModel', applicantModel));
+      ..add(DiagnosticsProperty('applicationModels', applicationModels))
+      ..add(DiagnosticsProperty('jobModels', jobModels))
+      ..add(DiagnosticsProperty('applicantModels', applicantModels));
   }
 
   @override
@@ -192,17 +179,20 @@ class _$_MergedManageJobPostModel
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MergedManageJobPostModel &&
-            (identical(other.applicationModel, applicationModel) ||
-                other.applicationModel == applicationModel) &&
-            (identical(other.jobModel, jobModel) ||
-                other.jobModel == jobModel) &&
-            (identical(other.applicantModel, applicantModel) ||
-                other.applicantModel == applicantModel));
+            const DeepCollectionEquality()
+                .equals(other._applicationModels, _applicationModels) &&
+            const DeepCollectionEquality()
+                .equals(other._jobModels, _jobModels) &&
+            const DeepCollectionEquality()
+                .equals(other._applicantModels, _applicantModels));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, applicationModel, jobModel, applicantModel);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_applicationModels),
+      const DeepCollectionEquality().hash(_jobModels),
+      const DeepCollectionEquality().hash(_applicantModels));
 
   @JsonKey(ignore: true)
   @override
@@ -214,16 +204,17 @@ class _$_MergedManageJobPostModel
 
 abstract class _MergedManageJobPostModel implements MergedManageJobPostModel {
   const factory _MergedManageJobPostModel(
-      {required final ApplicationModel applicationModel,
-      required final JobModel jobModel,
-      required final UserModel applicantModel}) = _$_MergedManageJobPostModel;
+          {required final List<ApplicationModel> applicationModels,
+          required final List<JobModel> jobModels,
+          required final List<UserModel> applicantModels}) =
+      _$_MergedManageJobPostModel;
 
   @override
-  ApplicationModel get applicationModel;
+  List<ApplicationModel> get applicationModels;
   @override
-  JobModel get jobModel;
+  List<JobModel> get jobModels;
   @override
-  UserModel get applicantModel;
+  List<UserModel> get applicantModels;
   @override
   @JsonKey(ignore: true)
   _$$_MergedManageJobPostModelCopyWith<_$_MergedManageJobPostModel>

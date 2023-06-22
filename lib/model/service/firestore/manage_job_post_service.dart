@@ -6,12 +6,12 @@ import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,List<MergedManageJobPostModel>? >(ManageJobPostServiceStreamNotifier.new);
+final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,MergedManageJobPostModel >(ManageJobPostServiceStreamNotifier.new);
 
 class ManageJobPostServiceStreamNotifier
-    extends StreamNotifier<List<MergedManageJobPostModel>?> {
+    extends StreamNotifier<MergedManageJobPostModel> {
   @override
-  Stream<List<MergedManageJobPostModel>?> build() async* {
+  Stream<MergedManageJobPostModel> build() async* {
     var applicationModels = <ApplicationModel>[];
     var jobModels = <JobModel>[];
     var applicantUserModels = <UserModel>[];
@@ -44,26 +44,29 @@ class ManageJobPostServiceStreamNotifier
           .get();
       jobModels =
           jobModelQuery.docs.map((e) => JobModel.fromJson(e.data())).toList();
-
+      yield MergedManageJobPostModel(
+            applicationModels: applicationModels,
+            applicantModels: applicantUserModels,
+            jobModels: jobModels);
       // now create the list of  merged model
-      for (final applicationModel in applicationModels) {
-        UserModel applicantUserModel;
-        JobModel jobModel;
-        try {
-           applicantUserModel = applicantUserModels.firstWhere(
-          (element) => element.uid == applicationModel.uid,
-        );
-         jobModel = jobModels.firstWhere(
-            (element) => element.jobId == applicationModel.jobId);
-        } catch (e) {
-          continue;
-        }
-        mergedModels.add(MergedManageJobPostModel(
-            applicationModel: applicationModel,
-            applicantModel: applicantUserModel,
-            jobModel: jobModel));
+      // for (final applicationModel in applicationModels) {
+      //   UserModel applicantUserModel;
+      //   JobModel jobModel;
+      //   try {
+      //      applicantUserModel = applicantUserModels.firstWhere(
+      //     (element) => element.uid == applicationModel.uid,
+      //   );
+      //    jobModel = jobModels.firstWhere(
+      //       (element) => element.jobId == applicationModel.jobId);
+      //   } catch (e) {
+      //     continue;
+      //   }
+      //   mergedModels.add(MergedManageJobPostModel(
+      //       applicationModel: applicationModel,
+      //       applicantModel: applicantUserModel,
+      //       jobModel: jobModel));
       }
-      yield mergedModels;
+      
     }
   }
-}
+

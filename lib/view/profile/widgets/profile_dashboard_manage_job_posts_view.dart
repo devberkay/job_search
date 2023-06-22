@@ -19,39 +19,43 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
     const computerEmoji = '\u{1F4BB}'; // display if remote
     const moneyEmoji = '\u{1F4B5}';
     const applicantsEmoji = '\u{1F464}';
-    final manageJobPostMergedModels =
+    final manageJobPostMergedModel =
         ref.watch(manageJobPostMergedModelProvider);
-    return manageJobPostMergedModels.when(data: (_manageJobPostMergedModels) {
-      if (_manageJobPostMergedModels != null &&
-          _manageJobPostMergedModels.isNotEmpty) {
-        final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
-        final applicantModels =
-            _manageJobPostMergedModels.map((e) => e.applicantModel);
-        final applicationModels =
-            _manageJobPostMergedModels.map((e) => e.applicationModel);
+    return manageJobPostMergedModel.when(data: (_manageJobPostMergedModel) {
+      if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
+          _manageJobPostMergedModel.applicationModels.isNotEmpty &&
+          _manageJobPostMergedModel.jobModels.isNotEmpty) {
+        final jobModels = _manageJobPostMergedModel.jobModels;
+        final applicantModels = _manageJobPostMergedModel.applicantModels;
+        final applicationModels = _manageJobPostMergedModel.applicationModels;
         return ExpansionPanelList(
           children: jobModels.map<ExpansionPanel>((e) {
-            final innerModels = applicationModels.map(
-              (innerAplicationModel) {
-                if (innerAplicationModel.jobId == e.jobId) {
-                  return MergedManageJobPostInnerModel(
-                      applicationModel: innerAplicationModel,
-                      applicantModel: applicantModels.firstWhere((element) =>
-                          element.uid == innerAplicationModel.uid));
-                } // else yok o yuzden null olabilir
-              },
-            ).toList();
+            final innerModels = applicationModels.map((innerAplicationModel) {
+              return MergedManageJobPostInnerModel(
+                  applicationModel: applicationModels
+                      .firstWhere((element) => element.jobId == e.jobId),
+                  applicantModel: applicantModels.firstWhere(
+                      (element) => element.uid == innerAplicationModel.uid));
+            }).toList();
 
             return ExpansionPanel(
                 headerBuilder: (context, isExpanded) {
                   return ManageCard(jobModel: e);
                 },
                 body: ListView(
-                    children: innerModels.map<Widget>((e) {
+                    children: innerModels.map<Widget>((mergedInnerModel) {
                   return Row(
                     children: [
-                      ProfileBoxStatic(userModel: e.applicantModel, height: height, width: width)
-                      Text("")
+                      ProfileBoxStatic(
+                          userModel: mergedInnerModel.applicantModel,
+                          height: 12,
+                          width: 36),
+                      Text("has applied to following job published by you"),
+                      Chip(
+                          label: Text(
+                        e.title,
+                        style: TextStyle(color: Colors.black),
+                      ))
                     ],
                   );
                 }).toList()));
