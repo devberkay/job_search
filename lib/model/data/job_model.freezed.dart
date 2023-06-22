@@ -34,6 +34,7 @@ mixin _$JobModel {
   double get salaryPerHour => throw _privateConstructorUsedError;
   int get applicantCounter => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
   String? get owner => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
   List<String> get responsibilities => throw _privateConstructorUsedError;
@@ -67,6 +68,7 @@ abstract class $JobModelCopyWith<$Res> {
       double salaryPerHour,
       int applicantCounter,
       dynamic timestampField,
+      bool isActive,
       String? owner,
       String? jobId,
       List<String> responsibilities,
@@ -101,6 +103,7 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? timestampField = freezed,
+    Object? isActive = null,
     Object? owner = freezed,
     Object? jobId = freezed,
     Object? responsibilities = null,
@@ -161,6 +164,10 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -210,6 +217,7 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       double salaryPerHour,
       int applicantCounter,
       dynamic timestampField,
+      bool isActive,
       String? owner,
       String? jobId,
       List<String> responsibilities,
@@ -242,6 +250,7 @@ class __$$_JobModelCopyWithImpl<$Res>
     Object? salaryPerHour = null,
     Object? applicantCounter = null,
     Object? timestampField = freezed,
+    Object? isActive = null,
     Object? owner = freezed,
     Object? jobId = freezed,
     Object? responsibilities = null,
@@ -302,6 +311,10 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -347,6 +360,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required this.salaryPerHour,
       required this.applicantCounter,
       required this.timestampField,
+      required this.isActive,
       this.owner = null,
       this.jobId,
       required final List<String> responsibilities,
@@ -404,6 +418,8 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   @override
   final dynamic timestampField;
   @override
+  final bool isActive;
+  @override
   @JsonKey()
   final String? owner;
   @override
@@ -447,7 +463,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobModel(title: $title, titleTokens: $titleTokens, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, timestampField: $timestampField, owner: $owner, jobId: $jobId, responsibilities: $responsibilities, minimumQualifications: $minimumQualifications, preferredQualifications: $preferredQualifications, questionnaire: $questionnaire)';
+    return 'JobModel(title: $title, titleTokens: $titleTokens, degree: $degree, jobType: $jobType, isRemote: $isRemote, organization: $organization, searchTokens: $searchTokens, aboutJob: $aboutJob, longitude: $longitude, latitude: $latitude, salaryPerHour: $salaryPerHour, applicantCounter: $applicantCounter, timestampField: $timestampField, isActive: $isActive, owner: $owner, jobId: $jobId, responsibilities: $responsibilities, minimumQualifications: $minimumQualifications, preferredQualifications: $preferredQualifications, questionnaire: $questionnaire)';
   }
 
   @override
@@ -468,6 +484,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       ..add(DiagnosticsProperty('salaryPerHour', salaryPerHour))
       ..add(DiagnosticsProperty('applicantCounter', applicantCounter))
       ..add(DiagnosticsProperty('timestampField', timestampField))
+      ..add(DiagnosticsProperty('isActive', isActive))
       ..add(DiagnosticsProperty('owner', owner))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('responsibilities', responsibilities))
@@ -505,6 +522,8 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
                 other.applicantCounter == applicantCounter) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
             (identical(other.owner, owner) || other.owner == owner) &&
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
@@ -534,6 +553,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
         salaryPerHour,
         applicantCounter,
         const DeepCollectionEquality().hash(timestampField),
+        isActive,
         owner,
         jobId,
         const DeepCollectionEquality().hash(_responsibilities),
@@ -571,6 +591,7 @@ abstract class _JobModel implements JobModel {
       required final double salaryPerHour,
       required final int applicantCounter,
       required final dynamic timestampField,
+      required final bool isActive,
       final String? owner,
       final String? jobId,
       required final List<String> responsibilities,
@@ -606,6 +627,8 @@ abstract class _JobModel implements JobModel {
   int get applicantCounter;
   @override
   dynamic get timestampField;
+  @override
+  bool get isActive;
   @override
   String? get owner;
   @override
