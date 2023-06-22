@@ -20,7 +20,7 @@ class AuthNotifier extends AutoDisposeAsyncNotifier<void> {
 
   Future<void> signOut() async {
     final firebaseAuth = ref.read(firebaseAuthProvider);
-    firebaseAuth.signOut();
+    await firebaseAuth.signOut();
   }
 
   Future<void> signInWithGoogle() async {

@@ -21,8 +21,8 @@ class ProfileSidebar extends HookConsumerWidget {
         child: Column(
           children: [
             HookConsumer(builder: (context, ref, child) {
-              final isSelected =
-                  ref.watch(profileSidebarIndexProvider.select((value) => value == 0));
+              final isSelected = ref.watch(
+                  profileSidebarIndexProvider.select((value) => value == 0));
               return FilledCupertinoButton(
                   onPressed: () {
                     ref.read(profileSidebarIndexProvider.notifier).state = 0;
@@ -47,8 +47,8 @@ class ProfileSidebar extends HookConsumerWidget {
             }),
             const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected =
-                  ref.watch(profileSidebarIndexProvider.select((value) => value == 1));
+              final isSelected = ref.watch(
+                  profileSidebarIndexProvider.select((value) => value == 1));
               return FilledCupertinoButton(
                   onPressed: () {
                     ref.read(profileSidebarIndexProvider.notifier).state = 1;
@@ -73,8 +73,8 @@ class ProfileSidebar extends HookConsumerWidget {
             }),
             const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected =
-                  ref.watch(profileSidebarIndexProvider.select((value) => value == 2));
+              final isSelected = ref.watch(
+                  profileSidebarIndexProvider.select((value) => value == 2));
               return FilledCupertinoButton(
                   onPressed: () {
                     ref.read(profileSidebarIndexProvider.notifier).state = 2;
@@ -99,8 +99,8 @@ class ProfileSidebar extends HookConsumerWidget {
             }),
             const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected =
-                  ref.watch(profileSidebarIndexProvider.select((value) => value == 3));
+              final isSelected = ref.watch(
+                  profileSidebarIndexProvider.select((value) => value == 3));
               return FilledCupertinoButton(
                   onPressed: () {
                     ref.read(profileSidebarIndexProvider.notifier).state = 3;
@@ -125,8 +125,8 @@ class ProfileSidebar extends HookConsumerWidget {
             }),
             const SizedBox(height: 30),
             HookConsumer(builder: (context, ref, child) {
-              final isSelected =
-                  ref.watch(profileSidebarIndexProvider.select((value) => value == 4));
+              final isSelected = ref.watch(
+                  profileSidebarIndexProvider.select((value) => value == 4));
               return FilledCupertinoButton(
                   onPressed: () {
                     ref.read(profileSidebarIndexProvider.notifier).state = 4;
@@ -153,7 +153,7 @@ class ProfileSidebar extends HookConsumerWidget {
             HookConsumer(builder: (context, ref, child) {
               return FilledCupertinoButton(
                   onPressed: () {
-                    ref.read(authNotifierProvider)
+                    ref.read(authNotifierProvider.notifier).signOut();
                   },
                   height: 75,
                   width: double.maxFinite,
