@@ -22,6 +22,11 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           }));
 
       }
+      else {
+        return const Center(
+          child: Text("You have not posted any job yet"),
+        );
+      }
     }, error: (e, st) {
       return const Center(
           child: Column(
