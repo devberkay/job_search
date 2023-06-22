@@ -17,7 +17,8 @@ class ApplicationModel with _$ApplicationModel {
     required String ownerUid, // user id of who posted the job
     required String jobId,
     required dynamic timestampField,
-    required bool? status // can be null= unanswered by the owner, true= accepted, false= rejected
+    required bool? status, // can be null= unanswered by the owner, true= accepted, false= rejected
+    required bool isJobOffer
   }) = _ApplicationModel;
 
   factory ApplicationModel.fromJson(Map<String, Object?> json) =>

@@ -20,7 +20,7 @@ ApplicationModel _$ApplicationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ApplicationModel {
-  Map<String, String> get questionnaireAnswers =>
+  Map<String, String>? get questionnaireAnswers =>
       throw _privateConstructorUsedError;
   String get uid =>
       throw _privateConstructorUsedError; // user id of who applioed to the job
@@ -28,7 +28,9 @@ mixin _$ApplicationModel {
       throw _privateConstructorUsedError; // user id of who posted the job
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
-  bool? get status => throw _privateConstructorUsedError;
+  bool? get status =>
+      throw _privateConstructorUsedError; // can be null= unanswered by the owner, true= accepted, false= rejected
+  bool get isJobOffer => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,12 +45,13 @@ abstract class $ApplicationModelCopyWith<$Res> {
       _$ApplicationModelCopyWithImpl<$Res, ApplicationModel>;
   @useResult
   $Res call(
-      {Map<String, String> questionnaireAnswers,
+      {Map<String, String>? questionnaireAnswers,
       String uid,
       String ownerUid,
       String jobId,
       dynamic timestampField,
-      bool? status});
+      bool? status,
+      bool isJobOffer});
 }
 
 /// @nodoc
@@ -64,18 +67,19 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionnaireAnswers = null,
+    Object? questionnaireAnswers = freezed,
     Object? uid = null,
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
     Object? status = freezed,
+    Object? isJobOffer = null,
   }) {
     return _then(_value.copyWith(
-      questionnaireAnswers: null == questionnaireAnswers
+      questionnaireAnswers: freezed == questionnaireAnswers
           ? _value.questionnaireAnswers
           : questionnaireAnswers // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -96,6 +100,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isJobOffer: null == isJobOffer
+          ? _value.isJobOffer
+          : isJobOffer // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -109,12 +117,13 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Map<String, String> questionnaireAnswers,
+      {Map<String, String>? questionnaireAnswers,
       String uid,
       String ownerUid,
       String jobId,
       dynamic timestampField,
-      bool? status});
+      bool? status,
+      bool isJobOffer});
 }
 
 /// @nodoc
@@ -128,18 +137,19 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionnaireAnswers = null,
+    Object? questionnaireAnswers = freezed,
     Object? uid = null,
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
     Object? status = freezed,
+    Object? isJobOffer = null,
   }) {
     return _then(_$_ApplicationModel(
-      questionnaireAnswers: null == questionnaireAnswers
+      questionnaireAnswers: freezed == questionnaireAnswers
           ? _value._questionnaireAnswers
           : questionnaireAnswers // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -160,6 +170,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isJobOffer: null == isJobOffer
+          ? _value.isJobOffer
+          : isJobOffer // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -170,24 +184,27 @@ class _$_ApplicationModel
     with DiagnosticableTreeMixin
     implements _ApplicationModel {
   const _$_ApplicationModel(
-      {required final Map<String, String> questionnaireAnswers,
+      {required final Map<String, String>? questionnaireAnswers,
       required this.uid,
       required this.ownerUid,
       required this.jobId,
       required this.timestampField,
-      required this.status})
+      required this.status,
+      required this.isJobOffer})
       : _questionnaireAnswers = questionnaireAnswers;
 
   factory _$_ApplicationModel.fromJson(Map<String, dynamic> json) =>
       _$$_ApplicationModelFromJson(json);
 
-  final Map<String, String> _questionnaireAnswers;
+  final Map<String, String>? _questionnaireAnswers;
   @override
-  Map<String, String> get questionnaireAnswers {
+  Map<String, String>? get questionnaireAnswers {
+    final value = _questionnaireAnswers;
+    if (value == null) return null;
     if (_questionnaireAnswers is EqualUnmodifiableMapView)
       return _questionnaireAnswers;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_questionnaireAnswers);
+    return EqualUnmodifiableMapView(value);
   }
 
   @override
@@ -202,10 +219,13 @@ class _$_ApplicationModel
   final dynamic timestampField;
   @override
   final bool? status;
+// can be null= unanswered by the owner, true= accepted, false= rejected
+  @override
+  final bool isJobOffer;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status)';
+    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status, isJobOffer: $isJobOffer)';
   }
 
   @override
@@ -218,7 +238,8 @@ class _$_ApplicationModel
       ..add(DiagnosticsProperty('ownerUid', ownerUid))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('timestampField', timestampField))
-      ..add(DiagnosticsProperty('status', status));
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('isJobOffer', isJobOffer));
   }
 
   @override
@@ -234,7 +255,9 @@ class _$_ApplicationModel
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isJobOffer, isJobOffer) ||
+                other.isJobOffer == isJobOffer));
   }
 
   @JsonKey(ignore: true)
@@ -246,7 +269,8 @@ class _$_ApplicationModel
       ownerUid,
       jobId,
       const DeepCollectionEquality().hash(timestampField),
-      status);
+      status,
+      isJobOffer);
 
   @JsonKey(ignore: true)
   @override
@@ -264,18 +288,19 @@ class _$_ApplicationModel
 
 abstract class _ApplicationModel implements ApplicationModel {
   const factory _ApplicationModel(
-      {required final Map<String, String> questionnaireAnswers,
+      {required final Map<String, String>? questionnaireAnswers,
       required final String uid,
       required final String ownerUid,
       required final String jobId,
       required final dynamic timestampField,
-      required final bool? status}) = _$_ApplicationModel;
+      required final bool? status,
+      required final bool isJobOffer}) = _$_ApplicationModel;
 
   factory _ApplicationModel.fromJson(Map<String, dynamic> json) =
       _$_ApplicationModel.fromJson;
 
   @override
-  Map<String, String> get questionnaireAnswers;
+  Map<String, String>? get questionnaireAnswers;
   @override
   String get uid;
   @override // user id of who applioed to the job
@@ -286,6 +311,8 @@ abstract class _ApplicationModel implements ApplicationModel {
   dynamic get timestampField;
   @override
   bool? get status;
+  @override // can be null= unanswered by the owner, true= accepted, false= rejected
+  bool get isJobOffer;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationModelCopyWith<_$_ApplicationModel> get copyWith =>

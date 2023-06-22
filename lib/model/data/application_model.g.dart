@@ -9,12 +9,15 @@ part of 'application_model.dart';
 _$_ApplicationModel _$$_ApplicationModelFromJson(Map<String, dynamic> json) =>
     _$_ApplicationModel(
       questionnaireAnswers:
-          Map<String, String>.from(json['questionnaireAnswers'] as Map),
+          (json['questionnaireAnswers'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
       uid: json['uid'] as String,
       ownerUid: json['ownerUid'] as String,
       jobId: json['jobId'] as String,
       timestampField: json['timestampField'],
       status: json['status'] as bool?,
+      isJobOffer: json['isJobOffer'] as bool,
     );
 
 Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
@@ -25,4 +28,5 @@ Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
       'jobId': instance.jobId,
       'timestampField': instance.timestampField,
       'status': instance.status,
+      'isJobOffer': instance.isJobOffer,
     };

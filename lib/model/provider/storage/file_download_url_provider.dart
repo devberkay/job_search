@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'dart:typed_data';
 
-import 'package:JobSearch/model/data/merged_storage_file.dart';
+
 import 'package:JobSearch/model/provider/storage/storage_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

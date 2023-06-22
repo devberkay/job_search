@@ -4,12 +4,18 @@ import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ManageJobPostServiceStreamNotifier
-    extends StreamNotifier<MergedJobPostManageModel> {
+    extends StreamNotifier<MergedJobPostManageModel?> {
   @override
-  Stream<MergedJobPostManageModel?> build() {
+  Stream<MergedJobPostManageModel?> build() async* {
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
-    final jobPostStream = firestore.collection('jobPosts').where('owner', isEqualTo: selfUserId).where('isActive',isEqualTo: true);
-    
+    final jobPostStream = firestore
+        .collection('jobPosts')
+        .where('owner', isEqualTo: selfUserId)
+        .where('isActive', isEqualTo: true)
+        .snapshots();
+    await for (final jobs in jobPostStream) {
+      firestore.collection("applications");
+    }
   }
 }
