@@ -1161,10 +1161,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                         
                                         deleteButtonTooltipMessage:
                                             "Remove filter",
-                                        deleteIcon: const Icon(
-                                          Icons.close,
-                                          color: Colors.black,
-                                        ),
+                                        
                                       );
                                     }).toList(),
                                   );
@@ -1518,8 +1515,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 16)),
                         const SizedBox(height: 10),
-                        ProfileAgeDropdownButton(
+                        IgnorePointer(
+                          child:ProfileAgeDropdownButton(
                             draftUserModelNotifier: draftUserModelNotifier)
+                        )
                       ],
                     ),
                   ),
@@ -1533,8 +1532,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 16)),
                         const SizedBox(height: 10),
-                        ProfileSexDropdownButton(
+                        IgnorePointer(
+                          child:ProfileSexDropdownButton(
                             draftUserModelNotifier: draftUserModelNotifier)
+                        )
                       ],
                     ),
                   ),
@@ -1650,25 +1651,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                         labelStyle: const TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600),
-                                        onDeleted: () {
-                                          draftUserModelNotifier.value =
-                                              draftUserModelNotifier.value
-                                                  .copyWith(
-                                                      skills:
-                                                          draftUserModelNotifier
-                                                              .value.skills
-                                                              .where(
-                                                                  (element) =>
-                                                                      element !=
-                                                                      e)
-                                                              .toList());
-                                        },
+                                        
                                         deleteButtonTooltipMessage:
                                             "Remove filter",
-                                        deleteIcon: const Icon(
-                                          Icons.close,
-                                          color: Colors.black,
-                                        ),
+                                        
                                       );
                                     }).toList(),
                                   );
@@ -1700,21 +1686,23 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                           valueListenable:
                                               draftUserModelNotifier,
                                           builder: (context, _, __) {
-                                            return CupertinoSwitch(
-                                                value: draftUserModelNotifier
-                                                    .value.isSeekingJob,
-                                                activeColor:
-                                                    Colors.greenAccent.shade700,
-                                                trackColor:
-                                                    Colors.grey.shade400,
-                                                onChanged: (value) {
-                                                  draftUserModelNotifier.value =
-                                                      draftUserModelNotifier
-                                                          .value
-                                                          .copyWith(
-                                                              isSeekingJob:
-                                                                  value);
-                                                });
+                                            return IgnorePointer(
+                                              child: CupertinoSwitch(
+                                                  value: draftUserModelNotifier
+                                                      .value.isSeekingJob,
+                                                  activeColor:
+                                                      Colors.greenAccent.shade700,
+                                                  trackColor:
+                                                      Colors.grey.shade400,
+                                                  onChanged: (value) {
+                                                    draftUserModelNotifier.value =
+                                                        draftUserModelNotifier
+                                                            .value
+                                                            .copyWith(
+                                                                isSeekingJob:
+                                                                    value);
+                                                  }),
+                                            );
                                           }),
                                     ),
                                   ),
@@ -1726,56 +1714,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 90),
-              ValueListenableBuilder(
-                  valueListenable: draftUserModelNotifier,
-                  builder: (context, draftModel, child) {
-                    return FilledCupertinoButton(
-                        onPressed: () {
-                          if (draftModel != userModel) {
-                            ref
-                                .read(userModelServiceProvider.notifier)
-                                .updateUserModel(draftUserModelNotifier.value);
-                          }
-                        },
-                        height: 50,
-                        width: 150,
-                        fillColor: (draftModel != userModel)
-                            ? Colors.blueAccent
-                            : Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(5),
-                        child: HookConsumer(builder: (context, ref, child) {
-                          final isUpdating =
-                              ref.watch(userModelServiceProvider);
-                          return isUpdating.when(data: (_) {
-                            return Text("Save changes",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 15,
-                                    color: (draftModel != userModel)
-                                        ? Colors.white
-                                        : Colors.grey.shade400));
-                          }, error: (e, st) {
-                            return const Center(
-                              child: SpinKitRing(
-                                size: 20,
-                                lineWidth: 3,
-                                duration: Duration(milliseconds: 500),
-                                color: Colors.white,
-                              ),
-                            );
-                          }, loading: () {
-                            return const Center(
-                              child: SpinKitRing(
-                                size: 20,
-                                lineWidth: 3,
-                                duration: Duration(milliseconds: 500),
-                                color: Colors.white,
-                              ),
-                            );
-                          });
-                        }));
-                  }),
+              const SizedBox(height: 60),
+              
             ],
           );
         }
