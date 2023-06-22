@@ -10,14 +10,18 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
     final manageJobPostMergedModels =
         ref.watch(manageJobPostMergedModelProvider);
     return manageJobPostMergedModels.when(data: (_manageJobPostMergedModels) {
+      if(_manageJobPostMergedModels!=null) {
+        final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
       return ListView.separated(
-          itemCount: _manageJobPostMergedModels!.length,
+          itemCount: _manageJobPostMergedModels.length,
           separatorBuilder: (context, index) {
             return SizedBox(height: 30);
           },
           itemBuilder: ((context, index) {
-            _manageJobPostMergedModels.map((e) => null);
+            jobModels.map((e) => null)
           }));
+
+      }
     }, error: (e, st) {
       return const Center(
           child: Column(
