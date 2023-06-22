@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
+import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,20 +27,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           children: jobModels.map<ExpansionPanel>((e) {
             return ExpansionPanel(
                 headerBuilder: (context, isExpanded) {
-                  return ListTile( // ontap bunu tum detaili veren bir sayfaya gotursun , kendi ontapini kullanma trailiginde bir jobpostu permanently silme bir de detaya goturme ver
-                    title: Text("${e.title}($moneyEmoji \$${e.salaryPerHour})",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900)),
-                    leading: Row(
-                      children: [
-                        Text(moneyEmoji),
-                        SizedBox(width: 2),
-                        Text(e.salaryPerHour.toString()),
-                        SizedBox(width: 5),
-                        Text(e.isRemote ? computerEmoji : companyEmoji),
-                        SizedBox(width: 2),
-                        Text(e.isRemote ? "Remote" : "On-site"),
-                      ],
-                    ),
-                  );
+                  return ManageCard(jobModel: e);
                 },
                 body: Container());
           }).toList(),
