@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/user_model.dart';
+import 'package:JobSearch/view/profile/widgets/profile_sidebar.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:JobSearch/view/shared/profile_avatar.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class ProfileBoxStatic extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return HeadlessCupertinoButton(
       onPressed: () {
-        
+        ref.read(profileSidebarIndexProvider.notifier).state = 0;
         context.go("/profile/${userModel.uid}");
       },
       child: Container(

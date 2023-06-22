@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
+import 'package:JobSearch/view/profile/widgets/profile_sidebar.dart';
 import 'package:JobSearch/view/shared/auth_dialog.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
@@ -10,18 +11,22 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProfileBox extends HookConsumerWidget {
-  const ProfileBox({super.key, required this.height, required this.width,required this.userId});
+  const ProfileBox(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.userId});
   final double height;
   final double width;
   final String? userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final userModel = ref.watch(userModelProvider(userId));
     return userModel.when(data: (_userModel) {
       if (_userModel != null) {
         return HeadlessCupertinoButton(
           onPressed: () {
+            ref.read(profileSidebarIndexProvider.notifier).state = 0;
             context.go("/profile/${_userModel.uid}");
           },
           child: Container(

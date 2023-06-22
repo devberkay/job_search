@@ -3,7 +3,7 @@ import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final profileSidebarIndexProvider = StateProvider<int>((ref) {
+final profileSidebarIndexProvider = StateProvider.autoDispose<int>((ref) {
   return 0;
 });
 
