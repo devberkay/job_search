@@ -10,9 +10,9 @@ final userModelProvider =
   if (arg == null) {
     return null;
   }
-  final user = ref.watch(authStreamProvider).asData?.valueOrNull;
+  // final user = ref.watch(authStreamProvider).asData?.valueOrNull;
   final firestore = ref.watch(firestoreProvider);
-  final query = await firestore.collection("users").doc(user?.uid).get();
+  final query = await firestore.collection("users").doc(arg).get();
   final userModel = UserModel.fromJson(query.data()!);
   return userModel;
 });

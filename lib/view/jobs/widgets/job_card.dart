@@ -101,7 +101,7 @@ class JobCard extends HookConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ProfileBox(
-                            height: 25, width: 75, userId: jobModel.owner),
+                            height: 40, width: 120, userId: jobModel.owner),
                         const SizedBox(width: 10),
                         Text("$moneyEmoji \$${jobModel.salaryPerHour}/hr",
                             style: TextStyle(
