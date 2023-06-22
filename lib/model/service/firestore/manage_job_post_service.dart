@@ -16,7 +16,7 @@ class ManageJobPostServiceStreamNotifier
         .snapshots();
     
     await for (final jobs in jobPostStream) {
-      firestore.collection("applications");
+      await firestore.collection("applications").where("jobId",);
     }
   }
 }

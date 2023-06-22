@@ -13,7 +13,7 @@ part 'application_model.g.dart';
 class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     required Map<String,String>? questionnaireAnswers,
-    required String uid, // user id of who applioed to the job, a.k.a sender
+    required String uid, // user id of who applied to the job, a.k.a sender
     required String ownerUid, // user id of who posted the job, a.k.a recipient
     required String jobId,
     required dynamic timestampField,
