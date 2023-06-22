@@ -1,6 +1,9 @@
+import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/model/service/firestore/publish_service.dart';
 import 'package:JobSearch/view/profile/widgets/profile_general_use_dropdown_button.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -1023,21 +1026,26 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 children: [
                   Spacer(),
                   FilledCupertinoButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if(jobTypeNotifier.value!=null && degreeNotifier.value!=null && organizationNotifier.value!=null && salaryPerHourNotifier.value!=null && titleNotifier.value!=null) {
+                          ref.read(publishServiceProvider.notifier).publishJob(
+                          JobModel(title: titleNotifier.value!, titleTokens: titleNotifier.value!.split(' '), degree: degreeNotifier.value, jobType: jobTypeNotifier.value, isRemote: isRemoteNotifier.value, organization: organizationNotifier.value, searchTokens: [...minimumQualificationsNotifier.value,...preferredQualificationsNotifier.value,...responsibilitiesNotifier.value], aboutJob: aboutJobNotifier.value, longitude: longitudeNotifier.value, latitude: latitudeNotifier.value, salaryPerHour: salaryPerHourNotifier.value, applicantCounter: 0, timestampField: FieldValue.serverTimestamp(), responsibilities: responsibilitiesNotifier.value, minimumQualifications: minimumQualificationsNotifier.value, preferredQualifications: preferredQualificationsNotifier.value)
+                        );
+                        }
+                      },
                       height: 50,
                       width: 150,
-                      fillColor: isValid()
-                          ? Colors.blueAccent
-                          : Colors.grey.shade300,
+                      fillColor:
+                          isValid() ? Colors.blueAccent : Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(5),
                       child: HookConsumer(builder: (context, ref, child) {
-                        final isUpdating = ref.watch(userModelServiceProvider);
+                        final isUpdating = ref.watch(publishServiceProvider);
                         return isUpdating.when(data: (_) {
                           return Text("Save changes",
                               style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 15,
-                                  color: (draftModel != userModel)
+                                  color: isValid()
                                       ? Colors.white
                                       : Colors.grey.shade400));
                         }, error: (e, st) {
