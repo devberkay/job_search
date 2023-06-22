@@ -3,6 +3,7 @@ import 'package:JobSearch/model/data/merged_manage_job_post_inner_model.dart';
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
+import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -61,7 +62,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       ),
                       const SizedBox(width: 5),
                       Chip(
-                        shape: StadiumBorder(
+                        shape: const StadiumBorder(
                             side: BorderSide(color: Colors.black)),
                         backgroundColor: Colors.grey.shade200,
                         label: Text(
@@ -70,7 +71,21 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 15),
-                      Icon(Icons.)
+                      HeadlessCupertinoButton(
+                        onPressed: () {},
+                        child: const DecoratedBox(
+                            decoration: BoxDecoration(
+                                color: Colors.green, shape: BoxShape.circle),
+                            child: Icon(Icons.check, color: Colors.white)),
+                      ),
+                      const SizedBox(width: 5),
+                      HeadlessCupertinoButton(
+                        onPressed: () {},
+                        child: const DecoratedBox(
+                            decoration: BoxDecoration(
+                                color: Colors.red, shape: BoxShape.circle),
+                            child: Icon(Icons.remove, color: Colors.white)),
+                      ),
                     ],
                   ),
                 ),
