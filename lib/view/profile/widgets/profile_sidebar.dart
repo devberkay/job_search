@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/provider/auth/auth_notifier.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -152,7 +153,7 @@ class ProfileSidebar extends HookConsumerWidget {
             HookConsumer(builder: (context, ref, child) {
               return FilledCupertinoButton(
                   onPressed: () {
-                    
+                    ref.read(authNotifierProvider)
                   },
                   height: 75,
                   width: double.maxFinite,

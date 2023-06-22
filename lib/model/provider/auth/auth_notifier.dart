@@ -18,6 +18,11 @@ class AuthNotifier extends AutoDisposeAsyncNotifier<void> {
     return null;
   }
 
+  Future<void> signOut() async {
+    final firebaseAuth = ref.read(firebaseAuthProvider);
+    firebaseAuth.signOut();
+  }
+
   Future<void> signInWithGoogle() async {
     state = const AsyncLoading();
     final authService = ref.read(authServiceProvider);
@@ -62,9 +67,13 @@ class AuthNotifier extends AutoDisposeAsyncNotifier<void> {
       await authService.signUpWithEmailAndPassword(
           email: email!, password: password!);
       final uid = await firebaseAuth.currentUser!.uid;
-      firestore.collection("users").doc(uid).set(
-          UserModel(uid: uid, name: name, surname: surname, mail: email,isSeekingJob: false)
-              .toJson());
+      firestore.collection("users").doc(uid).set(UserModel(
+              uid: uid,
+              name: name,
+              surname: surname,
+              mail: email,
+              isSeekingJob: false)
+          .toJson());
       state = const AsyncData(null);
     } catch (e, st) {
       debugPrint("signUpWithMailAndPassword Error: $e");
