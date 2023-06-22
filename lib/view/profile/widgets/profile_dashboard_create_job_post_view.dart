@@ -1014,14 +1014,56 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 children: [
                   Spacer(),
                   FilledCupertinoButton(
-                      onPressed: () async  {
-                        if(jobTypeNotifier.value!=null && degreeNotifier.value!=null && organizationNotifier.value!=null && salaryPerHourNotifier.value!=null && titleNotifier.value!=null) {
-                         await ref.read(publishServiceProvider.notifier).publishJob(
-                          JobModel(title: titleNotifier.value!, titleTokens: titleNotifier.value!.split(' '), degree: degreeNotifier.value!, jobType: jobTypeNotifier.value!, isRemote: isRemoteNotifier.value=="Yes", organization: organizationNotifier.value!, searchTokens: [...minimumQualificationsNotifier.value,...preferredQualificationsNotifier.value,...responsibilitiesNotifier.value], aboutJob: aboutJobNotifier.value!, longitude: longitudeNotifier.value!, latitude: latitudeNotifier.value!, salaryPerHour: salaryPerHourNotifier.value!, applicantCounter: 0, timestampField: FieldValue.serverTimestamp(), responsibilities: responsibilitiesNotifier.value, minimumQualifications: minimumQualificationsNotifier.value, preferredQualifications: preferredQualificationsNotifier.value)
-                        );
-                        }
-                        else {
-                          context.showErrorFlushbar("Please fill all the fields properly");
+                      onPressed: () async {
+                        if (jobTypeNotifier.value != null &&
+                            degreeNotifier.value != null &&
+                            organizationNotifier.value != null &&
+                            salaryPerHourNotifier.value != null &&
+                            titleNotifier.value != null &&
+                            minimumQualificationsNotifier.value.length > 2 &&
+                            preferredQualificationsNotifier.value.length > 2 &&
+                            responsibilitiesNotifier.value.length > 2 &&
+                            minimumQualificationsNotifier.value.length < 9 &&
+                            preferredQualificationsNotifier.value.length < 9 &&
+                            responsibilitiesNotifier.value.length < 9) {
+                          await ref
+                              .read(publishServiceProvider.notifier)
+                              .publishJob(JobModel(
+                                  title: titleNotifier.value!,
+                                  titleTokens: titleNotifier.value!.split(' '),
+                                  degree: degreeNotifier.value!,
+                                  jobType: jobTypeNotifier.value!,
+                                  isRemote: isRemoteNotifier.value == "Yes",
+                                  organization: organizationNotifier.value!,
+                                  searchTokens: [
+                                    ...(minimumQualificationsNotifier.value
+                                        .expand((element) => element.split(' '))
+                                        .toSet()
+                                        .toList()),
+                                    ...(preferredQualificationsNotifier.value
+                                        .expand((element) => element.split(' '))
+                                        .toSet()
+                                        .toList()),
+                                    ...(responsibilitiesNotifier.value
+                                        .expand((element) => element.split(' '))
+                                        .toSet()
+                                        .toList())
+                                  ],
+                                  aboutJob: aboutJobNotifier.value!,
+                                  longitude: longitudeNotifier.value!,
+                                  latitude: latitudeNotifier.value!,
+                                  salaryPerHour: salaryPerHourNotifier.value!,
+                                  applicantCounter: 0,
+                                  timestampField: FieldValue.serverTimestamp(),
+                                  responsibilities:
+                                      responsibilitiesNotifier.value,
+                                  minimumQualifications:
+                                      minimumQualificationsNotifier.value,
+                                  preferredQualifications:
+                                      preferredQualificationsNotifier.value));
+                        } else {
+                          context.showErrorFlushbar(
+                              "Please fill all the fields properly");
                         }
                       },
                       height: 50,
