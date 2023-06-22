@@ -10,13 +10,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProfileBox extends HookConsumerWidget {
-  const ProfileBox({super.key, required this.height, required this.width});
+  const ProfileBox({super.key, required this.height, required this.width,required this.userId});
   final double height;
   final double width;
+  final String? userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
-    final userModel = ref.watch(userModelProvider(user?.uid));
+    
+    final userModel = ref.watch(userModelProvider(userId));
     return userModel.when(data: (_userModel) {
       if (_userModel != null) {
         return HeadlessCupertinoButton(

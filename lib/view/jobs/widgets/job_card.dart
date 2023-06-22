@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/view/home/widgets/profile_box.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -99,6 +100,9 @@ class JobCard extends HookConsumerWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        ProfileBox(
+                            height: 25, width: 75, userId: jobModel.owner),
+                        const SizedBox(width: 10),
                         Text("$moneyEmoji \$${jobModel.salaryPerHour}/hr",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,

@@ -990,6 +990,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                           await ref
                               .read(publishServiceProvider.notifier)
                               .publishJob(JobModel(
+                                  isActive: true,
                                   owner: ref.read(userProvider)!.uid,
                                   title: titleNotifier.value!,
                                   titleTokens: titleNotifier.value!.split(' '),
