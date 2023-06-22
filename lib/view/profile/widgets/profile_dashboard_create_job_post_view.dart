@@ -10,11 +10,12 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
     final titleNotifier = useValueNotifier<String?>(null);
     final aboutJobNotifier = useValueNotifier<String?>(null);
     final minimumQualificationsNotifier = useValueNotifier<List<String>?>(null);
-    final preferredQualificationsNotifier= useValueNotifier<List<String>?>(null);
+    final preferredQualificationsNotifier =
+        useValueNotifier<List<String>?>(null);
     final responsibilitiesNotifier = useValueNotifier<List<String>?>(null);
     final degreeNotifier = useValueNotifier<String?>(null);
     final jobTypeNotifier = useValueNotifier<String?>(null);
-    final isRemoteNotifier= useValueNotifier<String?>(null);
+    final isRemoteNotifier = useValueNotifier<String?>(null);
     final organizationNotifier = useValueNotifier<String?>(null);
     final longitudeNotifier = useValueNotifier<double?>(null);
     final latitudeNotifier = useValueNotifier<double?>(null);
@@ -23,17 +24,46 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
 
     // final titleController = useTextEditingController();
     // final aboutJobController = useTextEditingController();
-    final minimumQualificationsController = useTextEditingController(); // onSubmitted
-    final preferredQualificationsController = useTextEditingController(); // onSubmitted
-    final responsibilitiesController = useTextEditingController(); // onSubmitted
+    final minimumQualificationsController =
+        useTextEditingController(); // onSubmitted
+    final preferredQualificationsController =
+        useTextEditingController(); // onSubmitted
+    final responsibilitiesController =
+        useTextEditingController(); // onSubmitted
     // final organizationController = useTextEditingController();
     // final longitudeController = useTextEditingController();
     // final latitudeController = useTextEditingController();
     final questionnaireController = useTextEditingController(); // onSubmitted
-    
+
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Job title",
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+            const SizedBox(height: 10),
+            CupertinoTextField(
+              onChanged: (value) {},
+              maxLines: 1,
+              placeholder: "Enter the required position's title",
+              style: TextStyle(
+                  color: Colors.grey.shade600, fontWeight: FontWeight.w600),
+              placeholderStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade400),
+              maxLength: 50,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 30),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,9 +71,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
             const SizedBox(height: 10),
             CupertinoTextField(
-              onChanged: (value) {
-                
-              },
+              onChanged: (value) {},
               maxLines: 5,
               placeholder: "Describe the job",
               style: TextStyle(
@@ -58,7 +86,6 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(10),
               ),
-              
             )
           ],
         ),
