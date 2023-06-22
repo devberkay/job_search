@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/view/home/widgets/profile_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -47,6 +48,7 @@ class JobCard extends HookConsumerWidget {
     final usDollarGreen = const Color(0xFF008543);
 
     final isHovering = useState(false);
+    
     return MouseRegion(
       onEnter: (event) {
         isHovering.value = true;
