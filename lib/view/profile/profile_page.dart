@@ -67,6 +67,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             return Container();
           } else if (profileSidebarIndex == 3) {
             return Container();
+          } else if (profileSidebarIndex == 4) {
+            return Container();
           } else {
             final userModel = ref.watch(userModelProvider(widget.userId));
             return userModel.when(

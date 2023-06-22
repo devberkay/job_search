@@ -726,8 +726,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                 const Spacer(),
                 HookConsumer(builder: (context, ref, child) {
                   final opacityNotifier = useValueNotifier(0.0);
-                  final picker = ImagePicker();
-                  final cropper = ImageCropper();
+                  
                   return MouseRegion(
                       onExit: (event) {
                         opacityNotifier.value = 0.0;
@@ -737,41 +736,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       },
                       child: HeadlessCupertinoButton(
                         onPressed: () async {
-                          try {
-                            final xFile = await picker.pickImage(
-                                source: ImageSource.gallery);
-                            // final rawPicture =
-                            //     await xFile!.readAsBytes();
-                            if (xFile != null) {
-                              final croppedFile = await cropper.cropImage(
-                                  sourcePath: xFile.path,
-                                  uiSettings: [
-                                    // ignore: use_build_context_synchronously
-                                    WebUiSettings(
-                                        context: context,
-                                        enableZoom: true,
-                                        enableResize: true,
-                                        viewPort: const CroppieViewPort(
-                                            type: 'circle'))
-                                  ]);
-
-                              final croppedImage =
-                                  await croppedFile!.readAsBytes();
-
-                              ref
-                                  .read(uploadServiceProvider.notifier)
-                                  .uploadPicture(
-                                      rawPicture: croppedImage,
-                                      userId: userModel.uid,
-                                      settableMetadata: SettableMetadata(
-                                          contentType: xFile.mimeType));
-                            }
-                          } catch (e) {
-                            context.showErrorFlushbar(
-                                "Image could not be selected");
-                          }
-
-                          // ref.read
+                          
                         },
                         child: Stack(
                           children: [

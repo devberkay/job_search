@@ -112,10 +112,36 @@ class ProfileSidebar extends HookConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add_box_sharp,
+                      Icon(Icons.settings,
                           color: isSelected ? Colors.white : Colors.black),
                       const SizedBox(width: 5),
                       Text("Manage job post",
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.black,
+                              fontWeight: FontWeight.w600))
+                    ],
+                  ));
+            }),
+            const SizedBox(height: 30),
+            HookConsumer(builder: (context, ref, child) {
+              final isSelected =
+                  ref.watch(profileSidebarIndexProvider.select((value) => value == 4));
+              return FilledCupertinoButton(
+                  onPressed: () {
+                    ref.read(profileSidebarIndexProvider.notifier).state = 4;
+                  },
+                  height: 75,
+                  border: Border.all(color: Colors.black),
+                  width: double.maxFinite,
+                  fillColor: isSelected ? Colors.black : Colors.white,
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add_circle,
+                          color: isSelected ? Colors.white : Colors.black),
+                      const SizedBox(width: 5),
+                      Text("Create job post",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w600))
