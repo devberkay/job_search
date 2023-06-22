@@ -3,13 +3,10 @@ import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:collection/collection.dart';
-
-final expansionPanelIndexProvider = StateProvider<int?>((ref) {
-  return null;
-});
 
 class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
   const ProfileDashboardManageJobPostsView({super.key});
@@ -60,23 +57,30 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         }
 
         return SingleChildScrollView(
-          child: ExpansionPanelList(
-            expansionCallback: (panelIndex, isExpanded) {
-              if (isExpanded) {
-                ref.read(expansionPanelIndexProvider.notifier).state =
-                    panelIndex;
-              }
-            },
-            children: jobModels.mapIndexed<ExpansionPanel>((index,e) {
-              return ExpansionPanel(
-                  headerBuilder: (context, isExpanded) {
-                    return ManageCard(jobModel: e);
-                  },
-                  canTapOnHeader: true,
-                  body: SizedBox(
-                      height: 300, child: ListView(children: listOfWidgets)));
-            }).toList(),
-          ),
+          child: HookConsumer(builder: (context, ref, child) {
+            final selectedIndex = useState<int?>(null);
+            return ExpansionPanelList(
+              expansionCallback: (panelIndex, isExpanded) {
+                if (isExpanded) {
+                  selectedIndex.value = panelIndex;
+                } else {
+                  if (panelIndex == selectedIndex.value) {
+                    selectedIndex.value = null;
+                  }
+                }
+              },
+              children: jobModels.mapIndexed<ExpansionPanel>((index, e) {
+                return ExpansionPanel(
+                    headerBuilder: (context, isExpanded) {
+                      return ManageCard(jobModel: e);
+                    },
+                    isExpanded: true,
+                    canTapOnHeader: true,
+                    body: SizedBox(
+                        height: 300, child: ListView(children: listOfWidgets)));
+              }).toList(),
+            );
+          }),
         );
       } else {
         return const Center(
