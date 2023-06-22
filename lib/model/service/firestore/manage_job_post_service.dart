@@ -45,7 +45,19 @@ class ManageJobPostServiceStreamNotifier
 
       // now create the list of  merged model
       for (final applicationModel in applicationModels) {
-        
+        try {
+          final applicantUserModel = applicantUserModels.firstWhere(
+          (element) => element.uid == applicationModel.uid,
+        );
+        final jobModel = jobModels.firstWhere(
+            (element) => element.jobId == applicationModel.jobId);
+        } catch (e) {
+          continue;
+        }
+        mergedModels.add(MergedManageJobPostModel(
+            applicationModel: applicationModel,
+            applicantModel: applicantUserModel,
+            jobModel: jobModel));
       }
       yield mergedModels;
     }
