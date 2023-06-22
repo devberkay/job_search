@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,8 +9,9 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final titleNotifier = useValueNotifier<String?>(null);
     final aboutJobNotifier = useValueNotifier<String?>(null);
-    final minimumQualificationsNotifier = useValueNotifier<String?>(null);
-    final preferredQualificationsNotifier= useValueNotifier<String?>(null);
+    final minimumQualificationsNotifier = useValueNotifier<List<String>?>(null);
+    final preferredQualificationsNotifier= useValueNotifier<List<String>?>(null);
+    final responsibilitiesNotifier = useValueNotifier<List<String>?>(null);
     final degreeNotifier = useValueNotifier<String?>(null);
     final jobTypeNotifier = useValueNotifier<String?>(null);
     final isRemoteNotifier= useValueNotifier<String?>(null);
@@ -17,6 +19,17 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
     final longitudeNotifier = useValueNotifier<double?>(null);
     final latitudeNotifier = useValueNotifier<double?>(null);
     final salaryPerHourNotifier = useValueNotifier<double?>(null);
+    final questionnaireNotifier = useValueNotifier<List<String>?>(null);
+
+    // final titleController = useTextEditingController();
+    // final aboutJobController = useTextEditingController();
+    final minimumQualificationsController = useTextEditingController(); // onSubmitted
+    final preferredQualificationsController = useTextEditingController(); // onSubmitted
+    final responsibilitiesController = useTextEditingController(); // onSubmitted
+    // final organizationController = useTextEditingController();
+    // final longitudeController = useTextEditingController();
+    // final latitudeController = useTextEditingController();
+    final questionnaireController = useTextEditingController(); // onSubmitted
     
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -24,16 +37,15 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Bio",
+            const Text("About job",
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
             const SizedBox(height: 10),
             CupertinoTextField(
               onChanged: (value) {
-                draftUserModelNotifier.value =
-                    draftUserModelNotifier.value.copyWith(bio: value);
+                
               },
               maxLines: 5,
-              placeholder: "Write something about yourself",
+              placeholder: "Describe the job",
               style: TextStyle(
                   color: Colors.grey.shade600, fontWeight: FontWeight.w600),
               placeholderStyle: TextStyle(
@@ -46,7 +58,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(10),
               ),
-              controller: bioController,
+              
             )
           ],
         ),
