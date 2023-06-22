@@ -61,10 +61,10 @@ class ProfileSidebar extends HookConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.notifications,
+                      Icon(Icons.markunread_mailbox,
                           color: isSelected ? Colors.white : Colors.black),
                       const SizedBox(width: 5),
-                      Text("Notifications",
+                      Text("Job offers",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w600))
