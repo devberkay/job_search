@@ -19,8 +19,11 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
         return ExpansionPanelList(
           children: jobModels.map<ExpansionPanel>((e) {
+            final applicantUserModel = _manageJobPostMergedModels
+                .firstWhere((element) => element.jobModel.jobId == e.jobId)
+                .applicantModel;
             return ExpansionPanel(headerBuilder: headerBuilder, body: body)
-          }),
+          }).toList(),
         );
       } else {
         return const Center(
