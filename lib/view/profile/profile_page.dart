@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
+import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_dashboard_create_job_post_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_dashboard_profile_view.dart';
@@ -20,9 +21,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final profileSidebarIndex = ref.watch(profileSidebarIndexProvider);
-
+    final currentUser = ref.watch(userProvider);
     return Row(
-      children: [
+      children: currentUser?.uid != widget.userId ? [
         const ProfileSidebar(),
         Expanded(child: HookConsumer(builder: (context, ref, child) {
           if (profileSidebarIndex == 0) {
@@ -113,7 +114,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             });
           }
         }))
-      ],
+      ] : [],
     );
   }
 }
