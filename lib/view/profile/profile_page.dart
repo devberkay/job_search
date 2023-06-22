@@ -22,8 +22,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     final profileSidebarIndex = ref.watch(profileSidebarIndexProvider);
     final currentUser = ref.watch(userProvider);
-    return Row(
-      children: currentUser?.uid != widget.userId ? [
+    return (currentUser?.uid != userId) ? Row(
+      children: [
         const ProfileSidebar(),
         Expanded(child: HookConsumer(builder: (context, ref, child) {
           if (profileSidebarIndex == 0) {
@@ -114,7 +114,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             });
           }
         }))
-      ] : [],
-    );
+      ],
+    ) : Row();
   }
 }
