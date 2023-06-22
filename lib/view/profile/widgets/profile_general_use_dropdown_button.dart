@@ -31,7 +31,7 @@ class ProfileGeneralUseDropdownButton extends HookConsumerWidget {
             onChanged: (value) {
               valueNotifier.value = value;
             },
-            value: valueNotifier.value.age,
+            value: valueNotifier.value,
             items: items.map<DropdownMenuItem<dynamic>>((dynamic value) {
               return DropdownMenuItem<dynamic>(
                 value: value,

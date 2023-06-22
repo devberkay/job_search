@@ -1,3 +1,4 @@
+import 'package:JobSearch/view/profile/widgets/profile_general_use_dropdown_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,10 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
     final responsibilitiesNotifier = useValueNotifier<List<String>>([]);
     final degreeNotifier = useValueNotifier<String?>(null);
     final jobTypeNotifier = useValueNotifier<String?>(null);
-    final isRemoteNotifier = useValueNotifier<String?>(null);
+    final isRemoteNotifier = useValueNotifier<String>("No");
     final organizationNotifier = useValueNotifier<String?>(null);
-    final longitudeNotifier = useValueNotifier<double?>(null);
-    final latitudeNotifier = useValueNotifier<double?>(null);
+    final longitudeNotifier = useValueNotifier<double?>(0);
+    final latitudeNotifier = useValueNotifier<double?>(0);
     final salaryPerHourNotifier = useValueNotifier<double?>(null);
     final questionnaireNotifier = useValueNotifier<List<String>?>(null);
 
@@ -487,7 +488,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Preferred Qualifications (At least 3)",
+                  const Text("Responsibilities (At least 3)",
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
                   const SizedBox(height: 10),
@@ -509,7 +510,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                       Icons.add,
                       color: Colors.grey.shade500.withOpacity(0.75),
                     ),
-                    placeholder: "Enter the required position's nice-to-haves",
+                    placeholder: "Enter the required position's daily tasks",
                     style: TextStyle(
                         color: Colors.grey.shade600,
                         fontWeight: FontWeight.w600),
@@ -657,6 +658,97 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                 ],
               );
             }),
+        SizedBox(height: 30),
+        Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Job type",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                      valueNotifier: jobTypeNotifier,
+                      items: const [
+                        "White-collar roles",
+                        "Blue-collar roles",
+                        "IT roles",
+                        "Vehicle-driving roles",
+                        "Management roles",
+                        "Creative roles",
+                        "Sales roles"
+                      ])
+                ],
+              ),
+            ),
+            const Spacer(),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Minimum degree",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                    valueNotifier: degreeNotifier,
+                    items: const [
+                      "Associate",
+                      "Bachelor’s",
+                      "Master’s",
+                      "Ph.D.",
+                      "Pursuing Degree",
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 30),
+        Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Remote available",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                      valueNotifier: isRemoteNotifier,
+                      items: const [
+                        "Yes",
+                        "No",
+                      ])
+                ],
+              ),
+            ),
+            const Spacer(),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Salary per hour (USD)",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                    valueNotifier: salaryPerHourNotifier,
+                    items: List.generate(300, (index) => (index + 1.0)),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
