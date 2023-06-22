@@ -39,18 +39,34 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           }).toList();
           listOfWidgets =
               innerModels.mapIndexed<Widget>((index, mergedInnerModel) {
-            return Row(
+            return Column(
               children: [
-                ProfileBoxStatic(
-                    userModel: mergedInnerModel.applicantModel,
-                    height: 12,
-                    width: 36),
-                Text("has applied to following job published by you"),
-                Chip(
-                    label: Text(
-                  jobModel.title,
-                  style: TextStyle(color: Colors.black),
-                ))
+                DecoratedBox(
+                  decoration: ShapeDecoration(
+                      shape:
+                          StadiumBorder(side: BorderSide(color: Colors.black))),
+                  child: Row(
+                    children: [
+                      ProfileBoxStatic(
+                          userModel: mergedInnerModel.applicantModel,
+                          height: 36,
+                          width: 108),
+                      const Text(
+                          "has applied to following job published by you"),
+                      SizedBox(width: 5),
+                      Chip(
+                        backgroundColor: Colors.grey.shade100,
+                        label: Text(
+                          jobModel.title,
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                )
               ],
             );
           }).toList();
@@ -65,12 +81,9 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                 final selectedIndex = useState<int?>(null);
                 return ExpansionPanelList(
                   expansionCallback: (panelIndex, isExpanded) {
-                    debugPrint("is it get called-0");
                     if (!isExpanded) {
-                      debugPrint("is it get called-1 : $panelIndex");
                       selectedIndex.value = panelIndex;
                     } else {
-                      debugPrint("is it get called-2");
                       if (panelIndex == selectedIndex.value) {
                         selectedIndex.value = null;
                       }
@@ -84,7 +97,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                         isExpanded: index == selectedIndex.value,
                         canTapOnHeader: true,
                         body: SizedBox(
-                            height: 300,
+                            height: 250,
                             child: ListView(children: listOfWidgets)));
                   }).toList(),
                 );
