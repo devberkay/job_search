@@ -746,61 +746,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           onEnter: (event) {
                             opacityNotifier.value = 1.0;
                           },
-                          child: HeadlessCupertinoButton(
-                            onPressed: () async {
-                              html.AnchorElement anchorElement =
-                                  html.AnchorElement(href: _downloadUrl);
-                              anchorElement.download =
-                                  'CV_${userModel.uid}.pdf'; // Replace with desired file name
-                              anchorElement.click();
-                            },
-                            child: Stack(
-                              children: [
-                                ProfileAvatar(
-                                    radius: 75, userId: userModel.uid),
-                                ValueListenableBuilder(
-                                    valueListenable: opacityNotifier,
-                                    builder: (context, opacity, child) {
-                                      return AnimatedOpacity(
-                                          opacity: opacity,
-                                          curve: Curves.easeOut,
-                                          duration:
-                                              const Duration(milliseconds: 250),
-                                          child: Container(
-                                              width: 150,
-                                              height: 150,
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.black
-                                                      .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
-                                              child: const Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    "Upload photo",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(height: 5),
-                                                  Icon(
-                                                    Icons.file_upload_outlined,
-                                                    color: Colors.white,
-                                                    size: 25,
-                                                  )
-                                                ],
-                                              )));
-                                    }),
-                              ],
-                            ),
+                          child: Stack(
+                            children: [
+                              ProfileAvatar(radius: 75, userId: userModel.uid),
+                            ],
                           ));
                     }),
                     const SizedBox(width: 25),
@@ -816,11 +765,12 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           },
                           child: HeadlessCupertinoButton(
                             onPressed: () async {
-                              try {} catch (e) {
-                                debugPrint("heyerror :$e");
-                                context.showErrorFlushbar(
-                                    "File could not be selected");
-                              }
+                              debugPrint("anchor??");
+                              html.AnchorElement anchorElement =
+                                  html.AnchorElement(href: _downloadUrl);
+                              anchorElement.download =
+                                  'CV_${userModel.uid}.pdf'; // Replace with desired file name
+                              anchorElement.click();
 
                               // ref.read
                             },
@@ -1352,57 +1302,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           onEnter: (event) {
                             opacityNotifier.value = 1.0;
                           },
-                          child: HeadlessCupertinoButton(
-                            onPressed: () async {
-                              context.showInfoFlashbar("User has no CV file");
-                            },
-                            child: Stack(
-                              children: [
-                                ProfileAvatar(
-                                    radius: 75, userId: userModel.uid),
-                                ValueListenableBuilder(
-                                    valueListenable: opacityNotifier,
-                                    builder: (context, opacity, child) {
-                                      return AnimatedOpacity(
-                                          opacity: opacity,
-                                          curve: Curves.easeOut,
-                                          duration:
-                                              const Duration(milliseconds: 250),
-                                          child: Container(
-                                              width: 150,
-                                              height: 150,
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.black
-                                                      .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
-                                              child: const Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    "Upload photo",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(height: 5),
-                                                  Icon(
-                                                    Icons.file_upload_outlined,
-                                                    color: Colors.white,
-                                                    size: 25,
-                                                  )
-                                                ],
-                                              )));
-                                    }),
-                              ],
-                            ),
+                          child: Stack(
+                            children: [
+                              ProfileAvatar(radius: 75, userId: userModel.uid),
+                            ],
                           ));
                     }),
                     const SizedBox(width: 25),
@@ -1418,13 +1321,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           },
                           child: HeadlessCupertinoButton(
                             onPressed: () async {
-                              try {} catch (e) {
-                                debugPrint("heyerror :$e");
-                                context.showErrorFlushbar(
-                                    "File could not be selected");
-                              }
-
-                              // ref.read
+                              context.showErrorFlushbar(
+                                  "User has no CV file uploaded");
                             },
                             child: Stack(
                               alignment: Alignment.center,
@@ -1955,55 +1853,10 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         onEnter: (event) {
                           opacityNotifier.value = 1.0;
                         },
-                        child: HeadlessCupertinoButton(
-                          onPressed: () async {
-                            context.showInfoFlashbar("User has no CV file");
-                          },
-                          child: Stack(
-                            children: [
-                              ProfileAvatar(radius: 75, userId: userModel.uid),
-                              ValueListenableBuilder(
-                                  valueListenable: opacityNotifier,
-                                  builder: (context, opacity, child) {
-                                    return AnimatedOpacity(
-                                        opacity: opacity,
-                                        curve: Curves.easeOut,
-                                        duration:
-                                            const Duration(milliseconds: 250),
-                                        child: Container(
-                                            width: 150,
-                                            height: 150,
-                                            padding: const EdgeInsets.only(
-                                                bottom: 15),
-                                            decoration: BoxDecoration(
-                                                color: Colors.black
-                                                    .withOpacity(0.75),
-                                                borderRadius:
-                                                    BorderRadius.circular(75)),
-                                            child: const Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "Upload photo",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                SizedBox(height: 5),
-                                                Icon(
-                                                  Icons.file_upload_outlined,
-                                                  color: Colors.white,
-                                                  size: 25,
-                                                )
-                                              ],
-                                            )));
-                                  }),
-                            ],
-                          ),
+                        child: Stack(
+                          children: [
+                            ProfileAvatar(radius: 75, userId: userModel.uid),
+                          ],
                         ));
                   }),
                   const SizedBox(width: 25),
