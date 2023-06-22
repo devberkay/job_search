@@ -14,14 +14,13 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
   const ProfileDashboardManageJobPostsView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const companyEmoji = '\u{1F3E2}'; // display if on-site
-    const locationEmoji = '\u{1F4CD}';
-    const computerEmoji = '\u{1F4BB}'; // display if remote
-    const moneyEmoji = '\u{1F4B5}';
-    const applicantsEmoji = '\u{1F464}';
+    
     final manageJobPostMergedModel =
         ref.watch(manageJobPostMergedModelProvider);
     return manageJobPostMergedModel.when(data: (_manageJobPostMergedModel) {
+      debugPrint("Hello brother-1 : ${_manageJobPostMergedModel.applicantModels.toString()}");
+      debugPrint("Hello brother-2 : ${_manageJobPostMergedModel.applicationModels.toString()}");
+      debugPrint("Hello brother-3 : ${_manageJobPostMergedModel.jobModels.toString()}");
       if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
           _manageJobPostMergedModel.applicationModels.isNotEmpty &&
           _manageJobPostMergedModel.jobModels.isNotEmpty) {

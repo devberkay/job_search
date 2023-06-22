@@ -4,6 +4,7 @@ import 'package:JobSearch/model/data/merged_manage_job_post_model.dart';
 import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,MergedManageJobPostModel >(ManageJobPostServiceStreamNotifier.new);
@@ -15,7 +16,7 @@ class ManageJobPostServiceStreamNotifier
     var applicationModels = <ApplicationModel>[];
     var jobModels = <JobModel>[];
     var applicantUserModels = <UserModel>[];
-    var mergedModels = <MergedManageJobPostModel>[];
+    
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
     final applicationsStream = firestore
@@ -39,7 +40,7 @@ class ManageJobPostServiceStreamNotifier
       // third get the related jobmodel
       final jobModelQuery = await firestore
           .collection('jobPosts')
-          .where('jobId',
+          .where(FieldPath.documentId,
               whereIn: applicationModels.map((e) => e.jobId).toList())
           .get();
       jobModels =
