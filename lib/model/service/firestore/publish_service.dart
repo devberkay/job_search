@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final publishServiceProvider = AsyncNotifierProvider.autoDispose<PublishServiceNotifier, String?>(PublishServiceNotifier.new);
 
-class PublishServiceNotifier extends AsyncNotifier<String?> {
+class PublishServiceNotifier extends AutoDisposeAsyncNotifier<String?> {
   @override
   FutureOr<String?> build() {
     return null;

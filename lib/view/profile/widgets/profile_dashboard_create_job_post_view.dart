@@ -1062,14 +1062,69 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                                   preferredQualifications:
                                       preferredQualificationsNotifier.value));
                         } else {
-                          context.showErrorFlushbar(
-                              "Please fill all the fields properly");
+                          if (jobTypeNotifier.value == null) {
+                            context
+                                .showErrorFlushbar("Please select a job type.");
+                          } else if (degreeNotifier.value == null) {
+                            context
+                                .showErrorFlushbar("Please select a degree.");
+                          } else if (organizationNotifier.value == null) {
+                            context.showErrorFlushbar(
+                                "Please enter an organization.");
+                          } else if (salaryPerHourNotifier.value == null) {
+                            context.showErrorFlushbar(
+                                "Please enter a salary per hour.");
+                          } else if (titleNotifier.value == null) {
+                            context
+                                .showErrorFlushbar("Please enter a job title.");
+                          } else if (minimumQualificationsNotifier
+                                  .value.length <=
+                              2) {
+                            context.showErrorFlushbar(
+                                "Minimum qualifications should have at least 3 characters.");
+                          } else if (preferredQualificationsNotifier
+                                  .value.length <=
+                              2) {
+                            context.showErrorFlushbar(
+                                "Preferred qualifications should have at least 3 characters.");
+                          } else if (responsibilitiesNotifier.value.length <=
+                              2) {
+                            context.showErrorFlushbar(
+                                "Responsibilities should have at least 3 characters.");
+                          } else if (minimumQualificationsNotifier
+                                  .value.length >=
+                              9) {
+                            context.showErrorFlushbar(
+                                "Minimum qualifications should have fewer than 9 characters.");
+                          } else if (preferredQualificationsNotifier
+                                  .value.length >=
+                              9) {
+                            context.showErrorFlushbar(
+                                "Preferred qualifications should have fewer than 9 characters.");
+                          } else if (responsibilitiesNotifier.value.length >=
+                              9) {
+                            context.showErrorFlushbar(
+                                "Responsibilities should have fewer than 9 characters.");
+                          }
                         }
                       },
                       height: 50,
                       width: 150,
-                      fillColor:
-                          isValid() ? Colors.blueAccent : Colors.grey.shade300,
+                      fillColor: (jobTypeNotifier.value != null &&
+                              degreeNotifier.value != null &&
+                              organizationNotifier.value != null &&
+                              salaryPerHourNotifier.value != null &&
+                              titleNotifier.value != null &&
+                              minimumQualificationsNotifier.value.length > 2 &&
+                              preferredQualificationsNotifier.value.length >
+                                  2 &&
+                              responsibilitiesNotifier.value.length > 2 &&
+                              minimumQualificationsNotifier.value.length < 9 &&
+                              preferredQualificationsNotifier.value.length <
+                                  9 &&
+                              responsibilitiesNotifier.value.length < 9)
+                          ? Colors.blueAccent
+                          : Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(5),
                       child: HookConsumer(builder: (context, ref, child) {
                         final isUpdating = ref.watch(publishServiceProvider);
@@ -1078,7 +1133,29 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 15,
-                                  color: isValid()
+                                  color: (jobTypeNotifier.value != null &&
+                                          degreeNotifier.value != null &&
+                                          organizationNotifier.value != null &&
+                                          salaryPerHourNotifier.value != null &&
+                                          titleNotifier.value != null &&
+                                          minimumQualificationsNotifier
+                                                  .value.length >
+                                              2 &&
+                                          preferredQualificationsNotifier
+                                                  .value.length >
+                                              2 &&
+                                          responsibilitiesNotifier
+                                                  .value.length >
+                                              2 &&
+                                          minimumQualificationsNotifier
+                                                  .value.length <
+                                              9 &&
+                                          preferredQualificationsNotifier
+                                                  .value.length <
+                                              9 &&
+                                          responsibilitiesNotifier
+                                                  .value.length <
+                                              9)
                                       ? Colors.white
                                       : Colors.grey.shade400));
                         }, error: (e, st) {
