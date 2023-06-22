@@ -24,8 +24,8 @@ class ManageJobPostServiceStreamNotifier
         .where('status', isEqualTo: null)
         .snapshots(); // we get the ApplicationModels here
 
-    await for (final assessableJobs in applicationsStream) {
-      applicationModels = assessableJobs.docs
+    await for (final assessableApplication in applicationsStream) {
+      applicationModels = assessableApplication.docs
           .map((e) => ApplicationModel.fromJson(e.data()))
           .toList();
       // secondly get the usermodel of applicant
