@@ -11,6 +11,11 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
   const ProfileDashboardManageJobPostsView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const companyEmoji = '\u{1F3E2}'; // display if on-site
+    const locationEmoji = '\u{1F4CD}';
+    const computerEmoji = '\u{1F4BB}'; // display if remote
+    const moneyEmoji = '\u{1F4B5}';
+    const applicantsEmoji = '\u{1F464}';
     final manageJobPostMergedModels =
         ref.watch(manageJobPostMergedModelProvider);
     return manageJobPostMergedModels.when(data: (_manageJobPostMergedModels) {
@@ -19,10 +24,24 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
         return ExpansionPanelList(
           children: jobModels.map<ExpansionPanel>((e) {
-            final applicantUserModel = _manageJobPostMergedModels
-                .firstWhere((element) => element.jobModel.jobId == e.jobId)
-                .applicantModel;
-            return ExpansionPanel(headerBuilder: headerBuilder, body: body)
+            return ExpansionPanel(
+                headerBuilder: (context, isExpanded) {
+                  return ListTile( // ontap bunu tum detaili veren bir sayfaya gotursun , kendi ontapini kullanma trailiginde bir jobpostu permanently silme bir de detaya goturme ver
+                    title: Text("${e.title}($moneyEmoji \$${e.salaryPerHour})",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900)),
+                    leading: Row(
+                      children: [
+                        Text(moneyEmoji),
+                        SizedBox(width: 2),
+                        Text(e.salaryPerHour.toString()),
+                        SizedBox(width: 5),
+                        Text(e.isRemote ? computerEmoji : companyEmoji),
+                        SizedBox(width: 2),
+                        Text(e.isRemote ? "Remote" : "On-site"),
+                      ],
+                    ),
+                  );
+                },
+                body: Container());
           }).toList(),
         );
       } else {
