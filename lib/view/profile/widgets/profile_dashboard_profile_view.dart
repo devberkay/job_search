@@ -1,7 +1,6 @@
 import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
-import 'package:JobSearch/model/provider/storage/raw_file_provider.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
 import 'package:JobSearch/model/utils/capitalize_text_input_formatter.dart';
@@ -196,147 +195,63 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
 
                           // ref.read
                         },
-                        child: HookConsumer(builder: (context, ref, child) {
-                          final rawFile =
-                              ref.watch(rawFileProvider(userModel.uid));
-                          return rawFile.when(data: (mergedModel) {
-                            return Stack(
-                              alignment: Alignment.center,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    mergedModel?.customMetadata != null
-                                        ? const Text("CV",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 75,
-                                                fontWeight: FontWeight.w900))
-                                        : const Icon(Icons.file_present, size: 150),
-                                    mergedModel?.customMetadata != null
-                                        ? const Icon(Icons.download,
-                                            color: Colors.black, size: 25)
-                                        : SizedBox(
-                                            width: 10,
-                                            child: Text(
-                                                "${mergedModel!.customMetadata!['name']}",
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 20,
+                                Text("CV",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 75,
+                                        fontWeight: FontWeight.w900)),
+                                Icon(Icons.download,
+                                    color: Colors.black, size: 25)
+                              ],
+                            ),
+                            ValueListenableBuilder(
+                                valueListenable: opacityNotifier,
+                                builder: (context, opacity, child) {
+                                  return AnimatedOpacity(
+                                      opacity: opacity,
+                                      curve: Curves.easeOut,
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      child: Container(
+                                          width: 150,
+                                          height: 150,
+                                          padding:
+                                              const EdgeInsets.only(bottom: 15),
+                                          decoration: BoxDecoration(
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                              borderRadius:
+                                                  BorderRadius.circular(75)),
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                "Upload CV",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.w700)),
-                                          )
-                                  ],
-                                ),
-                                ValueListenableBuilder(
-                                    valueListenable: opacityNotifier,
-                                    builder: (context, opacity, child) {
-                                      return AnimatedOpacity(
-                                          opacity: opacity,
-                                          curve: Curves.easeOut,
-                                          duration:
-                                              const Duration(milliseconds: 250),
-                                          child: Container(
-                                              width: 150,
-                                              height: 150,
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.black
-                                                      .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
-                                              child: const Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    "Upload CV",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(height: 5),
-                                                  Icon(
-                                                    Icons.file_upload_outlined,
-                                                    color: Colors.white,
-                                                    size: 25,
-                                                  )
-                                                ],
-                                              )));
-                                    }),
-                              ],
-                            );
-                          }, error: (e, st) {
-                            return Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("CV",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 75,
-                                            fontWeight: FontWeight.w900)),
-                                    Icon(Icons.download,
-                                        color: Colors.black, size: 25)
-                                  ],
-                                ),
-                                ValueListenableBuilder(
-                                    valueListenable: opacityNotifier,
-                                    builder: (context, opacity, child) {
-                                      return AnimatedOpacity(
-                                          opacity: opacity,
-                                          curve: Curves.easeOut,
-                                          duration:
-                                              const Duration(milliseconds: 250),
-                                          child: Container(
-                                              width: 150,
-                                              height: 150,
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.black
-                                                      .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
-                                              child: const Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    "Upload CV",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(height: 5),
-                                                  Icon(
-                                                    Icons.file_upload_outlined,
-                                                    color: Colors.white,
-                                                    size: 25,
-                                                  )
-                                                ],
-                                              )));
-                                    }),
-                              ],
-                            );
-                          }, loading: () {
-                            return const SpinKitRing(
-                              color: Colors.black,
-                            );
-                          });
-                        }),
+                                                        FontWeight.w600),
+                                              ),
+                                              SizedBox(height: 5),
+                                              Icon(
+                                                Icons.file_upload_outlined,
+                                                color: Colors.white,
+                                                size: 25,
+                                              )
+                                            ],
+                                          )));
+                                }),
+                          ],
+                        ),
                       ));
                 }),
                 const Spacer()
@@ -776,7 +691,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       }, error: (e, st) {
                         return const Center(
                           child: SpinKitRing(
-                            size: 15,
+                            size: 20,
                             lineWidth: 3,
                             duration: Duration(milliseconds: 500),
                             color: Colors.white,
@@ -785,7 +700,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                       }, loading: () {
                         return const Center(
                           child: SpinKitRing(
-                            size: 15,
+                            size: 20,
                             lineWidth: 3,
                             duration: Duration(milliseconds: 500),
                             color: Colors.white,
