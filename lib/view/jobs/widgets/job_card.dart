@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/data/job_model.dart';
 import 'package:JobSearch/view/home/widgets/profile_box.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,6 +14,28 @@ final selectedJobModelProvider = StateProvider<JobModel?>((ref) {
 class JobCard extends HookConsumerWidget {
   const JobCard({super.key, required this.jobModel});
   final JobModel jobModel;
+
+  String _convertToCustomFormat(DateTime dateTime) {
+    DateTime now = DateTime.now();
+
+    DateTime yesterday = DateTime(now.year, now.month, now.day - 1);
+
+    if (dateTime.year == now.year &&
+        dateTime.month == now.month &&
+        dateTime.day == now.day) {
+      return 'Today';
+    } else if (dateTime.year == yesterday.year &&
+        dateTime.month == yesterday.month &&
+        dateTime.day == yesterday.day) {
+      return 'Yesterday';
+    } else {
+      String day = dateTime.day.toString().padLeft(2, '0');
+      String month = dateTime.month.toString().padLeft(2, '0');
+      String year = dateTime.year.toString();
+      return '$day/$month/$year';
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(selectedJobModelProvider, (previous, next) {});
@@ -100,9 +123,29 @@ class JobCard extends HookConsumerWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        ProfileBox(
-                            height: 40, width: 120, userId: jobModel.owner),
-                        const SizedBox(width: 10),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: ProfileBox(
+                              height: 40, width: 100, userId: jobModel.owner),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2),
+                          child: Row(
+                            children: [
+                              Icon(Icons.update, size: 15, color: Colors.black),
+                              const SizedBox(width: 3),
+                              Text(
+                                  _convertToCustomFormat(
+                                      (jobModel.timestampField as Timestamp)
+                                          .toDate()),
+                                  style: TextStyle(
+                                      fontSize: 9 * 1.25,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600))
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 30),
                         Text("$moneyEmoji \$${jobModel.salaryPerHour}/hr",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
