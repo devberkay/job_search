@@ -17,7 +17,6 @@ _$_ApplicationModel _$$_ApplicationModelFromJson(Map<String, dynamic> json) =>
       jobId: json['jobId'] as String,
       timestampField: json['timestampField'],
       status: json['status'] as bool?,
-      isJobOffer: json['isJobOffer'] as bool,
     );
 
 Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
@@ -28,5 +27,4 @@ Map<String, dynamic> _$$_ApplicationModelToJson(_$_ApplicationModel instance) =>
       'jobId': instance.jobId,
       'timestampField': instance.timestampField,
       'status': instance.status,
-      'isJobOffer': instance.isJobOffer,
     };

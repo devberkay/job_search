@@ -23,14 +23,12 @@ mixin _$ApplicationModel {
   Map<String, String>? get questionnaireAnswers =>
       throw _privateConstructorUsedError;
   String get uid =>
-      throw _privateConstructorUsedError; // user id of who applioed to the job
+      throw _privateConstructorUsedError; // user id of who applioed to the job, a.k.a sender
   String get ownerUid =>
-      throw _privateConstructorUsedError; // user id of who posted the job
+      throw _privateConstructorUsedError; // user id of who posted the job, a.k.a recipient
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
-  bool? get status =>
-      throw _privateConstructorUsedError; // can be null= unanswered by the owner, true= accepted, false= rejected
-  bool get isJobOffer => throw _privateConstructorUsedError;
+  bool? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,8 +48,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String ownerUid,
       String jobId,
       dynamic timestampField,
-      bool? status,
-      bool isJobOffer});
+      bool? status});
 }
 
 /// @nodoc
@@ -73,7 +70,6 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? jobId = null,
     Object? timestampField = freezed,
     Object? status = freezed,
-    Object? isJobOffer = null,
   }) {
     return _then(_value.copyWith(
       questionnaireAnswers: freezed == questionnaireAnswers
@@ -100,10 +96,6 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isJobOffer: null == isJobOffer
-          ? _value.isJobOffer
-          : isJobOffer // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -122,8 +114,7 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
       String ownerUid,
       String jobId,
       dynamic timestampField,
-      bool? status,
-      bool isJobOffer});
+      bool? status});
 }
 
 /// @nodoc
@@ -143,7 +134,6 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? jobId = null,
     Object? timestampField = freezed,
     Object? status = freezed,
-    Object? isJobOffer = null,
   }) {
     return _then(_$_ApplicationModel(
       questionnaireAnswers: freezed == questionnaireAnswers
@@ -170,10 +160,6 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isJobOffer: null == isJobOffer
-          ? _value.isJobOffer
-          : isJobOffer // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -189,8 +175,7 @@ class _$_ApplicationModel
       required this.ownerUid,
       required this.jobId,
       required this.timestampField,
-      required this.status,
-      required this.isJobOffer})
+      required this.status})
       : _questionnaireAnswers = questionnaireAnswers;
 
   factory _$_ApplicationModel.fromJson(Map<String, dynamic> json) =>
@@ -209,23 +194,20 @@ class _$_ApplicationModel
 
   @override
   final String uid;
-// user id of who applioed to the job
+// user id of who applioed to the job, a.k.a sender
   @override
   final String ownerUid;
-// user id of who posted the job
+// user id of who posted the job, a.k.a recipient
   @override
   final String jobId;
   @override
   final dynamic timestampField;
   @override
   final bool? status;
-// can be null= unanswered by the owner, true= accepted, false= rejected
-  @override
-  final bool isJobOffer;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status, isJobOffer: $isJobOffer)';
+    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status)';
   }
 
   @override
@@ -238,8 +220,7 @@ class _$_ApplicationModel
       ..add(DiagnosticsProperty('ownerUid', ownerUid))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('timestampField', timestampField))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('isJobOffer', isJobOffer));
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -255,9 +236,7 @@ class _$_ApplicationModel
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.isJobOffer, isJobOffer) ||
-                other.isJobOffer == isJobOffer));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
@@ -269,8 +248,7 @@ class _$_ApplicationModel
       ownerUid,
       jobId,
       const DeepCollectionEquality().hash(timestampField),
-      status,
-      isJobOffer);
+      status);
 
   @JsonKey(ignore: true)
   @override
@@ -293,8 +271,7 @@ abstract class _ApplicationModel implements ApplicationModel {
       required final String ownerUid,
       required final String jobId,
       required final dynamic timestampField,
-      required final bool? status,
-      required final bool isJobOffer}) = _$_ApplicationModel;
+      required final bool? status}) = _$_ApplicationModel;
 
   factory _ApplicationModel.fromJson(Map<String, dynamic> json) =
       _$_ApplicationModel.fromJson;
@@ -303,16 +280,14 @@ abstract class _ApplicationModel implements ApplicationModel {
   Map<String, String>? get questionnaireAnswers;
   @override
   String get uid;
-  @override // user id of who applioed to the job
+  @override // user id of who applioed to the job, a.k.a sender
   String get ownerUid;
-  @override // user id of who posted the job
+  @override // user id of who posted the job, a.k.a recipient
   String get jobId;
   @override
   dynamic get timestampField;
   @override
   bool? get status;
-  @override // can be null= unanswered by the owner, true= accepted, false= rejected
-  bool get isJobOffer;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationModelCopyWith<_$_ApplicationModel> get copyWith =>
