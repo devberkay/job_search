@@ -29,7 +29,7 @@ dependencies:
   flutter_svg: 
   
   isar: 
-  
+  isar_flutter_libs:
   firebase_storage: ^11.2.2 
   
   cloud_firestore: 
@@ -63,7 +63,7 @@ dev_dependencies:
   json_serializable: 
   custom_lint:
   riverpod_lint:
-
+  isar_generator:
     
     
 
