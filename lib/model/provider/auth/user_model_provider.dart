@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final userModelProvider =
-    FutureProvider.family<UserModel?, String?>((ref, arg) async {
+    FutureProvider.family.autoDispose<UserModel?, String?>((ref, arg) async {
   if (arg == null) {
     return null;
   }
