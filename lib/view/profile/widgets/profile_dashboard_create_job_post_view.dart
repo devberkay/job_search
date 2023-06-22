@@ -1,13 +1,21 @@
 import 'package:JobSearch/view/profile/widgets/profile_general_use_dropdown_button.dart';
+import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:collection/collection.dart';
 
 class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
   const ProfileDashboardCreateJobPostView({super.key});
+
+
+  bool canPublish() {
+    
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final titleNotifier = useValueNotifier<String?>(null);
@@ -22,7 +30,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
     final longitudeNotifier = useValueNotifier<double?>(0);
     final latitudeNotifier = useValueNotifier<double?>(0);
     final salaryPerHourNotifier = useValueNotifier<double?>(null);
-    final questionnaireNotifier = useValueNotifier<List<String>?>(null);
+    final questionnaireNotifier = useValueNotifier<List<String>>([]);
 
     // final titleController = useTextEditingController();
     // final aboutJobController = useTextEditingController();
@@ -789,6 +797,231 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
             ),
           ],
         ),
+        const SizedBox(height: 30),
+        ValueListenableBuilder(
+            valueListenable: questionnaireNotifier,
+            builder: (context, _, __) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Questionnaires(optional)",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  CupertinoTextField(
+                    onSubmitted: (value) {
+                      if (questionnaireNotifier.value.length < 8) {
+                        if (value.isNotEmpty) {
+                          questionnaireNotifier.value = [
+                            ...questionnaireNotifier.value,
+                            value
+                          ];
+                        }
+                        questionnaireController.clear();
+                      }
+                    },
+                    controller: questionnaireController,
+                    maxLines: 1,
+                    prefix: Icon(
+                      Icons.add,
+                      color: Colors.grey.shade500.withOpacity(0.75),
+                    ),
+                    placeholder: "Enter the required position's nice-to-haves",
+                    style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w600),
+                    placeholderStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade400),
+                    maxLength: 200,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ...questionnaireNotifier.value
+                      .mapIndexed<Widget>((index, e) {
+                    if (index ==
+                        questionnaireNotifier.value.length - 1) {
+                      return HookConsumer(builder: (context, ref, child) {
+                        final isHovering = useState(false);
+                        return MouseRegion(
+                          onEnter: (event) {
+                            isHovering.value = true;
+                          },
+                          onExit: (event) {
+                            isHovering.value = false;
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            transformAlignment: Alignment.center,
+                            curve: Curves.easeOut,
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.shade500,
+                                      offset: Offset(isHovering.value ? -1 : 0,
+                                          isHovering.value ? -1 : 0),
+                                      blurRadius: isHovering.value ? 1.25 : 0,
+                                      spreadRadius:
+                                          isHovering.value ? 1.25 : 0),
+                                  BoxShadow(
+                                      color: Colors.grey.shade500,
+                                      offset: Offset(isHovering.value ? 1 : 0,
+                                          isHovering.value ? 1 : 0),
+                                      blurRadius: isHovering.value ? 1.25 : 0,
+                                      spreadRadius: isHovering.value ? 1.25 : 0)
+                                ]),
+                            child: Row(
+                              children: [
+                                Text(
+                                  e,
+                                  style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const Spacer(),
+                                HeadlessCupertinoButton(
+                                  onPressed: () {
+                                    questionnaireNotifier.value = [
+                                      ...questionnaireNotifier.value
+                                        ..removeAt(index)
+                                    ];
+                                  },
+                                  child: const Icon(Icons.remove,
+                                      color: Colors.red),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                    } else {
+                      return Column(
+                        children: [
+                          HookConsumer(builder: (context, ref, child) {
+                            final isHovering = useState(false);
+                            return MouseRegion(
+                              onEnter: (event) {
+                                isHovering.value = true;
+                              },
+                              onExit: (event) {
+                                isHovering.value = false;
+                              },
+                              child: AnimatedContainer(
+                                clipBehavior: Clip.none,
+                                duration: const Duration(milliseconds: 250),
+                                transformAlignment: Alignment.center,
+                                curve: Curves.easeOut,
+                                padding: const EdgeInsets.all(7),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade100,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.shade500,
+                                          offset: Offset(
+                                              isHovering.value ? -1 : 0,
+                                              isHovering.value ? -1 : 0),
+                                          blurRadius:
+                                              isHovering.value ? 1.25 : 0,
+                                          spreadRadius:
+                                              isHovering.value ? 1.25 : 0),
+                                      BoxShadow(
+                                          color: Colors.grey.shade500,
+                                          offset: Offset(
+                                              isHovering.value ? 1 : 0,
+                                              isHovering.value ? 1 : 0),
+                                          blurRadius:
+                                              isHovering.value ? 1.25 : 0,
+                                          spreadRadius:
+                                              isHovering.value ? 1.25 : 0)
+                                    ]),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      e,
+                                      style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Spacer(),
+                                    HeadlessCupertinoButton(
+                                      onPressed: () {
+                                        questionnaireNotifier.value =
+                                            [
+                                          ...questionnaireNotifier
+                                              .value
+                                            ..removeAt(index)
+                                        ];
+                                      },
+                                      child: const Icon(Icons.remove,
+                                          color: Colors.red),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                          SizedBox(height: 10),
+                        ],
+                      );
+                    }
+                  })
+                ],
+              );
+            }),
+        const SizedBox(height: 90),
+        ValueListenableBuilder(
+                valueListenable: Listenable.merge([]),
+                builder: (context, draftModel, child) {
+                  return FilledCupertinoButton(
+                      onPressed: () {
+                        
+                      },
+                      height: 50,
+                      width: 150,
+                      fillColor: (draftModel != userModel)
+                          ? Colors.blueAccent
+                          : Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(5),
+                      child: HookConsumer(builder: (context, ref, child) {
+                        final isUpdating = ref.watch(userModelServiceProvider);
+                        return isUpdating.when(data: (_) {
+                          return Text("Save changes",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 15,
+                                  color: (draftModel != userModel)
+                                      ? Colors.white
+                                      : Colors.grey.shade400));
+                        }, error: (e, st) {
+                          return const Center(
+                            child: SpinKitRing(
+                              size: 20,
+                              lineWidth: 3,
+                              duration: Duration(milliseconds: 500),
+                              color: Colors.white,
+                            ),
+                          );
+                        }, loading: () {
+                          return const Center(
+                            child: SpinKitRing(
+                              size: 20,
+                              lineWidth: 3,
+                              duration: Duration(milliseconds: 500),
+                              color: Colors.white,
+                            ),
+                          );
+                        });
+                      }));
+                }),
       ],
     );
   }
