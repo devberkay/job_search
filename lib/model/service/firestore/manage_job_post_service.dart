@@ -6,6 +6,8 @@ import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,List<MergedManageJobPostModel>? >(ManageJobPostServiceStreamNotifier.new);
+
 class ManageJobPostServiceStreamNotifier
     extends StreamNotifier<List<MergedManageJobPostModel>?> {
   @override
@@ -45,11 +47,13 @@ class ManageJobPostServiceStreamNotifier
 
       // now create the list of  merged model
       for (final applicationModel in applicationModels) {
+        UserModel applicantUserModel;
+        JobModel jobModel;
         try {
-          final applicantUserModel = applicantUserModels.firstWhere(
+           applicantUserModel = applicantUserModels.firstWhere(
           (element) => element.uid == applicationModel.uid,
         );
-        final jobModel = jobModels.firstWhere(
+         jobModel = jobModels.firstWhere(
             (element) => element.jobId == applicationModel.jobId);
         } catch (e) {
           continue;
