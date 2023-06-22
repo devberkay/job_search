@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'merged_job_post_manage_model.dart';
+part of 'merged_manage_job_post_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,21 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MergedJobPostManageModel {
+mixin _$MergedManageJobPostModel {
   ApplicationModel get applicationModel => throw _privateConstructorUsedError;
   JobModel get jobModel => throw _privateConstructorUsedError;
   UserModel get applicantModel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MergedJobPostManageModelCopyWith<MergedJobPostManageModel> get copyWith =>
+  $MergedManageJobPostModelCopyWith<MergedManageJobPostModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MergedJobPostManageModelCopyWith<$Res> {
-  factory $MergedJobPostManageModelCopyWith(MergedJobPostManageModel value,
-          $Res Function(MergedJobPostManageModel) then) =
-      _$MergedJobPostManageModelCopyWithImpl<$Res, MergedJobPostManageModel>;
+abstract class $MergedManageJobPostModelCopyWith<$Res> {
+  factory $MergedManageJobPostModelCopyWith(MergedManageJobPostModel value,
+          $Res Function(MergedManageJobPostModel) then) =
+      _$MergedManageJobPostModelCopyWithImpl<$Res, MergedManageJobPostModel>;
   @useResult
   $Res call(
       {ApplicationModel applicationModel,
@@ -42,10 +42,10 @@ abstract class $MergedJobPostManageModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MergedJobPostManageModelCopyWithImpl<$Res,
-        $Val extends MergedJobPostManageModel>
-    implements $MergedJobPostManageModelCopyWith<$Res> {
-  _$MergedJobPostManageModelCopyWithImpl(this._value, this._then);
+class _$MergedManageJobPostModelCopyWithImpl<$Res,
+        $Val extends MergedManageJobPostModel>
+    implements $MergedManageJobPostModelCopyWith<$Res> {
+  _$MergedManageJobPostModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,12 +101,12 @@ class _$MergedJobPostManageModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_MergedJobPostManageModelCopyWith<$Res>
-    implements $MergedJobPostManageModelCopyWith<$Res> {
-  factory _$$_MergedJobPostManageModelCopyWith(
-          _$_MergedJobPostManageModel value,
-          $Res Function(_$_MergedJobPostManageModel) then) =
-      __$$_MergedJobPostManageModelCopyWithImpl<$Res>;
+abstract class _$$_MergedManageJobPostModelCopyWith<$Res>
+    implements $MergedManageJobPostModelCopyWith<$Res> {
+  factory _$$_MergedManageJobPostModelCopyWith(
+          _$_MergedManageJobPostModel value,
+          $Res Function(_$_MergedManageJobPostModel) then) =
+      __$$_MergedManageJobPostModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,12 +123,12 @@ abstract class _$$_MergedJobPostManageModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MergedJobPostManageModelCopyWithImpl<$Res>
-    extends _$MergedJobPostManageModelCopyWithImpl<$Res,
-        _$_MergedJobPostManageModel>
-    implements _$$_MergedJobPostManageModelCopyWith<$Res> {
-  __$$_MergedJobPostManageModelCopyWithImpl(_$_MergedJobPostManageModel _value,
-      $Res Function(_$_MergedJobPostManageModel) _then)
+class __$$_MergedManageJobPostModelCopyWithImpl<$Res>
+    extends _$MergedManageJobPostModelCopyWithImpl<$Res,
+        _$_MergedManageJobPostModel>
+    implements _$$_MergedManageJobPostModelCopyWith<$Res> {
+  __$$_MergedManageJobPostModelCopyWithImpl(_$_MergedManageJobPostModel _value,
+      $Res Function(_$_MergedManageJobPostModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +138,7 @@ class __$$_MergedJobPostManageModelCopyWithImpl<$Res>
     Object? jobModel = null,
     Object? applicantModel = null,
   }) {
-    return _then(_$_MergedJobPostManageModel(
+    return _then(_$_MergedManageJobPostModel(
       applicationModel: null == applicationModel
           ? _value.applicationModel
           : applicationModel // ignore: cast_nullable_to_non_nullable
@@ -157,10 +157,10 @@ class __$$_MergedJobPostManageModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MergedJobPostManageModel
+class _$_MergedManageJobPostModel
     with DiagnosticableTreeMixin
-    implements _MergedJobPostManageModel {
-  const _$_MergedJobPostManageModel(
+    implements _MergedManageJobPostModel {
+  const _$_MergedManageJobPostModel(
       {required this.applicationModel,
       required this.jobModel,
       required this.applicantModel});
@@ -174,14 +174,14 @@ class _$_MergedJobPostManageModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MergedJobPostManageModel(applicationModel: $applicationModel, jobModel: $jobModel, applicantModel: $applicantModel)';
+    return 'MergedManageJobPostModel(applicationModel: $applicationModel, jobModel: $jobModel, applicantModel: $applicantModel)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MergedJobPostManageModel'))
+      ..add(DiagnosticsProperty('type', 'MergedManageJobPostModel'))
       ..add(DiagnosticsProperty('applicationModel', applicationModel))
       ..add(DiagnosticsProperty('jobModel', jobModel))
       ..add(DiagnosticsProperty('applicantModel', applicantModel));
@@ -191,7 +191,7 @@ class _$_MergedJobPostManageModel
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MergedJobPostManageModel &&
+            other is _$_MergedManageJobPostModel &&
             (identical(other.applicationModel, applicationModel) ||
                 other.applicationModel == applicationModel) &&
             (identical(other.jobModel, jobModel) ||
@@ -207,16 +207,16 @@ class _$_MergedJobPostManageModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MergedJobPostManageModelCopyWith<_$_MergedJobPostManageModel>
-      get copyWith => __$$_MergedJobPostManageModelCopyWithImpl<
-          _$_MergedJobPostManageModel>(this, _$identity);
+  _$$_MergedManageJobPostModelCopyWith<_$_MergedManageJobPostModel>
+      get copyWith => __$$_MergedManageJobPostModelCopyWithImpl<
+          _$_MergedManageJobPostModel>(this, _$identity);
 }
 
-abstract class _MergedJobPostManageModel implements MergedJobPostManageModel {
-  const factory _MergedJobPostManageModel(
+abstract class _MergedManageJobPostModel implements MergedManageJobPostModel {
+  const factory _MergedManageJobPostModel(
       {required final ApplicationModel applicationModel,
       required final JobModel jobModel,
-      required final UserModel applicantModel}) = _$_MergedJobPostManageModel;
+      required final UserModel applicantModel}) = _$_MergedManageJobPostModel;
 
   @override
   ApplicationModel get applicationModel;
@@ -226,6 +226,6 @@ abstract class _MergedJobPostManageModel implements MergedJobPostManageModel {
   UserModel get applicantModel;
   @override
   @JsonKey(ignore: true)
-  _$$_MergedJobPostManageModelCopyWith<_$_MergedJobPostManageModel>
+  _$$_MergedManageJobPostModelCopyWith<_$_MergedManageJobPostModel>
       get copyWith => throw _privateConstructorUsedError;
 }
