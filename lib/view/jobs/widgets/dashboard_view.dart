@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
+import 'package:JobSearch/model/provider/storage/raw_picture_provider.dart';
 import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 
@@ -30,6 +31,11 @@ class DashboardView extends HookConsumerWidget {
                 jobs.map((e) => e.owner).toSet().length,
                 (index) =>
                     ref.watch(userModelProvider(jobs[index].owner).future)));
+            final userProfilePicturesFutures = Future.wait(List.generate(
+                jobs.map((e) => e.owner).toSet().length,
+                (index) => ref
+                    .watch(rawPictureProvider(jobs[index].owner).future)
+                    .catchError((error) => null)));
             return FutureBuilder(
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
@@ -105,7 +111,7 @@ class DashboardView extends HookConsumerWidget {
                     );
                   }
                 },
-                future: userModelFutures);
+                future: Future.wait([userModelFutures, userProfilePicturesFutures]));
           } else {
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,
