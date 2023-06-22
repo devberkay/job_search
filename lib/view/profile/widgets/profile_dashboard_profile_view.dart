@@ -199,20 +199,34 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         child: HookConsumer(builder: (context, ref, child) {
                           final rawFile =
                               ref.watch(rawFileProvider(userModel.uid));
-                         return rawFile.when(data: (mergedModel) {
+                          return rawFile.when(data: (mergedModel) {
                             return Stack(
                               alignment: Alignment.center,
                               children: [
-                                 Column(
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                  mergedModel?.customMetadata!=null  ?  Text("CV",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 75,
-                                            fontWeight: FontWeight.w900)) : Icon(Icons.file_present,size: 150),
-                                    Icon(Icons.download,
-                                        color: Colors.black, size: 25)
+                                    mergedModel?.customMetadata != null
+                                        ? const Text("CV",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 75,
+                                                fontWeight: FontWeight.w900))
+                                        : const Icon(Icons.file_present, size: 150),
+                                    mergedModel?.customMetadata != null
+                                        ? const Icon(Icons.download,
+                                            color: Colors.black, size: 25)
+                                        : SizedBox(
+                                            width: 10,
+                                            child: Text(
+                                                "${mergedModel!.customMetadata!['name']}",
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                          )
                                   ],
                                 ),
                                 ValueListenableBuilder(
