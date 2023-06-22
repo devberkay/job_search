@@ -17,7 +17,7 @@ class ApplicationModel with _$ApplicationModel {
     required String ownerUid, // user id of who posted the job, a.k.a recipient
     required String jobId,
     required dynamic timestampField,
-    required bool? status, // can be null= unanswered by the owner, true= accepted, false= rejected
+    required bool? status, // can be null= unanswered by the recipient, true= accepted, false= rejected
 
   }) = _ApplicationModel;
 
