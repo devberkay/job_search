@@ -67,7 +67,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                     panelIndex;
               }
             },
-            children: jobModels.map<ExpansionPanel>((e) {
+            children: jobModels.mapIndexed<ExpansionPanel>((index,e) {
               return ExpansionPanel(
                   headerBuilder: (context, isExpanded) {
                     return ManageCard(jobModel: e);
