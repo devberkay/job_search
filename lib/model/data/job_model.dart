@@ -18,7 +18,7 @@ class JobModel with _$JobModel {
     required String jobType,
     required bool isRemote, // man or woman
     required String organization,
-    required List<String> searchTokens,
+    required List<String> searchTokens, // qualifications+responsibilities
     required String aboutJob,
     required double longitude,
     required double latitude,

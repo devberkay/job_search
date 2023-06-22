@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/view/jobs/widgets/dashboard_view.dart';
+import 'package:JobSearch/view/profile/widgets/profile_dashboard_create_job_post_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_dashboard_profile_view.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sidebar.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           } else if (profileSidebarIndex == 3) {
             return Container();
           } else if (profileSidebarIndex == 4) {
-            return Container();
+            return ProfileDashboardCreateJobPostView();
           } else {
             final userModel = ref.watch(userModelProvider(widget.userId));
             return userModel.when(
