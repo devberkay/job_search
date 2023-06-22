@@ -56,34 +56,41 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           }).toList();
         }
 
-        return SingleChildScrollView(
-          child: HookConsumer(builder: (context, ref, child) {
-            final selectedIndex = useState<int?>(null);
-            return ExpansionPanelList(
-              expansionCallback: (panelIndex, isExpanded) {
-                debugPrint("is it get called-0");
-                if (!isExpanded) {
-                  debugPrint("is it get called-1 : $panelIndex");
-                  selectedIndex.value = panelIndex;
-                } else {
-                  debugPrint("is it get called-2");
-                  if (panelIndex == selectedIndex.value) {
-                    selectedIndex.value = null;
-                  }
-                }
-              },
-              children: jobModels.mapIndexed<ExpansionPanel>((index, e) {
-                return ExpansionPanel(
-                    headerBuilder: (context, isExpanded) {
-                      return ManageCard(jobModel: e);
-                    },
-                    isExpanded: index == selectedIndex.value,
-                    canTapOnHeader: true,
-                    body: SizedBox(
-                        height: 300, child: ListView(children: listOfWidgets)));
-              }).toList(),
-            );
-          }),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
+              child: HookConsumer(builder: (context, ref, child) {
+                final selectedIndex = useState<int?>(null);
+                return ExpansionPanelList(
+                  expansionCallback: (panelIndex, isExpanded) {
+                    debugPrint("is it get called-0");
+                    if (!isExpanded) {
+                      debugPrint("is it get called-1 : $panelIndex");
+                      selectedIndex.value = panelIndex;
+                    } else {
+                      debugPrint("is it get called-2");
+                      if (panelIndex == selectedIndex.value) {
+                        selectedIndex.value = null;
+                      }
+                    }
+                  },
+                  children: jobModels.mapIndexed<ExpansionPanel>((index, e) {
+                    return ExpansionPanel(
+                        headerBuilder: (context, isExpanded) {
+                          return ManageCard(jobModel: e);
+                        },
+                        isExpanded: index == selectedIndex.value,
+                        canTapOnHeader: true,
+                        body: SizedBox(
+                            height: 300,
+                            child: ListView(children: listOfWidgets)));
+                  }).toList(),
+                );
+              }),
+            ),
+          ),
         );
       } else {
         return const Center(
