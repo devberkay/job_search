@@ -14,36 +14,32 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
   const ProfileDashboardManageJobPostsView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final manageJobPostMergedModel =
         ref.watch(manageJobPostMergedModelProvider);
     return manageJobPostMergedModel.when(data: (_manageJobPostMergedModel) {
-      debugPrint("Hello brother-1 : ${_manageJobPostMergedModel.applicantModels.toString()}");
-      debugPrint("Hello brother-2 : ${_manageJobPostMergedModel.applicationModels.toString()}");
-      debugPrint("Hello brother-3 : ${_manageJobPostMergedModel.jobModels.toString()}");
+      debugPrint(
+          "Hello brother-1 : ${_manageJobPostMergedModel.applicantModels.toString()}");
+      debugPrint(
+          "Hello brother-2 : ${_manageJobPostMergedModel.applicationModels.toString()}");
+      debugPrint(
+          "Hello brother-3 : ${_manageJobPostMergedModel.jobModels.toString()}");
       if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
           _manageJobPostMergedModel.applicationModels.isNotEmpty &&
           _manageJobPostMergedModel.jobModels.isNotEmpty) {
+        var innerModels = <MergedManageJobPostInnerModel>[];
+        var listOfWidgets = <Widget>[];
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
-        
-        return ExpansionPanelList(
-          children: jobModels.map<ExpansionPanel>((e) {
-            final innerModels = applicationModels.map((innerAplicationModel) {
-              return MergedManageJobPostInnerModel(
-                  applicationModel: applicationModels
-                      .firstWhere((element) => element.jobId == e.jobId),
-                  applicantModel: applicantModels.firstWhere(
-                      (element) => element.uid == innerAplicationModel.uid));
-            }).toList();
-
-            return ExpansionPanel(
-                headerBuilder: (context, isExpanded) {
-                  return ManageCard(jobModel: e);
-                },
-                body: ListView(
-                    children: innerModels.map<Widget>((mergedInnerModel) {
+        for (var jobModel in jobModels) {
+           innerModels = applicationModels.map((innerAplicationModel) {
+            return MergedManageJobPostInnerModel(
+                applicationModel: applicationModels
+                    .firstWhere((element) => element.jobId == jobModel.jobId),
+                applicantModel: applicantModels.firstWhere(
+                    (element) => element.uid == innerAplicationModel.uid));
+          }).toList();
+          listOfWidgets = innerModels.map<Widget>((mergedInnerModel) {
                   return Row(
                     children: [
                       ProfileBoxStatic(
@@ -53,12 +49,23 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       Text("has applied to following job published by you"),
                       Chip(
                           label: Text(
-                        e.title,
+                        jobModel.title,
                         style: TextStyle(color: Colors.black),
                       ))
                     ],
                   );
-                }).toList()));
+                }).toList();
+        }
+        
+        
+        return ExpansionPanelList(
+          children: jobModels.map<ExpansionPanel>((e) {
+            return ExpansionPanel(
+                headerBuilder: (context, isExpanded) {
+                  return ManageCard(jobModel: e);
+                },
+                body: ListView(
+                    children:listOfWidgets ));
           }).toList(),
         );
       } else {
