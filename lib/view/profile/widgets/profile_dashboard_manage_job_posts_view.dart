@@ -27,6 +27,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
+        
         return ExpansionPanelList(
           children: jobModels.map<ExpansionPanel>((e) {
             final innerModels = applicationModels.map((innerAplicationModel) {
