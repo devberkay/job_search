@@ -765,11 +765,12 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           },
                           child: HeadlessCupertinoButton(
                             onPressed: () async {
-                              debugPrint("anchor??");
                               html.AnchorElement anchorElement =
                                   html.AnchorElement(href: _downloadUrl);
                               anchorElement.download =
                                   'CV_${userModel.uid}.pdf'; // Replace with desired file name
+                              anchorElement.target =
+                                  '_blank'; // Open in a new tab or window
                               anchorElement.click();
 
                               // ref.read
