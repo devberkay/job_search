@@ -204,7 +204,6 @@ class JobNotifier
 
     if (lastJobDoc != null && arg) {
       debugPrint("jobNotifier-0");
-
       final snapshot = await (query != null
           ? query.startAfterDocument(lastJobDoc).limit(15).get()
           : collectionRef.startAfterDocument(lastJobDoc).limit(15).get());
