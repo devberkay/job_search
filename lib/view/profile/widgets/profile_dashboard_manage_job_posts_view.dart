@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/data/job_model.dart';
 import 'package:JobSearch/model/data/merged_manage_job_post_inner_model.dart';
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
@@ -28,11 +29,14 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
+        Map<JobModel, MergedManageJobPostInnerModel> jobToInnerModeling = {};
         for (var jobModel in jobModels) {
-          final innerModels = applicationModels.map((innerAplicationModel) {
+          final relevantApplicationModels = applicationModels
+              .where((element) => element.jobId == jobModel.jobId);
+          final innerModels =
+              relevantApplicationModels.map((innerAplicationModel) {
             return MergedManageJobPostInnerModel(
-                applicationModel: applicationModels
-                    .firstWhere((element) => element.jobId == jobModel.jobId),
+                applicationModel: innerAplicationModel,
                 applicantModel: applicantModels.firstWhere(
                     (element) => element.uid == innerAplicationModel.uid));
           }).toList();
