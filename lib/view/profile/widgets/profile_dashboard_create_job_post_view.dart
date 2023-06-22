@@ -131,7 +131,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                         duration: const Duration(milliseconds: 250),
                         transformAlignment: Alignment.center,
                         curve: Curves.easeOut,
-                        padding: EdgeInsets.all(7),
+                        padding: const EdgeInsets.all(7),
                         decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(10),
@@ -157,7 +157,8 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                                   color: Colors.grey.shade600,
                                   fontWeight: FontWeight.w600),
                             ),
-                            IconButton(onPressed: () {}, icon: Icon(Icons.remove,color: Colors.,))
+                            const Spacer(),
+                            IconButton(onPressed: () {}, icon: const Icon(Icons.remove,color: Colors.red))
                           ],
                         ),
                       ),
