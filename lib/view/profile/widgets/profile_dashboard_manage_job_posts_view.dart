@@ -24,52 +24,52 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
       if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
           _manageJobPostMergedModel.applicationModels.isNotEmpty &&
           _manageJobPostMergedModel.jobModels.isNotEmpty) {
-        var innerModels = <MergedManageJobPostInnerModel>[];
         var listOfWidgets = <Widget>[];
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
         for (var jobModel in jobModels) {
-          innerModels = applicationModels.map((innerAplicationModel) {
+          final innerModels = applicationModels.map((innerAplicationModel) {
             return MergedManageJobPostInnerModel(
                 applicationModel: applicationModels
                     .firstWhere((element) => element.jobId == jobModel.jobId),
                 applicantModel: applicantModels.firstWhere(
                     (element) => element.uid == innerAplicationModel.uid));
           }).toList();
-        }
-        listOfWidgets =
-            innerModels.mapIndexed<Widget>((index, mergedInnerModel) {
-          return Column(
-            children: [
-              DecoratedBox(
-                decoration: const ShapeDecoration(
-                    shape:
-                        StadiumBorder(side: BorderSide(color: Colors.black))),
-                child: Row(
-                  children: [
-                    ProfileBoxStatic(
-                        userModel: mergedInnerModel.applicantModel,
-                        height: 36,
-                        width: 108),
-                    const Text("has applied to following job published by you"),
-                    const SizedBox(width: 5),
-                    Chip(
-                      backgroundColor: Colors.grey.shade100,
-                      label: Text(
-                        jobModels[index].title,
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                    )
-                  ],
+          listOfWidgets =
+              innerModels.mapIndexed<Widget>((index, mergedInnerModel) {
+            return Column(
+              children: [
+                DecoratedBox(
+                  decoration: const ShapeDecoration(
+                      shape:
+                          StadiumBorder(side: BorderSide(color: Colors.black))),
+                  child: Row(
+                    children: [
+                      ProfileBoxStatic(
+                          userModel: mergedInnerModel.applicantModel,
+                          height: 36,
+                          width: 108),
+                      const Text(
+                          "has applied to following job published by you"),
+                      const SizedBox(width: 5),
+                      Chip(
+                        backgroundColor: Colors.grey.shade100,
+                        label: Text(
+                          jobModels[index].title,
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              )
-            ],
-          );
-        }).toList();
+                const SizedBox(
+                  height: 5,
+                )
+              ],
+            );
+          }).toList();
+        }
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
