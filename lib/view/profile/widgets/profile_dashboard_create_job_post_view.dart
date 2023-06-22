@@ -749,6 +749,46 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
             ),
           ],
         ),
+        SizedBox(height: 30),
+        Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Remote available",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                      valueNotifier: isRemoteNotifier,
+                      items: const [
+                        "Yes",
+                        "No",
+                      ])
+                ],
+              ),
+            ),
+            const Spacer(),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Salary per hour (USD)",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  ProfileGeneralUseDropdownButton(
+                    valueNotifier: salaryPerHourNotifier,
+                    items: List.generate(300, (index) => (index + 1.0)),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

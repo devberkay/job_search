@@ -199,17 +199,25 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("CV",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 75,
-                                        fontWeight: FontWeight.w900)),
-                                Icon(Icons.download,
-                                    color: Colors.black, size: 25)
-                              ],
+                            Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("CV",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 75,
+                                          fontWeight: FontWeight.w900)),
+                                  Icon(Icons.download,
+                                      color: Colors.black, size: 25)
+                                ],
+                              ),
                             ),
                             ValueListenableBuilder(
                                 valueListenable: opacityNotifier,
@@ -227,8 +235,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                           decoration: BoxDecoration(
                                               color: Colors.black
                                                   .withOpacity(0.75),
-                                              borderRadius:
-                                                  BorderRadius.circular(75)),
+                                              shape: BoxShape.circle),
                                           child: const Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
@@ -820,17 +827,25 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
-                                const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("CV",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 75,
-                                            fontWeight: FontWeight.w900)),
-                                    Icon(Icons.download,
-                                        color: Colors.black, size: 25)
-                                  ],
+                                Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: Colors.black, width: 2)),
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("CV",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 75,
+                                              fontWeight: FontWeight.w900)),
+                                      Icon(Icons.download,
+                                          color: Colors.black, size: 25)
+                                    ],
+                                  ),
                                 ),
                                 ValueListenableBuilder(
                                     valueListenable: opacityNotifier,
@@ -848,9 +863,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                               decoration: BoxDecoration(
                                                   color: Colors.black
                                                       .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
+                                                  shape: BoxShape.circle),
                                               child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
@@ -1416,17 +1429,25 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
-                                const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("CV",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 75,
-                                            fontWeight: FontWeight.w900)),
-                                    Icon(Icons.download,
-                                        color: Colors.black, size: 25)
-                                  ],
+                                Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: Colors.black, width: 2)),
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("CV",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 75,
+                                              fontWeight: FontWeight.w900)),
+                                      Icon(Icons.download,
+                                          color: Colors.black, size: 25)
+                                    ],
+                                  ),
                                 ),
                                 ValueListenableBuilder(
                                     valueListenable: opacityNotifier,
@@ -1444,9 +1465,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                               decoration: BoxDecoration(
                                                   color: Colors.black
                                                       .withOpacity(0.75),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          75)),
+                                                  shape: BoxShape.circle),
                                               child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
@@ -2011,17 +2030,25 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("CV",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 75,
-                                          fontWeight: FontWeight.w900)),
-                                  Icon(Icons.download,
-                                      color: Colors.black, size: 25)
-                                ],
+                              Container(
+                                width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("CV",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 75,
+                                            fontWeight: FontWeight.w900)),
+                                    Icon(Icons.download,
+                                        color: Colors.black, size: 25)
+                                  ],
+                                ),
                               ),
                               ValueListenableBuilder(
                                   valueListenable: opacityNotifier,
@@ -2039,8 +2066,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                             decoration: BoxDecoration(
                                                 color: Colors.black
                                                     .withOpacity(0.75),
-                                                borderRadius:
-                                                    BorderRadius.circular(75)),
+                                                shape: BoxShape.circle),
                                             child: const Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
