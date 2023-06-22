@@ -996,45 +996,52 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
         AnimatedBuilder(
             animation:Listenable.merge([titleNotifier, minimumQualificationsNotifier, questionnaireNotifier, preferredQualificationsNotifier, aboutJobNotifier, jobTypeNotifier, degreeNotifier, isRemoteNotifier,salaryPerHourNotifier]), 
             builder: (context, _) {
-              return FilledCupertinoButton(
-                  onPressed: () {},
-                  height: 50,
-                  width: 150,
-                  fillColor: (draftModel != userModel)
-                      ? Colors.blueAccent
-                      : Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(5),
-                  child: HookConsumer(builder: (context, ref, child) {
-                    final isUpdating = ref.watch(userModelServiceProvider);
-                    return isUpdating.when(data: (_) {
-                      return Text("Save changes",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 15,
-                              color: (draftModel != userModel)
-                                  ? Colors.white
-                                  : Colors.grey.shade400));
-                    }, error: (e, st) {
-                      return const Center(
-                        child: SpinKitRing(
-                          size: 20,
-                          lineWidth: 3,
-                          duration: Duration(milliseconds: 500),
-                          color: Colors.white,
-                        ),
-                      );
-                    }, loading: () {
-                      return const Center(
-                        child: SpinKitRing(
-                          size: 20,
-                          lineWidth: 3,
-                          duration: Duration(milliseconds: 500),
-                          color: Colors.white,
-                        ),
-                      );
-                    });
-                  }));
+              return Row(
+                children: [
+                  Spacer(),
+                  FilledCupertinoButton(
+                      onPressed: () {},
+                      height: 50,
+                      width: 150,
+                      fillColor: (draftModel != userModel)
+                          ? Colors.blueAccent
+                          : Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(5),
+                      child: HookConsumer(builder: (context, ref, child) {
+                        final isUpdating = ref.watch(userModelServiceProvider);
+                        return isUpdating.when(data: (_) {
+                          return Text("Save changes",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 15,
+                                  color: (draftModel != userModel)
+                                      ? Colors.white
+                                      : Colors.grey.shade400));
+                        }, error: (e, st) {
+                          return const Center(
+                            child: SpinKitRing(
+                              size: 20,
+                              lineWidth: 3,
+                              duration: Duration(milliseconds: 500),
+                              color: Colors.white,
+                            ),
+                          );
+                        }, loading: () {
+                          return const Center(
+                            child: SpinKitRing(
+                              size: 20,
+                              lineWidth: 3,
+                              duration: Duration(milliseconds: 500),
+                              color: Colors.white,
+                            ),
+                          );
+                        });
+                      })),
+                      Spacer()
+                ],
+              );
             }),
+          const SizedBox(height: 30),
       ],
     );
   }
