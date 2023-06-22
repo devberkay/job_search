@@ -28,13 +28,17 @@ class ProfileAvatar extends HookConsumerWidget {
         );
       } else {
         debugPrint("heyyo-2");
-        return Container(
-            height: radius,
-            width: radius,
-            decoration: BoxDecoration(
-                color: Colors.grey.shade600.withOpacity(0.25),
-                shape: BoxShape.circle),
-            child: Icon(Icons.person, color: Colors.black54, size: radius / 2));
+        return Center(
+          child: Container(
+              height: radius * 2,
+              width: radius * 2,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade600.withOpacity(0.25),
+                  shape: BoxShape.circle),
+              child:
+                  Icon(Icons.person, color: Colors.black54, size: radius * 2)),
+        );
       }
     }, error: (e, st) {
       debugPrint("heyyo-3 : ${e}");
