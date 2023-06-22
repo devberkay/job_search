@@ -64,8 +64,12 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                 headerBuilder: (context, isExpanded) {
                   return ManageCard(jobModel: e);
                 },
-                body: ListView(
-                    children:listOfWidgets ));
+                body: SizedBox(
+                  height: 300,
+                  width: double.maxFinite,
+                  child: ListView(
+                      children:listOfWidgets ),
+                ));
           }).toList(),
         );
       } else {
