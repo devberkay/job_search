@@ -36,7 +36,7 @@ mixin _$JobModel {
   dynamic get timestampField => throw _privateConstructorUsedError;
   bool get isActive =>
       throw _privateConstructorUsedError; // can only be true or false
-  String? get owner => throw _privateConstructorUsedError;
+  String get owner => throw _privateConstructorUsedError;
   String? get jobId => throw _privateConstructorUsedError;
   List<String> get responsibilities => throw _privateConstructorUsedError;
   List<String> get minimumQualifications => throw _privateConstructorUsedError;
@@ -70,7 +70,7 @@ abstract class $JobModelCopyWith<$Res> {
       int applicantCounter,
       dynamic timestampField,
       bool isActive,
-      String? owner,
+      String owner,
       String? jobId,
       List<String> responsibilities,
       List<String> minimumQualifications,
@@ -105,7 +105,7 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? applicantCounter = null,
     Object? timestampField = freezed,
     Object? isActive = null,
-    Object? owner = freezed,
+    Object? owner = null,
     Object? jobId = freezed,
     Object? responsibilities = null,
     Object? minimumQualifications = null,
@@ -169,10 +169,10 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      owner: freezed == owner
+      owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -219,7 +219,7 @@ abstract class _$$_JobModelCopyWith<$Res> implements $JobModelCopyWith<$Res> {
       int applicantCounter,
       dynamic timestampField,
       bool isActive,
-      String? owner,
+      String owner,
       String? jobId,
       List<String> responsibilities,
       List<String> minimumQualifications,
@@ -252,7 +252,7 @@ class __$$_JobModelCopyWithImpl<$Res>
     Object? applicantCounter = null,
     Object? timestampField = freezed,
     Object? isActive = null,
-    Object? owner = freezed,
+    Object? owner = null,
     Object? jobId = freezed,
     Object? responsibilities = null,
     Object? minimumQualifications = null,
@@ -316,10 +316,10 @@ class __$$_JobModelCopyWithImpl<$Res>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      owner: freezed == owner
+      owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       jobId: freezed == jobId
           ? _value.jobId
           : jobId // ignore: cast_nullable_to_non_nullable
@@ -362,7 +362,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
       required this.applicantCounter,
       required this.timestampField,
       required this.isActive,
-      this.owner = null,
+      required this.owner,
       this.jobId,
       required final List<String> responsibilities,
       required final List<String> minimumQualifications,
@@ -422,8 +422,7 @@ class _$_JobModel with DiagnosticableTreeMixin implements _JobModel {
   final bool isActive;
 // can only be true or false
   @override
-  @JsonKey()
-  final String? owner;
+  final String owner;
   @override
   final String? jobId;
   final List<String> _responsibilities;
@@ -594,7 +593,7 @@ abstract class _JobModel implements JobModel {
       required final int applicantCounter,
       required final dynamic timestampField,
       required final bool isActive,
-      final String? owner,
+      required final String owner,
       final String? jobId,
       required final List<String> responsibilities,
       required final List<String> minimumQualifications,
@@ -632,7 +631,7 @@ abstract class _JobModel implements JobModel {
   @override
   bool get isActive;
   @override // can only be true or false
-  String? get owner;
+  String get owner;
   @override
   String? get jobId;
   @override

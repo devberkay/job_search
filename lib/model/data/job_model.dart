@@ -26,7 +26,7 @@ class JobModel with _$JobModel {
     required int applicantCounter,
     required dynamic timestampField,
     required bool isActive, // can only be true or false
-    @Default(null) String? owner,
+    required String owner,
     String? jobId,
     required List<String> responsibilities,
     required List<String> minimumQualifications,

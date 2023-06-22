@@ -1,7 +1,9 @@
 import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/model/service/firestore/application_service.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DetailCard extends HookConsumerWidget {
@@ -101,18 +103,75 @@ class DetailCard extends HookConsumerWidget {
                               fontSize: 14,
                               color: Colors.blueAccent.shade700)),
                       const SizedBox(width: 10),
-                      FilledCupertinoButton(
-                          onPressed: () {},
-                          height: 35,
-                          width: 105,
-                          fillColor: Colors.blueAccent.shade700,
-                          borderRadius: BorderRadius.circular(2.5),
-                          child: const Text(
-                            "Apply",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ))
+                      HookConsumer(builder: (context, ref, child) {
+                        final applicationServiceStatus =
+                            ref.watch(applicationServiceProvider);
+                        return applicationServiceStatus.when(data: (_) {
+                          return FilledCupertinoButton(
+                              onPressed: () {
+                                if (jobModel.questionnaire == null) {
+                                  ref
+                                      .read(applicationServiceProvider.notifier)
+                                      .applyJob(
+                                          jobModel: jobModel,
+                                          questionnaireAnswers: null);
+                                } else {
+                                  // open dialog
+                                }
+                              },
+                              height: 35,
+                              width: 105,
+                              fillColor: Colors.blueAccent.shade700,
+                              borderRadius: BorderRadius.circular(2.5),
+                              child: const Text(
+                                "Apply",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ));
+                        }, error: (e, st) {
+                          debugPrint("detail_card_error: $e");
+                          return FilledCupertinoButton(
+                              onPressed: () {
+                                if (jobModel.questionnaire == null) {
+                                  ref
+                                      .read(applicationServiceProvider.notifier)
+                                      .applyJob(
+                                          jobModel: jobModel,
+                                          questionnaireAnswers: null);
+                                } else {
+                                  // open dialog
+                                }
+                              },
+                              height: 35,
+                              width: 105,
+                              fillColor: Colors.blueAccent.shade700,
+                              borderRadius: BorderRadius.circular(2.5),
+                              child: const Text(
+                                "Apply",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ));
+                        }, loading: () {
+                          return FilledCupertinoButton(
+                              onPressed: () {
+                                
+                              },
+                              height: 35,
+                              width: 105,
+                              fillColor: Colors.blueAccent.shade700,
+                              borderRadius: BorderRadius.circular(2.5),
+                              child: const Center(
+                          child: SpinKitRing(
+                            size: 20,
+                            lineWidth: 3,
+                            duration: Duration(milliseconds: 500),
+                            color: Colors.white,
+                          ),
+                        ));
+                        });
+                      })
                     ],
                   )
                 ],

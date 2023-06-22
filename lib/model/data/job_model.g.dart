@@ -25,7 +25,7 @@ _$_JobModel _$$_JobModelFromJson(Map<String, dynamic> json) => _$_JobModel(
       applicantCounter: json['applicantCounter'] as int,
       timestampField: json['timestampField'],
       isActive: json['isActive'] as bool,
-      owner: json['owner'] as String? ?? null,
+      owner: json['owner'] as String,
       jobId: json['jobId'] as String?,
       responsibilities: (json['responsibilities'] as List<dynamic>)
           .map((e) => e as String)
