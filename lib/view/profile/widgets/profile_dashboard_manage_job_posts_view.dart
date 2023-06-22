@@ -29,8 +29,8 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
-        Map<JobModel, MergedManageJobPostInnerModel> jobToInnerModeling = {};
-        for (var jobModel in jobModels) {
+        ExpansionPanel buildExpansionPanel(
+            JobModel jobModel, int index, ValueNotifier<int?> selectedIndex) {
           final relevantApplicationModels = applicationModels
               .where((element) => element.jobId == jobModel.jobId);
           final innerModels =
@@ -60,7 +60,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       Chip(
                         backgroundColor: Colors.grey.shade100,
                         label: Text(
-                          jobModels[index].title,
+                          jobModel.title,
                           style: const TextStyle(color: Colors.black),
                         ),
                       )
@@ -73,6 +73,14 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
               ],
             );
           }).toList();
+          return ExpansionPanel(
+              headerBuilder: (context, isExpanded) {
+                return ManageCard(jobModel: jobModel);
+              },
+              isExpanded: index == selectedIndex.value,
+              canTapOnHeader: true,
+              body: SizedBox(
+                  height: 250, child: ListView(children: listOfWidgets)));
         }
 
         return Padding(
@@ -92,16 +100,8 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       }
                     }
                   },
-                  children: jobModels.mapIndexed<ExpansionPanel>((index, e) {
-                    return ExpansionPanel(
-                        headerBuilder: (context, isExpanded) {
-                          return ManageCard(jobModel: e);
-                        },
-                        isExpanded: index == selectedIndex.value,
-                        canTapOnHeader: true,
-                        body: SizedBox(
-                            height: 250,
-                            child: ListView(children: listOfWidgets)));
+                  children: jobModels.mapIndexed((index, e) {
+                    return buildExpansionPanel(e, index, selectedIndex);
                   }).toList(),
                 );
               }),
