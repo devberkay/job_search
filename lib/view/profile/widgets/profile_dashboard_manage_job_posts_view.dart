@@ -29,10 +29,64 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final jobModels = _manageJobPostMergedModel.jobModels;
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
-        // ExpansionPanel buildExpansionPanel(
-        //     JobModel jobModel, int index, ValueNotifier<int?> selectedIndex) {
-
-        // }
+        ExpansionPanel buildExpansionPanel(
+            JobModel jobModel, int index, ValueNotifier<int?> selectedIndex) {
+          final relevantApplicationModels = applicationModels
+              .where((element) => element.jobId == jobModel.jobId);
+          final innerModels =
+              relevantApplicationModels.map((innerAplicationModel) {
+            return MergedManageJobPostInnerModel(
+                applicationModel: innerAplicationModel,
+                applicantModel: applicantModels.firstWhere(
+                    (element) => element.uid == innerAplicationModel.uid));
+          }).toList();
+          listOfWidgets =
+              innerModels.mapIndexed<Widget>((index, mergedInnerModel) {
+            return Column(
+              children: [
+                DecoratedBox(
+                  decoration: const ShapeDecoration(
+                      shape:
+                          StadiumBorder(side: BorderSide(color: Colors.black))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ProfileBoxStatic(
+                          userModel: mergedInnerModel.applicantModel,
+                          height: 40,
+                          width: 120),
+                      const Text(
+                        "has applied to following job published by you",
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(width: 5),
+                      Chip(
+                        shape: StadiumBorder(
+                            side: BorderSide(color: Colors.black)),
+                        backgroundColor: Colors.grey.shade200,
+                        label: Text(
+                          jobModel.title,
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                )
+              ],
+            );
+          }).toList();
+          return ExpansionPanel(
+              headerBuilder: (context, isExpanded) {
+                return ManageCard(jobModel: jobModel);
+              },
+              isExpanded: index == selectedIndex.value,
+              canTapOnHeader: true,
+              body: SizedBox(
+                  height: 250, child: ListView(children: listOfWidgets)));
+        }
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -52,63 +106,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                     }
                   },
                   children: jobModels.mapIndexed((index, e) {
-                    final relevantApplicationModels = applicationModels
-                        .where((element) => element.jobId == e.jobId);
-                    final innerModels =
-                        relevantApplicationModels.map((innerAplicationModel) {
-                      return MergedManageJobPostInnerModel(
-                          applicationModel: innerAplicationModel,
-                          applicantModel: applicantModels.firstWhere(
-                              (element) =>
-                                  element.uid == innerAplicationModel.uid));
-                    }).toList();
-                    listOfWidgets = innerModels
-                        .mapIndexed<Widget>((index, mergedInnerModel) {
-                      return Column(
-                        children: [
-                          DecoratedBox(
-                            decoration: const ShapeDecoration(
-                                shape: StadiumBorder(
-                                    side: BorderSide(color: Colors.black))),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ProfileBoxStatic(
-                                    userModel: mergedInnerModel.applicantModel,
-                                    height: 40,
-                                    width: 120),
-                                const Text(
-                                  "has applied to following job published by you",
-                                  style: TextStyle(fontWeight: FontWeight.w600),
-                                ),
-                                const SizedBox(width: 5),
-                                Chip(
-                                  shape: StadiumBorder(
-                                      side: BorderSide(color: Colors.black)),
-                                  backgroundColor: Colors.grey.shade200,
-                                  label: Text(
-                                    e.title,
-                                    style: const TextStyle(color: Colors.black),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          )
-                        ],
-                      );
-                    }).toList();
-                    return ExpansionPanel(
-                        headerBuilder: (context, isExpanded) {
-                          return ManageCard(jobModel: e);
-                        },
-                        isExpanded: index == selectedIndex.value,
-                        canTapOnHeader: true,
-                        body: SizedBox(
-                            height: 250,
-                            child: ListView(children: listOfWidgets)));
+                    return buildExpansionPanel(e, index, selectedIndex);
                   }).toList(),
                 );
               }),
