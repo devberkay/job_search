@@ -104,7 +104,7 @@ class FilterSidebar extends HookConsumerWidget {
             return ExpansionPanelList(
               expansionCallback: (panelIndex, isExpanded) {
                 debugPrint("panelIndex: $panelIndex");
-
+                  
                 if (isExpanded) {
                   if (panelIndex == 0) {
                     expansionPanel0.value = false;

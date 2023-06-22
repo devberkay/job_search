@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final expansionPanelIndexProvider = StateProvider<int?>((ref) {
+  return null;
+});
+
 class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
   const ProfileDashboardManageJobPostsView({super.key});
   @override
@@ -10,19 +14,15 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
     final manageJobPostMergedModels =
         ref.watch(manageJobPostMergedModelProvider);
     return manageJobPostMergedModels.when(data: (_manageJobPostMergedModels) {
-      if(_manageJobPostMergedModels!=null) {
-        // final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
-      return ListView.separated(
-          itemCount: _manageJobPostMergedModels.length,
-          separatorBuilder: (context, index) {
-            return SizedBox(height: 30);
-          },
-          itemBuilder: ((context, index) {
-            
-          }));
-
-      }
-      else {
+      if (_manageJobPostMergedModels != null &&
+          _manageJobPostMergedModels.isNotEmpty) {
+        final jobModels = _manageJobPostMergedModels.map((e) => e.jobModel);
+        return ExpansionPanelList(
+          children: jobModels.map<ExpansionPanel>((e) {
+            return ExpansionPanel(headerBuilder: headerBuilder, body: body)
+          }),
+        );
+      } else {
         return const Center(
           child: Text("You have not posted any job yet"),
         );
