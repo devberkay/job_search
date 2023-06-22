@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:JobSearch/view/details/details_page.dart';
 import 'package:JobSearch/view/jobs/jobs_page.dart';
 import 'package:JobSearch/view/profile/profile_page.dart';
@@ -38,39 +37,36 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                   child: HomePage(
                     key: state.pageKey,
                   )),
-                  routes: [
-                    GoRoute(
-                      path: "jobs",
-                      pageBuilder: (context, state) => CustomSlideTransition(
+              routes: [
+                GoRoute(
+                    path: "jobs",
+                    pageBuilder: (context, state) => CustomSlideTransition(
+                        key: state.pageKey,
+                        child: JobsPage(
                           key: state.pageKey,
-                          child: JobsPage(
+                        )),
+                    routes: [
+                      GoRoute(
+                        path: "details",
+                        name: "details",
+                        pageBuilder: (context, state) => CustomSlideTransition(
                             key: state.pageKey,
-                          )),
-                      routes: [
-                        GoRoute(
-                      path: "details",
-                      name:"details",
-                      pageBuilder: (context, state) => CustomSlideTransition(
-                          key: state.pageKey,
-                          child: DetailsPage(
-                            key: state.pageKey,
-                          )),
-                    ),
-                      ]
-                    ),
-                    GoRoute(
-                      path: "profile/:userId",
-                      name: "profile",
-                      pageBuilder: (context, state) => CustomSlideTransition(
-                          key: state.pageKey,
-                          child: ProfilePage(
-                            userId: state.pathParameters["userId"]!,
-                            key: state.pageKey,
-                          )),
-                    ),
-                  
-                  ]),
-          
+                            child: DetailsPage(
+                              key: state.pageKey,
+                            )),
+                      ),
+                    ]),
+                GoRoute(
+                  path: "profile/:userId",
+                  name: "profile",
+                  pageBuilder: (context, state) => CustomSlideTransition(
+                      key: state.pageKey,
+                      child: ProfilePage(
+                        userId: state.pathParameters["userId"]!,
+                        key: ValueKey(state.pathParameters["userId"]!),
+                      )),
+                ),
+              ]),
         ])
   ]);
 });
