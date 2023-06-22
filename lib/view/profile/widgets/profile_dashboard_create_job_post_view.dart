@@ -1038,17 +1038,17 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                                   searchTokens: [
                                     ...(minimumQualificationsNotifier.value
                                         .expand((element) => element.split(' '))
-                                        .toSet()
-                                        .toList()),
+                                       
+                                        ),
                                     ...(preferredQualificationsNotifier.value
                                         .expand((element) => element.split(' '))
-                                        .toSet()
-                                        .toList()),
+                                       
+                                        ),
                                     ...(responsibilitiesNotifier.value
                                         .expand((element) => element.split(' '))
-                                        .toSet()
-                                        .toList())
-                                  ],
+                                        
+                                        )
+                                  ]..toSet().toList(),
                                   aboutJob: aboutJobNotifier.value!,
                                   longitude: longitudeNotifier.value!,
                                   latitude: latitudeNotifier.value!,
