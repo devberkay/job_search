@@ -1,4 +1,5 @@
 import 'package:JobSearch/model/data/job_model.dart';
+import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/publish_service.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/view/profile/widgets/profile_general_use_dropdown_button.dart';
@@ -989,6 +990,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                           await ref
                               .read(publishServiceProvider.notifier)
                               .publishJob(JobModel(
+                                  owner: ref.read(userProvider)!.uid,
                                   title: titleNotifier.value!,
                                   titleTokens: titleNotifier.value!.split(' '),
                                   degree: degreeNotifier.value!,
@@ -1085,7 +1087,7 @@ class ProfileDashboardCreateJobPostView extends HookConsumerWidget {
                       child: HookConsumer(builder: (context, ref, child) {
                         final isUpdating = ref.watch(publishServiceProvider);
                         return isUpdating.when(data: (_) {
-                          return Text("Save changes",
+                          return Text("Publish job",
                               style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 15,

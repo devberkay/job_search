@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/publish_service.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
@@ -19,6 +20,20 @@ class SharedScaffold extends StatefulHookConsumerWidget {
 class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
   @override
   Widget build(BuildContext context) {
+    ref.listen(publishServiceProvider, (previous, next) {
+      next.when(data: (fileType) {
+        context.loaderOverlay.hide();
+        if (fileType == "OK") {
+          context.showSuccesFlashbar("Job posted successfully");
+        } 
+      }, error: (e, st) {
+        debugPrint("error_type: ${e.runtimeType}");
+        context.loaderOverlay.hide();
+        context.showErrorFlushbar(e.toString());
+      }, loading: () {
+        context.loaderOverlay.show();
+      });
+    });
     ref.listen(uploadServiceProvider, (previous, next) {
       next.when(data: (fileType) {
         context.loaderOverlay.hide();
