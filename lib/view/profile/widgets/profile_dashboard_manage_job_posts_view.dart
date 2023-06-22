@@ -61,9 +61,12 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
             final selectedIndex = useState<int?>(null);
             return ExpansionPanelList(
               expansionCallback: (panelIndex, isExpanded) {
+                debugPrint("is it get called-0");
                 if (isExpanded) {
+                  debugPrint("is it get called-1 : $panelIndex");
                   selectedIndex.value = panelIndex;
                 } else {
+                  debugPrint("is it get called-2");
                   if (panelIndex == selectedIndex.value) {
                     selectedIndex.value = null;
                   }
@@ -74,7 +77,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                     headerBuilder: (context, isExpanded) {
                       return ManageCard(jobModel: e);
                     },
-                    isExpanded: true,
+                    isExpanded: index == selectedIndex.value,
                     canTapOnHeader: true,
                     body: SizedBox(
                         height: 300, child: ListView(children: listOfWidgets)));
