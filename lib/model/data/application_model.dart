@@ -13,10 +13,11 @@ part 'application_model.g.dart';
 class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     required Map<String,String> questionnaireAnswers,
-    required String uid,
-    required String ownerUid,
+    required String uid, // user id of who applioed to the job
+    required String ownerUid, // user id of who posted the job
     required String jobId,
-    required dynamic timestampField
+    required dynamic timestampField,
+    
   }) = _ApplicationModel;
 
   factory ApplicationModel.fromJson(Map<String, Object?> json) =>

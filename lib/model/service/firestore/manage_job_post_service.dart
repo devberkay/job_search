@@ -9,7 +9,7 @@ class ManageJobPostServiceStreamNotifier
   Stream<MergedJobPostManageModel?> build() {
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
-    final jobPostStream = firestore.collection('jobPosts').where('owner', isEqualTo: selfUserId).where('isActive',isEqualTo: null);
+    final jobPostStream = firestore.collection('jobPosts').where('owner', isEqualTo: selfUserId).where('isActive',isEqualTo: true);
     
   }
 }
