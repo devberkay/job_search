@@ -28,7 +28,7 @@ class _MarketingImageCircleState extends ConsumerState<MarketingImageCircle> {
     final currentIndex =
         ref.watch(marketingImageIndexProvider).asData?.value ?? 0;
     final url = "marketing$currentIndex.jpg";
-    debugPrint("no fucking way:$currentIndex");
+    
 
     return Stack(
       clipBehavior: Clip.none,
