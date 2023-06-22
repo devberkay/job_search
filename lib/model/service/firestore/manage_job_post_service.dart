@@ -44,7 +44,7 @@ class ManageJobPostServiceStreamNotifier
               whereIn: applicationModels.map((e) => e.jobId).toList())
           .get();
       jobModels =
-          jobModelQuery.docs.map((e) => JobModel.fromJson(e.data())).toList();
+          jobModelQuery.docs.map((e) => JobModel.fromJson(e.data()).copyWith(jobId:e.id)).toList();
       yield MergedManageJobPostModel(
             applicationModels: applicationModels,
             applicantModels: applicantUserModels,
