@@ -5,6 +5,7 @@ import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:collection/collection.dart';
 
 final expansionPanelIndexProvider = StateProvider<int?>((ref) {
   return null;
@@ -32,45 +33,50 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         final applicantModels = _manageJobPostMergedModel.applicantModels;
         final applicationModels = _manageJobPostMergedModel.applicationModels;
         for (var jobModel in jobModels) {
-           innerModels = applicationModels.map((innerAplicationModel) {
+          innerModels = applicationModels.map((innerAplicationModel) {
             return MergedManageJobPostInnerModel(
                 applicationModel: applicationModels
                     .firstWhere((element) => element.jobId == jobModel.jobId),
                 applicantModel: applicantModels.firstWhere(
                     (element) => element.uid == innerAplicationModel.uid));
           }).toList();
-          listOfWidgets = innerModels.map<Widget>((mergedInnerModel) {
-                  return Row(
-                    children: [
-                      ProfileBoxStatic(
-                          userModel: mergedInnerModel.applicantModel,
-                          height: 12,
-                          width: 36),
-                      Text("has applied to following job published by you"),
-                      Chip(
-                          label: Text(
-                        jobModel.title,
-                        style: TextStyle(color: Colors.black),
-                      ))
-                    ],
-                  );
-                }).toList();
+          listOfWidgets =
+              innerModels.mapIndexed<Widget>((index, mergedInnerModel) {
+            return Row(
+              children: [
+                ProfileBoxStatic(
+                    userModel: mergedInnerModel.applicantModel,
+                    height: 12,
+                    width: 36),
+                Text("has applied to following job published by you"),
+                Chip(
+                    label: Text(
+                  jobModel.title,
+                  style: TextStyle(color: Colors.black),
+                ))
+              ],
+            );
+          }).toList();
         }
-        
-        
-        return ExpansionPanelList(
-          children: jobModels.map<ExpansionPanel>((e) {
-            return ExpansionPanel(
-                headerBuilder: (context, isExpanded) {
-                  return ManageCard(jobModel: e);
-                },
-                body: SizedBox(
-                  height: 300,
-                  width: double.maxFinite,
-                  child: ListView(
-                      children:listOfWidgets ),
-                ));
-          }).toList(),
+
+        return SingleChildScrollView(
+          child: ExpansionPanelList(
+            expansionCallback: (panelIndex, isExpanded) {
+              if (isExpanded) {
+                ref.read(expansionPanelIndexProvider.notifier).state =
+                    panelIndex;
+              }
+            },
+            children: jobModels.map<ExpansionPanel>((e) {
+              return ExpansionPanel(
+                  headerBuilder: (context, isExpanded) {
+                    return ManageCard(jobModel: e);
+                  },
+                  canTapOnHeader: true,
+                  body: SizedBox(
+                      height: 300, child: ListView(children: listOfWidgets)));
+            }).toList(),
+          ),
         );
       } else {
         return const Center(
