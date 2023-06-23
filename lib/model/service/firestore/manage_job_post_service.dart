@@ -5,6 +5,7 @@ import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<
@@ -29,10 +30,9 @@ class ManageJobPostServiceStreamNotifier
 
     await for (final assessableApplication in applicationsStream) {
       if (assessableApplication.size == 0) {
+        
         yield MergedManageJobPostModel(
-          applicationModels: [],
-          applicantModels: [],
-          jobModels: []); 
+            applicationModels: [], applicantModels: [], jobModels: []);
         break;
       }
       applicationModels = assessableApplication.docs
