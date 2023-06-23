@@ -16,6 +16,7 @@ class JobSeekerCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buildEmoji = '\u{1F528}';
+    final ageEmoji = '\u{1F4C6}';
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -62,7 +63,7 @@ class JobSeekerCard extends HookConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(userModel.name ?? 'Unknown User',
+                        Text("${userModel.name} ${userModel.surname}" ?? 'Unknown User',
                             style: const TextStyle(
                                 fontWeight: FontWeight.w800, fontSize: 25)),
                         const SizedBox(height: 10),
@@ -76,7 +77,7 @@ class JobSeekerCard extends HookConsumerWidget {
                                     color: Colors.black)),
                             const SizedBox(width: 10),
                             Text(
-                                "${jobModel.isRemote ? computerEmoji : locationEmoji} ${jobModel.isRemote ? "Remote available" : 'In-office'}",
+                                "${ageEmoji} ${userModel.age ?? 'Age'}",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
