@@ -24,7 +24,8 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           "Hello brother-2 : ${_manageJobPostMergedModel.applicationModels.toString()}");
       debugPrint(
           "Hello brother-3 : ${_manageJobPostMergedModel.jobModels.toString()}");
-      if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
+      if (
+        _manageJobPostMergedModel.applicantModels.isNotEmpty &&
           _manageJobPostMergedModel.applicationModels.isNotEmpty &&
           _manageJobPostMergedModel.jobModels.isNotEmpty) {
         var listOfWidgets = <Widget>[];

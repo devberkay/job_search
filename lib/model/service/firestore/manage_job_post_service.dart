@@ -22,7 +22,7 @@ class ManageJobPostServiceStreamNotifier
     final applicationsStream = firestore
         .collection('applications')
         .where('ownerUid', isEqualTo: selfUserId)
-        .where('status', isEqualTo: null)
+        .where('status', isNull: true)
         .snapshots(); // we get the ApplicationModels here
 
     await for (final assessableApplication in applicationsStream) {
