@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,8 @@ class RemoteCheckbox extends HookConsumerWidget {
           value: checkBoxState.value,
           side: BorderSide(color: Colors.grey.shade400, width: 2),
           onChanged: (value) {
-            checkBoxState.value = value!;
+            ref.read(isRemoteEligibleProvider.notifier).state = value!;
+            checkBoxState.value = value;
           },
         ),
         Text(
