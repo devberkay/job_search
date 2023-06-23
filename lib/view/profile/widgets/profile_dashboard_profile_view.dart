@@ -1233,6 +1233,87 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                 alignment: Alignment.center,
                 child: Row(
                   children: [
+                    HookConsumer(builder: (context, ref, child) {
+                      final opacityNotifier = useValueNotifier(0.0);
+
+                      return MouseRegion(
+                          onExit: (event) {
+                            opacityNotifier.value = 0.0;
+                          },
+                          onEnter: (event) {
+                            opacityNotifier.value = 1.0;
+                          },
+                          child: HeadlessCupertinoButton(
+                            onPressed: () async {
+                              context.showErrorFlushbar(
+                                  "User has no CV file uploaded");
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: Colors.black, width: 2)),
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("CV",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 75,
+                                              fontWeight: FontWeight.w900)),
+                                      Icon(Icons.download,
+                                          color: Colors.black, size: 25)
+                                    ],
+                                  ),
+                                ),
+                                ValueListenableBuilder(
+                                    valueListenable: opacityNotifier,
+                                    builder: (context, opacity, child) {
+                                      return AnimatedOpacity(
+                                          opacity: opacity,
+                                          curve: Curves.easeOut,
+                                          duration:
+                                              const Duration(milliseconds: 250),
+                                          child: Container(
+                                              width: 150,
+                                              height: 150,
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black
+                                                      .withOpacity(0.75),
+                                                  shape: BoxShape.circle),
+                                              child: const Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    "Download CV",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  SizedBox(height: 5),
+                                                  Icon(
+                                                    Icons.file_download,
+                                                    color: Colors.white,
+                                                    size: 25,
+                                                  )
+                                                ],
+                                              )));
+                                    }),
+                              ],
+                            ),
+                          ));
+                    }),
                     const Spacer(),
                     HookConsumer(builder: (context, ref, child) {
                       final opacityNotifier = useValueNotifier(0.0);
