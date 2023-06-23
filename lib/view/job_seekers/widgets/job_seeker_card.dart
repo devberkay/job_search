@@ -55,6 +55,7 @@ class JobSeekerCard extends HookConsumerWidget {
                     spreadRadius: isHovering.value ? 1.25 : 0)
               ]),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -93,22 +94,20 @@ class JobSeekerCard extends HookConsumerWidget {
                       child: Column(
                         children: [
                           Spacer(),
-                          Expanded(
-                            child: Wrap(
-                              spacing: 5,
-                              runSpacing: 5,
-                              children: userModel.skills
-                                  .map((e) => Chip(
-                                        label: Text(e),
-                                        backgroundColor: Colors.white,
-                                        side: BorderSide(
-                                            color: Colors.grey.shade400),
-                                        labelStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600),
-                                      ))
-                                  .toList(),
-                            ),
+                          Wrap(
+                            spacing: 5,
+                            runSpacing: 5,
+                            children: userModel.skills
+                                .map((e) => Chip(
+                                      label: Text(e),
+                                      backgroundColor: Colors.white,
+                                      side: BorderSide(
+                                          color: Colors.grey.shade400),
+                                      labelStyle: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    ))
+                                .toList(),
                           ),
                         ],
                       )),
