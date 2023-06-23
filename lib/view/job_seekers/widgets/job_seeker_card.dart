@@ -15,6 +15,7 @@ class JobSeekerCard extends HookConsumerWidget {
   final UserModel userModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final buildEmoji = '\u{1F528}';
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -68,10 +69,10 @@ class JobSeekerCard extends HookConsumerWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text("$companyEmoji ${jobModel.organization}",
+                            Text("$buildEmoji ${userModel.positionTitles}",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: Colors.black)),
                             const SizedBox(width: 10),
                             Text(
