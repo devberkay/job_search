@@ -80,7 +80,8 @@ class JobSeekerCard extends HookConsumerWidget {
                                   fontSize: 14,
                                   color: Colors.black)),
                           const SizedBox(width: 10),
-                          Text("${birthdayCake} ${userModel.age ?? 'Age'}",
+                          Text(
+                              "${birthdayCake} ${userModel.age ?? 'Unknown Age'}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
@@ -120,7 +121,13 @@ class JobSeekerCard extends HookConsumerWidget {
                 height: 1.5,
                 color: Colors.grey.shade400,
                 width: double.maxFinite,
-              )
+              ),
+              SizedBox(height: 30),
+              Text(userModel.bio ?? 'Unknown Bio',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Colors.black)),
             ],
           ),
         ),
