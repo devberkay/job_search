@@ -51,6 +51,7 @@ class OfferListenerStreamNotifier
             jobOfferModel: offerList[i],
           ));
         }
+        yield listOfOfferMergeModel;
       }
     } else if (arg == "INCOMING") {
       final offerStream = offerCollectionRef
@@ -60,7 +61,7 @@ class OfferListenerStreamNotifier
         final offerList = offerQuery.docs
             .map((e) => JobOfferModel.fromJson(e.data()))
             .toList();
-        yield offerList;
+        
       }
     } else {
       throw Exception("Invalid argument for OfferListenerStreamNotifier");
