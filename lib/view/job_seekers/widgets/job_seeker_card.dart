@@ -61,7 +61,7 @@ class JobSeekerCard extends HookConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(jobModel.title,
+                        Text(userModel.name ?? 'Unknown User',
                             style: const TextStyle(
                                 fontWeight: FontWeight.w800, fontSize: 25)),
                         const SizedBox(height: 10),
