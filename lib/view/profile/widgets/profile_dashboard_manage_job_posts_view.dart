@@ -2,12 +2,14 @@ import 'package:JobSearch/model/data/job_model.dart';
 import 'package:JobSearch/model/data/merged_manage_job_post_inner_model.dart';
 import 'package:JobSearch/model/service/firestore/application_status_change_service.dart';
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
+import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:collection/collection.dart';
 
@@ -62,13 +64,20 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(width: 5),
-                      Chip(
-                        shape: const StadiumBorder(
-                            side: BorderSide(color: Colors.black)),
-                        backgroundColor: Colors.grey.shade200,
-                        label: Text(
-                          jobModel.title,
-                          style: const TextStyle(color: Colors.black),
+                      HeadlessCupertinoButton(
+                        onPressed: () {
+                          ref.read(selectedJobModelProvider.notifier).state =
+                              jobModel;
+                          context.goNamed('jobsExtraRoute');
+                        },
+                        child: Chip(
+                          shape: const StadiumBorder(
+                              side: BorderSide(color: Colors.black)),
+                          backgroundColor: Colors.grey.shade200,
+                          label: Text(
+                            jobModel.title,
+                            style: const TextStyle(color: Colors.black),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 15),

@@ -7,37 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class JobsExtraRoutePage extends HookConsumerWidget {
-  const JobsExtraRoutePage({super.key,required this.jobId});
-  final String jobId;
+  const JobsExtraRoutePage({super.key});
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
+    final selectedJobModel = ref.watch(selectedJobModelProvider);
 
     return Container(
       color: Colors.grey.shade100.withOpacity(0.5),
       child: Row(
         children: [
+         
           Expanded(
               child: Padding(
                   padding:
                       const EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0),
                   child: AnimatedSwitcher(
+                    
                     switchInCurve: Curves.easeOut,
                     switchOutCurve: Curves.easeIn,
                     duration: Duration(milliseconds: 250),
                     reverseDuration: Duration(milliseconds: 250),
                     transitionBuilder: (child, animation) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                        key: ValueKey(selectedJobModel),
-                      );
+                      return FadeTransition(opacity: animation, child: child,key: ValueKey(selectedJobModel),);
                     },
                     child: selectedJobModel != null
-                        ? DetailCard(
-                            jobModel: selectedJobModel,
-                            key: ValueKey(selectedJobModel),
-                          )
+                        ? DetailCard(jobModel: selectedJobModel,key: ValueKey(selectedJobModel),)
                         : null,
                   )))
         ],

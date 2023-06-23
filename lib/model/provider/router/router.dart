@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:JobSearch/view/details/details_page.dart';
 import 'package:JobSearch/view/jobs/jobs_page.dart';
+import 'package:JobSearch/view/jobs_extra_route/jobs_extra_route_page.dart';
 import 'package:JobSearch/view/profile/profile_page.dart';
 import 'package:JobSearch/view/shared/custom_slide_transition.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,6 +66,17 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                         userId: state.pathParameters["userId"]!,
                         key: ValueKey(state.pathParameters["userId"]!),
                       )),
+                  routes: [
+                    GoRoute(
+                  path: "jobsExtraRoute",
+                  name: "jobsExtraRoute",
+                  pageBuilder: (context, state) => CustomSlideTransition(
+                      key: state.pageKey,
+                      child: const JobsExtraRoutePage(
+                        
+                      )),
+                ),
+                  ]
                 ),
               ]),
         ])

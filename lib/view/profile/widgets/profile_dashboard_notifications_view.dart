@@ -1,10 +1,12 @@
 import 'package:JobSearch/model/data/application_model.dart';
 import 'package:JobSearch/model/service/firestore/offer_listener_stream_notifier.dart';
+import 'package:JobSearch/view/jobs/widgets/job_card.dart';
 import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileDashboardNotificationsView extends HookConsumerWidget {
@@ -94,7 +96,11 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                                   ),
                                   const SizedBox(width: 10),
                                   HeadlessCupertinoButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ref.read(selectedJobModelProvider.notifier).state =
+                              incomingOffersMergedModel[index].invitedJobModel;
+                          context.goNamed('jobsExtraRoute');
+                                    },
                                     child: Chip(
                                       shape: const StadiumBorder(
                                           side:
@@ -204,16 +210,23 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                                         TextStyle(fontWeight: FontWeight.w600),
                                   ),
                                   const SizedBox(width: 10),
-                                  Chip(
-                                    shape: const StadiumBorder(
-                                        side: BorderSide(color: Colors.black)),
-                                    backgroundColor: Colors.grey.shade200,
-                                    label: Text(
-                                      outgoingOffersMergedModel[index]
-                                          .invitedJobModel
-                                          .title,
-                                      style:
-                                          const TextStyle(color: Colors.black),
+                                  HeadlessCupertinoButton(
+                                    onPressed: () {
+                                       ref.read(selectedJobModelProvider.notifier).state =
+                              outgoingOffersMergedModel[index].invitedJobModel;
+                          context.goNamed('jobsExtraRoute');
+                                    },
+                                    child: Chip(
+                                      shape: const StadiumBorder(
+                                          side: BorderSide(color: Colors.black)),
+                                      backgroundColor: Colors.grey.shade200,
+                                      label: Text(
+                                        outgoingOffersMergedModel[index]
+                                            .invitedJobModel
+                                            .title,
+                                        style:
+                                            const TextStyle(color: Colors.black),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 30),

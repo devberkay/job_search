@@ -8,7 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final selectedJobModelProvider = StateProvider<JobModel?>((ref) {
+final selectedJobModelProvider = StateProvider.autoDispose<JobModel?>((ref) {
   return null;
 });
 
