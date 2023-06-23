@@ -118,55 +118,60 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
             );
           }),
           const SizedBox(height: 15),
-          ExpansionPanelList(
-            children: [
-              ExpansionPanel(
-                    isExpanded: expansionPanel0.value,
-                    canTapOnHeader: true,
-                    headerBuilder: (context, isExpanded) {
-                      return const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Locations",
-                              style: TextStyle(fontWeight: FontWeight.w600)),
-                        ),
-                      );
-                    },
-                    body: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: HookConsumer(builder: (context, ref, child) {
-                          final isRemoteEligible =
-                              ref.watch(isRemoteEligibleProvider);
-                          return GestureDetector(
-                            onTap: () {
-                              ref
-                                  .read(isRemoteEligibleProvider.notifier)
-                                  .state = !isRemoteEligible;
-                            },
-                            child: Row(
-                              children: [
-                                CupertinoCheckbox(
-                                  value: isRemoteEligible,
-                                  side: BorderSide(
-                                      color: Colors.grey.shade400, width: 2),
-                                  onChanged: (value) {
-                                    ref
-                                        .read(isRemoteEligibleProvider.notifier)
-                                        .state = value ?? false;
-                                  },
-                                ),
-                                Text("Remote eligible",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey.shade700))
-                              ],
+          HookConsumer(
+            builder: (context,ref,child) {
+              final expansionPanel0 = useState<bool>(false);
+              return ExpansionPanelList(
+                children: [
+                  ExpansionPanel(
+                        isExpanded: expansionPanel0.value,
+                        canTapOnHeader: true,
+                        headerBuilder: (context, isExpanded) {
+                          return const Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Locations",
+                                  style: TextStyle(fontWeight: FontWeight.w600)),
                             ),
                           );
-                        }))),
-            ],
+                        },
+                        body: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: HookConsumer(builder: (context, ref, child) {
+                              final isRemoteEligible =
+                                  ref.watch(isSeekingJobProvider);
+                              return GestureDetector(
+                                onTap: () {
+                                  ref
+                                      .read(isSeekingJobProvider.notifier)
+                                      .state = !isRemoteEligible;
+                                },
+                                child: Row(
+                                  children: [
+                                    CupertinoCheckbox(
+                                      value: isRemoteEligible,
+                                      side: BorderSide(
+                                          color: Colors.grey.shade400, width: 2),
+                                      onChanged: (value) {
+                                        ref
+                                            .read(isSeekingJobProvider.notifier)
+                                            .state = value ?? false;
+                                      },
+                                    ),
+                                    Text("Remote eligible",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.grey.shade700))
+                                  ],
+                                ),
+                              );
+                            }))),
+                ],
+              );
+            }
           )
         ],
       ),

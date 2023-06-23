@@ -64,6 +64,7 @@ class SeekerNotifier extends AutoDisposeFamilyAsyncNotifier<List<UserModel>,bool
   @override
   FutureOr<List<UserModel>> build(bool arg) async {
     final lastJobDoc = ref.read(lastUserModelDocProvider); // bura watch olmali petpeeve
+    final isSeekingFilterBoolean = ref.watch(isSeekingJobProvider);
     final seekerPositionTitleFilterList = ref
         .watch(seekerPositionTitleListProvider)
         .expand((element) => [
@@ -100,19 +101,28 @@ class SeekerNotifier extends AutoDisposeFamilyAsyncNotifier<List<UserModel>,bool
             arrayContainsAny: seekerSkillsFilterList);
       }
     }
+    if (isSeekingFilterBoolean) {
+      if (query != null) {
+        query =
+            query.where("isSeekingJob", isEqualTo: isSeekingFilterBoolean);
+      } else {
+        query = collectionRef.where("isSeekingJob",
+            isEqualTo: isSeekingFilterBoolean);
+      }
+    }
     if (lastJobDoc != null && arg) {
       debugPrint("SeekerNotifier-0");
       final snapshot = await (query != null
           ? query.startAfterDocument(lastJobDoc).limit(15).get()
           : collectionRef.startAfterDocument(lastJobDoc).limit(15).get());
       debugPrint("SeekerNotifier-1");
-      final jobModels = snapshot.docs.map((e) {
+      final userModels = snapshot.docs.map((e) {
         return UserModel.fromJson(e.data());
       }).toList();
       ref.read(lastUserModelDocProvider.notifier).state =
           snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
-      // debugPrint("jobModels : $jobModels");
-      return jobModels;
+
+      return userModels;
     } else {
       debugPrint("SeekerNotifier-2");
 
@@ -120,14 +130,14 @@ class SeekerNotifier extends AutoDisposeFamilyAsyncNotifier<List<UserModel>,bool
           ? query.limit(15).get()
           : collectionRef.limit(15).get());
       debugPrint("SeekerNotifier-3");
-      final jobModels = snapshot.docs.map((e) {
+      final userModels = snapshot.docs.map((e) {
         return UserModel.fromJson(e.data());
       }).toList();
       debugPrint("SeekerNotifier-4");
       ref.read(lastUserModelDocProvider.notifier).state =
           snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
-      debugPrint("seekerModels : $jobModels");
-      return jobModels;
+      debugPrint("seekerModels : $userModels");
+      return userModels;
     }
     
   }
