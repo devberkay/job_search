@@ -7,6 +7,6 @@ class ProfileDashboardMyApplicationsView extends HookConsumerWidget {
   final List<ApplicationModel> applications;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return ListView.builder();
   }
 }
