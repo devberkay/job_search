@@ -113,10 +113,10 @@ class ProfileSidebar extends HookConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.settings,
+                      Icon(Icons.move_to_inbox,
                           color: isSelected ? Colors.white : Colors.black),
                       const SizedBox(width: 5),
-                      Text("Manage job post",
+                      Text("Received applications",
                           style: TextStyle(
                               color: isSelected ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w600))

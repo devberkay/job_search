@@ -22,7 +22,7 @@ class MyApplicationsNotifier
     final applicationsCollectionRef = firestore.collection('applications');
     final jobsCollectionRef = firestore.collection('jobPosts');
     final applicationsStream = applicationsCollectionRef
-        .where('ownerUid', isEqualTo: selfUserUid)
+        .where('uid', isEqualTo: selfUserUid)
         .snapshots();
     await for (final myApplicationsQuery in applicationsStream) {
       debugPrint("The numss: ${myApplicationsQuery.docs.length.toString()}");
