@@ -48,6 +48,9 @@ class SeekerPositionTitleListProvider extends AutoDisposeNotifier<List<String>> 
 
 
 
+final lastUserModelDocProvider = StateProvider<DocumentSnapshot?>((ref) {
+  return null;
+});
 
 
 class SeekerNotifier extends AutoDisposeAsyncNotifier<List<UserModel>> {
