@@ -1,6 +1,7 @@
 import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,6 +9,7 @@ class SearchBox extends HookConsumerWidget {
   const SearchBox({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final whatDoYouWantToDoNotifier = useValueNotifier<String?>(null);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -50,6 +52,9 @@ class SearchBox extends HookConsumerWidget {
               Expanded(
                   flex: 4,
                   child: CupertinoTextField(
+                    onChanged: (value) {
+                      whatDoYouWantToDoNotifier.value = value;
+                    },
                       placeholder: "Software Engineer",
                       decoration: BoxDecoration(
                           border:
