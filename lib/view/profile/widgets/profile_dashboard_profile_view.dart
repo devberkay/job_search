@@ -8,6 +8,7 @@ import 'package:JobSearch/model/utils/capitalize_text_input_formatter.dart';
 import 'package:JobSearch/model/utils/first_letter_formatter.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/model/utils/word_by_word_formatter.dart';
+import 'package:JobSearch/view/profile/widgets/job_offer_button.dart';
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
 import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart';
 import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
@@ -59,6 +60,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             child: Row(
               children: [
                 const Spacer(),
+                JobOfferButton(),
+                const SizedBox(width: 25),
                 HookConsumer(builder: (context, ref, child) {
                   final opacityNotifier = useValueNotifier(0.0);
                   final picker = ImagePicker();

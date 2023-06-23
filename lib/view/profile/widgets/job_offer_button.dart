@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/offer_service.dart';
 import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class JobOfferButton extends HookConsumerWidget {
           },
           child: HeadlessCupertinoButton(
             onPressed: () async {
-              
+              ref.read(offerServiceNotifierProvider.notifier).sendJobOffer(recipientUserId: recipientUserId, jobPostId: jobPostId)
             },
             child: Stack(
               alignment: Alignment.center,
