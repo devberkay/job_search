@@ -34,7 +34,57 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
               child: Center(
                 child: TabBarView(
                   controller: controller,
-                  children: const [PublicListView(), SelfDeviceView()],
+                  children:  [ListView.builder(itemBuilder: (context,index) {
+                    return DecoratedBox(
+              decoration: const ShapeDecoration(
+                  shape: StadiumBorder(side: BorderSide(color: Colors.black))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ProfileBoxStatic(
+                      userModel: userModel, height: 40, width: 120),
+                  const Text(
+                    "have applied the following job",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 10),
+                  Chip(
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Colors.black)),
+                    backgroundColor: Colors.grey.shade200,
+                    label: Text(
+                      mergedModel[index].jobModel.title,
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 30),
+                  const DecoratedBox(
+                      decoration: BoxDecoration(
+                          color: Colors.green, shape: BoxShape.circle),
+                      child: Icon(Icons.check, color: Colors.white)),
+                  const SizedBox(width: 5),
+                  const DecoratedBox(
+                      decoration: BoxDecoration(
+                          color: Colors.grey, shape: BoxShape.circle),
+                      child: Icon(Icons.question_mark, color: Colors.white)),
+                  const SizedBox(width: 5),
+                  const DecoratedBox(
+                      decoration: BoxDecoration(
+                          color: Colors.red, shape: BoxShape.circle),
+                      child: Icon(Icons.remove, color: Colors.white)),
+                  const SizedBox(width: 5),
+                  Text(
+                      "( ${textBuilder(mergedModel[index].applicationModel.status)} )",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: colorBuilder(
+                              mergedModel[index].applicationModel.status)))
+                ],
+              ),
+            );
+                  }), ListView.builder(itemBuilder: (context,index) {
+
+                  })],
                 ),
               )),
       ],
