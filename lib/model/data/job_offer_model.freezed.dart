@@ -26,6 +26,7 @@ mixin _$JobOfferModel {
       throw _privateConstructorUsedError; // user id of who received the offer
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
+  String? get jobOfferId => throw _privateConstructorUsedError;
   bool? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $JobOfferModelCopyWith<$Res> {
       String recipientUid,
       String jobId,
       dynamic timestampField,
+      String? jobOfferId,
       bool? status});
 }
 
@@ -65,6 +67,7 @@ class _$JobOfferModelCopyWithImpl<$Res, $Val extends JobOfferModel>
     Object? recipientUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? jobOfferId = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,6 +87,10 @@ class _$JobOfferModelCopyWithImpl<$Res, $Val extends JobOfferModel>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      jobOfferId: freezed == jobOfferId
+          ? _value.jobOfferId
+          : jobOfferId // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -105,6 +112,7 @@ abstract class _$$_JobOfferModelCopyWith<$Res>
       String recipientUid,
       String jobId,
       dynamic timestampField,
+      String? jobOfferId,
       bool? status});
 }
 
@@ -123,6 +131,7 @@ class __$$_JobOfferModelCopyWithImpl<$Res>
     Object? recipientUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? jobOfferId = freezed,
     Object? status = freezed,
   }) {
     return _then(_$_JobOfferModel(
@@ -142,6 +151,10 @@ class __$$_JobOfferModelCopyWithImpl<$Res>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      jobOfferId: freezed == jobOfferId
+          ? _value.jobOfferId
+          : jobOfferId // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -158,6 +171,7 @@ class _$_JobOfferModel with DiagnosticableTreeMixin implements _JobOfferModel {
       required this.recipientUid,
       required this.jobId,
       required this.timestampField,
+      this.jobOfferId,
       required this.status});
 
   factory _$_JobOfferModel.fromJson(Map<String, dynamic> json) =>
@@ -174,11 +188,13 @@ class _$_JobOfferModel with DiagnosticableTreeMixin implements _JobOfferModel {
   @override
   final dynamic timestampField;
   @override
+  final String? jobOfferId;
+  @override
   final bool? status;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobOfferModel(senderUid: $senderUid, recipientUid: $recipientUid, jobId: $jobId, timestampField: $timestampField, status: $status)';
+    return 'JobOfferModel(senderUid: $senderUid, recipientUid: $recipientUid, jobId: $jobId, timestampField: $timestampField, jobOfferId: $jobOfferId, status: $status)';
   }
 
   @override
@@ -190,6 +206,7 @@ class _$_JobOfferModel with DiagnosticableTreeMixin implements _JobOfferModel {
       ..add(DiagnosticsProperty('recipientUid', recipientUid))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('timestampField', timestampField))
+      ..add(DiagnosticsProperty('jobOfferId', jobOfferId))
       ..add(DiagnosticsProperty('status', status));
   }
 
@@ -205,13 +222,15 @@ class _$_JobOfferModel with DiagnosticableTreeMixin implements _JobOfferModel {
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField) &&
+            (identical(other.jobOfferId, jobOfferId) ||
+                other.jobOfferId == jobOfferId) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, senderUid, recipientUid, jobId,
-      const DeepCollectionEquality().hash(timestampField), status);
+      const DeepCollectionEquality().hash(timestampField), jobOfferId, status);
 
   @JsonKey(ignore: true)
   @override
@@ -233,6 +252,7 @@ abstract class _JobOfferModel implements JobOfferModel {
       required final String recipientUid,
       required final String jobId,
       required final dynamic timestampField,
+      final String? jobOfferId,
       required final bool? status}) = _$_JobOfferModel;
 
   factory _JobOfferModel.fromJson(Map<String, dynamic> json) =
@@ -246,6 +266,8 @@ abstract class _JobOfferModel implements JobOfferModel {
   String get jobId;
   @override
   dynamic get timestampField;
+  @override
+  String? get jobOfferId;
   @override
   bool? get status;
   @override

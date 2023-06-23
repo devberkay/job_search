@@ -1,5 +1,6 @@
 import 'package:JobSearch/model/data/job_model.dart';
 import 'package:JobSearch/model/data/merged_manage_job_post_inner_model.dart';
+import 'package:JobSearch/model/service/firestore/application_status_change_service.dart';
 import 'package:JobSearch/model/service/firestore/manage_job_post_service.dart';
 import 'package:JobSearch/view/profile/widgets/manage_card.dart';
 import 'package:JobSearch/view/profile/widgets/profile_box_static.dart';
@@ -72,7 +73,13 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       ),
                       const SizedBox(width: 15),
                       HeadlessCupertinoButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          ref
+                              .read(applicationStatusChangeServiceProvider
+                                  .notifier)
+                              .acceptApplication(
+                                  mergedInnerModel.applicationModel);
+                        },
                         child: const DecoratedBox(
                             decoration: BoxDecoration(
                                 color: Colors.green, shape: BoxShape.circle),
@@ -80,7 +87,13 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
                       ),
                       const SizedBox(width: 5),
                       HeadlessCupertinoButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          ref
+                              .read(applicationStatusChangeServiceProvider
+                                  .notifier)
+                              .rejectApplication(
+                                  mergedInnerModel.applicationModel);
+                        },
                         child: const DecoratedBox(
                             decoration: BoxDecoration(
                                 color: Colors.red, shape: BoxShape.circle),

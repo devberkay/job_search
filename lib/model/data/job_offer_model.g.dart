@@ -12,6 +12,7 @@ _$_JobOfferModel _$$_JobOfferModelFromJson(Map<String, dynamic> json) =>
       recipientUid: json['recipientUid'] as String,
       jobId: json['jobId'] as String,
       timestampField: json['timestampField'],
+      jobOfferId: json['jobOfferId'] as String?,
       status: json['status'] as bool?,
     );
 
@@ -21,5 +22,6 @@ Map<String, dynamic> _$$_JobOfferModelToJson(_$_JobOfferModel instance) =>
       'recipientUid': instance.recipientUid,
       'jobId': instance.jobId,
       'timestampField': instance.timestampField,
+      'jobOfferId': instance.jobOfferId,
       'status': instance.status,
     };

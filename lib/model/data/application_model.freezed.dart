@@ -28,6 +28,7 @@ mixin _$ApplicationModel {
       throw _privateConstructorUsedError; // user id of who posted the job, a.k.a recipient
   String get jobId => throw _privateConstructorUsedError;
   dynamic get timestampField => throw _privateConstructorUsedError;
+  String? get applicationId => throw _privateConstructorUsedError;
   bool? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String ownerUid,
       String jobId,
       dynamic timestampField,
+      String? applicationId,
       bool? status});
 }
 
@@ -69,6 +71,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? applicationId = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,6 +95,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -114,6 +121,7 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
       String ownerUid,
       String jobId,
       dynamic timestampField,
+      String? applicationId,
       bool? status});
 }
 
@@ -133,6 +141,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? ownerUid = null,
     Object? jobId = null,
     Object? timestampField = freezed,
+    Object? applicationId = freezed,
     Object? status = freezed,
   }) {
     return _then(_$_ApplicationModel(
@@ -156,6 +165,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
           ? _value.timestampField
           : timestampField // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -175,6 +188,7 @@ class _$_ApplicationModel
       required this.ownerUid,
       required this.jobId,
       required this.timestampField,
+      this.applicationId,
       required this.status})
       : _questionnaireAnswers = questionnaireAnswers;
 
@@ -203,11 +217,13 @@ class _$_ApplicationModel
   @override
   final dynamic timestampField;
   @override
+  final String? applicationId;
+  @override
   final bool? status;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, status: $status)';
+    return 'ApplicationModel(questionnaireAnswers: $questionnaireAnswers, uid: $uid, ownerUid: $ownerUid, jobId: $jobId, timestampField: $timestampField, applicationId: $applicationId, status: $status)';
   }
 
   @override
@@ -220,6 +236,7 @@ class _$_ApplicationModel
       ..add(DiagnosticsProperty('ownerUid', ownerUid))
       ..add(DiagnosticsProperty('jobId', jobId))
       ..add(DiagnosticsProperty('timestampField', timestampField))
+      ..add(DiagnosticsProperty('applicationId', applicationId))
       ..add(DiagnosticsProperty('status', status));
   }
 
@@ -236,6 +253,8 @@ class _$_ApplicationModel
             (identical(other.jobId, jobId) || other.jobId == jobId) &&
             const DeepCollectionEquality()
                 .equals(other.timestampField, timestampField) &&
+            (identical(other.applicationId, applicationId) ||
+                other.applicationId == applicationId) &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -248,6 +267,7 @@ class _$_ApplicationModel
       ownerUid,
       jobId,
       const DeepCollectionEquality().hash(timestampField),
+      applicationId,
       status);
 
   @JsonKey(ignore: true)
@@ -271,6 +291,7 @@ abstract class _ApplicationModel implements ApplicationModel {
       required final String ownerUid,
       required final String jobId,
       required final dynamic timestampField,
+      final String? applicationId,
       required final bool? status}) = _$_ApplicationModel;
 
   factory _ApplicationModel.fromJson(Map<String, dynamic> json) =
@@ -286,6 +307,8 @@ abstract class _ApplicationModel implements ApplicationModel {
   String get jobId;
   @override
   dynamic get timestampField;
+  @override
+  String? get applicationId;
   @override
   bool? get status;
   @override

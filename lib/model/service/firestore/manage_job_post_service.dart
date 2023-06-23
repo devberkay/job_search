@@ -27,7 +27,7 @@ class ManageJobPostServiceStreamNotifier
 
     await for (final assessableApplication in applicationsStream) {
       applicationModels = assessableApplication.docs
-          .map((e) => ApplicationModel.fromJson(e.data()))
+          .map((e) => ApplicationModel.fromJson(e.data()).copyWith(applicationId: e.id))
           .toList();
       // secondly get the usermodel of applicant
       final applicantUserModelQuery = await firestore

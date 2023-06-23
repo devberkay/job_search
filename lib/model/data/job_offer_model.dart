@@ -17,6 +17,7 @@ class JobOfferModel with _$JobOfferModel {
     required String recipientUid, // user id of who received the offer
     required String jobId,
     required dynamic timestampField,
+    String? jobOfferId,
     required bool? status, // can be null= unanswered by the recipient, true= accepted, false= rejected
 
   }) = _JobOfferModel;
