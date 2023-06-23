@@ -149,6 +149,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
         );
       }
     }, error: (e, st) {
+      debugPrint("profile_dashboard_manage_job_posts_view_error : $e");
       return const Center(
           child: Column(
         children: [
