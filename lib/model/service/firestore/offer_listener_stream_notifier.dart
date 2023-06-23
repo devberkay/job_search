@@ -1,15 +1,16 @@
 import 'package:JobSearch/model/data/job_offer_model.dart';
+import 'package:JobSearch/model/data/offer_merged_model.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final offerListenerStreamNotifierProvider = StreamNotifierProvider.autoDispose.family<OfferListenerStreamNotifier,List<JobOfferModel>,String>(OfferListenerStreamNotifier.new);
+final offerListenerStreamNotifierProvider = StreamNotifierProvider.autoDispose.family<OfferListenerStreamNotifier,List<OfferMergedModel>,String>(OfferListenerStreamNotifier.new);
 
 class OfferListenerStreamNotifier
-    extends AutoDisposeFamilyStreamNotifier<List<JobOfferModel>, String> {
+    extends AutoDisposeFamilyStreamNotifier<List<OfferMergedModel>, String> {
   // arg is for listening type : "INCOMING" or "OUTGOING"
   @override
-  Stream<List<JobOfferModel>> build(String arg) async* {
+  Stream<List<OfferMergedModel>> build(String arg) async* {
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
     final offerCollectionRef = firestore.collection('offers');
