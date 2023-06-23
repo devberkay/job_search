@@ -24,8 +24,7 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           "Hello brother-2 : ${_manageJobPostMergedModel.applicationModels.toString()}");
       debugPrint(
           "Hello brother-3 : ${_manageJobPostMergedModel.jobModels.toString()}");
-      if (
-        _manageJobPostMergedModel.applicantModels.isNotEmpty &&
+      if (_manageJobPostMergedModel.applicantModels.isNotEmpty &&
           _manageJobPostMergedModel.applicationModels.isNotEmpty &&
           _manageJobPostMergedModel.jobModels.isNotEmpty) {
         var listOfWidgets = <Widget>[];
@@ -145,8 +144,20 @@ class ProfileDashboardManageJobPostsView extends HookConsumerWidget {
           ),
         );
       } else {
-        return const Center(
-          child: Text("You have not posted any job yet"),
+        return const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.question_mark,
+              color: Colors.black,
+            ),
+            SizedBox(height: 5),
+            Text(
+              "You have not posted any job yet or already answered all the applications",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ],
         );
       }
     }, error: (e, st) {

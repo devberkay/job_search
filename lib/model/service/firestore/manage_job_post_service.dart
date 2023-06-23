@@ -7,7 +7,9 @@ import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<ManageJobPostServiceStreamNotifier,MergedManageJobPostModel >(ManageJobPostServiceStreamNotifier.new);
+final manageJobPostMergedModelProvider = StreamNotifierProvider.autoDispose<
+    ManageJobPostServiceStreamNotifier,
+    MergedManageJobPostModel>(ManageJobPostServiceStreamNotifier.new);
 
 class ManageJobPostServiceStreamNotifier
     extends AutoDisposeStreamNotifier<MergedManageJobPostModel> {
@@ -16,7 +18,7 @@ class ManageJobPostServiceStreamNotifier
     var applicationModels = <ApplicationModel>[];
     var jobModels = <JobModel>[];
     var applicantUserModels = <UserModel>[];
-    
+
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
     final applicationsStream = firestore
@@ -26,8 +28,16 @@ class ManageJobPostServiceStreamNotifier
         .snapshots(); // we get the ApplicationModels here
 
     await for (final assessableApplication in applicationsStream) {
+      if (assessableApplication.size == 0) {
+        yield MergedManageJobPostModel(
+          applicationModels: [],
+          applicantModels: [],
+          jobModels: []); 
+        break;
+      }
       applicationModels = assessableApplication.docs
-          .map((e) => ApplicationModel.fromJson(e.data()).copyWith(applicationId: e.id))
+          .map((e) =>
+              ApplicationModel.fromJson(e.data()).copyWith(applicationId: e.id))
           .toList();
       // secondly get the usermodel of applicant
       final applicantUserModelQuery = await firestore
@@ -43,12 +53,13 @@ class ManageJobPostServiceStreamNotifier
           .where(FieldPath.documentId,
               whereIn: applicationModels.map((e) => e.jobId).toList())
           .get();
-      jobModels =
-          jobModelQuery.docs.map((e) => JobModel.fromJson(e.data()).copyWith(jobId:e.id)).toList();
+      jobModels = jobModelQuery.docs
+          .map((e) => JobModel.fromJson(e.data()).copyWith(jobId: e.id))
+          .toList();
       yield MergedManageJobPostModel(
-            applicationModels: applicationModels,
-            applicantModels: applicantUserModels,
-            jobModels: jobModels);
+          applicationModels: applicationModels,
+          applicantModels: applicantUserModels,
+          jobModels: jobModels);
       // now create the list of  merged model
       // for (final applicationModel in applicationModels) {
       //   UserModel applicantUserModel;
@@ -66,8 +77,6 @@ class ManageJobPostServiceStreamNotifier
       //       applicationModel: applicationModel,
       //       applicantModel: applicantUserModel,
       //       jobModel: jobModel));
-      }
-      
     }
   }
-
+}
