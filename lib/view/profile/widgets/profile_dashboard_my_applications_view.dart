@@ -44,7 +44,7 @@ class ProfileDashboardMyApplicationsView extends HookConsumerWidget {
         .value!;
     return myApplications.when(data: (mergedModel) {
       if (mergedModel.isNotEmpty) {
-        debugPrint("WHY!! : $mergedModel");
+        debugPrint("WHY!! : ${mergedModel.length}");
         return ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           itemCount: mergedModel.length,
