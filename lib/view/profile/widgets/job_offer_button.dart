@@ -20,7 +20,9 @@ class JobOfferButton extends HookConsumerWidget {
             opacityNotifier.value = 1.0;
           },
           child: HeadlessCupertinoButton(
-            onPressed: () async {},
+            onPressed: () async {
+              
+            },
             child: Stack(
               alignment: Alignment.center,
               children: [
