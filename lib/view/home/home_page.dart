@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/home/widgets/spotlight_timeline.dart';
 import 'package:JobSearch/view/home/widgets/spotligt_subtitle.dart';
 import 'package:JobSearch/view/home/widgets/dismissible_reminder.dart';
@@ -22,7 +23,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final isDismissedValueNotifier = useState(false);
     final usableWidth = MediaQuery.of(context).size.width;
-
+    ref.listen(whatDoYouWantToDoListProvider, (prev, next) {});
+    ref.listen(isRemoteEligibleProvider, (prev, next) {});
+    ref.listen(jobTypesSetProvider, (prev, next) {});
     return ListView(
       children: isDismissedValueNotifier.value
           ? [

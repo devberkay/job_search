@@ -1,3 +1,4 @@
+import 'package:JobSearch/model/service/firestore/job_notifier.dart';
 import 'package:JobSearch/view/home/widgets/remote_checkbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +53,9 @@ class SearchBox extends HookConsumerWidget {
               Expanded(
                   flex: 4,
                   child: CupertinoTextField(
-                    onChanged: (value) {
-                      whatDoYouWantToDoNotifier.value = value;
-                    },
+                      onChanged: (value) {
+                        whatDoYouWantToDoNotifier.value = value;
+                      },
                       placeholder: "Software Engineer",
                       decoration: BoxDecoration(
                           border:
@@ -99,6 +100,13 @@ class SearchBox extends HookConsumerWidget {
                           color: Colors.grey.shade400))),
               TextButton(
                 onPressed: () {
+                  if(whatDoYouWantToDoNotifier.value != null) {
+                     ref
+                      .read(whatDoYouWantToDoListProvider.notifier)
+                      .add(whatDoYouWantToDoNotifier.value!.split(' '));
+                      
+                  }
+                  
                   context.go("/jobs");
                 },
                 style: ButtonStyle(
