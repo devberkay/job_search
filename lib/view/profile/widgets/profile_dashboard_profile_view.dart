@@ -60,7 +60,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
             child: Row(
               children: [
                 const Spacer(),
-                JobOfferButton(),
+                
                 const SizedBox(width: 25),
                 HookConsumer(builder: (context, ref, child) {
                   final opacityNotifier = useValueNotifier(0.0);
@@ -741,6 +741,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                 child: Row(
                   children: [
                     const Spacer(),
+                    JobOfferButton(),
+                    const SizedBox(width: 25),
                     HookConsumer(builder: (context, ref, child) {
                       final opacityNotifier = useValueNotifier(0.0);
 
@@ -1239,6 +1241,8 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                   children: [
                     
                     const Spacer(),
+                    JobOfferButton(),
+                    const SizedBox(width: 25),
                     HookConsumer(builder: (context, ref, child) {
                       final opacityNotifier = useValueNotifier(0.0);
 

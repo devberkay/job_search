@@ -20,20 +20,21 @@ class JobOfferButton extends HookConsumerWidget {
             opacityNotifier.value = 1.0;
           },
           child: HeadlessCupertinoButton(
-            onPressed: () async {
-              
-            },
+            onPressed: () async {},
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.black, width: 2)),
-                  child: const Icon(Icons.handshake,size: 75)
-                ),
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.black, width: 2)),
+                    child: const Icon(
+                      Icons.handshake,
+                      size: 75,
+                      color: Colors.black,
+                    )),
                 ValueListenableBuilder(
                     valueListenable: opacityNotifier,
                     builder: (context, opacity, child) {
