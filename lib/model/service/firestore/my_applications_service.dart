@@ -23,11 +23,8 @@ class MyApplicationsNotifier
         .where('ownerUid', isEqualTo: selfUserUid)
         .snapshots();
     await for (final myApplicationsQuery in applicationsStream) {
-      if (assessableApplication.size == 0) {
-        yield MergedManageJobPostModel(
-          applicationModels: [],
-          applicantModels: [],
-          jobModels: []); 
+      if (myApplicationsQuery.size == 0) {
+        yield []; 
         break;
       }
       final myApplications = myApplicationsQuery.docs
