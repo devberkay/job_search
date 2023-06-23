@@ -48,6 +48,10 @@ class SeekerPositionTitleListProvider extends AutoDisposeNotifier<List<String>> 
 }
 
 
+final isSeekingJobProvider = StateProvider.autoDispose<bool>((ref) {
+  return false;
+});
+
 
 final lastUserModelDocProvider = StateProvider<DocumentSnapshot?>((ref) {
   return null;
