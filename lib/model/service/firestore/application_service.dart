@@ -41,7 +41,7 @@ class ApplicatioNServiceNotifier extends AsyncNotifier<String?> {
     final jobPost = JobModel.fromJson(jobPostQuery.data()!);
     final newJobPost =
         jobPost.copyWith(applicantCounter: jobPost.applicantCounter + 1);
-    await Future.wait([jobPostsCollectionDocRef.set(newJobPost.toJson()),applicationCollectionRef.add(ApplicationModel(questionnaireAnswers: questionnaireAnswers, uid: selfUserId, ownerUid: jobModel.owner, jobId: jobModel.jobId!, timestampField: FieldValue.serverTimestamp(), status: true).toJson())]);
+    await Future.wait([jobPostsCollectionDocRef.set(newJobPost.toJson()),applicationCollectionRef.add(ApplicationModel(questionnaireAnswers: questionnaireAnswers, uid: selfUserId, ownerUid: jobModel.owner, jobId: jobModel.jobId!, timestampField: FieldValue.serverTimestamp(), status: null).toJson())]);
     state = AsyncData("SUCCESS");
   }
 }
