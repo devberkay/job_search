@@ -33,104 +33,89 @@ class JobSeekerCard extends HookConsumerWidget {
           clipBehavior: Clip.none,
           duration: const Duration(milliseconds: 250),
           transformAlignment: Alignment.center,
-                      curve: Curves.easeOut,
-            height: 250,
-            width: double.maxFinite,
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey.shade300),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade500,
-                      offset: Offset(
-                          isHovering.value ? -1 : 0, isHovering.value ? -1 : 0),
-                      blurRadius: isHovering.value ? 1.25 : 0,
-                      spreadRadius: isHovering.value ? 1.25 : 0),
-                  BoxShadow(
-                      color: Colors.grey.shade500,
-                      offset: Offset(
-                          isHovering.value ? 1 : 0, isHovering.value ? 1 : 0),
-                      blurRadius: isHovering.value ? 1.25 : 0,
-                      spreadRadius: isHovering.value ? 1.25 : 0)
-                ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("${userModel.name} ${userModel.surname}" ?? 'Unknown User',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 25)),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text("$buildEmoji ${userModel.positionTitles}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 10,
-                                    color: Colors.black)),
-                            const SizedBox(width: 10),
-                            Text(
-                                "${ageEmoji} ${userModel.age ?? 'Age'}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Colors.black)),
-                          ],
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child: ProfileBox(
-                              height: 40, width: 100, userId: jobModel.owner),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 2),
-                          child: Row(
-                            children: [
-                              Icon(Icons.update, size: 15, color: Colors.black),
-                              const SizedBox(width: 3),
-                              Text(
-                                  _convertToCustomFormat(
-                                      (jobModel.timestampField as Timestamp)
-                                          .toDate()),
-                                  style: TextStyle(
-                                      fontSize: 9 * 1.25,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600))
-                            ],
+          curve: Curves.easeOut,
+          height: 250,
+          width: double.maxFinite,
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.shade500,
+                    offset: Offset(
+                        isHovering.value ? -1 : 0, isHovering.value ? -1 : 0),
+                    blurRadius: isHovering.value ? 1.25 : 0,
+                    spreadRadius: isHovering.value ? 1.25 : 0),
+                BoxShadow(
+                    color: Colors.grey.shade500,
+                    offset: Offset(
+                        isHovering.value ? 1 : 0, isHovering.value ? 1 : 0),
+                    blurRadius: isHovering.value ? 1.25 : 0,
+                    spreadRadius: isHovering.value ? 1.25 : 0)
+              ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "${userModel.name} ${userModel.surname}" ??
+                              'Unknown User',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 25)),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("$buildEmoji ${userModel.positionTitles}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10,
+                                  color: Colors.black)),
+                          const SizedBox(width: 10),
+                          Text("${ageEmoji} ${userModel.age ?? 'Age'}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Colors.black)),
+                        ],
+                      )
+                    ],
+                  ),
+                  Expanded(
+                      flex: 3,
+                      child: Column(
+                        children: [
+                          Spacer(),
+                          Expanded(
+                            child: Wrap(
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: userModel.skills
+                                  .map((e) => Chip(
+                                        label: Text(e),
+                                        backgroundColor: Colors.white,
+                                        side: BorderSide(
+                                            color: Colors.grey.shade400),
+                                        labelStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600),
+                                      ))
+                                  .toList(),
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 30),
-                        Text("$moneyEmoji \$${jobModel.salaryPerHour}/hr",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: usDollarGreen)),
-                        const SizedBox(width: 10),
-                        Text(
-                            "$applicantsEmoji ${jobModel.applicantCounter} applied",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: Colors.blueAccent.shade700))
-                      ],
-                    )
-                  ],
-                ),
-                  ],
-                ),
+                        ],
+                      )),
+                  Spacer()
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
