@@ -33,7 +33,12 @@ class SpotlightCard extends HookConsumerWidget {
       },
       child: InkWell(
         onTap: () {
-          ref.read(jobTypesSetProvider.notifier).add(title);
+          if(title!= 'Remote roles') {
+            ref.read(jobTypesSetProvider.notifier).add(title);
+          }
+          else {
+            
+          }
           context.go('/jobs');
         },
         borderRadius: BorderRadius.circular(10),
