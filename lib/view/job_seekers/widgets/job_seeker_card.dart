@@ -71,10 +71,11 @@ class JobSeekerCard extends HookConsumerWidget {
                               'Unknown User',
                           style: const TextStyle(
                               fontWeight: FontWeight.w800, fontSize: 25)),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       Row(
                         children: [
-                          Text("$buildEmoji ${userModel.positionTitles}",
+                          Text(
+                              "$buildEmoji ${userModel.positionTitles.join(' ')}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,

@@ -554,6 +554,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                         positionTitles: value.split(" "));
                               },
                               inputFormatters: [CapitalizeTextInputFormatter()],
+                              maxLength: 25,
                               style: TextStyle(
                                   color: Colors.grey.shade600,
                                   fontWeight: FontWeight.w600),
@@ -1104,6 +1105,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 const SizedBox(height: 10),
                                 CupertinoTextField(
                                   readOnly: true,
+                                  maxLength: 25,
                                   inputFormatters: [
                                     CapitalizeTextInputFormatter()
                                   ],
@@ -1593,6 +1595,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                                 const SizedBox(height: 10),
                                 CupertinoTextField(
                                   readOnly: true,
+                                  maxLength: 25,
                                   inputFormatters: [
                                     CapitalizeTextInputFormatter()
                                   ],
@@ -2083,6 +2086,7 @@ class ProfileDashboardProfileView extends HookConsumerWidget {
                               const SizedBox(height: 10),
                               CupertinoTextField(
                                 readOnly: true,
+                                maxLength: 25,
                                 inputFormatters: [
                                   CapitalizeTextInputFormatter()
                                 ],
