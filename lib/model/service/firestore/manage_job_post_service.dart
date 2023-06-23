@@ -22,6 +22,7 @@ class ManageJobPostServiceStreamNotifier
 
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
+    debugPrint("selfUserId : $selfUserId");
     final applicationsStream = firestore
         .collection('applications')
         .where('ownerUid', isEqualTo: selfUserId)
