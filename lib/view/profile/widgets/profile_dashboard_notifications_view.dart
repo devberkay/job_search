@@ -9,7 +9,9 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTabController(initialLength: 2);
-    return TabBar(
+    return Column(
+      children: [
+        Expanded(child:  TabBar(
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         controller: controller,
         unselectedLabelColor: Colors.grey,
@@ -26,6 +28,16 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                 color: Colors.black,
               )),
           Tab(text: "Outgoing", icon: Icon(Icons.arrow_upward))
-        ]);
+        ])),
+        Expanded(
+              flex: 12,
+              child: Center(
+                child: TabBarView(
+                  controller: controller,
+                  children: const [PublicListView(), SelfDeviceView()],
+                ),
+              )),
+      ],
+    );
   }
 }
