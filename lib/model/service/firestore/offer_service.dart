@@ -20,6 +20,10 @@ class OfferServiceNotifier extends AutoDisposeAsyncNotifier<String?> {
     state = const AsyncLoading();
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
+    if(selfUserId == recipientUserId){
+      state = const AsyncData("CYCLIC_JOB_OFFER");
+      return;
+    }
     final offerCollectionRef = firestore.collection('offers');
     final offerDocumentRef = offerCollectionRef.doc();
     final offerId = offerDocumentRef.id;

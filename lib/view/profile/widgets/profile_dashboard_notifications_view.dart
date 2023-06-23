@@ -90,7 +90,7 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                                       height: 40,
                                       width: 120),
                                   const Text(
-                                    "have sent you following job offer",
+                                    "wants to work with you on this project: ",
                                     style:
                                         TextStyle(fontWeight: FontWeight.w600),
                                   ),

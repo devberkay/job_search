@@ -34,6 +34,9 @@ class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
         } else if(value == "JOB_OFFER_REJECTED") {
           context.showErrorFlushbar("Job offer rejected");
         }
+        else if(value == "CYCLIC_JOB_OFFER") {
+          context.showErrorFlushbar("You cannot send a job offer to yourself");
+        }
       });
     });
     ref.listen(applicationStatusChangeServiceProvider, (previous, next) {

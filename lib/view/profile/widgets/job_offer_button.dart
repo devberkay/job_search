@@ -21,7 +21,7 @@ class JobOfferButton extends HookConsumerWidget {
           },
           child: HeadlessCupertinoButton(
             onPressed: () async {
-              ref.read(offerServiceNotifierProvider.notifier).sendJobOffer(recipientUserId: recipientUserId, jobPostId: jobPostId)
+              
             },
             child: Stack(
               alignment: Alignment.center,
