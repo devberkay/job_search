@@ -4,6 +4,7 @@ import 'package:JobSearch/model/data/merged_my_applications_model.dart';
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myApplicationsStreamProvider = StreamNotifierProvider.autoDispose<
@@ -24,7 +25,8 @@ class MyApplicationsNotifier
         .snapshots();
     await for (final myApplicationsQuery in applicationsStream) {
       if (myApplicationsQuery.size == 0) {
-        yield []; 
+        debugPrint("errorish-1");
+        yield [];
         break;
       }
       final myApplications = myApplicationsQuery.docs
@@ -39,14 +41,12 @@ class MyApplicationsNotifier
           .toList();
 
       for (var i = 0; i < myApplications.length; i++) {
-        mergedMyApplications.add( MergedMyApplicationsModel(
+        mergedMyApplications.add(MergedMyApplicationsModel(
           jobModel: jobModels[i],
           applicationModel: myApplications[i],
-          
         ));
       }
       yield mergedMyApplications;
     }
-    
   }
 }
