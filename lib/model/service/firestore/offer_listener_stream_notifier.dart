@@ -58,9 +58,31 @@ class OfferListenerStreamNotifier
           .where('recipientUid', isEqualTo: selfUserId)
           .snapshots();
       await for (final offerQuery in offerStream) {
+        if (offerQuery.docs.length == 0) {
+          yield [];
+          break;
+        }
         final offerList = offerQuery.docs
             .map((e) => JobOfferModel.fromJson(e.data()))
             .toList();
+        final jobsQuery = await Future.wait(
+            offerList.map((e) => jobCollectionRef.doc(e.jobId).get()));
+        final jobsList =
+            jobsQuery.map((e) => JobModel.fromJson(e.data()!)).toList();
+
+        final usersQuery = await Future.wait(
+            offerList.map((e) => usersCollectionRef.doc(e.senderUid).get()));
+        final usersList =
+            usersQuery.map((e) => UserModel.fromJson(e.data()!)).toList();
+
+        for (var i = 0; i < offerList.length; i++) {
+          listOfOfferMergeModel.add(OfferMergedModel(
+            invitedJobModel: jobsList[i],
+            applicantModel: usersList[i],
+            jobOfferModel: offerList[i],
+          ));
+        }
+        yield listOfOfferMergeModel;
         
       }
     } else {
