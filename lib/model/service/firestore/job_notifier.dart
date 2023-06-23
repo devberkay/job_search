@@ -11,10 +11,10 @@ final orderByProvider = StateProvider<String?>((ref) {
 });
 
 final whatDoYouWantToDoListProvider =
-    NotifierProvider<WhatDoYouWantToDoListNotifier, List<String>>(
+    NotifierProvider.autoDispose<WhatDoYouWantToDoListNotifier, List<String>>(
         WhatDoYouWantToDoListNotifier.new);
 
-class WhatDoYouWantToDoListNotifier extends Notifier<List<String>> {
+class WhatDoYouWantToDoListNotifier extends AutoDisposeNotifier<List<String>> {
   @override
   build() {
     return [];
@@ -30,9 +30,9 @@ class WhatDoYouWantToDoListNotifier extends Notifier<List<String>> {
 }
 
 final skillsListProvider =
-    NotifierProvider<SkillsListNotifier, List<String>>(SkillsListNotifier.new);
+    NotifierProvider.autoDispose<SkillsListNotifier, List<String>>(SkillsListNotifier.new);
 
-class SkillsListNotifier extends Notifier<List<String>> {
+class SkillsListNotifier extends AutoDisposeNotifier<List<String>> {
   @override
   build() {
     return [];
@@ -48,9 +48,9 @@ class SkillsListNotifier extends Notifier<List<String>> {
 }
 
 final degreesSetProvider =
-    NotifierProvider<DegreesSetNotifier, Set<String>>(DegreesSetNotifier.new);
+    NotifierProvider.autoDispose<DegreesSetNotifier, Set<String>>(DegreesSetNotifier.new);
 
-class DegreesSetNotifier extends Notifier<Set<String>> {
+class DegreesSetNotifier extends AutoDisposeNotifier<Set<String>> {
   @override
   build() {
     return {};
@@ -67,9 +67,9 @@ class DegreesSetNotifier extends Notifier<Set<String>> {
 }
 
 final jobTypesSetProvider =
-    NotifierProvider<JobTypesSetNotifier, Set<String>>(JobTypesSetNotifier.new);
+    NotifierProvider.autoDispose<JobTypesSetNotifier, Set<String>>(JobTypesSetNotifier.new);
 
-class JobTypesSetNotifier extends Notifier<Set<String>> {
+class JobTypesSetNotifier extends AutoDisposeNotifier<Set<String>> {
   @override
   build() {
     return {};
@@ -85,7 +85,7 @@ class JobTypesSetNotifier extends Notifier<Set<String>> {
   }
 }
 
-final isRemoteEligibleProvider = StateProvider<bool>((ref) {
+final isRemoteEligibleProvider = StateProvider.autoDispose<bool>((ref) {
   return false;
 });
 
