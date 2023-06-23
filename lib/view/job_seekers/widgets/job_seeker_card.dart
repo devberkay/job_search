@@ -16,7 +16,8 @@ class JobSeekerCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buildEmoji = '\u{1F528}';
-    final ageEmoji = '\u{1F4C6}';
+    String birthdayCake = '\u{1F382}';
+
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -72,15 +73,14 @@ class JobSeekerCard extends HookConsumerWidget {
                               fontWeight: FontWeight.w800, fontSize: 25)),
                       const SizedBox(height: 10),
                       Row(
-                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text("$buildEmoji ${userModel.positionTitles}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 10,
+                                  fontSize: 14,
                                   color: Colors.black)),
                           const SizedBox(width: 10),
-                          Text("${ageEmoji} ${userModel.age ?? 'Age'}",
+                          Text("${birthdayCake} ${userModel.age ?? 'Age'}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
@@ -89,29 +89,20 @@ class JobSeekerCard extends HookConsumerWidget {
                       )
                     ],
                   ),
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        children: [
-                          Spacer(),
-                          Wrap(
-                            spacing: 5,
-                            runSpacing: 5,
-                            children: userModel.skills
-                                .map((e) => Chip(
-                                      label: Text(e),
-                                      backgroundColor: Colors.white,
-                                      side: BorderSide(
-                                          color: Colors.grey.shade400),
-                                      labelStyle: const TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600),
-                                    ))
-                                .toList(),
-                          ),
-                        ],
-                      )),
-                  Spacer()
+                  Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: userModel.skills
+                        .map((e) => Chip(
+                              label: Text(e),
+                              backgroundColor: Colors.white,
+                              side: BorderSide(color: Colors.grey.shade400),
+                              labelStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600),
+                            ))
+                        .toList(),
+                  ),
                 ],
               ),
             ],
