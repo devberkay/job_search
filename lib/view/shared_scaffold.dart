@@ -53,6 +53,9 @@ class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
           context
               .showSuccesFlashbar("You've successfully applied to this job.");
         }
+        else if(value == "CANNOT_APPLY_TO_OWN_JOB") {
+          context.showErrorFlushbar("You cannot apply to your own job.");
+        }
       });
     });
     ref.listen(userProvider, (previous, next) {

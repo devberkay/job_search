@@ -17,8 +17,13 @@ class ApplicatioNServiceNotifier extends AsyncNotifier<String?> {
 
   Future<void> applyJob({required JobModel jobModel,required Map<String,String>? questionnaireAnswers}) async {
     state = AsyncLoading();
+    
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
+    if(selfUserId == jobModel.owner){
+      state = AsyncData("CANNOT_APPLY_TO_OWN_JOB");
+      return;
+    }
     final applicationCollectionRef = firestore.collection('applications');
     final jobPostsCollectionDocRef =
         firestore.collection('jobPosts').doc(jobModel.jobId);

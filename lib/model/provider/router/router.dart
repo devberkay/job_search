@@ -66,19 +66,14 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                         userId: state.pathParameters["userId"]!,
                         key: ValueKey(state.pathParameters["userId"]!),
                       )),
-                  routes: [
-                    GoRoute(
-                  path: "jobsExtraRoute",
-                  name: "jobsExtraRoute",
-                  pageBuilder: (context, state) => CustomSlideTransition(
-                      key: state.pageKey,
-                      child: const JobsExtraRoutePage(
-                        
-                      )),
-                ),
-                  ]
                 ),
               ]),
+          GoRoute(
+            path: "/jobsExtraRoute",
+            name: "jobsExtraRoute",
+            pageBuilder: (context, state) => CustomSlideTransition(
+                key: state.pageKey, child: const JobsExtraRoutePage()),
+          ),
         ])
   ]);
 });
