@@ -48,6 +48,7 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
                   labelStyle: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.w600),
                   onDeleted: () {
+                    ref.invalidate(seekerPositionTitleListProvider);
                     ref
                         .read(seekerPositionTitleListProvider.notifier)
                         .remove(e);
@@ -64,14 +65,15 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
           const SizedBox(height: 15),
           HookConsumer(builder: (context, ref, child) {
             final controller = useTextEditingController();
-            ref.watch(seekerSkillsListProvider);
+            ref.watch(seekerPositionTitleListProvider);
             return CupertinoTextField(
               padding: const EdgeInsets.all(15),
               controller: controller,
-              placeholder: "React, SQL, Node.js",
+              placeholder: "Position title e.g. React Engineer",
               onSubmitted: (value) {
+                ref.invalidate(seekerSkillsListProvider);
                 ref
-                    .read(seekerSkillsListProvider.notifier)
+                    .read(seekerPositionTitleListProvider.notifier)
                     .add(value.split(" "));
                 controller.clear();
               },
@@ -91,15 +93,40 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
           }),
           const SizedBox(height: 15),
           HookConsumer(builder: (context, ref, child) {
+            final items = ref.watch(seekerSkillsListProvider);
+            return Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children: items.map<Widget>((e) {
+                return Chip(
+                  label: Text(e),
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.grey.shade400),
+                  labelStyle: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.w600),
+                  onDeleted: () {
+                    ref.read(seekerSkillsListProvider.notifier).remove(e);
+                  },
+                  deleteButtonTooltipMessage: "Remove filter",
+                  deleteIcon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                );
+              }).toList(),
+            );
+          }),
+          const SizedBox(height: 15),
+          HookConsumer(builder: (context, ref, child) {
             final controller = useTextEditingController();
-            ref.watch(seekerPositionTitleListProvider);
+            ref.watch(seekerSkillsListProvider);
             return CupertinoTextField(
               padding: const EdgeInsets.all(15),
               controller: controller,
-              placeholder: "Software Engineering, Design, Sales",
+              placeholder: "Skills e.g. SQL, Node, Firebase",
               onSubmitted: (value) {
                 ref
-                    .read(seekerPositionTitleListProvider.notifier)
+                    .read(seekerSkillsListProvider.notifier)
                     .add(value.split(" "));
                 controller.clear();
               },

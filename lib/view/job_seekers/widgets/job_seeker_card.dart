@@ -56,7 +56,7 @@ class JobSeekerCard extends HookConsumerWidget {
                     blurRadius: isHovering.value ? 1.25 : 0,
                     spreadRadius: isHovering.value ? 1.25 : 0)
               ]),
-          child: ListView(
+          child: Column(
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
