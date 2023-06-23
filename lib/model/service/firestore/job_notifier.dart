@@ -153,7 +153,7 @@ class JobNotifier
     var collectionRef = firestore.collection("jobPosts");
     Query<Map<String, dynamic>>? query = null;
 
-    final lastJobDoc = ref.read(lastJobDocProvider);
+    final lastJobDoc = ref.read(lastJobDocProvider); // bura watch olmali petpeeve
     if (degreesFilterSet.isNotEmpty) {
       if (query != null) {
         query = query.where("degree", whereIn: degreesFilterSet);

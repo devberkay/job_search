@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:JobSearch/model/data/user_model.dart';
+import 'package:JobSearch/model/provider/firestore/firestore_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
@@ -48,9 +50,45 @@ class SeekerPositionTitleListProvider extends AutoDisposeNotifier<List<String>> 
 
 
 
-class SeekerNotifier extends AsyncNotifier<List<UserModel>> {
+class SeekerNotifier extends AutoDisposeAsyncNotifier<List<UserModel>> {
   @override
   FutureOr<List<UserModel>> build() {
+    final seekerPositionTitleFilterList = ref
+        .watch(seekerPositionTitleListProvider)
+        .expand((element) => [
+              element,
+              element.toLowerCase(),
+              element[0].toUpperCase() + element.substring(1)
+            ])
+        .toList();
+    final seekerSkillsFilterList = ref
+        .watch(seekerSkillsListProvider)
+        .expand((element) => [
+              element,
+              element.toLowerCase(),
+              element[0].toUpperCase() + element.substring(1)
+            ])
+        .toList();
+    final firestore = ref.watch(firestoreProvider);
+    var collectionRef = firestore.collection("jobPosts");
+    Query<Map<String, dynamic>>? query = null;
+    if (seekerPositionTitleFilterList.isNotEmpty) {
+      if (query != null) {
+        query = query.where("positionTitles",
+            arrayContainsAny: seekerPositionTitleFilterList);
+      } else {
+        query = collectionRef.where("positionTitles",
+            arrayContainsAny: seekerPositionTitleFilterList);
+      }
+    }
+    if (seekerSkillsFilterList.isNotEmpty) {
+      if (query != null) {
+        query = query.where("skills", arrayContainsAny: seekerSkillsFilterList);
+      } else {
+        query = collectionRef.where("skills",
+            arrayContainsAny: seekerSkillsFilterList);
+      }
+    }
     return ;
   }
 }
