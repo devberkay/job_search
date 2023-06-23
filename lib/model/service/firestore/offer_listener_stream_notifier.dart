@@ -13,6 +13,7 @@ class OfferListenerStreamNotifier
     final firestore = ref.read(firestoreProvider);
     final selfUserId = ref.read(userProvider)!.uid;
     final offerCollectionRef = firestore.collection('offers');
+    final 
     if (arg == "OUTGOING") {
       final offerStream = offerCollectionRef
           .where('senderUid', isEqualTo: selfUserId)
@@ -21,6 +22,7 @@ class OfferListenerStreamNotifier
         final offerList = offerQuery.docs
             .map((e) => JobOfferModel.fromJson(e.data()))
             .toList();
+        
         yield offerList;
       }
     } else if (arg == "INCOMING") {
