@@ -29,8 +29,8 @@ class ManageJobPostServiceStreamNotifier
         .snapshots(); // we get the ApplicationModels here
 
     await for (final assessableApplication in applicationsStream) {
+      debugPrint("The numssy: ${assessableApplication.docs.length.toString()}");
       if (assessableApplication.size == 0) {
-        
         yield MergedManageJobPostModel(
             applicationModels: [], applicantModels: [], jobModels: []);
         break;
