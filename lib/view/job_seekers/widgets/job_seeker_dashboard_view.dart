@@ -1,7 +1,9 @@
 import 'package:JobSearch/model/provider/auth/user_model_provider.dart';
 import 'package:JobSearch/model/provider/storage/raw_picture_provider.dart';
 import 'package:JobSearch/model/service/firestore/seeker_notifier.dart';
+import 'package:JobSearch/view/shared/filled_cupertino_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final shouldPaginateNextUserModelPageProvider = StateProvider<bool>((ref) {
@@ -21,16 +23,16 @@ class JobSeekerDashboardView extends HookConsumerWidget {
             debugPrint("dashboard_view.dart: OK");
             
             final userProfilePicturesFutures = Future.wait(List.generate(
-                seekers.map((e) => e.owner).toSet().length,
+                seekers.map((e) => e.uid).toSet().length,
                 (index) => ref
-                    .watch(rawPictureProvider(jobs[index].owner).future)
+                    .watch(rawPictureProvider(seekers[index].uid).future)
                     .catchError((error) => null)));
             return FutureBuilder(
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     return ListView.separated(
                         clipBehavior: Clip.none,
-                        itemCount: jobs.length + 2,
+                        itemCount: seekers.length + 2,
                         separatorBuilder: (context, index) {
                           return const SizedBox(height: 50);
                         },
@@ -100,7 +102,7 @@ class JobSeekerDashboardView extends HookConsumerWidget {
                     );
                   }
                 },
-                future: Future.wait([userModelFutures, userProfilePicturesFutures]));
+                future: Future.wait([userProfilePicturesFutures]));
           } else {
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +126,7 @@ class JobSeekerDashboardView extends HookConsumerWidget {
               const SizedBox(height: 20),
               FilledCupertinoButton(
                   onPressed: () {
-                    ref.invalidate(jobNotifierProvider(shouldPaginateNext));
+                    ref.invalidate(seekerNotifierProvider(shouldPaginateNext));
                   },
                   height: 35,
                   width: 70,
