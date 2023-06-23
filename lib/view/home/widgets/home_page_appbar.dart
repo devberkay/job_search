@@ -77,7 +77,7 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 ),
               ),
               onPressed: () {
-                context.go('/jobSeekers');
+                // context.go('/jobSeekers');
               },
             ),
           ),

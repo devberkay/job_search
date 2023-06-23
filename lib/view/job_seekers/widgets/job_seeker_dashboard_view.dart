@@ -35,12 +35,17 @@ class JobSeekerDashboardView extends HookConsumerWidget {
                   if (snapshot.connectionState == ConnectionState.done) {
                     return ListView.separated(
                         clipBehavior: Clip.none,
-                        itemCount: seekers.length + 2,
+                        itemCount: seekers.length,
                         separatorBuilder: (context, index) {
                           return const SizedBox(height: 50);
                         },
                         itemBuilder: (context, index) {
-                          return JobSeekerCard(userModel: seekers[index],);
+                          return SizedBox(
+                              height: 250,
+                              width: double.maxFinite,
+                              child: JobSeekerCard(
+                                userModel: seekers[index],
+                              ));
                         });
                   } else {
                     return const Center(

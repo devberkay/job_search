@@ -141,26 +141,6 @@ class AuthDialog extends HookConsumerWidget {
                           color: Colors.white, fontWeight: FontWeight.w600))),
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GoogleAuthButton(
-                onPressed: () {
-                  ref.read(authNotifierProvider.notifier).signInWithGoogle();
-                },
-                style: AuthButtonStyle(
-                  borderRadius: 0,
-                  splashColor: Colors.grey.shade200,
-                  textStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                  iconSize: 15,
-                  height: 30,
-                  width: double.maxFinite,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
