@@ -17,7 +17,9 @@ class JobSeekerCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final buildEmoji = '\u{1F528}';
     String birthdayCake = '\u{1F382}';
-
+    final jobSeekersEmoji = String.fromCharCode(0x1F9D1) +
+        String.fromCharCode(0x200D) +
+        String.fromCharCode(0x1F4BC);
     final isHovering = useState(false);
     return MouseRegion(
       onEnter: (event) {
@@ -31,7 +33,6 @@ class JobSeekerCard extends HookConsumerWidget {
           context.go('/profile/${userModel.uid}');
         },
         child: AnimatedContainer(
-          clipBehavior: Clip.none,
           duration: const Duration(milliseconds: 250),
           transformAlignment: Alignment.center,
           curve: Curves.easeOut,
@@ -67,7 +68,7 @@ class JobSeekerCard extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          "${userModel.name} ${userModel.surname}" ??
+                          "$jobSeekersEmoji  ${userModel.name} ${userModel.surname}" ??
                               'Unknown User',
                           style: const TextStyle(
                               fontWeight: FontWeight.w800, fontSize: 25)),
@@ -116,6 +117,12 @@ class JobSeekerCard extends HookConsumerWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 30),
+              Container(
+                height: 1.5,
+                color: Colors.grey.shade400,
+                width: double.maxFinite,
+              )
             ],
           ),
         ),
