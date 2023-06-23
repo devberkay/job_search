@@ -37,62 +37,7 @@ class JobSeekerDashboardView extends HookConsumerWidget {
                           return const SizedBox(height: 50);
                         },
                         itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return Row(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.notifications,
-                                        color: Colors.blueAccent.shade700),
-                                    const SizedBox(width: 10),
-                                    Text("Turn on job alerts for your search",
-                                        style: TextStyle(
-                                            color: Colors.blueAccent.shade700,
-                                            fontWeight: FontWeight.w700)),
-                                    const SizedBox(width: 20),
-                                    SizedBox(
-                                      height: 45,
-                                      width: 45,
-                                      child: FittedBox(
-                                        child: HookConsumer(
-                                            builder: (context, ref, child) {
-                                          final isNotificationsActive =
-                                              useState(false);
-                                          return CupertinoSwitch(
-                                              value:
-                                                  isNotificationsActive.value,
-                                              activeColor:
-                                                  Colors.blueAccent.shade700,
-                                              trackColor: Colors.grey.shade400,
-                                              onChanged: (value) {
-                                                isNotificationsActive.value =
-                                                    value;
-                                              });
-                                        }),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const Spacer(),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.unfold_more,
-                                      color: Colors.grey.shade600,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    const SortDropdownButton(),
-                                  ],
-                                )
-                              ],
-                            );
-                          } else if (index == jobs.length + 1) {
-                            return const SizedBox(height: 50);
-                          } else {
-                            return JobCard(jobModel: jobs[index - 1]);
-                          }
+                          
                         });
                   } else {
                     return const Center(
