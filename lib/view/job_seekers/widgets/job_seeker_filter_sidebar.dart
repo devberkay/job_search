@@ -20,7 +20,7 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
         children: [
           Row(
             children: [
-              const Text("Enter a qualification or skill",
+              const Text("Enter a position or skill",
                   style: TextStyle(fontWeight: FontWeight.w800)),
               const Spacer(),
               HeadlessCupertinoButton(
@@ -63,15 +63,15 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
           const SizedBox(height: 15),
           HookConsumer(builder: (context, ref, child) {
             final controller = useTextEditingController();
-            ref.watch(seekerPositionTitleListProvider);
+            ref.watch(seekerSkillsListProvider);
             return CupertinoTextField(
               padding: const EdgeInsets.all(15),
               controller: controller,
-              placeholder: "Software Engineering, Design, Sales",
+              placeholder: "React, SQL, Node.js",
               onSubmitted: (value) {
                 
                 ref
-                    .read(seekerPositionTitleListProvider.notifier)
+                    .read(seekerSkillsListProvider.notifier)
                     .add(value.split(" "));
                 controller.clear();
               },
