@@ -36,6 +36,7 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
     return Column(
       children: [
         Expanded(
+            flex: 3,
             child: TabBar(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                 controller: controller,
@@ -46,14 +47,14 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                 dividerColor: Colors.black,
                 indicatorColor: Colors.black,
                 tabs: const [
-              Tab(
-                  text: "Incoming",
-                  icon: Icon(
-                    Icons.arrow_downward,
-                    color: Colors.black,
-                  )),
-              Tab(text: "Outgoing", icon: Icon(Icons.arrow_upward))
-            ])),
+                  Tab(
+                      text: "Incoming",
+                      icon: Icon(
+                        Icons.arrow_downward,
+                        color: Colors.black,
+                      )),
+                  Tab(text: "Outgoing", icon: Icon(Icons.arrow_upward))
+                ])),
         Expanded(
             flex: 12,
             child: Center(
@@ -123,30 +124,11 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                                     onPressed: () {},
                                     child: const DecoratedBox(
                                         decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            shape: BoxShape.circle),
-                                        child: Icon(Icons.question_mark,
-                                            color: Colors.white)),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  HeadlessCupertinoButton(
-                                    onPressed: () {},
-                                    child: const DecoratedBox(
-                                        decoration: BoxDecoration(
                                             color: Colors.red,
                                             shape: BoxShape.circle),
                                         child: Icon(Icons.remove,
                                             color: Colors.white)),
                                   ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                      "( ${textBuilder(incomingOffersMergedModel[index].jobOfferModel.status)} )",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: colorBuilder(
-                                              incomingOffersMergedModel[index]
-                                                  .jobOfferModel
-                                                  .status)))
                                 ],
                               ),
                             );
@@ -172,7 +154,7 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                       }
                     }, error: (e, st) {
                       debugPrint(
-                          "profile_dashboard_my_applicatons_view.dart error : $e");
+                          "profile_dashboard_notifications_view.dart error : $e");
                       return const Center(
                           child: Column(
                         children: [
@@ -193,10 +175,122 @@ class ProfileDashboardNotificationsView extends HookConsumerWidget {
                   HookConsumer(builder: (context, ref, child) {
                     final offerStream = ref
                         .watch(offerListenerStreamNotifierProvider("OUTGOING"));
-                    return offerStream.when(
-                        data: (outgoingOffersMergedModel) {},
-                        error: (e, st) {},
-                        loading: () {});
+                    return offerStream.when(data: (outgoingOffersMergedModel) {
+                      if (outgoingOffersMergedModel.isNotEmpty) {
+                        return ListView.separated(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 12),
+                          itemCount: outgoingOffersMergedModel.length,
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: 10);
+                          },
+                          itemBuilder: (context, index) {
+                            return DecoratedBox(
+                              decoration: const ShapeDecoration(
+                                  shape: StadiumBorder(
+                                      side: BorderSide(color: Colors.black))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ProfileBoxStatic(
+                                      userModel:
+                                          outgoingOffersMergedModel[index]
+                                              .applicantModel,
+                                      height: 40,
+                                      width: 120),
+                                  const Text(
+                                    "has received your offer for the following job",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Chip(
+                                    shape: const StadiumBorder(
+                                        side: BorderSide(color: Colors.black)),
+                                    backgroundColor: Colors.grey.shade200,
+                                    label: Text(
+                                      outgoingOffersMergedModel[index]
+                                          .invitedJobModel
+                                          .title,
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 30),
+                                  const DecoratedBox(
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          shape: BoxShape.circle),
+                                      child: Icon(Icons.check,
+                                          color: Colors.white)),
+                                  const SizedBox(width: 5),
+                                  const DecoratedBox(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          shape: BoxShape.circle),
+                                      child: Icon(Icons.question_mark,
+                                          color: Colors.white)),
+                                  const SizedBox(width: 5),
+                                  HeadlessCupertinoButton(
+                                    onPressed: () {},
+                                    child: const DecoratedBox(
+                                        decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            shape: BoxShape.circle),
+                                        child: Icon(Icons.remove,
+                                            color: Colors.white)),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                      "( ${textBuilder(outgoingOffersMergedModel[index].jobOfferModel.status)} )",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: colorBuilder(
+                                              outgoingOffersMergedModel[index]
+                                                  .jobOfferModel
+                                                  .status)))
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        return const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.question_mark,
+                              color: Colors.black,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              "You haven't sent any job offer yet",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        );
+                      }
+                    }, error: (e, st) {
+                      debugPrint(
+                          "profile_dashboard_notifications_view.dart error : $e");
+                      return const Center(
+                          child: Column(
+                        children: [
+                          Icon(Icons.error),
+                          SizedBox(height: 10),
+                          Text(
+                              "We are facing an issue right now. Please try again later"),
+                        ],
+                      ));
+                    }, loading: () {
+                      return const Center(
+                        child: SpinKitRing(
+                          color: Colors.black,
+                        ),
+                      );
+                    });
                   })
                 ],
               ),

@@ -2,6 +2,7 @@ import 'package:JobSearch/model/provider/auth/auth_stream_provider.dart';
 import 'package:JobSearch/model/provider/auth/user_provider.dart';
 import 'package:JobSearch/model/service/firestore/application_service.dart';
 import 'package:JobSearch/model/service/firestore/application_status_change_service.dart';
+import 'package:JobSearch/model/service/firestore/offer_service.dart';
 import 'package:JobSearch/model/service/firestore/publish_service.dart';
 import 'package:JobSearch/model/service/firestore/user_model_service_notifier.dart';
 import 'package:JobSearch/model/service/storage/upload_service.dart';
@@ -24,6 +25,17 @@ class SharedScaffold extends StatefulHookConsumerWidget {
 class _SharedScaffoldState extends ConsumerState<SharedScaffold> {
   @override
   Widget build(BuildContext context) {
+    ref.listen(offerServiceNotifierProvider, (previous, next) {
+      next.whenData((value) {
+        if(value == "JOB_OFFER_SENT") {
+          context.showSuccesFlashbar("Job offer sent");
+        } else if(value == "JOB_OFFER_ACCEPTED") {
+          context.showSuccesFlashbar("Job offer accepted");
+        } else if(value == "JOB_OFFER_REJECTED") {
+          context.showErrorFlushbar("Job offer rejected");
+        }
+      });
+    });
     ref.listen(applicationStatusChangeServiceProvider, (previous, next) {
       next.whenData((value) {
         if (value == "ACCEPTED") {
