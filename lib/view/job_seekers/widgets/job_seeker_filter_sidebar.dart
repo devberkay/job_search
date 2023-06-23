@@ -89,6 +89,34 @@ class JobSeekerFilterSidebar extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(5)),
             );
           }),
+          const SizedBox(height: 15),
+          HookConsumer(builder: (context, ref, child) {
+            final controller = useTextEditingController();
+            ref.watch(seekerPositionTitleListProvider);
+            return CupertinoTextField(
+              padding: const EdgeInsets.all(15),
+              controller: controller,
+              placeholder: "Software Engineering, Design, Sales",
+              onSubmitted: (value) {
+                ref
+                    .read(seekerPositionTitleListProvider.notifier)
+                    .add(value.split(" "));
+                controller.clear();
+              },
+              placeholderStyle: TextStyle(
+                  color: Colors.grey.shade400, fontWeight: FontWeight.w500),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade400.withOpacity(0.5),
+                        offset: const Offset(0, 1),
+                        blurRadius: 1)
+                  ],
+                  borderRadius: BorderRadius.circular(5)),
+            );
+          }),
         ],
       ),
     );
