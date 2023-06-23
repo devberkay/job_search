@@ -18,12 +18,14 @@ class MyApplicationsNotifier
     final firestore = ref.read(firestoreProvider);
     final mergedMyApplications = <MergedMyApplicationsModel>[];
     final selfUserUid = ref.read(userProvider)!.uid;
+    debugPrint("deloo - $selfUserUid");
     final applicationsCollectionRef = firestore.collection('applications');
     final jobsCollectionRef = firestore.collection('jobPosts');
     final applicationsStream = applicationsCollectionRef
         .where('ownerUid', isEqualTo: selfUserUid)
         .snapshots();
     await for (final myApplicationsQuery in applicationsStream) {
+      debugPrint("The numss: ${myApplicationsQuery.docs.length.toString()}");
       if (myApplicationsQuery.size == 0) {
         debugPrint("errorish-1");
         yield [];
@@ -33,6 +35,7 @@ class MyApplicationsNotifier
           .map((e) =>
               ApplicationModel.fromJson(e.data()).copyWith(applicationId: e.id))
           .toList();
+
       final jobModelsQueries = await Future.wait(myApplications
           .map((e) => jobsCollectionRef.doc(e.jobId).get())
           .toList());
