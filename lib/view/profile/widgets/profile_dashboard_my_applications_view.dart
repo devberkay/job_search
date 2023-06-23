@@ -44,6 +44,7 @@ class ProfileDashboardMyApplicationsView extends HookConsumerWidget {
         .value!;
     return myApplications.when(data: (mergedModel) {
       if (mergedModel.isNotEmpty) {
+        debugPrint("WHY!! : $mergedModel");
         return ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           itemCount: mergedModel.length,
@@ -51,7 +52,7 @@ class ProfileDashboardMyApplicationsView extends HookConsumerWidget {
             return const SizedBox(height: 10);
           },
           itemBuilder: (context, index) {
-            return DecoratedBox(
+            return Container(
               decoration: const ShapeDecoration(
                   shape: StadiumBorder(side: BorderSide(color: Colors.black))),
               child: Row(
@@ -67,8 +68,8 @@ class ProfileDashboardMyApplicationsView extends HookConsumerWidget {
                   HeadlessCupertinoButton(
                     onPressed: () {
                       ref.read(selectedJobModelProvider.notifier).state =
-                              mergedModel[index].jobModel;
-                          context.goNamed('jobsExtraRoute');
+                          mergedModel[index].jobModel;
+                      context.goNamed('jobsExtraRoute');
                     },
                     child: Chip(
                       shape: const StadiumBorder(
