@@ -75,7 +75,7 @@ class JobSeekerCard extends HookConsumerWidget {
                       Row(
                         children: [
                           Text(
-                              "$buildEmoji ${userModel.positionTitles.join(' ')}",
+                              "$buildEmoji ${userModel.positionTitles.isEmpty ? 'Unknown Position' : userModel.positionTitles.join(' ')}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
@@ -90,19 +90,29 @@ class JobSeekerCard extends HookConsumerWidget {
                       )
                     ],
                   ),
-                  Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: userModel.skills
-                        .map((e) => Chip(
-                              label: Text(e),
-                              backgroundColor: Colors.white,
-                              side: BorderSide(color: Colors.grey.shade400),
-                              labelStyle: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                            ))
-                        .toList(),
+                  SizedBox(width: 30),
+                  Column(
+                    children: [
+                      SizedBox(height: 15),
+                      SizedBox(
+                        width: 600,
+                        child: Wrap(
+                          spacing: 5,
+                          runSpacing: 5,
+                          children: userModel.skills
+                              .map((e) => Chip(
+                                    label: Text(e),
+                                    backgroundColor: Colors.white,
+                                    side:
+                                        BorderSide(color: Colors.grey.shade400),
+                                    labelStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
