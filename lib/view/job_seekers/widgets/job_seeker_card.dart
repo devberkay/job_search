@@ -1,7 +1,10 @@
 import 'package:JobSearch/model/data/user_model.dart';
 import 'package:JobSearch/model/provider/storage/file_download_url_provider.dart';
+import 'package:JobSearch/model/utils/capitalize_text_input_formatter.dart';
+import 'package:JobSearch/model/utils/flushbar_extension.dart';
 import 'package:JobSearch/model/utils/word_by_word_formatter.dart';
 import 'package:JobSearch/view/profile/widgets/profile_age_dropdown_button.dart';
+import 'package:JobSearch/view/profile/widgets/profile_sex_dropdown_button.dart';
 import 'package:JobSearch/view/shared/headless_cupertino_button.dart';
 import 'package:JobSearch/view/shared/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +18,16 @@ class JobSeekerCard extends HookConsumerWidget {
   final UserModel userModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final draftUserModelNotifier = useValueNotifier(userModel);
+    final skillsController = useTextEditingController();
+    final positionTitleController =
+        useTextEditingController(text: userModel.positionTitles.join(' '));
+    final nameController = useTextEditingController(text: userModel.name);
+    final lastNameController =
+        useTextEditingController(text: userModel.surname);
+    final phoneController = useTextEditingController(text: userModel.phone);
+    final emailController = useTextEditingController(text: userModel.mail);
+    final bioController = useTextEditingController(text: userModel.bio);
     //boo
     final downloadUrl =
         ref.watch(fileDownloadUrlProvider("/users/${userModel.uid}/cv"));

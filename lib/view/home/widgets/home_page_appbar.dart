@@ -76,7 +76,9 @@ class HomePageAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.go('/jobSeekers');
+              },
             ),
           ),
           const Spacer(),

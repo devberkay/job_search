@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:JobSearch/view/details/details_page.dart';
+import 'package:JobSearch/view/job_seekers/job_seekers_page.dart';
 import 'package:JobSearch/view/jobs/jobs_page.dart';
 import 'package:JobSearch/view/jobs_extra_route/jobs_extra_route_page.dart';
 import 'package:JobSearch/view/profile/profile_page.dart';
@@ -57,6 +58,12 @@ final goRouterProvider = Provider.autoDispose<GoRouter>((ref) {
                             )),
                       ),
                     ]),
+                GoRoute(
+                  path: "jobseekers",
+                  name: "jobseekers",
+                  pageBuilder: (context, state) => CustomSlideTransition(
+                      key: state.pageKey, child: JobSeekersPage()),
+                ),
                 GoRoute(
                   path: "profile/:userId",
                   name: "profile",
